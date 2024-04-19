@@ -1,4 +1,8 @@
 node_modules
 dist
 dist_public
-
+public/.htaccess
+push.sh
+prebuild.sh
+push_dir.php
+.htaccess
