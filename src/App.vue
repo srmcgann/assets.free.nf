@@ -64,7 +64,7 @@ export default {
   data(){
     return {
       state: {
-        footerMsg: '<b><span style="transform: scaleX(4.1);display: inline-block; margin-left: 86px; ">IMJUR</span></b><br>A FREE DIGITAL ASSET<br><span style="transform: scaleX(.87);display: inline-block; margin-left: -18px;">HOSTING SERVICE - ©'+(new Date()).getFullYear() + `</span><br><a href="mailto:whitehotrobot@gmail.com"><span style="transform: scaleX(.87);display: inline-block; margin-left: -18px;">whitehotrobot@gmail.com</span></a>`,
+        footerMsg: '<b><span style="transform: scaleX(3.325);display: inline-block; margin-left: 86px; ">ASSETS</span></b><br>A FREE DIGITAL ASSET<br><span style="transform: scaleX(.87);display: inline-block; margin-left: -18px;">HOSTING SERVICE - ©'+(new Date()).getFullYear() + `</span><br><a href="mailto:whitehotrobot@gmail.com"><span style="transform: scaleX(.87);display: inline-block; margin-left: -18px;">whitehotrobot@gmail.com</span></a>`,
         links: [],         // immediate uploads
         userLinks: [],     // logged-in user - current pg only
         miscLinks: [],     // alt views, e.g. per-collection links
@@ -1207,7 +1207,7 @@ export default {
     },
     URLbase(){
       let ret = window.location.origin
-      if(ret != null && ret.toLowerCase().split('.')[0].indexOf('imjur') === -1 &&
+      if(ret.toLowerCase().split('.')[0].indexOf('imjur') === -1 &&
          ret.toLowerCase().split('.')[0].indexOf('assets') === -1 ){
         ret += '/imjur'
       }
