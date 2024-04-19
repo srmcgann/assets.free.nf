@@ -1,0 +1,2 @@
+cd /htdocs
+put -r /home/scottmcgann4/assets.free.nf/dist_public/*
