@@ -1,6 +1,6 @@
 <?php
   require('db.php');
-  $sql = "SELECT * FROM orbsMirrors";
+  $sql = "SELECT * FROM imjurServers";
   $res = mysqli_query($link, $sql);
   $servers = [];
   for($i=0; $i<mysqli_num_rows($res); ++$i){

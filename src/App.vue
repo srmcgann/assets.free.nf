@@ -1207,7 +1207,7 @@ export default {
     },
     URLbase(){
       let ret = window.location.origin
-      if(ret.toLowerCase().split('.')[0].indexOf('imjur') === -1 &&
+      if(ret != null && ret.toLowerCase().split('.')[0].indexOf('imjur') === -1 &&
          ret.toLowerCase().split('.')[0].indexOf('assets') === -1 ){
         ret += '/imjur'
       }
