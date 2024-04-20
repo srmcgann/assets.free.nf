@@ -1046,6 +1046,8 @@ export default {
             if(this.state.miscLinks.length) {
               this.state.previewLink = this.state.miscLinks[0]
               this.state.showPreview = true
+            }else{
+              location.href = location.origin
             }
           }else{
             console.log('there was a problem loading the link', data)
