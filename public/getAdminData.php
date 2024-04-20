@@ -23,6 +23,7 @@ error_reporting(E_ALL);
     $fileSizes     = [];
     $suffixes      = [];
     $fileTypes     = [];
+    $fileDates     = [];
     $hrefs         = [];
     $users         = [];
     $orphans       = [];
@@ -60,6 +61,7 @@ error_reporting(E_ALL);
       $row['originalSlugs'] = [];
       $row['suffixes']      = [];
       $row['fileSizes']     = [];
+      $row['fileDates']     = [];
       $row['fileTypes']     = [];
       $row['hrefs']         = [];
       for($j=0; $j<mysqli_num_rows($res2); ++$j){
@@ -70,6 +72,7 @@ error_reporting(E_ALL);
         $row['slugs'][]         = $row2['slug'];
         $row['originalSlugs'][] = $row2['originalSlug'];
         $row['fileTypes'][]     = $row2['filetype'];
+        $row['fileDates'][]     = $row2['date'];
         $row['suffixes'][]      = $fs2;
       }
       

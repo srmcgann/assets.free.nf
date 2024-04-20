@@ -27,6 +27,7 @@
             <th>slug</th>
             <th>preview</th>
             <th>size</th>
+            <th>date</th>
             <th>type</th>
           </tr>
           <tr v-for="idx in sortedBySizes">
@@ -41,6 +42,9 @@
             <td v-else-if="state.adminData.fileTypes[idx].indexOf('video')!=-1" class="td"><a :href="state.adminData.hrefs[idx]" target="_blank"><video autoplay loop muted :src="state.adminData.hrefs[idx]" class="avatar"></video></a></td>
             <td class="td">
               <div class="actualAsset" v-html="state.size(state.adminData.fileSizes[idx])"></div>
+            </td>
+            <td class="td">
+              <div class="actualAsset" v-html="state.prettyDate(state.adminData.fileDates[idx])"></div>
             </td>
             <td class="td">
               <div class="actualAsset" v-html="state.adminData.fileTypes[idx]"></div>
