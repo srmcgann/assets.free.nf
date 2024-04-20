@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     reload(){
-      window.location.reload()
+      location.href = this.state.URLbase
     }
   },
   mounted(){

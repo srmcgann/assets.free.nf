@@ -259,6 +259,7 @@ export default {
       this.state.userSettingsVisible = true
     },
     viewCollection(collection){
+      this.state.mode = 'col'
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs, true)
