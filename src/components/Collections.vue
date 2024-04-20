@@ -54,11 +54,11 @@
               ></div>
               <div
                 class="copyLinkButton"
-                @click.prevent.stop="state.copyLink(collection.meta.href)"
+                @click.prevent.stop="state.copyLink(state.URLbase + '/col/' + collection.id + '/view')"
                 title="copy link to clipboard"
               ></div>
               <a
-                :href="state.URLbase + '/' + collection.meta.href"
+                :href="state.URLbase + '/col/' + collection.id + '/view'"
                 class="openButton"
                 @click.prevent.stop="state.openCollection(collection)"
                 title="open link in new tab"

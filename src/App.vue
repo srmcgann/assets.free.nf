@@ -262,7 +262,7 @@ export default {
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs, true)
-      history.pushState(null,null,this.URLbase + `/col/${collection.id}`) //+ (this.state.curPage + 1))
+      history.pushState(null,null,this.URLbase + `/col/${collection.id}/view`) //+ (this.state.curPage + 1))
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
