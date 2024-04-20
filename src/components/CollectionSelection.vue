@@ -170,7 +170,7 @@ export default {
     display: none;
   }
   .collectionList{
-    width: 215px;
+    width: 315px;
     background: #123;
     line-height: 28px;
     margin-top: 5px;
@@ -189,10 +189,10 @@ export default {
   .collectionName{
     font-size:14px;
     display:block;
-    width: 161px;
+    width: 261px;
     overflow: hidden;
     text-wrap: nowrap;
-    color:#4f88;
+    color:#4f8;
     padding:0;
     margin-left: -10px;
     padding-left: 10px;
@@ -204,7 +204,6 @@ export default {
     margin: 0;
     margin-right: 10px;
     min-width: unset;
-    width: 
   }
   .checkboxLabel{
     padding-left: unset;
