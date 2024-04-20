@@ -76,12 +76,12 @@ export default {
     supplemental(collection){
       let ct=0
       this.state.links.map(link=>{
-        if(collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
+        if(link.selected && collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
       })
       this.state.userLinks.map(link=>{
-        if(collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
+        if(link.selected && collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
       })
-      return this.mode == 'multi' ? `(${ct} items)` : ''
+      return this.mode == 'multi' ? `(${ct} in selected)` : ''
     },
     checked(collection){
       switch(this.mode){
