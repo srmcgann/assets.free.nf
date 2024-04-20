@@ -30,6 +30,7 @@ todo
   ✔ menu item: w/selected -> add to collection
   * URLs for all "screens", including collections, with back-button functionality
   * slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
+  * random-slugify collections
   * users, optional logins/profiles
     └-> ✔ login button
         ✔ profile page

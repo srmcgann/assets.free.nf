@@ -79,8 +79,15 @@
           v-if="state.userLinks.length"
         />
       </div>
-      <div v-if="state.mode!='default'">
-        <br><br><br>mode: {{state.mode}}<br><br><br>
+      <div v-if="state.mode=='collection' && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
+        <Link
+          :state="state"
+          v-for="link in state.miscLinks"
+          :link="link"
+          :linkMode="'userLink'"
+          :key="link.id"
+          v-if="state.miscLinks.length"
+        />
       </div>
     </div>
   </div>

@@ -237,6 +237,7 @@ export default {
       this.state.miscLinks = []
       this.state.loadLinks(collection.meta.slugs)
       this.state.mode = 'collection'
+      history.pushState(null,null,this.URLbase + `/col/${collection.id}` + (this.state.curPage + 1))
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
@@ -494,6 +495,30 @@ export default {
       }).then(res => res.json()).then(data=>{
         console.log('res from setOwner.php: ', data)
         if(!data[0]) alert('error setting link owner')
+      })
+    },
+    loadCollection(id, show=false){
+      this.state.loadingCollections = true
+      let sendData = {
+        userID,
+        passhash: this.state.passhash,
+        //page: this.state.collectionsPage,
+        //maxResultsPerPage: this.state.maxCollectionResultsPerPage
+        collectionID: id
+      }
+      fetch(`${this.URLbase}/` + 'fetchCollections.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data => {
+        this.state.loadingCollections = false
+        if(!!(+data[0])){
+          this.state.collections = data[1]
+          this.state.showCollectionTemplate = false
+          if(show) this.viewCollection(this.state.collections.filter(v=>+v.id==+id))
+        }
       })
     },
     fetchCollections(userID){
@@ -853,8 +878,13 @@ export default {
           this.state.mode = vars[l]
           console.log('non-default mode detected: ', this.state.mode)
           switch(this.state.mode){
-            case 'col':
-              this.viewCollection(collection)
+            case 'collection':
+              if(typeof vars[l+1] != 'undefined'){
+                this.loadCollection(vars[l+1])
+              } else {
+                if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
+                this.state.mode = 'default'
+              }
             break
           }
         }
