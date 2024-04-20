@@ -5,6 +5,7 @@
       @click.stop.prevent="toggleShowCollection()"
       class="collectionsButton"
       style="background: #84fd"
+      title="include or exclude this link from collections"
       v-html="showCollection?'close':'assign'"
       v-if="!!state.collections.length"
     >
@@ -14,6 +15,7 @@
       @click.stop.prevent="manageCollections()"
       class="collectionsButton"
       style="background: #4f8d"
+      title="view and edit your collections"
       v-html="state.collections.length ? 'manage' : 'create a collection'"
     ></button><br>
     <div
@@ -198,14 +200,6 @@ export default {
     padding:0;
     margin-left: -10px;
     padding-left: 10px;
-  }
-  .collectionsButton{
-    line-height: 13px;
-    font-size: 16px;
-    height: 24px;
-    margin: 0;
-    margin-right: 10px;
-    min-width: unset;
   }
   .checkboxLabel{
     padding-left: unset;

@@ -71,7 +71,7 @@
         </div>
         <div
           class="sub"
-          style="z-index: 1700;width: 375px;height: 44px;"
+          style="z-index: 1700;width: 375px;height: 44px;line-height: 16px;padding-top: 4px; font-size: .8em;"
           v-else
         >
           select multiple items, then check here<br>for bulk assign-to-collection buttons
@@ -81,9 +81,20 @@
           <div
             class="sub2"
             v-for="collection in state.collections"
-            @click.prevent.stop="window.open(`${state.URLbase}/col/${encodeURIComponent(collection.name)}`, '_blank')"
-            v-html="collection.name"
-          ></div>
+            @click.prevent.stop
+          >
+            <button
+              class="toolbarButtons collectionsButton"
+              style="min-width: 50px;min-height: 50px; background: #84fd"
+              @click="window.open(`${state.URLbase}/col/${encodeURIComponent(collection.name)}`, '_blank')"
+            >view</button
+            <button
+              class="toolbarButtons collectionsButton"
+              style="min-width: 50px;min-height: 50px;"
+              @click="state.showEditCollection(collection)"
+            >edit ✎</button
+            <span>{{collection.name}}</span>
+          </div>
         </div>
         <div class="sub" @click="">sub b</div>
         <div class="sub" @click="">sub c</div>

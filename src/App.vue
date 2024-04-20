@@ -1564,6 +1564,14 @@ a{
   border-radius: 5px;
   vertical-align: middle;
 }
+.collectionsButton{
+  line-height: 13px;
+  font-size: 16px;
+  height: 24px;
+  margin: 0;
+  margin-right: 10px;
+  min-width: unset;
+}
 #copyConfirmation{
   display: none;
   position: absolute;
