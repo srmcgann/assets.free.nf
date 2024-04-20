@@ -92,7 +92,7 @@
               class="toolbarButtons collectionsButton"
               style="min-width: 50px;min-height: 50px;"
               @click="state.showEditCollection(collection)"
-            >edit ✎</button
+            >edit ✎</button>
             <span>{{collection.name}}</span>
           </div>
         </div>
