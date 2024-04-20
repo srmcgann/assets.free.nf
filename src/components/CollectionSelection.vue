@@ -81,7 +81,7 @@ export default {
       this.state.userLinks.map(link=>{
         if(link.selected && collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
       })
-      return this.mode == 'multi' ? `(${ct} in selected)` : ''
+      return this.mode == 'multi' ? `[${ct}]` : ''
     },
     checked(collection){
       switch(this.mode){
@@ -179,6 +179,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     border: 1px solid #0ff4;
+    position: absolute;
   }
   .collectionLabel:hover{
     background: #0f44;

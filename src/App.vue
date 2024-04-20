@@ -840,13 +840,13 @@ export default {
               console.log('flow ',2)
             }
           }else{
-            if(location.href !== this.URLbase + '/1') location.href = this.URLbase + '/1'
+            if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
           }
         }else{
           this.state.mode = 'non-default'
         }
       } else{
-        if(location.href !== this.URLbase + '/1') location.href = this.URLbase + '/1'
+        if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
         console.log('flow ',3)
         this.state.mode = 'default'
         this.getPages()
