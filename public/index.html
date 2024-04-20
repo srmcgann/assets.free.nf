@@ -13,7 +13,7 @@
       $views        = $meta->{'views'};
       $description  = $meta->{'views'};
       $items        = sizeof($meta->{'slugs'});
-      $created      = date('D F Y', strtotime($meta->{'date'}));
+      $created      = date('F d Y', strtotime($meta->{'date'}));
       $title = "$name - $description - $views views - [$items items] - created $created";
     }
   }
