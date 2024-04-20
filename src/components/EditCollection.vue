@@ -94,6 +94,7 @@ export default {
     this.$nextTick(()=>{
       this.$refs.name.focus()
     })
+    this.collection.meta.slugs = this.collection.meta.slugs.filter(v=>v)
     this.state.loadLinks(this.collection.meta.slugs)
   }
 }
