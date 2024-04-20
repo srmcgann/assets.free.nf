@@ -180,6 +180,7 @@ export default {
     overflow-x: hidden;
     border: 1px solid #0ff4;
     position: absolute;
+    z-index: 50;
   }
   .collectionLabel:hover{
     background: #0f44;

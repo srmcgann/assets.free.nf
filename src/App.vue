@@ -1212,6 +1212,7 @@ export default {
     }
   },
   mounted(){
+    document.body.style.backgroundImage = `url(./assets/new_bg.jpg)`
     window.choose = choice => {
       this.state.choice = choice
     }
@@ -1368,7 +1369,6 @@ export default {
 }
 body,html{
   background-color: #000;
-  background-image: url(./assets/new_bg.jpg);
   background-repeat: repeat;
   background-size: cover;
   background-position: center center;
@@ -1644,7 +1644,7 @@ select:focus{
   height: 25px;
   width: 25px;
   border: 1px solid #2468;
-  background-color: #123;
+  background-color: #000;
   border-radius: 5px;
 }
 
