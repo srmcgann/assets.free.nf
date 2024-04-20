@@ -35,7 +35,10 @@
             @change="updateSelection($event, collection)"
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
-          <span class="collectionName">{{state.shortText(collection.name, 18)}}</span>
+          <span class="collectionName">
+            {{state.shortText(collection.name, 18)}}
+            {{supplemental(collection)}}
+          </span>
         </label><br>
       </div>
     </div>
@@ -70,6 +73,9 @@ export default {
     }
   },
   methods: {
+    supplemental(collection){
+      return this.mode == 'multi' ? `(${collection.length} items)` : ''
+    },
     checked(collection){
       switch(this.mode){
         case 'multi':
