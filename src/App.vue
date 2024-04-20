@@ -261,11 +261,7 @@ export default {
     viewCollection(collection){
       this.state.previewCollection = collection
       console.log('loading collection', collection)
-      this.state.loadLinks(collection.meta.slugs)
-      if(this.state.miscLinks.length) {
-        this.state.previewLink = this.state.miscLinks[0]
-        this.state.showPreview = true
-      }
+      this.state.loadLinks(collection.meta.slugs, true)
       history.pushState(null,null,this.URLbase + `/col/${collection.id}`) //+ (this.state.curPage + 1))
     },
     firstPage(){
@@ -544,9 +540,11 @@ export default {
         this.state.loadingCollections = false
         console.log('data', data)
         if(!!(+data[0])){
-          this.state.collections = [data[1]]
+          if(!this.state.collections.filter(v=>+v.id==+id).length){
+            this.state.collections = [...this.state.collections, data[1]]
+          }
           this.state.showCollectionTemplate = false
-          if(show) this.viewCollection(this.state.collections[0])
+          if(show) this.viewCollection(data[1])
         }
       })
     },
@@ -982,7 +980,7 @@ export default {
         }
       }
     },
-    loadLinks(slugs){
+    loadLinks(slugs, forCollection=false){
     
       slugs = slugs.filter(v=>v)
       let cullSlgs = []
@@ -1045,6 +1043,10 @@ export default {
               }
               this.state.miscLinks=[...this.state.miscLinks, obj]
             })
+            if(this.state.miscLinks.length) {
+              this.state.previewLink = this.state.miscLinks[0]
+              this.state.showPreview = true
+            }
           }else{
             console.log('there was a problem loading the link', data)
           }
