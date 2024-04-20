@@ -68,7 +68,7 @@ error_reporting(E_ALL);
     }
   }
   if(sizeof($collections)){
-    $newMeta = json_encode($ar['meta']);
+    $newMeta = mysqli_real_escape_string($link, json_encode($ar['meta']));
     $sql = "UPDATE imjurCollections SET meta = \"$newMeta\" WHERE id = $collectionID";
     mysqli_query($link, $sql);
     echo json_encode([true, $collections[0], $totalPages]);
