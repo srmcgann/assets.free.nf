@@ -902,7 +902,7 @@ export default {
     loadLinks(slugs){
     
       let cullSlgs = []
-      let tgtSlugs = JSON.parse(JSON.stringify(slugs.filter(v=>v))
+      let tgtSlugs = JSON.parse(JSON.stringify(slugs.filter(v=>v)))
       
       this.state.miscLinks = this.state.miscLinks.filter(link => {
         let keep = !!tgtSlugs.filter(tgtSlg=>tgtSlg==link.slug).length
