@@ -184,7 +184,6 @@ export default {
         showRegister: false,
         loggedIn: false,
         loginPromptVisible: false,
-        getPages: null,
         getAdminData: null,
         addLink: null,
         previewPosition: 0,
@@ -772,9 +771,6 @@ export default {
       document.cookie = 'autoplay=' + this.state.autoplay + '; expires=' + (new Date((Date.now()+3153600000000))).toUTCString() + '; path=/; domain=' + this.state.rootDomain
       document.cookie = 'showControls=' + this.state.showControls + '; expires=' + (new Date((Date.now()+3153600000000))).toUTCString() + '; path=/; domain=' + this.state.rootDomain
     },
-    getPages(){
-      console.log('loaded. mode: ' + this.state.mode)
-    },
     login(){
       let sendData = {userName: this.state.username, password: this.state.password}
       fetch(`${this.URLbase}/` + 'login.php',{
@@ -841,6 +837,7 @@ export default {
             }
           }else{
             if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
+            this.state.mode = 'default'
           }
         }else{
           this.state.mode = 'non-default'
@@ -849,7 +846,6 @@ export default {
         if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
         console.log('flow ',3)
         this.state.mode = 'default'
-        this.getPages()
       }
       console.log('mode', this.state.mode)
     },
