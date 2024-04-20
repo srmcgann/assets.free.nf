@@ -234,7 +234,7 @@ export default {
     },
     viewCollection(collection){
       this.state.previewCollection = collection
-      this.state.miscLinks = []
+      console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs)
       this.state.mode = 'col'
       history.pushState(null,null,this.URLbase + `/col/${collection.id}`) //+ (this.state.curPage + 1))
@@ -516,7 +516,7 @@ export default {
         this.state.loadingCollections = false
         console.log('data', data)
         if(!!(+data[0])){
-          this.state.collections = data[1]
+          this.state.collections = [data[1]]
           this.state.showCollectionTemplate = false
           if(show) this.viewCollection(this.state.collections[0])
         }
@@ -881,10 +881,12 @@ export default {
           switch(this.state.mode){
             case 'col':
               if(typeof vars[l+1] != 'undefined'){
-                this.loadCollection(vars[l+1].split('?')[0], true)
+                this.loadCollection(vars[l+1], true)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
+                this.state.curPage = 0
+                this.fetchUserLinks(this.state.loggedinUserID)
               }
             break
           }
@@ -954,8 +956,9 @@ export default {
     },
     loadLinks(slugs){
     
+      slugs = slugs.filter(v=>v)
       let cullSlgs = []
-      let tgtSlugs = JSON.parse(JSON.stringify(slugs.filter(v=>v)))
+      let tgtSlugs = JSON.parse(JSON.stringify(slugs))
       
       this.state.miscLinks = this.state.miscLinks.filter(link => {
         let keep = !!tgtSlugs.filter(tgtSlg=>tgtSlg==link.slug).length
