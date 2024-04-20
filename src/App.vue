@@ -2,7 +2,7 @@
   <div>
     <Header              :state="state" />
     <Toolbar             :state="state" />
-    <Main                :state="state" />
+    <Main                :state="state" v-if="state.mode"/>
     <Footer              :state="state" />
     <UserSettings        :state="state" v-if="state.userSettingsVisible" />
     <LoginPrompt         :state="state" v-if="state.showLoginPrompt"/>
