@@ -24,7 +24,7 @@
           <th>age</th>
           <th>created</th>
           <th>items</th>
-          <th>tools</th>
+          <th>collection<br>tools</th>
         </tr>
         <tr v-for="collection in state.collections">
           <td v-html="collection.name"></td>
