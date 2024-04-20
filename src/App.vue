@@ -237,7 +237,7 @@ export default {
       this.state.miscLinks = []
       this.state.loadLinks(collection.meta.slugs)
       this.state.mode = 'col'
-      history.pushState(null,null,this.URLbase + `/col/${collection.id}` + (this.state.curPage + 1))
+      history.pushState(null,null,this.URLbase + `/col/${collection.id}` //+ (this.state.curPage + 1))
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
