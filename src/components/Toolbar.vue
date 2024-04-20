@@ -61,9 +61,20 @@
             delete
           </button>
         </div>
-        <div class="sub" style="z-index: 1700;width: 375px;height: 44px;">
+        <div
+          class="sub"
+          style="z-index: 1700;width: 375px;height: 44px;"
+            v-if="someSelected"
+          >
           <span style="margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
           <CollectionSelection :state="state" :links="filteredLinksForCollectionSelection"  :mode="'multi'" :someSelected="someSelected"/>
+        </div>
+        <div
+          class="sub"
+          style="z-index: 1700;width: 375px;height: 44px;"
+          v-else
+        >
+          select multiple items, then check here<br>for bulk assign-to-collection buttons
         </div>
         <div class="sub" style="min-width: 180px;" @click="state.showCollections=true">
           My Collections
