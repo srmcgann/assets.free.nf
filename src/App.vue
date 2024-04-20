@@ -1072,10 +1072,10 @@ export default {
     },
     showEditCollection(collection){
       console.log('collection', collection)
-      //this.state.editCollection = []
-      //this.$nextTick(() => {
-        this.state.editCollection = [collection]
-      //})
+      this.state.editCollection = [collection]
+      this.$nextTick(() => {
+        this.state.showPreview = false
+      })
     },
     setCollectionProperty(collection, property, value){
       if(collection.meta[property] != value){

@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="LoginPrompt">
     <div class="mainLoginContainer">
       <div v-if="!state.showRegister">
