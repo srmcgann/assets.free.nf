@@ -45,27 +45,31 @@ error_reporting(E_ALL);
   $collections = [];
   for($i=0; $i<mysqli_num_rows($res); ++$i){
     $row = mysqli_fetch_assoc($res);
-    $private = json_decode($row['meta'])->{'private'};
+    $meta = json_decode($row['meta']);
+    $private = $meta->{'private'};
     if(!$private || ($passhash && ($admin || $enabled))){
       $ar           = [];
-      $ar['id']     = $row['id'];
+      $ar['id']     = $collectionID;
       $ar['name']   = $row['name'];
       $ar['userID'] = $userID;
+      $views        = intval($meta->{'views'})+1;
       $ar['meta']   = [
-                      'date'          => json_decode($row['meta'])->{'date'},
-                      'description'   => json_decode($row['meta'])->{'description'},
-                      'slugs'         => json_decode($row['meta'])->{'slugs'},
-                      'upvotes'       => json_decode($row['meta'])->{'upvotes'},
-                      'downvotes'     => json_decode($row['meta'])->{'downvotes'},
+                      'date'          => $meta->{'date'},
+                      'description'   => $meta->{'description'},
+                      'slugs'         => $meta->{'slugs'},
+                      'upvotes'       => $meta->{'upvotes'},
+                      'downvotes'     => $meta->{'downvotes'},
                       'private'       => $private,
-                      'views'         => json_decode($row['meta'])->{'views'},
-                      //'originalSlugs' => json_decode($row['meta'])->{'originalSlugs'},
+                      'views'         => $views,
+                      //'originalSlugs' => $meta->{'originalSlugs'},
                       'serverTZO'     => getServerTZOffset(),
       ];
       $collections[] = $ar;
     }
   }
   if(sizeof($collections)){
+    $newMeta = json_encode($ar['meta']);
+    $sql = "UPDATE imjurCollections SET meta = \"$newMeta\" WHERE id = $collectionID";
     echo json_encode([true, $collections[0], $totalPages]);
   }else{
     echo json_encode([false, $sql]);
