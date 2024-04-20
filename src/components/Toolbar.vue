@@ -87,7 +87,7 @@
               class="toolbarButtons collectionsButton"
               style="min-width: 50px;min-height: 50px; background: #84fd"
               @click="window.open(`${state.URLbase}/col/${encodeURIComponent(collection.name)}`, '_blank')"
-            >view</button
+            >view</button>
             <button
               class="toolbarButtons collectionsButton"
               style="min-width: 50px;min-height: 50px;"
