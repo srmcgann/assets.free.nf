@@ -38,7 +38,7 @@
       <div
         ref="dropTargetCaption"
         id="dropTargetCaption"
-        v-if="!(state.userLinks.length || state.links.length || state.loadingAssets)"
+        v-if="state.mode!='col' && !(state.userLinks.length || state.links.length || state.loadingAssets)"
         style="cursor: pointer;"
         @click="this.loadFiles()"
       >

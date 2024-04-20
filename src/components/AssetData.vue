@@ -20,7 +20,7 @@
     <tr><td class="tdLeft">uploaded</td><td class="tdRight" v-html="state.prettyDate(link)"></td></tr>
     <tr><td class="tdLeft">age</td><td class="tdRight" v-html="state.age(link)"></td></tr>
     <tr><td class="tdLeft">size</td><td class="tdRight" v-html="state.size(link.size)"></td></tr>
-    <tr>
+    <tr v-if="link.userID == state.loggedinUserID || state.admin">
       <td class="tdLeft">collections</td><td class="tdRight">
         <CollectionSelection :state="state" :links="link" :mode="default" :someSelected="true"/>
       </td>
