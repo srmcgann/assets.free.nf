@@ -6,8 +6,10 @@ error_reporting(E_ALL);
   require_once('db.php');
   require_once('functions.php');
   $data = json_decode(file_get_contents('php://input'));
-  $userID = mysqli_real_escape_string($link, $data->{'userID'});
-  $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
+  $preval = $data->{'userID'};
+  if($preval) $userID = mysqli_real_escape_string($link, $preval);
+  $preval = $data->{'passhash'}
+  if($preval) $passhash = mysqli_real_escape_string($link, $preval);
   $collectionID = mysqli_real_escape_string($link, $data->{'collectionID'});
 
   // uncomment for paginated collections

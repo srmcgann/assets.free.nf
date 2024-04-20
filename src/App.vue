@@ -524,8 +524,8 @@ export default {
     loadCollection(id, show=false){
       this.state.loadingCollections = true
       let sendData = {
-        userID: typeof this.state.loggedinUserID == null ? -1 : this.state.loggedinUserID,
-        passhash: typeof this.state.loggedinUserID == null ? '' : this.state.passhash,
+        userID: this.state.loggedinUserID ? -1 : this.state.loggedinUserID,
+        passhash: this.state.loggedinUserID ? '' : this.state.passhash,
         //page: this.state.collectionsPage,
         //maxResultsPerPage: this.state.maxCollectionResultsPerPage
         collectionID: +id
@@ -907,7 +907,15 @@ export default {
           switch(this.state.mode){
             case 'col':
               if(typeof vars[l+1] != 'undefined'){
-                this.loadCollection(vars[l+1], true)
+                let show = false
+                if(typeof vars[l+2] != 'undefined'){
+                  switch(vars[l+2]){
+                    case 'view':
+                      show = true
+                    break
+                  }
+                }
+                this.loadCollection(vars[l+1], show)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
