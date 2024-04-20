@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
   require_once('db.php');
   require_once('functions.php');
+  $userID = '';
+  $passhash = '';
   $data = json_decode(file_get_contents('php://input'));
   $preval = $data->{'userID'};
   if($preval) $userID = mysqli_real_escape_string($link, $preval);
