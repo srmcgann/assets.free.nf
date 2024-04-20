@@ -236,7 +236,7 @@ export default {
       this.state.previewCollection = collection
       this.state.miscLinks = []
       this.state.loadLinks(collection.meta.slugs)
-      this.state.mode = 'collection'
+      this.state.mode = 'col'
       history.pushState(null,null,this.URLbase + `/col/${collection.id}` + (this.state.curPage + 1))
     },
     firstPage(){
@@ -878,7 +878,7 @@ export default {
           this.state.mode = vars[l]
           console.log('non-default mode detected: ', this.state.mode)
           switch(this.state.mode){
-            case 'collection':
+            case 'col':
               if(typeof vars[l+1] != 'undefined'){
                 this.loadCollection(vars[l+1])
               } else {

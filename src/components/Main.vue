@@ -79,7 +79,7 @@
           v-if="state.userLinks.length"
         />
       </div>
-      <div v-if="state.mode=='collection' && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
+      <div v-if="state.mode=='col' && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
         <Link
           :state="state"
           v-for="link in state.miscLinks"
