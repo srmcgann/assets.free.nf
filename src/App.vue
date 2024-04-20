@@ -199,12 +199,26 @@ export default {
       if(!this.state.showPreview) return
       this.state.showPreview = false
       this.state.previewPosition -= 1
-      if(this.state.previewPosition<0) this.state.previewPosition = this.state.userLinks.length + this.state.links.length - 1
-      if(this.state.previewPosition>this.state.links.length-1){
-        this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
-      }else{
-        this.state.previewLink = this.state.links[this.state.previewPosition]
+      
+      switch(this.state.mode){
+        case 'default':
+          if(this.state.previewPosition<0) this.state.previewPosition = this.state.userLinks.length + this.state.links.length - 1
+          if(this.state.previewPosition>this.state.links.length-1){
+            this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
+          }else{
+            this.state.previewLink = this.state.links[this.state.previewPosition]
+          }
+        break
+        case 'col':
+          if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length - 1
+          if(this.state.previewPosition>this.state.miscLinks.length-1){
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
+          }else{
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+          }
+        break
       }
+      
       this.$nextTick(()=>{
         this.state.showPreview = true
       })
@@ -213,11 +227,23 @@ export default {
       if(!this.state.showPreview) return
       this.state.showPreview = false
       this.state.previewPosition++
-      this.state.previewPosition %= this.state.userLinks.length + this.state.links.length
-      if(this.state.previewPosition>this.state.links.length-1){
-        this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
-      }else{
-        this.state.previewLink = this.state.links[this.state.previewPosition]
+      switch(this.state.mode){
+        case 'default':
+          this.state.previewPosition %= this.state.userLinks.length + this.state.links.length
+          if(this.state.previewPosition>this.state.links.length-1){
+            this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
+          }else{
+            this.state.previewLink = this.state.links[this.state.previewPosition]
+          }
+        break
+        case 'col':
+          this.state.previewPosition %= this.state.miscLinks.length
+          if(this.state.previewPosition>this.state.miscLinks.length-1){
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
+          }else{
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+          }
+        break
       }
       this.$nextTick(()=>{
         this.state.showPreview = true
@@ -236,7 +262,7 @@ export default {
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs)
-      this.state.mode = 'col'
+      if(this.state.miscLinks.length) state.previewLink = this.state.miscLinks[0]
       history.pushState(null,null,this.URLbase + `/col/${collection.id}`) //+ (this.state.curPage + 1))
     },
     firstPage(){
@@ -263,7 +289,6 @@ export default {
         window.location.href = this.URLbase + '/u/' + this.user.name + '/' + pageNo + search
         break
         case 'default':
-          //window.location.href = this.URLbase + '/' + pageNo + search
           this.state.curPage = Math.max(0, Math.min(this.state.totalPages-1, pageNo))
           if(this.state.loggedIn) this.state.fetchUserLinks(this.state.loggedinUserID)
           if(this.state.curPage){
