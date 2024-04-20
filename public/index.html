@@ -1,9 +1,9 @@
 <?php
   $title = "an online free digital asset hosting service";
   $args = explode('/', $_SERVER['REQUEST_URI']);
-  if(sizeof($args) > 1 && $args[0] == 'col'){
+  if(sizeof($args) > 1 && $args[1] == 'col'){
     require('db.php');
-    $collectionID = intval(mysqli_real_escape_string($link, $args[1]));
+    $collectionID = intval(mysqli_real_escape_string($link, $args[2]));
     $sql = "SELECT * FROM imjurCollections WHERE id = $collectionID";
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
