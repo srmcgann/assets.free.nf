@@ -34,7 +34,7 @@ error_reporting(E_ALL);
   
   //$sql = "SELECT * FROM imjurCollections WHERE id = $collectionID AND (($enabled AND userID = $userID) OR $admin OR private = 0) ORDER BY id ASC LIMIT $start, $maxResultsPerPage";
   
-  $sql = "SELECT * FROM imjurCollections WHERE id = $collectionID AND (($enabled AND userID = $userID) OR $admin)";
+  $sql = "SELECT * FROM imjurCollections WHERE id = $collectionID";
   $res = mysqli_query($link, $sql);
   
   

@@ -504,7 +504,7 @@ export default {
         passhash: this.state.passhash,
         //page: this.state.collectionsPage,
         //maxResultsPerPage: this.state.maxCollectionResultsPerPage
-        collectionID: id
+        collectionID: +id
       }
       fetch(`${this.URLbase}/` + 'loadCollection.php',{
         method: 'POST',
