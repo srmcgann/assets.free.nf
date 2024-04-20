@@ -875,12 +875,12 @@ export default {
             this.state.mode = 'default'
           }
         }else{
-          this.state.mode = vars[l]
+          this.state.mode = vars[l].trim()
           console.log('non-default mode detected: ', this.state.mode)
           switch(this.state.mode){
             case 'col':
               if(typeof vars[l+1] != 'undefined'){
-                this.loadCollection(vars[l+1])
+                this.loadCollection(vars[l+1].split('?')[0])
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
