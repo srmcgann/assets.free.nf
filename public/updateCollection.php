@@ -31,19 +31,19 @@ error_reporting(E_ALL);
       $row = mysqli_fetch_assoc($res);
       $description = $colData->{'description'}; //escaped later
       $slugs = $colData->{'slugs'};
-      $originalSlugs = [];
+      /*$originalSlugs = [];
       forEach($slugs as $slug){
         $sql = "SELECT originalSlug FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
         $res = mysqli_query($link, $sql);
         $originalSlugs[] = $row['originalSlug'];
-      }
+      }*/
       $private               = $colData->{'private'};
       $oMeta                 = json_decode($row['meta']);
       $meta                  = [];
       $meta['description']   = $description;
       $meta['slugs']         = $slugs;
       $meta['private']       = $private;
-      $meta['originalSlugs'] = $originalSlugs;
+      //$meta['originalSlugs'] = $originalSlugs;
       $meta['date']          = $oMeta->{'date'};
       $meta['upvotes']       = $oMeta->{'upvotes'};
       $meta['downvotes']     = $oMeta->{'downvotes'};

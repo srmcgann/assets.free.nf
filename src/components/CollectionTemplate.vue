@@ -51,7 +51,7 @@ export default {
       name: '',
       description: '',
       slugs: [],
-      originalSlugs: [],
+      //originalSlugs: [],
       private: 0,
     }
   },
@@ -65,7 +65,7 @@ export default {
         name: this.name,
         description: this.description,
         slugs: this.slugs,
-        originalSlugs: this.originalSlugs,
+        //originalSlugs: this.originalSlugs,
         private: this.private,
       }
       this.state.createCollection(obj)

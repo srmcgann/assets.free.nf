@@ -47,7 +47,7 @@ error_reporting(E_ALL);
                       'downvotes'     => json_decode($row['meta'])->{'downvotes'},
                       'private'       => $private,
                       'views'         => json_decode($row['meta'])->{'views'},
-                      'originalSlugs' => json_decode($row['meta'])->{'originalSlugs'},
+                      //'originalSlugs' => json_decode($row['meta'])->{'originalSlugs'},
                       'serverTZO'     => getServerTZOffset(),
       ];
       $collections[] = $ar;
