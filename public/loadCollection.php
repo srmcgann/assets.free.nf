@@ -64,6 +64,6 @@ error_reporting(E_ALL);
   if(sizeof($collections)){
     echo json_encode([true, $collections[0], $totalPages]);
   }else{
-    echo json_encode([false]);
+    echo json_encode([false, $sql]);
   }
 ?>

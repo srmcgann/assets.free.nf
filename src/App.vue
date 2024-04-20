@@ -518,7 +518,7 @@ export default {
         if(!!(+data[0])){
           this.state.collections = data[1]
           this.state.showCollectionTemplate = false
-          if(show) this.viewCollection(this.state.collections.filter(v=>+v.id==+id))
+          if(show) this.viewCollection(this.state.collections.filter(v=>+v.id==+id)[0])
         }
       })
     },
