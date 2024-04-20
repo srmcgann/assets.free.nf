@@ -90,6 +90,7 @@ export default {
         previewLink: null,
         passhash: '',
         loggedinUserID: null,
+        loadCollection: null,
         fetchCollections: null,
         click: false,
         loadLinks: null,
@@ -104,6 +105,7 @@ export default {
         },
         loggedinUserName: '',
         copyLink: null,
+        viewCollection: null,
         deleteSingle: null,
         syncCache: null,
         deleteCollection: null,
@@ -149,6 +151,7 @@ export default {
         regpassword: '',
         showUploadModal: false,
         loadingAssets: true,
+        previewCollection: null,
         loadingCollections: true,
         checkLogin: null,
         adminData: null,
@@ -228,6 +231,12 @@ export default {
     showUserSettings(){
       document.getElementsByTagName('HTML')[0].style.overflowY = 'hidden'
       this.state.userSettingsVisible = true
+    },
+    viewCollection(collection){
+      this.state.previewCollection = collection
+      this.state.miscLinks = []
+      this.state.loadLinks(collection.meta.slugs)
+      this.state.mode = 'collection'
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
@@ -812,8 +821,9 @@ export default {
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
       if(vars.length>0){
+        console.log('vars', vars)
         let l = location.origin.toLowerCase().indexOf('000webhostapp.com') !== -1 ? 1 : 0
-        if(1||this.state.isNumber(vars[l])){
+        if(this.state.isNumber(vars[l])){
           this.state.mode = 'default'
           let search = ''
           
@@ -840,7 +850,13 @@ export default {
             this.state.mode = 'default'
           }
         }else{
-          this.state.mode = 'non-default'
+          this.state.mode = vars[l]
+          console.log('non-default mode detected: ', this.state.mode)
+          switch(this.state.mode){
+            case 'col':
+              this.viewCollection(collection)
+            break
+          }
         }
       } else{
         if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
@@ -1353,7 +1369,9 @@ export default {
     this.state.multipleLinks = this.multipleLinks
     this.state.setLinksOwner = this.setLinksOwner
     this.state.fetchUserLinks = this.fetchUserLinks
+    this.state.viewCollection = this.viewCollection
     this.state.deleteSelected = this.deleteSelected
+    this.state.loadCollection = this.loadCollection
     this.state.openCollection = this.openCollection
     this.state.setLinkProperty = this.setLinkProperty
     this.state.showUserSettings = this.showUserSettings
@@ -1568,8 +1586,10 @@ a{
   background: #84fd;
 }
 .viewCollectionButton, .editCollectionButton{
-  min-width: 50px;
   height: 24px;
+  line-height: 14px;
+  min-width: 85px;
+  padding: 5px;
   margin: unset;
   margin-right: 5px;
 }
