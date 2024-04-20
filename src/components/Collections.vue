@@ -33,7 +33,16 @@
           <td v-html="state.prettyDate(collection.meta)"></td>
           <td>
             <font style="font-size:1.5em;">#items {{collection.meta.slugs.length}}</font><br>
-            <button @click="state.showEditCollection(collection)">edit ✎</button>
+            <button
+              @click="state.viewCollection(collection)"
+              class="viewCollectionButton"
+              title="view this collection"
+            >view</button><br>
+            <button
+              @click="state.showEditCollection(collection)"
+              class="editCollectionButton"
+              title="edit this collection"
+            >edit ✎</button>
           </td>
           <td>
             <div class="linkButtons">

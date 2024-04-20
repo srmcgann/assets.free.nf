@@ -1564,6 +1564,15 @@ a{
   border-radius: 5px;
   vertical-align: middle;
 }
+.viewCollectionButton{
+  background: #84fd;
+}
+.viewCollectionButton, .editCollectionButton{
+  min-width: 50px;
+  height: 24px;
+  margin: unset;
+  margin-right: 5px;
+}
 .collectionsButton{
   line-height: 13px;
   font-size: 16px;

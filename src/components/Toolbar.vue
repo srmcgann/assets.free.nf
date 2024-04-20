@@ -86,12 +86,14 @@
             <button
               class="toolbarButtons collectionsButton"
               style="min-width: 50px; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
-              @click="window.open(`${state.URLbase}/col/${encodeURIComponent(collection.name)}`, '_blank')"
+              @click="state.viewCollection(collection)"
+              title="view this collection"
             >view</button>
             <button
               class="toolbarButtons collectionsButton"
-              style="height: 24px; min-height: 50px;margin: unset; margin-right:5px;"
+              style="height: 24px; margin: unset; margin-right:5px;"
               @click="state.showEditCollection(collection)"
+              title="edit this collection"
             >edit ✎</button>
             <span>{{collection.name}}</span>
           </div>
