@@ -1170,7 +1170,7 @@ export default {
           }
         break
         case 'visibility':
-          this.setLinkProperty(val.link, val.property, val.value, false){
+          this.setLinkProperty(val.link, val.property, val.value, false)
         break
       }
     },
