@@ -893,7 +893,7 @@ export default {
         if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
         console.log('flow ',3)
         this.state.curPage = 0
-        if(this.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
+        if(this.state.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
         this.state.mode = 'default'
       }
       console.log('mode', this.state.mode)
