@@ -514,6 +514,7 @@ export default {
         body: JSON.stringify(sendData),
       }).then(res => res.json()).then(data => {
         this.state.loadingCollections = false
+        console.log('data', data)
         if(!!(+data[0])){
           this.state.collections = data[1]
           this.state.showCollectionTemplate = false
@@ -891,6 +892,8 @@ export default {
       } else{
         if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
         console.log('flow ',3)
+        this.state.curPage = 0
+        if(this.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
         this.state.mode = 'default'
       }
       console.log('mode', this.state.mode)
