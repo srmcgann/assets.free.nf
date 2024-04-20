@@ -125,6 +125,7 @@ export default {
         collections: [],
         setLinkPropertySelected: null,
         URLbase: null,
+        linksSelectedTally: 0,
         showCollection: false,  // to view an individual collection
         showCollections: null,  // to invoke user's collection list view
         logout: null,

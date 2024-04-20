@@ -119,12 +119,20 @@ export default {
   computed: {
     filteredLinksForCollectionSelection(){
       let links = []
+      let ct = 0
       this.state.links.map(v=>{
-        if(v.selected) links = [...links, v]
+        if(v.selected) {
+          links = [...links, v]
+          ct++
+        }
       })
       this.state.userLinks.map(v=>{
-        if(v.selected) links = [...links, v]
+        if(v.selected) {
+          links = [...links, v]
+          ct++
+        }
       })
+      this.state.linksSelectedTally = ct
       return links
     },
     someSelected(){

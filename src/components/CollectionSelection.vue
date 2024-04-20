@@ -74,7 +74,14 @@ export default {
   },
   methods: {
     supplemental(collection){
-      return this.mode == 'multi' ? `(${collection.length} items)` : ''
+      let ct=0
+      this.state.links.map(link=>{
+        if(collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
+      })
+      this.state.userLinks.map(link=>{
+        if(collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
+      })
+      return this.mode == 'multi' ? `(${ct} items)` : ''
     },
     checked(collection){
       switch(this.mode){
