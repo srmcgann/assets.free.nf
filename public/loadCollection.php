@@ -29,7 +29,7 @@ error_reporting(E_ALL);
   //$res = mysqli_query($link, $sql);
   //$totalRecords = mysqli_num_rows($res);
   //$totalPages = floor(($totalRecords-1) / $maxResultsPerPage) + 1;
-  $totalPages = 1
+  $totalPages = 1;
   
   //$sql = "SELECT * FROM imjurCollections WHERE id = $collectionID AND (($enabled AND userID = $userID) OR $admin OR private = 0) ORDER BY id ASC LIMIT $start, $maxResultsPerPage";
   
