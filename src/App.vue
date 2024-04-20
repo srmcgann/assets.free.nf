@@ -500,7 +500,7 @@ export default {
     loadCollection(id, show=false){
       this.state.loadingCollections = true
       let sendData = {
-        userID,
+        userID: this.state.userID,
         passhash: this.state.passhash,
         //page: this.state.collectionsPage,
         //maxResultsPerPage: this.state.maxCollectionResultsPerPage
