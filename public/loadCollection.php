@@ -8,7 +8,7 @@ error_reporting(E_ALL);
   $data = json_decode(file_get_contents('php://input'));
   $preval = $data->{'userID'};
   if($preval) $userID = mysqli_real_escape_string($link, $preval);
-  $preval = $data->{'passhash'}
+  $preval = $data->{'passhash'};
   if($preval) $passhash = mysqli_real_escape_string($link, $preval);
   $collectionID = mysqli_real_escape_string($link, $data->{'collectionID'});
 
