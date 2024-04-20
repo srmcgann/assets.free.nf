@@ -506,7 +506,7 @@ export default {
         //maxResultsPerPage: this.state.maxCollectionResultsPerPage
         collectionID: id
       }
-      fetch(`${this.URLbase}/` + 'fetchCollections.php',{
+      fetch(`${this.URLbase}/` + 'loadCollection.php',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
