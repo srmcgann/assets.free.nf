@@ -262,7 +262,10 @@ export default {
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs)
-      if(this.state.miscLinks.length) state.previewLink = this.state.miscLinks[0]
+      if(this.state.miscLinks.length) {
+        this.state.previewLink = this.state.miscLinks[0]
+        this.state.showPreview = true
+      }
       history.pushState(null,null,this.URLbase + `/col/${collection.id}`) //+ (this.state.curPage + 1))
     },
     firstPage(){
