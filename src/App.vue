@@ -880,7 +880,7 @@ export default {
           switch(this.state.mode){
             case 'col':
               if(typeof vars[l+1] != 'undefined'){
-                this.loadCollection(vars[l+1].split('?')[0])
+                this.loadCollection(vars[l+1].split('?')[0], true)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
