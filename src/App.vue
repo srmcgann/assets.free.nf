@@ -544,7 +544,12 @@ export default {
             this.state.collections = [...this.state.collections, data[1]]
           }
           this.state.showCollectionTemplate = false
-          if(show) this.viewCollection(data[1])
+          this.viewCollection(data[1])
+          if(!show){
+            this.$nextTick(()=>{
+              this.state.showPreview = false
+            })
+          }
         }
       })
     },
