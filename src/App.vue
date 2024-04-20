@@ -524,8 +524,8 @@ export default {
     loadCollection(id, show=false){
       this.state.loadingCollections = true
       let sendData = {
-        userID: this.state.loggedinUserID,
-        passhash: this.state.passhash,
+        userID: typeof this.state.loggedinUserID == null ? -1 : this.state.loggedinUserID,
+        passhash: typeof this.state.loggedinUserID == null ? '' : this.state.passhash,
         //page: this.state.collectionsPage,
         //maxResultsPerPage: this.state.maxCollectionResultsPerPage
         collectionID: +id
