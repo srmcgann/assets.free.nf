@@ -16,7 +16,8 @@ error_reporting(E_ALL);
   //$overrideMaxResults = mysqli_real_escape_string($link, $data->{'maxResultsPerPage'});
   //if($overrideMaxResults) $maxResultsPerPage = $overrideMaxResults;
   //$start = $maxResultsPerPage * $page;
-
+  
+  $enabled = 0;
   if($passhash){
     $sql = "SELECT * FROM imjurUsers WHERE id = $userID AND passhash LIKE BINARY\"$passhash\"";
     $res = mysqli_query($link, $sql);
@@ -33,8 +34,9 @@ error_reporting(E_ALL);
   
   //$sql = "SELECT * FROM imjurCollections WHERE id = $collectionID AND (($enabled AND userID = $userID) OR $admin OR private = 0) ORDER BY id ASC LIMIT $start, $maxResultsPerPage";
   
-  $sql = "SELECT * FROM imjurCollections WHERE id = $collectionID AND (($enabled AND userID = $userID) OR $admin OR private = 0)";
+  $sql = "SELECT * FROM imjurCollections WHERE id = $collectionID AND (($enabled AND userID = $userID) OR $admin)";
   $res = mysqli_query($link, $sql);
+  
   
   $collections = [];
   for($i=0; $i<mysqli_num_rows($res); ++$i){
