@@ -95,7 +95,7 @@ export default {
     padding-right: 10px;
   }
   .assetNameInput{
-    
+    max-width: 225px;
   }
   .tdLeft{
     width: 100px;
