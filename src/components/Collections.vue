@@ -32,7 +32,7 @@
           <td v-html="state.age(collection.meta)"></td>
           <td v-html="state.prettyDate(collection.meta)"></td>
           <td>
-            <font style="font-size:1em;">#{{collection.meta.slugs.length}} items</font><br>
+            <font style="font-size:1em;">{{collection.meta.slugs.length}} items</font><br>
             <button
               @click="state.viewCollection(collection)"
               class="viewCollectionButton"
@@ -54,7 +54,7 @@
               ></div>
               <div
                 class="copyLinkButton"
-                @click.prevent.stop="state.copyLink(state.URLbase + '/col/' + collection.id + '/view')"
+                @click.prevent.stop="state.copyLink('col/' + collection.id + '/view')"
                 title="copy link to clipboard"
               ></div>
               <a

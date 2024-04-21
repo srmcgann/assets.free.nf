@@ -4,7 +4,7 @@
       @mousedown.stop.prevent
       @click.stop.prevent="toggleShowCollection()"
       class="collectionsButton"
-      style="background: #84fd"
+      style="background: #84fd; color: #fff;"
       title="include or exclude this link from collections"
       v-html="showCollection?'close':'assign'"
       v-if="!!state.collections.length"

@@ -1676,7 +1676,8 @@ a{
 }
 .collectionsButton{
   line-height: 13px;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 20px;
   height: 24px;
   margin: 0;
   margin-right: 10px;
