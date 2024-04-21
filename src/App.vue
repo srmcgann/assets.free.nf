@@ -369,7 +369,7 @@ export default {
       a.remove()
     },
     openCollection(collection){
-      open(`${this.URLbase}/` + collection.meta.href, '_blank')
+      open(`${this.URLbase}/col/${collection.id}/view` , '_blank')
     },
     openLink(link){
       open(`${this.URLbase}/` + link.href, '_blank')

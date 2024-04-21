@@ -42,7 +42,7 @@
               @click="state.showEditCollection(collection)"
               class="editCollectionButton"
               title="edit this collection"
-            >edit ✎</button>
+            >edit</button>
           </td>
           <td>
             <div class="linkButtons">
