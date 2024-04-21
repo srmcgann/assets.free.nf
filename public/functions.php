@@ -87,12 +87,23 @@
 		return $head['content-length'];
 	}
 
-  function genSlug(){
+  function genAssetSlug(){
     global $link;
     $rndmax = getrandmax();
     do{
       $newid = floor($rndmax/2+rand());
       $sql = "SELECT id FROM imjurUploads WHERE id = $newid";
+      $res = mysqli_query($link, $sql);
+    }while(mysqli_num_rows($res));
+    return decToAlpha($newid);
+  }
+  
+  function genCollectionSlug(){
+    global $link;
+    $rndmax = getrandmax();
+    do{
+      $newid = floor($rndmax/2+rand());
+      $sql = "SELECT id FROM imjurCollections WHERE id = $newid";
       $res = mysqli_query($link, $sql);
     }while(mysqli_num_rows($res));
     return decToAlpha($newid);

@@ -38,6 +38,7 @@ error_reporting(E_ALL);
       $ar           = [];
       $ar['id']     = $row['id'];
       $ar['name']   = $row['name'];
+      $ar['slug']   = $row['slug'];
       $ar['userID'] = $userID;
       $ar['meta']   = [
                       'date'          => json_decode($row['meta'])->{'date'},

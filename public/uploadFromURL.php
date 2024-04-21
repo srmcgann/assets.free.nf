@@ -33,7 +33,7 @@ error_reporting(E_ALL);
     
     $unlink = false;
     //$tmp_name = $_FILES["uploads_$ct"]['tmp_name'];
-    $slug = genSlug();
+    $slug = genAssetSlug();
     //move_uploaded_file($tmp_name, "$resourceDir/$slug");
     $name = "$resourceDir/$slug";
 

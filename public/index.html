@@ -10,6 +10,7 @@
       $row          = mysqli_fetch_assoc($res);
       $meta         = json_decode($row['meta']);
       $name         = $row['name'];
+      $slug         = $row['slug'];
       $views        = $meta->{'views'};
       $description  = $meta->{'description'};
       $items        = sizeof($meta->{'slugs'});

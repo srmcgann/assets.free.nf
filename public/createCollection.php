@@ -42,18 +42,25 @@ error_reporting(E_ALL);
     $meta_ = $meta;
     $meta = mysqli_real_escape_string($link, json_encode($meta));
     
+    $slug = genCollectionSlug();
+    $id = alphaToDec($slug);
+    
     $sql = "INSERT INTO imjurCollections (
+      id,
       userID,
       name,
+      slug,
       meta
     ) VALUES(
+      $id,
       $userID,
       \"$name\",
+      \"$slug\",
       \"$meta\"
     )";
     if(mysqli_query($link, $sql)){
       $ret           = [];
-      $ret['id']     = mysqli_insert_id($link);
+      $ret['id']     = $id; //mysqli_insert_id($link);
       $ret['name']   = $colData->{'name'};
       $ret['userID'] = $userID;
       $ret['meta']   = $meta_;

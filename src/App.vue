@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Header              :state="state" />
-    <Toolbar             :state="state" />
-    <Main                :state="state" v-if="state.mode"/>
-    <Footer              :state="state" />
+    <Header              :state="state" v-if="!popupVisible" />
+    <Toolbar             :state="state" v-if="!popupVisible" />
+    <Main                :state="state" v-if="state.mode && !popupVisible" />
+    <Footer              :state="state" v-if="!popupVisible" />
     <UserSettings        :state="state" v-if="state.userSettingsVisible" />
-    <LoginPrompt         :state="state" v-if="state.showLoginPrompt"/>
-    <Admin               :state="state" v-if="showAdminButton"/>
+    <LoginPrompt         :state="state" v-if="state.showLoginPrompt" />
+    <Admin               :state="state" v-if="showAdminButton" />
     <Collections         :state="state" v-if="state.showCollections" />
     <EditCollection      :state="state" v-if="state.editCollection.length"
                          :collection="state.editCollection[0]"/>
@@ -195,6 +195,19 @@ export default {
     }
   },
   methods:{
+    alphaToDec = val => {
+      let pow=0
+      let res=0
+      let cur, mul
+      while(val!=''){
+        cur=val[val.length-1]
+        val=val.substring(0,val.length-1)
+        mul=cur.charCodeAt(0)<58?cur:cur.charCodeAt(0)-(cur.charCodeAt(0)>96?87:29)
+        res+=mul*(62**pow)
+        pow++
+      }
+      return res
+    },
     prev(){
       if(!this.state.showPreview) return
       this.state.showPreview = false
@@ -263,7 +276,7 @@ export default {
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs, true)
-      history.pushState(null,null,this.URLbase + `/col/${collection.id}/view`) //+ (this.state.curPage + 1))
+      history.pushState(null,null,this.URLbase + `/col/${collection.slug}/view`) //+ (this.state.curPage + 1))
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
@@ -369,7 +382,7 @@ export default {
       a.remove()
     },
     openCollection(collection){
-      open(`${this.URLbase}/col/${collection.id}/view` , '_blank')
+      open(`${this.URLbase}/col/${collection.slug}/view` , '_blank')
     },
     openLink(link){
       open(`${this.URLbase}/` + link.href, '_blank')
@@ -922,7 +935,7 @@ export default {
                     break
                   }
                 }
-                this.loadCollection(vars[l+1], show)
+                this.loadCollection(this.alphaToDec(vars[l+1]), show)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
@@ -1330,6 +1343,17 @@ export default {
         ret += '/imjur'
       }
       return ret
+    },
+    popupVisible{
+      return this.state.userSettingsVisible ||
+      this.state.showLoginPrompt ||
+      this.state.showCollections ||
+      this.state.editCollection.length ||
+      this.state.showCollectionTemplate ||
+      this.state.showPreview ||
+      this.state.showAssetPreview ||
+      this.state.showUploadModal ||
+      this.state.showRegister
     }
   },
   mounted(){
