@@ -53,7 +53,7 @@ error_reporting(E_ALL);
 
       $meta_ = $meta;
       $meta = mysqli_real_escape_string($link, json_encode($meta));
-      $sql = "UPDATE imjurCollections SET slug = \"$slug\" name = \"$name\", meta = \"$meta\" WHERE userID = $userID AND id = $id";
+      $sql = "UPDATE imjurCollections SET slug = \"$slug\", name = \"$name\", meta = \"$meta\" WHERE userID = $userID AND id = $id";
       if(mysqli_query($link, $sql)){
         $success           = true;
         $ar                = [];
