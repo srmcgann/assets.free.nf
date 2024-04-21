@@ -30,8 +30,8 @@ todo
   ✔ menu item: w/selected -> add to collection
   ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
   ✔ random-slugify collections
+  ✔ make asset "name" fields editable
   * deleting asset also removes it from all connected collections
-  * make asset "name" fields editable
   * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
   * users, optional logins/profiles
@@ -45,7 +45,6 @@ todo
   * search
   * "trending/popular" page
   * social media metadata
-  * gallery / trending
   * load/resource balancing
   * admin data -> add 'owner' & 'number of owners' for disk assets
   * youtube field  // likely not to work without shell access

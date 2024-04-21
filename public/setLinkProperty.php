@@ -13,6 +13,11 @@ error_reporting(E_ALL);
   $sql = 'SELECT * FROM imjurUsers WHERE name LIKE "'.$userName.'" AND passhash = "'.$passhash.'"';
   $res = mysqli_query($link, $sql);
   $success = false;
+  
+  if($property !== 'private' &&
+     $property !== 'name' &&
+     $property !== 'description') die(['false']);
+  
   if(mysqli_num_rows($res)){
     $row = mysqli_fetch_assoc($res);
     $userID = $row['id'];

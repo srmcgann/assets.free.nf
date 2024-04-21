@@ -26,6 +26,7 @@ error_reporting(E_ALL);
     $m = [
       'id'           => $row['id'],
       'slug'         => $slug,
+      'hash'         => $row['hash'],
       'size'         => json_decode($row['meta'])->{'file size'},
       'name'         => $row['name'],
       'type'         => $row['filetype'],

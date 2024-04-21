@@ -26,11 +26,33 @@
           v-model="link.name"
           class="assetNameInput"
           @input="state.setLinkProperty(link, 'name', link.name, false, true)"
-          @click.prevent.stop="this.select()"
+          @click.prevent.stop="$this.select()"
         >
       </td>
       <td v-else v-html="state.fileName(link)"></td>
     </tr>
+    <tr>
+      <td
+        class="tdLeft">desc.</td><td class="tdRight"
+        v-if="state.loggedinUserID == link.userID"
+      >
+        <input
+          type="text"
+          v-model="link.description"
+          class="assetNameInput"
+          @input="state.setLinkProperty(link, 'description', link.description, false, true)"
+          @click.prevent.stop="$this.select()"
+        >
+      </td>
+      <td v-else v-html="state.shortText(link.description, 16)"></td>
+    </tr>
+
+    <tr><td class="tdLeft">upvotes</td><td class="tdRight" v-html="link.upvotes"></td></tr>
+    <tr><td class="tdLeft">downvotes</td><td class="tdRight" v-html="link.downvotes"></td></tr>
+    <tr><td class="tdLeft">hash</td><td class="tdRight" v-html="link.hash"></td></tr>
+    <tr><td class="tdLeft">filetype</td><td class="tdRight" v-html="link.fileType"></td></tr>
+    <tr><td class="tdLeft">owner ID</td><td class="tdRight" v-html="link.userID"></td></tr>
+
     <tr><td class="tdLeft">uploaded</td><td class="tdRight" v-html="state.prettyDate(link)"></td></tr>
     <tr><td class="tdLeft">age</td><td class="tdRight" v-html="state.age(link)"></td></tr>
     <tr><td class="tdLeft">size</td><td class="tdRight" v-html="state.size(link.size)"></td></tr>
@@ -97,6 +119,8 @@ export default {
   .assetNameInput{
     max-width: 225px;
     font-size: 14px;
+    background: #000;
+    border-bottom: 1px solid #4f84;
   }
   .tdLeft{
     width: 100px;
