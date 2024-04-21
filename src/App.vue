@@ -9,7 +9,7 @@
     <Admin               :state="state" v-if="showAdminButton" />
     <Collections         :state="state" v-if="state.showCollections" />
     <EditCollection      :state="state" v-if="state.editCollection.length"
-                         :collection="state.editCollection[0]"/>
+                         :collection="state.editCollection[0]" />
     <CollectionTemplate  :state="state" v-if="state.showCollectionTemplate" />
     <Modal
       :state="state"
@@ -1344,7 +1344,7 @@ export default {
       }
       return ret
     },
-    popupVisible{
+    popupVisible(){
       return this.state.userSettingsVisible ||
       this.state.showLoginPrompt ||
       this.state.showCollections ||
