@@ -29,6 +29,7 @@ todo
   ✔ link tools in collections view are collection tools
   ✔ menu item: w/selected -> add to collection
   ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
+  * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
   * random-slugify collections
   * users, optional logins/profiles
