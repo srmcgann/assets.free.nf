@@ -1058,11 +1058,12 @@ export default {
               }
               this.state.miscLinks=[...this.state.miscLinks, obj]
             })
-            if(this.state.miscLinks.length && forCollection) {
+            if(!this.state.miscLinks.length) location.href = location.origin
+            if(forCollection) {
               this.state.previewLink = this.state.miscLinks[0]
               this.state.showPreview = true
-            }else{
-              location.href = location.origin
+            } else {
+              this.state.showPreview = false
             }
           }else{
             console.log('there was a problem loading the link', data)
@@ -1073,9 +1074,6 @@ export default {
     showEditCollection(collection){
       console.log('collection', collection)
       this.state.editCollection = [collection]
-      this.$nextTick(() => {
-        this.state.showPreview = false
-      })
     },
     setCollectionProperty(collection, property, value){
       if(collection.meta[property] != value){
