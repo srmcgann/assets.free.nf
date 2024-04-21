@@ -32,7 +32,7 @@
           <td v-html="state.age(collection.meta)"></td>
           <td v-html="state.prettyDate(collection.meta)"></td>
           <td>
-            <font style="font-size:1.5em;">#items {{collection.meta.slugs.length}}</font><br>
+            <font style="font-size:1em;">#{{collection.meta.slugs.length}} items</font><br>
             <button
               @click="state.viewCollection(collection)"
               class="viewCollectionButton"

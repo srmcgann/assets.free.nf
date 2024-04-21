@@ -85,7 +85,7 @@
           >
             <button
               class="toolbarButtons collectionsButton"
-              style="min-width: 50px; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
+              style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
               @click.stop.prevent="state.viewCollection(collection)"
               title="view this collection"
             >👁</button>
@@ -95,7 +95,7 @@
               @click.stop.prevent="state.showEditCollection(collection)"
               title="edit this collection"
             >✎</button>
-            <span>{{collection.name}}</span>
+            <span>{{state.shortText(collection.name, 16)}}</span>
           </div>
         </div>
         <div class="sub" @click="">sub b</div>
