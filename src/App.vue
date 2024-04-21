@@ -195,7 +195,7 @@ export default {
     }
   },
   methods:{
-    alphaToDec = val => {
+    alphaToDec(val){
       let pow=0
       let res=0
       let cur, mul
