@@ -20,6 +20,7 @@
       <table class="collectionsTable" v-if="state.collections.length">
         <tr>
           <th>name</th>
+          <th>views</th>
           <th>description</th>
           <th>age</th>
           <th>created</th>
@@ -28,6 +29,7 @@
         </tr>
         <tr v-for="collection in state.collections">
           <td v-html="collection.name"></td>
+          <td v-html="collection.meta.views"></td>
           <td v-html="collection.meta.description"></td>
           <td v-html="state.age(collection.meta)"></td>
           <td v-html="state.prettyDate(collection.meta)"></td>
