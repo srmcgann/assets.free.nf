@@ -25,7 +25,7 @@
           type="text"
           v-model="link.name"
           class="assetNameInput"
-          @input="state.setLinkProperty(link, 'name', link.name)"
+          @input="state.setLinkProperty(link, 'name', link.name, false, true)"
           @click.prevent.stop="this.select()"
         >
       </td>
@@ -96,6 +96,7 @@ export default {
   }
   .assetNameInput{
     max-width: 225px;
+    font-size: 14px;
   }
   .tdLeft{
     width: 100px;

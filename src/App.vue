@@ -969,7 +969,7 @@ export default {
         if(link.selected) this.setLinkProperty(link, property, value)
       })
     },
-    setLinkProperty(link, property, value, override=true){
+    setLinkProperty(link, property, value, override=true, force=false){
       if(override && this.state.editCollection.length){
         let sendObj = escape(JSON.stringify({
           function: 'visibility',
@@ -981,14 +981,14 @@ export default {
         this.state.showModal = true
       }else{
         console.log('continuing with setLinkProperty', link, property, value)
-        if(link[property] != value){
+        if(link[property] != value || force){
           link[property] = value
           let sendData = {
             userName: this.state.loggedinUserName,
             passhash: this.state.passhash,
             linkID: link.id,
             property,
-            value: link[property],
+            value,
           }
           fetch(`${this.URLbase}/` + 'setLinkProperty.php',{
             method: 'POST',
