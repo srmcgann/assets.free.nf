@@ -1345,13 +1345,21 @@ export default {
       return ret
     },
     popupVisible(){
+    console.log(this.state.userSettingsVisible ,
+      this.state.showLoginPrompt ,
+      this.state.showCollections ,
+      this.state.editCollection.length ,
+      this.state.showCollectionTemplate ,
+      this.state.showPreview ,
+      this.state.showUploadModal ,
+      this.state.showRegister)
+      
       return this.state.userSettingsVisible ||
       this.state.showLoginPrompt ||
       this.state.showCollections ||
       this.state.editCollection.length ||
       this.state.showCollectionTemplate ||
       this.state.showPreview ||
-      this.state.showAssetPreview ||
       this.state.showUploadModal ||
       this.state.showRegister
     }
