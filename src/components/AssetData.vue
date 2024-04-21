@@ -23,10 +23,10 @@
       >
         <input
           type="text"
-          v-model="link.origin"
+          v-model="link.name"
           class="assetNameInput"
-          @input="state.updateLinkProp(link, 'origin')"
-          @click.prevent.stop="selectText(this)"
+          @input="state.setLinkProperty(link, 'name', link.name)"
+          @click.prevent.stop="this.select()"
         >
       </td>
       <td v-else v-html="state.fileName(link)"></td>
