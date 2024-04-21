@@ -474,7 +474,7 @@ export default {
         let sendData = {
           userName: this.state.loggedinUserName,
           passhash: this.state.passhash,
-          id: link.id,
+          linkID: link.id,
           prop,
           value: link[prop]
         }
