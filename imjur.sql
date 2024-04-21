@@ -32,6 +32,7 @@ CREATE TABLE `imjurCollections` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `name` varchar(1024) NOT NULL,
+  `slug` varchar(32) NOT NULL,
   `meta` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
