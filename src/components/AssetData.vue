@@ -23,13 +23,13 @@
       >
         <input
           type="text"
-          v-model="link.name"
+          v-model="link.origin"
           class="assetNameInput"
-          @input="state.updateLinkProp(link, 'name')"
+          @input="state.updateLinkProp(link, 'origin')"
           @click.prevent.stop="selectText(this)"
         >
       </td>
-      <td v-else v-html="state.fileName(link.name)"></td>
+      <td v-else v-html="state.fileName(link)"></td>
     </tr>
     <tr><td class="tdLeft">uploaded</td><td class="tdRight" v-html="state.prettyDate(link)"></td></tr>
     <tr><td class="tdLeft">age</td><td class="tdRight" v-html="state.age(link)"></td></tr>

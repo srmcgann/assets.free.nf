@@ -469,16 +469,16 @@ export default {
       this.state.showPreview = false
       this.state.previewLink = null
     },
-    updateLinkProp(link, prop){
+    updateLinkProp(link, propert){
       if(this.state.loggedinUserName) {
         let sendData = {
           userName: this.state.loggedinUserName,
           passhash: this.state.passhash,
           linkID: link.id,
-          prop,
-          value: link[prop]
+          property,
+          value: link[property]
         }
-        fetch(`${this.URLbase}/` + 'updateLinkProp.php',{
+        fetch(`${this.URLbase}/` + 'setLinkProp.php',{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
