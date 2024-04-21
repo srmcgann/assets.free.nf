@@ -999,7 +999,7 @@ export default {
             body: JSON.stringify(sendData),
           }).then(res => res.json()).then(data=>{
             console.log('setLinkProperty data: ', data)
-            if(data[0]){
+            if(data[0] && !force){
               this.state.links.map(v => { if(v.slug === link.slug) v[property] = value })
               this.state.userLinks.map(v => { if(v.slug === link.slug) v[property] = value })
               this.state.miscLinks.map(v => { if(v.slug === link.slug) v[property] = value })
