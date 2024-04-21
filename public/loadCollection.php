@@ -46,7 +46,7 @@ error_reporting(E_ALL);
   for($i=0; $i<mysqli_num_rows($res); ++$i){
     $row = mysqli_fetch_assoc($res);
     $meta = json_decode($row['meta']);
-    $private = $meta->{'private'};
+    $private = intval($meta->{'private'});
     if(!$private || ($passhash && ($admin || $enabled))){
       $ar           = [];
       $ar['id']     = $collectionID;

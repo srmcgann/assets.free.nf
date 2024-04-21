@@ -1058,7 +1058,7 @@ export default {
               }
               this.state.miscLinks=[...this.state.miscLinks, obj]
             })
-            if(this.state.miscLinks.length) {
+            if(this.state.miscLinks.length && forCollection) {
               this.state.previewLink = this.state.miscLinks[0]
               this.state.showPreview = true
             }else{
