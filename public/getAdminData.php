@@ -34,6 +34,7 @@ error_reporting(E_ALL);
         $slugs[] = $slug;
         $fs =  filesize($file);
         $footprint += $fs;
+        $fileDates[] = filemtime($file);
         $fileSizes[] = $fs;
         $ft = mime_content_type($file);
         $fileTypes[] = $ft;
@@ -82,6 +83,7 @@ error_reporting(E_ALL);
       "slugs"           => $slugs,
       "hrefs"           => $hrefs,
       "fileSizes"       => $fileSizes,
+      "fileDates"       => $fileDates,
       "fileTypes"       => $fileTypes,
       "users"           => $users,
       "number assets"   => $ct,

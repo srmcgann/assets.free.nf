@@ -129,7 +129,7 @@ export default {
         URLbase: null,
         linksSelectedTally: 0,
         showCollection: false,  // to view an individual collection
-        showCollections: null,  // to invoke user's collection list view
+        showCollections: false,  // to invoke user's collection list view
         logout: null,
         onkeydown: null,
         showAdmin: false,
@@ -440,7 +440,7 @@ export default {
       })
       .then(res => res.json())
       .then(data => {
-      console.log('getAssetData.php, data; ', data)
+      console.log('getAdminData.php, data; ', data)
         if(data[0]){
           this.state.adminData = JSON.parse(data[1])
           this.state.showAssetPreview = Array(this.state.adminData.slugs.length).fill(false)
@@ -1345,15 +1345,6 @@ export default {
       return ret
     },
     popupVisible(){
-    console.log(this.state.userSettingsVisible ,
-      this.state.showLoginPrompt ,
-      this.state.showCollections ,
-      this.state.editCollection.length ,
-      this.state.showCollectionTemplate ,
-      this.state.showPreview ,
-      this.state.showUploadModal ,
-      this.state.showRegister)
-      
       return this.state.userSettingsVisible ||
       this.state.showLoginPrompt ||
       this.state.showCollections ||
