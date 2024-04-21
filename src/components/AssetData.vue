@@ -16,7 +16,21 @@
         </a>
       </td>
     </tr>
-    <tr><td class="tdLeft">name</td><td class="tdRight" v-html="state.fileName(link)"></td></tr>
+    <tr>
+      <td
+        class="tdLeft">name</td><td class="tdRight"
+        v-if="state.loggedinUserID == link.userID"
+      >
+        <input
+          type="text"
+          v-model="link.name"
+          class="assetNameInput"
+          @input="state.updateLinkProp(link, 'name')"
+          @click.prevent.stop="selectText(this)"
+        >
+      </td>
+      <td v-else v-html="state.fileName(link.name)"></td>
+    </tr>
     <tr><td class="tdLeft">uploaded</td><td class="tdRight" v-html="state.prettyDate(link)"></td></tr>
     <tr><td class="tdLeft">age</td><td class="tdRight" v-html="state.age(link)"></td></tr>
     <tr><td class="tdLeft">size</td><td class="tdRight" v-html="state.size(link.size)"></td></tr>
@@ -47,6 +61,11 @@ export default {
   computed:{
   },
   methods: {
+    selectText(el){
+      console.log(el)
+      el.focus()
+      el.select()
+    }
   },
   mounted(){
   }
@@ -74,6 +93,9 @@ export default {
     background-size: 10px 10px;
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .assetNameInput{
+    
   }
   .tdLeft{
     width: 100px;

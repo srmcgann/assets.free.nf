@@ -116,6 +116,7 @@ export default {
         prev: null,
         fileName: null,
         updateCollection: null,
+        updateLinkProp: null,
         fullFileName: null,
         login: null,
         showCollectionTemplate: false,
@@ -467,6 +468,31 @@ export default {
     closePreview(){
       this.state.showPreview = false
       this.state.previewLink = null
+    },
+    updateLinkProp(link, prop){
+      if(this.state.loggedinUserName) {
+        let sendData = {
+          userName: this.state.loggedinUserName,
+          passhash: this.state.passhash,
+          id: link.id,
+          prop,
+          value: link[prop]
+        }
+        fetch(`${this.URLbase}/` + 'updateLinkProp.php',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sendData),
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(!!(+data[0])){
+          }else{
+            console.log(`there was a problem updating the link prop (${prop} -> ${link[prop]})`)
+          }
+        })
+      }
     },
     checkEnabled(){
       if(this.state.loggedinUserName) {
@@ -1475,6 +1501,7 @@ export default {
     this.state.fetchUserLinks = this.fetchUserLinks
     this.state.viewCollection = this.viewCollection
     this.state.deleteSelected = this.deleteSelected
+    this.state.updateLinkProp = this.updateLinkProp
     this.state.loadCollection = this.loadCollection
     this.state.openCollection = this.openCollection
     this.state.setLinkProperty = this.setLinkProperty

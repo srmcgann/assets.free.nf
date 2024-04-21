@@ -29,10 +29,10 @@ todo
   ✔ link tools in collections view are collection tools
   ✔ menu item: w/selected -> add to collection
   ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
+  ✔ random-slugify collections
   * make asset "name" fields editable
   * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
-  * random-slugify collections
   * users, optional logins/profiles
     └-> ✔ login button
         ✔ profile page
@@ -133,7 +133,6 @@ export default {
       }else{
         this.link.selected = true
       }
-      console.log('selected', this.link.selected)
     },
     preview(){
       this.state.previewPosition = this.link.ct
