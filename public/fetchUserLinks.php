@@ -30,7 +30,7 @@ error_reporting(E_ALL);
       'id'             => $row['id'],
       'slug'           => $slug,
       'size'           => json_decode($row['meta'])->{'file size'},
-      'name'           => json_decode($row['meta'])->{'original name'},
+      'name'           => $row['name'],
       'type'           => $row['filetype'],
       'date'           => $row['date'],
       'userID'         => $row['userID'],

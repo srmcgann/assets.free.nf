@@ -622,6 +622,7 @@ export default {
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
                 origin: data[2][i].origin,
+                name: data[2][i].name,
                 date: data[2][i].date,
                 private: !!(+data[2][i].private),
                 linkType: 'userLink',
@@ -1059,6 +1060,7 @@ export default {
                 href: v,
                 userID: +data[2][i].userID,
                 id: +data[2][i].id,
+                name: data[2][i].name,
                 slug: data[2][i].slug,
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
@@ -1145,10 +1147,11 @@ export default {
       }
       return ret
     },
-    addLink(size, type, ct, href, selected, userID, slug, originalSlug, origin, serverTZO, views, id, date, originalDate, visibility){
+    addLink(size, type, ct, href, selected, userID, slug, originalSlug, origin, serverTZO, views, id, date, originalDate, visibility, name){
       let obj = {
         size,
         type,
+        name,
         ct,
         href,
         slug,

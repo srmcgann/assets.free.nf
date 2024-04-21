@@ -14,6 +14,7 @@ error_reporting(E_ALL);
   $originalDates = [];
   $sizes         = [];
   $slugs         = [];
+  $names         = [];
   $views         = [];
   $ids           = [];
   $origins       = [];
@@ -157,12 +158,14 @@ error_reporting(E_ALL);
             
             $description = '';
             $origin = mysqli_real_escape_string($link, "web file: $originalName");
+            $name   = $originalName;
             
   $sql = <<<SQL
   INSERT INTO imjurUploads (id, 
                             slug,
                             originalSlug,
                             meta,
+                            name,
                             hash,
                             filetype,
                             origin,
@@ -176,6 +179,7 @@ error_reporting(E_ALL);
                               "$slug",
                               "$originalSlug",
                               "$meta",
+                              "$name",
                               "$hash",
                               "$type",
                               "$origin",
@@ -200,6 +204,7 @@ error_reporting(E_ALL);
             $sizes[]         = $size;
             $types[]         = $type;
             $slugs[]         = $slug;
+            $names[]         = $name;
             $dates[]         = $date;
             $visibilities[]  = 1;
             $originalDates[] = $originalDate;
@@ -229,5 +234,5 @@ error_reporting(E_ALL);
     }
   }    
   
-  echo json_encode([$success, $links, $sizes, $types, $ct, $error, $slugs, $originalSlugs, $origins, getServerTZOffset(), $views, $ids, $dates, $originalDates, $visibilities]);
+  echo json_encode([$success, $links, $sizes, $types, $ct, $error, $slugs, $originalSlugs, $origins, getServerTZOffset(), $views, $ids, $dates, $originalDates, $visibilities, $names]);
 ?>

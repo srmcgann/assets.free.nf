@@ -194,7 +194,7 @@ export default {
               let data = JSON.parse(e.currentTarget.responseText)
               if(data[0]){
                 data[1].map((v, j)=>{
-                  this.state.addLink(data[2][j], data[3][j], i, v, false, this.state.loggedinUserID, data[6][j], data[7][j], data[8][j], data[9], data[10][j], data[11][j], data[12][j],data[13][j],data[14][j])
+                  this.state.addLink(data[2][j], data[3][j], i, v, false, this.state.loggedinUserID, data[6][j], data[7][j], data[8][j], data[9], data[10][j], data[11][j], data[12][j],data[13][j],data[14][j], data[15][j])
                 })
               }
             }
