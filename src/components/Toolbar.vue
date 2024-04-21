@@ -88,13 +88,13 @@
               style="min-width: 50px; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
               @click.stop.prevent="state.viewCollection(collection)"
               title="view this collection"
-            >view</button>
+            >👁</button>
             <button
               class="toolbarButtons collectionsButton"
-              style="height: 24px; margin: unset; margin-right:5px;"
+              style="height: 24px; margin: unset; margin-right:5px;min-width: unset"
               @click.stop.prevent="state.showEditCollection(collection)"
               title="edit this collection"
-            >edit ✎</button>
+            >✎</button>
             <span>{{collection.name}}</span>
           </div>
         </div>
