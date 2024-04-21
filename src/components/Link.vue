@@ -29,6 +29,7 @@ todo
   ✔ link tools in collections view are collection tools
   ✔ menu item: w/selected -> add to collection
   ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
+  * make asset "name" fields editable
   * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
   * random-slugify collections
@@ -51,7 +52,7 @@ todo
 -->
 
 <template>
-  <div class="link" ref="anchor">
+  <div class="link" ref="anchor" @click.stop.prevent="updateLinkSelected()">
     <label v-if="state.loggedIn" class="checkboxLabel" :key="link.linkType+link.ct+'key'">
       <input type="checkbox" v-model="link.selected" @input="updateLinkSelected()">
       <span class="checkmark" style="margin-left: -30px;"></span>

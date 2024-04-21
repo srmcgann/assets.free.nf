@@ -89,7 +89,6 @@ export default {
       switch(this.mode){
         case 'multi':
           let checked = false
-          console.log('check', this.links)
           this.links.map(v=>{
             if(!!collection.meta.slugs.filter(q=>q==v.slug).length) checked = true
           })

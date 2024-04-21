@@ -1790,6 +1790,7 @@ select:focus{
   position: absolute;
   margin-left: 30px;
   z-index: 10;
+  max-height: 30px;
 }
 
 /* Hide the browser's default checkbox */
