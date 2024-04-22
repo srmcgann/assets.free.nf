@@ -26,6 +26,7 @@
           type="text"
           v-model="link.name"
           class="assetNameInput"
+          tabindex="0"
           @focus="onfocus()"
           @blur="onblur()"
           @mousedown.stop
@@ -48,6 +49,9 @@
           type="text"
           v-model="link.description"
           class="assetNameInput"
+          tabindex="0"
+          @focus="onfocus()"
+          @blur="onblur()"
           @mousedown.stop
           @input="state.setLinkProperty(link, 'description', link.description, false, true)"
           @click.prevent.stop="$event.target.select()"
