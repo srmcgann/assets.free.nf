@@ -280,7 +280,7 @@ export default {
       this.state.loadLinks(collection.meta.slugs, true)
       if(sel) {
         sel = `/${sel}`
-        this.state.previewPosition = sel
+        this.state.previewPosition = +sel
       }
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${sel}`)
     },
