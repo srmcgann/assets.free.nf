@@ -32,7 +32,7 @@ error_reporting(E_ALL);
       'size'           => json_decode($row['meta'])->{'file size'},
       'hash'           => $row['hash'],
       'name'           => $row['name'],
-      'type'           => $row['filetype'],
+      'filetype'       => $row['filetype'],
       'date'           => $row['date'],
       'userID'         => $row['userID'],
       'origin'         => $row['origin'],

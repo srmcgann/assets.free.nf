@@ -107,13 +107,7 @@ todo
       ></div>
     </div>
     <br>
-    
     <AssetData :state="state" :link="link" />
-    
-
-    <!-- <span style="visibility: hidden; position: absolute;" v-html="link.href" ref="href"></span> -->
-    <!-- <span class="href" style="font-size: 1em" v-html="link.type"></span><br> -->
-    <!-- <span class="href" style="font-size: 1em" v-html="'size: ' + link.size.toLocaleString('en-us')"></span><br> -->
   </div>
 </template>
 

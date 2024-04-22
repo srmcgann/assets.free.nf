@@ -618,7 +618,7 @@ export default {
             data[1].map((v, i) => {
               let obj = {
                 size: +data[2][i].size,
-                type: data[2][i].type,
+                filetype: data[2][i].filetype,
                 selected: false,
                 ct: i,
                 href: v,
@@ -628,7 +628,6 @@ export default {
                 descriptioin: data[2][i].description,
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
-                filetype: data[2][i].filetype,
                 origin: data[2][i].origin,
                 hash: data[2][i].hash,
                 name: data[2][i].name,
@@ -1067,7 +1066,7 @@ export default {
             data[1].map((v, i) => {
               let obj = {
                 size: +data[2][i].size,
-                type: data[2][i].type,
+                filetype: data[2][i].filetype,
                 selected: false,
                 ct: i,
                 href: v,
@@ -1075,7 +1074,6 @@ export default {
                 id: +data[2][i].id,
                 name: data[2][i].name,
                 description: data[2][i].description,
-                filetype: data[2][i].filetype,
                 slug: data[2][i].slug,
                 hash: data[2][i].hash,
                 originalSlug: data[2][i].originalSlug,

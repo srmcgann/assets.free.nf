@@ -83,7 +83,7 @@ export default {
     }
   },
   mounted(){
-    this.linkType = this.link.type.split('/')[0]
+    this.linkType = this.link.filetype.split('/')[0]
 
     if(this.linkType == 'image' || this.linkType == 'audio'){
       this.asset = document.createElement('div')
