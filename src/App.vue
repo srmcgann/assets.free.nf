@@ -229,6 +229,7 @@ export default {
           }else{
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
+          history.pushState(null,null,`${this.URLbase}/col/${this.previewCollection.slug}/view/${this.state.previewPosition}})
         break
       }
       
@@ -256,6 +257,7 @@ export default {
           }else{
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
+          history.pushState(null,null,`${this.URLbase}/col/${this.previewCollection.slug}/view/${this.state.previewPosition}})
         break
       }
       this.$nextTick(()=>{
@@ -271,12 +273,16 @@ export default {
       document.getElementsByTagName('HTML')[0].style.overflowY = 'hidden'
       this.state.userSettingsVisible = true
     },
-    viewCollection(collection){
+    viewCollection(collection, sel=''){
       this.state.mode = 'col'
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs, true)
-      history.pushState(null,null,this.URLbase + `/col/${collection.slug}/view`) //+ (this.state.curPage + 1))
+      if(sel) {
+        sel = `/${sel}`
+        this.state.previewPosition = sel
+      }
+      history.pushState(null,null,`${this.URLbase}/col/${this.previewCollection.slug}/view${sel}})
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
@@ -535,7 +541,7 @@ export default {
         if(!data[0]) alert('error setting link owner')
       })
     },
-    loadCollection(id, show=false){
+    loadCollection(id, show=false, sel=''){
       this.state.loadingCollections = true
       let sendData = {
         userID: this.state.loggedinUserID ? -1 : this.state.loggedinUserID,
@@ -558,7 +564,7 @@ export default {
             this.state.collections = [...this.state.collections, data[1]]
           }
           this.state.showCollectionTemplate = false
-          this.viewCollection(data[1])
+          this.viewCollection(data[1], sel)
           if(!show){
             this.$nextTick(()=>{
               this.state.showPreview = false
@@ -939,7 +945,8 @@ export default {
                     break
                   }
                 }
-                this.loadCollection(this.alphaToDec(vars[l+1]), show)
+                let sel = typeof vars[l+3] != 'undefined' ? vars[l+3] : ''
+                this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
