@@ -112,9 +112,11 @@ export default {
   },
   methods: {
     onfocus(){
+      console.log('blocking fade')
       this.state.blockFade = true
     },
     onblur(){
+      console.log('re-enabling fade')
       this.state.blockFade = false
     }
   },
