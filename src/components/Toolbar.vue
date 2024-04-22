@@ -81,12 +81,12 @@
           <div
             class="sub2"
             v-for="collection in state.collections"
-            @click.stop.prevent="state.viewCollection(collection)"
+            @click.stop.prevent="state.viewCollection(collection, 0)"
           >
             <button
               class="toolbarButtons collectionsButton"
               style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
-              @click.stop.prevent="state.viewCollection(collection)"
+              @click.stop.prevent="state.viewCollection(collection, 0)"
               title="view this collection"
             >👁</button>
             <button

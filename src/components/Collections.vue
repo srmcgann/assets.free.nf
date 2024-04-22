@@ -100,7 +100,7 @@ export default {
     view(collection){
       this.close()
       this.$nextTick(()=>{
-        this.viewCollection(collection)
+        this.viewCollection(collection, 0)
       })
     }
   },
