@@ -31,7 +31,11 @@
           @click.prevent.stop="$this.select()"
         >
       </td>
-      <td v-else v-html="state.fileName(link)"></td>
+      <td
+        v-else
+        v-html="state.shortText(link.description, 16)"
+        v-html="state.fileName(link)"
+      ></td>
     </tr>
     <tr>
       <td
@@ -47,7 +51,11 @@
           @click.prevent.stop="$this.select()"
         >
       </td>
-      <td v-else v-html="state.shortText(link.description, 16)"></td>
+      <td
+        v-else
+        class="tdRight"
+        v-html="state.shortText(link.description, 16)"
+      ></td>
     </tr>
 
     <tr><td class="tdLeft">upvotes</td><td class="tdRight" v-html="link.upvotes"></td></tr>
