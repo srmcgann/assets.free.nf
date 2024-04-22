@@ -75,9 +75,12 @@ export default {
   methods: {
     bumpNavButtonOpacity(){
       if(!this.state.blockFade) {
+        this.$refs.inputs.classList.remove('fullOpacity')
         this.$refs.inputs.classList.remove('fade')
         this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
         this.$refs.inputs.classList.add('fade')
+      }else{
+        this.$refs.inputs.classList.add('fullOpacity')
       }
     },
     close(){
@@ -199,6 +202,9 @@ export default {
   .rightButton{
     background-image: url(../assets/rightButton.png);
     right: 10px;
+  }
+  .fullOpacity{
+    opacity: 1;
   }
   .inputs{
     opacity: 0;
