@@ -47,6 +47,7 @@ error_reporting(E_ALL);
     $row = mysqli_fetch_assoc($res);
     $meta = json_decode($row['meta']);
     $private = intval($meta->{'private'});
+    $owner = $row['userID'] == $userID;
     if(!$private || ($passhash && ($admin || $enabled))){
       $ar           = [];
       $ar['id']     = $collectionID;
@@ -69,6 +70,20 @@ error_reporting(E_ALL);
     }
   }
   if(sizeof($collections)){
+    if(!$owner){
+      $newSlugs = []
+      forEach($collections['meta']['slugs'] as $slug){
+        $sql = "SELECT private FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
+        $res2 = mysqli_query($link, $sql);
+        $row = mysqli_fetch_assoc($res2);
+        if(!intval($row['private'])){
+          $newSlugs[] = $slug;
+        }
+      }
+      $ar['meta']['slugs'] = $newSlugs;
+    }
+    
+    // increment views
     $newMeta = mysqli_real_escape_string($link, json_encode($ar['meta']));
     $sql = "UPDATE imjurCollections SET meta = \"$newMeta\" WHERE id = $collectionID";
     mysqli_query($link, $sql);
