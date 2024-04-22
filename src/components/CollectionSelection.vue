@@ -28,7 +28,6 @@
       <div v-for="collection in state.collections" style="position: relative;">
         <label
           class="checkboxLabel collectionLabel"
-          @mousedown.stop.prevent
         >
           <input
             :checked="checked(collection)"
