@@ -26,6 +26,8 @@
           type="text"
           v-model="link.name"
           class="assetNameInput"
+          @focus="onfocus()"
+          @blur="onblur()"
           @mousedown.stop
           @input="state.setLinkProperty(link, 'name', link.name.trim(), false, true)"
           @click.prevent.stop="$event.target.select()"
@@ -105,6 +107,12 @@ export default {
   computed:{
   },
   methods: {
+    onfocus(){
+      this.state.blockFade = true
+    },
+    onblur(){
+      this.state.blockFade = false
+    }
   },
   mounted(){
   }

@@ -91,6 +91,7 @@ export default {
         passhash: '',
         loggedinUserID: null,
         loadCollection: null,
+        blockFade: false,
         fetchCollections: null,
         click: false,
         loadLinks: null,

@@ -76,7 +76,7 @@ export default {
     bumpNavButtonOpacity(){
       this.$refs.inputs.classList.remove('fade')
       this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
-      this.$refs.inputs.classList.add('fade')
+      if(!this.state.blockFade) this.$refs.inputs.classList.add('fade')
     },
     close(){
       this.state.closePreview()
