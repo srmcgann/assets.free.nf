@@ -1000,11 +1000,13 @@ export default {
             body: JSON.stringify(sendData),
           }).then(res => res.json()).then(data=>{
             console.log('setLinkProperty data: ', data)
-            if(data[0] && !force){
-              this.state.links.map(v => { if(v.slug === link.slug) v[property] = value })
-              this.state.userLinks.map(v => { if(v.slug === link.slug) v[property] = value })
-              this.state.miscLinks.map(v => { if(v.slug === link.slug) v[property] = value })
-              this.state.cacheLinks.map(v => { if(v.slug === link.slug) v[property] = value })
+            if(data[0]){
+              if(!force){
+                this.state.links.map(v => { if(v.slug === link.slug) v[property] = value })
+                this.state.userLinks.map(v => { if(v.slug === link.slug) v[property] = value })
+                this.state.miscLinks.map(v => { if(v.slug === link.slug) v[property] = value })
+                this.state.cacheLinks.map(v => { if(v.slug === link.slug) v[property] = value })
+              }
             }else{
               alert('there was a problem setting the property! d\'oh!')
             }
