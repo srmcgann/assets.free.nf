@@ -27,7 +27,7 @@
           v-model="link.name"
           class="assetNameInput"
           @mousedown.stop
-          @input="state.setLinkProperty(link, 'name', link.name, false, true)"
+          @input="state.setLinkProperty(link, 'name', link.name.trim(), false, true)"
           @click.prevent.stop="$this.select()"
         >
       </td>

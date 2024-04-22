@@ -619,6 +619,7 @@ export default {
                 userID: +data[2][i].userID,
                 id: +data[2][i].id,
                 slug: data[2][i].slug,
+                descriptioin: data[2][i].description,
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
                 filetype: data[2][i].filetype,
@@ -1066,6 +1067,7 @@ export default {
                 userID: +data[2][i].userID,
                 id: +data[2][i].id,
                 name: data[2][i].name,
+                description: data[2][i].description,
                 filetype: data[2][i].filetype,
                 slug: data[2][i].slug,
                 hash: data[2][i].hash,
@@ -1215,13 +1217,15 @@ export default {
       return ret
     },    
     shortText(text, maxlen){
-      if(text.length > maxlen) text = text.substring(0, (maxlen-3)/2|0) + '...' + text.substring(text.length-(maxlen-3)/2|0)
-      return text
+      if(text){
+        if(text.length > maxlen) text = text.substring(0, (maxlen-3)/2|0) + '...' + text.substring(text.length-(maxlen-3)/2|0)
+        return text
+      }
     },    
     fullFileName(link){
       let l
       let originalSuffix = (l = link.origin.split(': ')[1].split('.'))[l.length-1]
-      if(link.name.indexOf(`.${originalSuffix}`) === -1) return link.name + originalSuffix
+      if(link.name.indexOf(`.${originalSuffix}`) === -1) return link.name + `.${originalSuffix}`
       return link.name
     },    
     checkLogin(){
