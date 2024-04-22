@@ -31,6 +31,7 @@ todo
   ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
   ✔ random-slugify collections
   ✔ make asset "name" fields editable
+  * resource files are saved and named as file hash - convert existing
   * deleting asset also removes it from all connected collections
   * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
