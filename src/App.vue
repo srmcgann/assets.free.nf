@@ -1090,7 +1090,7 @@ export default {
             })
             if(!this.state.miscLinks.length) location.href = location.origin
             if(forCollection) {
-              this.state.previewLink = this.state.miscLinks[0]
+              this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
               this.state.showPreview = true
             } else {
               this.state.showPreview = false
