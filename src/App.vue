@@ -279,8 +279,8 @@ export default {
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs, true)
       if(sel) {
-        sel = `/${sel}`
-        this.state.previewPosition = +sel
+        //sel = `/${sel}`
+        this.state.previewPosition = sel
       }
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${sel}`)
     },
@@ -944,7 +944,7 @@ export default {
                     break
                   }
                 }
-                let sel = typeof vars[l+3] != 'undefined' ? vars[l+3] : ''
+                let sel = typeof vars[l+3] != 'undefined' ? +vars[l+3] : ''
                 this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
