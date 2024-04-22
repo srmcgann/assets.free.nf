@@ -282,7 +282,7 @@ export default {
         //sel = `/${sel}`
         this.state.previewPosition = sel
       }
-      history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${sel}`)
+      history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
