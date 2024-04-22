@@ -1181,7 +1181,7 @@ export default {
     addLink(size, type, ct, href, selected, userID, slug, originalSlug, origin, serverTZO, views, id, date, originalDate, visibility, name){
       let obj = {
         size,
-        filetype,
+        filetype: type,
         name,
         ct,
         href,
