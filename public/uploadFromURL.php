@@ -157,7 +157,7 @@ error_reporting(E_ALL);
             
             
             $description = '';
-            $origin = mysqli_real_escape_string($link, "web file: $originalName");
+            $origin = mysqli_real_escape_string($link, "web file: $url");
             $name   = $originalName;
             
   $sql = <<<SQL
