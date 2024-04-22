@@ -70,7 +70,7 @@ todo
     <div
       @mousedown.stop.prevent
       class="linkThumb"
-      ref="linkThumb
+      ref="linkThumb"
       @click.prevent.stop="preview()"
       title="view this asset"
     ></div>
