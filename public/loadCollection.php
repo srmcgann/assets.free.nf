@@ -71,7 +71,7 @@ error_reporting(E_ALL);
   }
   if(sizeof($collections)){
     if(!$owner){
-      $newSlugs = []
+      $newSlugs = [];
       forEach($collections['meta']['slugs'] as $slug){
         $sql = "SELECT private FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
         $res2 = mysqli_query($link, $sql);
