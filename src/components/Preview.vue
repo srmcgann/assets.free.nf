@@ -74,13 +74,13 @@ export default {
   },
   methods: {
     bumpNavButtonOpacity(){
-      if(!this.state.blockFade) {
-        this.$refs.inputs.classList.remove('fullOpacity')
-        this.$refs.inputs.classList.remove('fade')
-        this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
-        this.$refs.inputs.classList.add('fade')
-      }else{
+      this.$refs.inputs.classList.remove('fade')
+      this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
+      this.$refs.inputs.classList.add('fade')
+      if(this.state.blockFade) {
         this.$refs.inputs.classList.add('fullOpacity')
+      }else{
+        this.$refs.inputs.classList.remove('fullOpacity')
       }
     },
     close(){
@@ -204,7 +204,7 @@ export default {
     right: 10px;
   }
   .fullOpacity{
-    opacity: 1;
+    opacity: 1!important;
   }
   .inputs{
     opacity: 0;
