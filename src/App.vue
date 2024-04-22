@@ -229,7 +229,7 @@ export default {
           }else{
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
-          history.pushState(null,null,`${this.URLbase}/col/${this.previewCollection.slug}/view/${this.state.previewPosition}`)
+          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewPosition}`)
         break
       }
       
@@ -257,7 +257,7 @@ export default {
           }else{
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
-          history.pushState(null,null,`${this.URLbase}/col/${this.previewCollection.slug}/view/${this.state.previewPosition}`)
+          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewPosition}`)
         break
       }
       this.$nextTick(()=>{
@@ -282,7 +282,7 @@ export default {
         sel = `/${sel}`
         this.state.previewPosition = sel
       }
-      history.pushState(null,null,`${this.URLbase}/col/${this.previewCollection.slug}/view${sel}`)
+      history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${sel}`)
     },
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
