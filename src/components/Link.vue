@@ -52,7 +52,7 @@ todo
 -->
 
 <template>
-  <div class="link" ref="anchor" @click.stop.prevent="updateLinkSelected()">
+  <div class="link" ref="anchor" @mousedown.stop.prevent="updateLinkSelected()">
     <label v-if="state.loggedIn" class="checkboxLabel" :key="link.linkType+link.ct+'key'">
       <input type="checkbox" v-model="link.selected" @input="updateLinkSelected()">
       <span class="checkmark" style="margin-left: -30px;"></span>

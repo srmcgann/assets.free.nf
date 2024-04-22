@@ -33,7 +33,6 @@
           <input
             :checked="checked(collection)"
             type="checkbox"
-            @click.stop.prevent
             @mousedown.stop.prevent
             @change="updateSelection($event, collection)"
           >
