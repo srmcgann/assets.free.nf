@@ -566,12 +566,15 @@ export default {
             this.state.collections = [...this.state.collections, data[1]]
           }
           this.state.showCollectionTemplate = false
-          this.viewCollection(data[1], sel)
+          this.state.viewCollection(data[1], sel)
           if(!show){
             this.$nextTick(()=>{
               this.state.showPreview = false
             })
           }
+        }else{
+          this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
+          this.state.showModal = true
         }
       })
     },
