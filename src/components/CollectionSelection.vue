@@ -36,7 +36,7 @@
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
           <span class="collectionName">
-            {{state.shortText(collection.name, 18)}}
+            {{state.shortText(collection.name, 28)}}
             {{supplemental(collection)}}
           </span>
         </label><br>
