@@ -281,6 +281,7 @@ export default {
       if(sel) {
         //sel = `/${sel}`
         this.state.previewPosition = sel
+        this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
       }
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
@@ -944,7 +945,6 @@ export default {
                     break
                   }
                 }
-                this.state.previewPosition = +vars[l+3]
                 let sel = typeof vars[l+3] != 'undefined' ? +vars[l+3] : ''
                 this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
               } else {
