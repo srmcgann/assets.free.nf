@@ -208,7 +208,7 @@ export default {
       this.img.oncanplay = () => {
         this.w = this.img.videoWidth
         this.h = this.img.videoHeight
-        //this.img.play()
+        this.img.play()
         this.Draw()
       }
       this.img.src = `${this.state.URLbase}/resources/` + this.link.originalSlug + '.' + this.link.href.split('.')[1]
