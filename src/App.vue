@@ -944,6 +944,7 @@ export default {
                     break
                   }
                 }
+                this.state.previewPosition = +vars[l+3]
                 let sel = typeof vars[l+3] != 'undefined' ? +vars[l+3] : ''
                 this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
               } else {
