@@ -91,7 +91,7 @@
     global $link;
     $rndmax = getrandmax();
     do{
-      $newid = floor($rndmax/2+rand());
+      $newid = floor($rndmax/2+rand()+rand()+rand()+rand());
       $sql = "SELECT id FROM imjurUploads WHERE id = $newid";
       $res = mysqli_query($link, $sql);
     }while(mysqli_num_rows($res));
@@ -102,7 +102,7 @@
     global $link;
     $rndmax = getrandmax();
     do{
-      $newid = floor($rndmax/2+rand());
+      $newid = floor($rndmax/2+rand()+rand()+rand()+rand());
       $sql = "SELECT id FROM imjurCollections WHERE id = $newid";
       $res = mysqli_query($link, $sql);
     }while(mysqli_num_rows($res));
