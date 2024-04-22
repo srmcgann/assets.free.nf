@@ -787,7 +787,7 @@ export default {
       })
     },
     deleteCollection(collection){
-      let prmpt = prompt(`\n\nARE YOU SURE YOU WANT TO DELETE THIS COLLECTION?\n\n\n   it contains ${collection.meta.slugs.length} items\n\n\n>>> THIS ACTION CANNOT BE UNDONE! <<<\n\n\n  type 'yes' to continue"`)
+      let prmpt = prompt(`\n\nARE YOU SURE YOU WANT TO DELETE THIS COLLECTION?\n\n\n   it contains ${collection.meta.slugs.length} items\n\n\nThe items if any, will not be deleted... only the collection\n\n\n>>> THIS ACTION CANNOT BE UNDONE! <<<\n\n\n  type 'yes' to continue"`)
       if(prmpt && prmpt.toLowerCase().indexOf('yes') != -1){
         let sendData = {
           userName: this.state.username,
