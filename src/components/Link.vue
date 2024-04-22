@@ -55,8 +55,6 @@ todo
   <div
     class="link"
     ref="anchor"
-    @mousedown.prevent="updateLinkSelected()"
-    @click.stop.prevent
   >
     <label v-if="state.loggedIn" class="checkboxLabel" :key="link.linkType+link.ct+'key'">
       <input type="checkbox" v-model="link.selected" @input="updateLinkSelected()">

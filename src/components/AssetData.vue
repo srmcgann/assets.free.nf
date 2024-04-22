@@ -28,7 +28,7 @@
           class="assetNameInput"
           @mousedown.stop
           @input="state.setLinkProperty(link, 'name', link.name.trim(), false, true)"
-          @click.prevent.stop="$this.select()"
+          @click.prevent.stop="$event.target.select()"
         >
       </td>
       <td
@@ -39,7 +39,7 @@
     </tr>
     <tr>
       <td
-        class="tdLeft">desc.</td><td class="tdRight"
+        class="tdLeft">description</td><td class="tdRight"
         v-if="state.loggedinUserID == link.userID"
       >
         <input
@@ -48,7 +48,7 @@
           class="assetNameInput"
           @mousedown.stop
           @input="state.setLinkProperty(link, 'description', link.description, false, true)"
-          @click.prevent.stop="$this.select()"
+          @click.prevent.stop="$event.target.select()"
         >
       </td>
       <td
@@ -105,11 +105,6 @@ export default {
   computed:{
   },
   methods: {
-    selectText(el){
-      console.log(el)
-      el.focus()
-      el.select()
-    }
   },
   mounted(){
   }
