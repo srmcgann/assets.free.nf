@@ -303,7 +303,7 @@ export default {
     position: absolute;
     padding-top: 120px;
     z-index: 0;
-    padding-bottom: 122px;
+    padding-bottom: 400px;
     width: 100vw;
   }
   /*.dropTarget:hover{

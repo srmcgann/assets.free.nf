@@ -36,7 +36,7 @@
           <td>
             <font style="font-size:1em;">{{collection.meta.slugs.length}} items</font><br>
             <button
-              @click="state.viewCollection(collection)"
+              @click="view(collection)"
               class="viewCollectionButton"
               title="view this collection"
             >view</button><br>
@@ -96,6 +96,12 @@ export default {
   methods: {
     close(){
       this.state.closePrompts()
+    },
+    view(collection){
+      this.close()
+      this.$nextTick(()=>{
+        this.viewCollection(collection)
+      })
     }
   },
   mounted(){
