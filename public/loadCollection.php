@@ -80,7 +80,7 @@ error_reporting(E_ALL);
           $newSlugs[] = $slug;
         }
       }
-      $ar['meta']['slugs'] = $newSlugs;
+      $collections[0]['meta']['slugs'] = $newSlugs;
     }
     
     // increment views
