@@ -33,7 +33,7 @@
       </td>
       <td
         v-else
-        v-html="state.shortText(link.description, 16)"
+        class="tdRight"
         v-html="state.fileName(link)"
       ></td>
     </tr>
