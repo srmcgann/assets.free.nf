@@ -30,7 +30,7 @@
           @focus="onfocus()"
           @blur="onblur()"
           @mousedown.stop
-          @input="state.setLinkProperty(link, 'name', link.name.trim(), false, true)"
+          @input="state.setLinkProperty(link, 'name', link.name, false, true)"
           @click.prevent.stop="$event.target.select()"
         >
       </td>
