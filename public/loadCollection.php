@@ -47,7 +47,7 @@ error_reporting(E_ALL);
     $row = mysqli_fetch_assoc($res);
     $meta = json_decode($row['meta']);
     $private = intval($meta->{'private'});
-    $owner = $row['userID'] == $userID;
+    $owner = intval($row['userID']) == intval($userID);
     if(!$private || ($passhash && ($admin || $enabled))){
       $ar           = [];
       $ar['id']     = $collectionID;

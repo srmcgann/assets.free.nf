@@ -820,6 +820,7 @@ export default {
       }else{
         let lsel = []
         let ulsel = []
+        let mlsel = []
         this.state.links.map(v=>{
           lsel = [...lsel, v.selected]
         })
@@ -827,7 +828,7 @@ export default {
           ulsel = [...ulsel, v.selected]
         })
         this.state.miscLinks.map(v=>{
-          ulsel = [...ulsel, v.selected]
+          mlsel = [...mlsel, v.selected]
         })
         this.deSelectAll()
         this.state.links.map(v=>{
@@ -843,7 +844,7 @@ export default {
         ulsel.map((v, i) => {
           this.state.userLinks[i].selected = v
         })
-        ulsel.map((v, i) => {
+        mlsel.map((v, i) => {
           this.state.miscLinks[i].selected = v
         })
         this.state.showPreview = false
@@ -1178,7 +1179,7 @@ export default {
     addLink(size, type, ct, href, selected, userID, slug, originalSlug, origin, serverTZO, views, id, date, originalDate, visibility, name){
       let obj = {
         size,
-        type,
+        filetype,
         name,
         ct,
         href,
