@@ -32,7 +32,6 @@
           <input
             :checked="checked(collection)"
             type="checkbox"
-            @mousedown.stop.prevent
             @change="updateSelection($event, collection)"
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
