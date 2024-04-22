@@ -26,7 +26,7 @@
           type="text"
           v-model="link.name"
           class="assetNameInput"
-          @mousedown.stop.prevent
+          @mousedown.stop
           @input="state.setLinkProperty(link, 'name', link.name, false, true)"
           @click.prevent.stop="$this.select()"
         >
@@ -42,7 +42,7 @@
           type="text"
           v-model="link.description"
           class="assetNameInput"
-          @mousedown.stop.prevent
+          @mousedown.stop
           @input="state.setLinkProperty(link, 'description', link.description, false, true)"
           @click.prevent.stop="$this.select()"
         >

@@ -52,7 +52,12 @@ todo
 -->
 
 <template>
-  <div class="link" ref="anchor" @mousedown.stop.prevent="updateLinkSelected()">
+  <div
+    class="link"
+    ref="anchor"
+    @mousedown.stop.prevent="updateLinkSelected()"
+    @click.stop.prevent
+  >
     <label v-if="state.loggedIn" class="checkboxLabel" :key="link.linkType+link.ct+'key'">
       <input type="checkbox" v-model="link.selected" @input="updateLinkSelected()">
       <span class="checkmark" style="margin-left: -30px;"></span>
@@ -62,9 +67,15 @@ todo
     <div class="views" v-html="state.views(link)">
     </div>
     
-    <div class="linkThumb" ref="linkThumb" @click.prevent.stop="preview()" title="view this asset"></div>
+    <div
+      @mousedown.stop.prevent
+      class="linkThumb"
+      ref="linkThumb
+      @click.prevent.stop="preview()"
+      title="view this asset"
+    ></div>
     <!--#{{link.ct+1}}-->
-    <div class="linkButtons">
+    <div class="linkButtons" @mousedown.stop.prevent @click.stop.prevent>
       <div
         class="visibilityButton"
         @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
