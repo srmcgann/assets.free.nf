@@ -81,7 +81,7 @@
           <div
             class="sub2"
             v-for="collection in state.collections"
-            @click.prevent.stop
+            @click.stop.prevent="state.viewCollection(collection)"
           >
             <button
               class="toolbarButtons collectionsButton"

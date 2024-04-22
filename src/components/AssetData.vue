@@ -7,6 +7,7 @@
       </td>
       <td class="tdRight">
         <a
+          @mousedown.stop.prevent
           :href="state.URLbase + '/' + link.href"
           target="_blank"
           title="open link in new tab"
@@ -25,6 +26,7 @@
           type="text"
           v-model="link.name"
           class="assetNameInput"
+          @mousedown.stop.prevent
           @input="state.setLinkProperty(link, 'name', link.name, false, true)"
           @click.prevent.stop="$this.select()"
         >
@@ -40,6 +42,7 @@
           type="text"
           v-model="link.description"
           class="assetNameInput"
+          @mousedown.stop.prevent
           @input="state.setLinkProperty(link, 'description', link.description, false, true)"
           @click.prevent.stop="$this.select()"
         >
@@ -49,8 +52,15 @@
 
     <tr><td class="tdLeft">upvotes</td><td class="tdRight" v-html="link.upvotes"></td></tr>
     <tr><td class="tdLeft">downvotes</td><td class="tdRight" v-html="link.downvotes"></td></tr>
-    <tr><td class="tdLeft">hash</td><td class="tdRight" v-html="link.hash"></td></tr>
-    <tr><td class="tdLeft">filetype</td><td class="tdRight" v-html="link.fileType"></td></tr>
+    <tr>
+      <td class="tdLeft">hash</td>
+      <td
+        class="tdRight"
+        v-html="link.hash"
+        style="font-size:11px;"
+      ></td>
+    </tr>
+    <tr><td class="tdLeft">filetype</td><td class="tdRight" v-html="link.filetype"></td></tr>
     <tr><td class="tdLeft">owner ID</td><td class="tdRight" v-html="link.userID"></td></tr>
 
     <tr><td class="tdLeft">uploaded</td><td class="tdRight" v-html="state.prettyDate(link)"></td></tr>

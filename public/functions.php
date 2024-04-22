@@ -109,9 +109,9 @@
     return decToAlpha($newid);
   }
   
-  function getSuffix($fileType){
+  function getSuffix($filetype){
     $suffix = "";
-    switch($fileType){
+    switch($filetype){
       case 'audio/wav': $suffix = 'wav';  break;
       case 'audio/x-wav': $suffix = 'wav';  break;
       case 'audio/mp3': $suffix = 'mp3';  break;
