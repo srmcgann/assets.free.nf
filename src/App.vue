@@ -1219,7 +1219,7 @@ export default {
     fileName(link){
       let ret = link.origin.split(': ')[1]
       if(ret.length > 23) ret = ret.substring(0, 10) + '...' + ret.substring(ret.length-10)
-      return ret
+      return decodeURIComponent(ret)
     },    
     shortText(text, maxlen){
       if(text){

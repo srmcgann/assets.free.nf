@@ -61,7 +61,7 @@
     <tr v-if="link.upvotes">
       <td class="tdLeft">upvotes</td><td class="tdRight" v-html="link.upvotes"></td>
     </tr>
-    <tr vi-if="link.downvotes">
+    <tr v-if="link.downvotes">
       <td class="tdLeft">downvotes</td><td class="tdRight" v-html="link.downvotes"></td>
     </tr>
     <tr>
