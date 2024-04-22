@@ -82,7 +82,7 @@
       <div v-if="state.mode=='col' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
         <Link
           :state="state"
-          v-for="link in state.miscLinks"
+          v-for="link in filteredLinks"
           :link="link"
           :linkMode="'userLink'"
           :key="link.id"
@@ -109,6 +109,11 @@ export default {
       dragover: false,
       showUploadProgress: false,
       filesUploading: []
+    }
+  },
+  computed:{
+    filteredLinks(){
+      return this.state.miscLinks.filter(v=>v)
     }
   },
   methods: {
