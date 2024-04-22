@@ -827,6 +827,9 @@ export default {
         this.state.userLinks.map(v=>{
           ulsel = [...ulsel, v.selected]
         })
+        this.state.miscLinks.map(v=>{
+          ulsel = [...ulsel, v.selected]
+        })
         this.deSelectAll()
         this.state.links.map(v=>{
           if(v.id == link.id) v.selected = true
@@ -840,6 +843,9 @@ export default {
         })
         ulsel.map((v, i) => {
           this.state.userLinks[i].selected = v
+        })
+        ulsel.map((v, i) => {
+          this.state.miscLinks[i].selected = v
         })
         this.state.showPreview = false
       }
