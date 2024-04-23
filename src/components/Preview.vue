@@ -5,6 +5,9 @@
     </button>
     <div class="previewInner">
       <div class="slideshow" ref="slideshow"></div>
+    </div>
+  </div>
+  
       <div class="inputs fade" ref="inputs">
         <div class="linkButtons">
           <div
@@ -53,8 +56,6 @@
           title="view next asset [right arrow]"
         ></div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -208,6 +209,10 @@ export default {
   }
   .inputs{
     opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20000;
   }
   .previewInner{
     text-align: center;
