@@ -16,7 +16,8 @@
       $description  = $meta->{'description'};
       $items        = sizeof($meta->{'slugs'});
       $created      = date('F d Y', strtotime($meta->{'date'}));
-      $title = "$name - $description - $views views - [$items items] - created $created";
+      if($description) $description .= ' -';
+      $title = "$name - $description $views views - [$items items] - created $created";
     }
   }
 ?>

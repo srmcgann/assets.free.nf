@@ -76,7 +76,7 @@
         >
           select multiple items, then check here<br>for bulk assign-to-collection buttons
         </div>
-        <div class="sub" style="min-width: 180px;" @click="state.showCollections=true">
+        <div class="sub" style="z-index: 100; min-width: 180px;" @click="state.showCollections=true">
           My Collections
           <div
             class="sub2"
@@ -333,6 +333,7 @@ export default {
     min-height: 40px;
     min-width: 160px;
     padding-left: 10px;
+    max-height: 40px;
   }
   .sub2 {
     margin-left: 66px;
