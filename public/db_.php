@@ -1,8 +1,8 @@
 <?php 
-  $db_user  = 'if0_36394634';
-  $db_pass  = '49DhSvcug8B';
-  $db_host  = 'sql309.infinityfree.com';
-  $db       = "if0_36394634_imjur";
+  $db_user  = 'id22080206_assets';
+  $db_pass  = 'Chrome57253!*';
+  $db_host  = 'localhost';
+  $db       = "id22080206_assets";
   $port     = '3306';
   $link     = mysqli_connect($db_host,$db_user,$db_pass,$db,$port);
 ?>
