@@ -957,6 +957,7 @@ export default {
                   }
                 }
                 let sel = typeof vars[l+3] != 'undefined' ? +vars[l+3] : ''
+                if(sel) this.state.previewPosition = +sel
                 this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
