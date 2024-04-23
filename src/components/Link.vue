@@ -31,16 +31,24 @@ todo
   ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
   ✔ random-slugify collections
   ✔ make asset "name" fields editable
+  ✔ deleting asset also removes it from all connected collections
+  * sortable 'stats overview' page for users
+  * add sortability to collections list columns
   * resource files are saved and named as file hash - convert existing
-  * deleting asset also removes it from all connected collections
   * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
+    └-> ✔ default
+    └-> ✔ collections
+    └-> *  asset management/tools
+           └->  * collections
+           └->  * stats/overview (when made)
+           └->  * comments (when made)
   * users, optional logins/profiles
     └-> ✔ login button
-        ✔ profile page
-        * collections / share-ability
-        * comments
-        * votes
+    └-> ✔ profile page
+    └-> * collections / share-ability
+    └-> * comments
+    └-> * votes
         
   * uploading progress animations & color change @ 100%
   * search

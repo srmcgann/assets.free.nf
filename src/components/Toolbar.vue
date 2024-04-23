@@ -98,7 +98,14 @@
             <span>{{state.shortText(collection.name, 16)}}</span>
           </div>
         </div>
-        <div class="sub" @click="">sub b</div>
+        <div class="sub" @click="">
+          <button
+            class="toolbarButtons"
+            style="height: 24px; margin: unset; margin-right:5px;min-width: unset"
+            @click.stop.prevent="state.showStats = true"
+            title="view my stats, including views etc"
+          >stats</button>
+        </div>
         <div class="sub" @click="">sub c</div>
         <div class="sub" @click="">
           submenus [unused]
