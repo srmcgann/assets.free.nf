@@ -914,9 +914,10 @@ export default {
     },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
+      if(vars.length && vars[0] == 'assets') vars.shift()
       if(vars.length>0){
         console.log('vars', vars)
-        let l = location.origin.toLowerCase().indexOf('000webhostapp.com') !== -1 ? 1 : 0
+        let l = location.origin.toLowerCase().indexOf('000webhostapp.com') !== -1 ? 0 : 0
         if(this.state.isNumber(vars[l])){
           this.state.mode = 'default'
           let search = ''
