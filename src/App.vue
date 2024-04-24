@@ -316,7 +316,7 @@ export default {
       this.state.mode = 'col'
       this.state.previewCollection = collection
       console.log('loading collection', collection)
-      this.state.loadLinks(collection.meta.slugs, true, collection.id)
+      this.state.loadLinks(collection.meta.slugs, true, collection.id, sel)
       if(!sel && collection.meta.slugs.length) sel = collection.meta.slugs[0]
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
@@ -1100,7 +1100,7 @@ export default {
         }
       }
     },
-    loadLinks(slugs, forCollection=false, collectionID=-1){
+    loadLinks(slugs, forCollection=false, collectionID=-1, sel=""){
     
       slugs = slugs.filter(v=>v)
       
@@ -1170,10 +1170,13 @@ export default {
             })
             if(!this.state.miscLinks.length) location.href = location.origin
             
-            
             if(forCollection) {
               if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
-                this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)
+                if(sel){
+                  this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)
+                }else{
+                  this.state.previewLink = this.state.miscLinks[0]
+                }
                 this.state.showPreview = true
               }else{
                 this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
@@ -1199,7 +1202,11 @@ export default {
       }else{
         if(forCollection) {
           if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
-            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+            if(sel){
+              this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)
+            }else{
+              this.state.previewLink = this.state.miscLinks[0]
+            }
             this.state.showPreview = true
           }else{
             this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
