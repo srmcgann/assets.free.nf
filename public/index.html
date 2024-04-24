@@ -1,5 +1,5 @@
 <?php
-  $title = "an online free digital asset hosting service";
+  $title = $_SERVER['REQUEST_URI'];//"an online free digital asset hosting service";
   $args = explode('/', $_SERVER['REQUEST_URI']);
   if(sizeof($args) && $args[0] == 'assets') array_shift($args);
   if(sizeof($args) > 1 && ($args[1] == 'col' || $args[0] == 'col')){
