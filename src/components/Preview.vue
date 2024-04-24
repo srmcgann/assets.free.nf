@@ -1,8 +1,8 @@
 <template>
+  <button @click="close()" class="cancelButton" title="close this view">
+    close/cancel
+  </button>
   <div class="preview" @mousemove="bumpNavButtonOpacity()" ref="preview">
-    <button @click="close()" class="cancelButton" title="close this view">
-      close/cancel
-    </button>
     <div class="previewInner">
       <div class="slideshow" ref="slideshow"></div>
     </div>

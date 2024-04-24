@@ -1,12 +1,12 @@
 <template>
+  <button
+    @click="close()"
+    class="cancelButton"
+    title="close this view [ESC]"
+  >
+    close/cancel
+  </button>
   <div class="collectionTemplate" ref="collectionTempate" tabindex="2000">
-    <button
-      @click="close()"
-      class="cancelButton"
-      title="close this view [ESC]"
-    >
-      close/cancel
-    </button>
     <div class="collectionTemplateInner">
       <br><br>
       CREATE A NEW COLLECTION

@@ -1,12 +1,12 @@
 <template>
+  <button
+    @click="close()"
+    class="cancelButton"
+    title="close this view [ESC]"
+  >
+    close/cancel
+  </button>
   <div class="editCollection" ref="editCollection" tabindex="2000">
-    <button
-      @click="close()"
-      class="cancelButton"
-      title="close this view [ESC]"
-    >
-      close/cancel
-    </button>
     <div class="editCollectionInner">
       <br>
       EDIT COLLECTION

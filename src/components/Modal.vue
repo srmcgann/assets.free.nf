@@ -1,13 +1,13 @@
 <template>
+  <button
+    v-if="!this.state.uploadInProgress"
+    @click="close()"
+    class="cancelButton"
+    title="close this view [ESC]"
+  >
+    close/cancel
+  </button>
   <div class="modal" ref="modal" tabindex="1000">
-    <button
-      v-if="!this.state.uploadInProgress"
-      @click="close()"
-      class="cancelButton"
-      title="close this view [ESC]"
-    >
-      close/cancel
-    </button>
     <div class="modalInner" v-html="content"></div>
   </div>
 </template>

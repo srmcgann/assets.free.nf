@@ -1,13 +1,13 @@
 <template>
+  <button
+    v-if="!this.state.uploadInProgress"
+    @click="close()"
+    class="cancelButton"
+    title="close this view [ESC]"
+  >
+    close/cancel
+  </button>
   <div class="stats" ref="stats" tabindex="1000">
-    <button
-      v-if="!this.state.uploadInProgress"
-      @click="close()"
-      class="cancelButton"
-      title="close this view [ESC]"
-    >
-      close/cancel
-    </button>
     <div class="modalInner">
     teh statz
     asset count: {{state.userStats[state.loggedinUserID].length}}
