@@ -174,7 +174,7 @@ export default {
     }
   },
   methods: {
-    viewCollection(){
+    viewCollection(collection){
       this.state.previewPosition = 0
       this.state.viewCollection(collection, 0)
     },
