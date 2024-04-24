@@ -101,7 +101,7 @@ export default {
       this.close()
       this.$nextTick(()=>{
         this.state.previewPosition = 0
-        this.state.viewCollection(collection, 1)
+        this.state.viewCollection(collection, 0)
       })
     }
   },
