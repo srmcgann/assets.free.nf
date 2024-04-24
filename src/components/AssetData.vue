@@ -2,6 +2,19 @@
   <table class="assetData">
     <tr v-if="state.showPreview"><td class="tdLeft">views</td><td class="tdRight" v-html="state.views(link)"></td></tr>
     <tr>
+      <td class="tdLeft">owner</td>
+      <td class="tdRight">
+        <div class="loggedIn" style="display: inline-block;">
+          <div
+            @click="showSettings()"
+            class="avatar"
+            :title="`logged in as ${state.loggedinUserName}. click to show user settings`"
+            :style="`background-image: url(${state.getAvatar()})`"
+          ></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
       <td class="tdLeft">
         slug
       </td>

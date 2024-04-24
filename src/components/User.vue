@@ -128,25 +128,6 @@ export default {
     padding-top: 0;
     padding-bottom: 2px;
   }
-  .loggedIn{
-    height: 49px;
-    float: right;
-    display: inline-block;
-    width: 80px;
-    
-  }
-  .avatar{
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    background-color: #000;
-    border: 2px solid #40fa;
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
   .userButtonContainer{
     float: right;
     margin-left: 5px;

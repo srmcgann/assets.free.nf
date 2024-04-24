@@ -233,6 +233,7 @@ export default {
           this.state.miscLinks.map((link, idx) => {
             if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
           })
+          this.state.previewPosition--
           if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length - 1
           if(this.state.previewPosition>this.state.miscLinks.length-1){
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
@@ -264,6 +265,7 @@ export default {
           this.state.miscLinks.map((link, idx) => {
             if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
           })
+          this.state.previewPosition++
           if(this.state.previewPosition>this.state.miscLinks.length-1){
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
           }else{
@@ -1665,6 +1667,23 @@ button{
   font-family: Courier Prime;
   color: #000;
   text-shadow: 1px 1px 3px #40f;
+}
+.loggedIn{
+  height: 49px;
+  float: right;
+  display: inline-block;
+  width: 80px;
+}
+.avatar{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-color: #000;
+  border: 2px solid #40fa;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .newCollectionForm{
   border-radius: 6px;
