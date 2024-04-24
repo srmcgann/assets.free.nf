@@ -281,7 +281,7 @@ export default {
           userID,
           passhash: this.state.passhash
         }
-        fetch(`${this.URLbase}/` + 'getUserStats.php',{
+        fetch(`${this.URLbase}/` + 'getStats.php',{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
