@@ -1165,9 +1165,12 @@ export default {
                 serverTZO: data[2][i].serverTZO,
                 views: data[2][i].views
               }
+              this.state.fetchUserInfo(+data[2][i].userID)
               this.state.miscLinks=[...this.state.miscLinks, obj]
             })
             if(!this.state.miscLinks.length) location.href = location.origin
+            
+            
             if(forCollection) {
               if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
                 this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)

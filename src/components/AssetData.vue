@@ -8,8 +8,8 @@
           <div
             @click="showSettings()"
             class="avatar"
-            :title="`logged in as ${state.loggedinUserName}. click to show user settings`"
-            :style="`background-image: url(${state.getAvatar()})`"
+            :title="`this asset belongs to ${state.userInfo[link.userID].name}`"
+            :style="`background-image: url(${state.userInfo[link.userID].avatar})`"
           ></div>
         </div>
       </td>
