@@ -109,6 +109,7 @@ export default {
         },
         loggedinUserName: '',
         copyLink: null,
+        getUserStats: null,
         viewCollection: null,
         deleteSingle: null,
         syncCache: null,
@@ -273,6 +274,28 @@ export default {
       console.log('registering')
       this.state.showLoginPrompt = true
       this.state.showRegister = true
+    },
+    getUserStats(userID){
+      if(userID) {
+        let sendData = {
+          userID,
+          passhash: this.state.passhash
+        }
+        fetch(`${this.URLbase}/` + 'getUserStats.php',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sendData),
+        })
+        .then(res => res.json())
+        .then(data => {
+          this.state.loadingAssets = false
+          if(!!(+data[0])){
+            this.state.userStats[userID] = data[1]
+          }
+        })
+      }
     },
     showUserSettings(){
       document.getElementsByTagName('HTML')[0].style.overflowY = 'hidden'
@@ -1513,6 +1536,7 @@ export default {
     this.state.fullFileName = this.fullFileName
     this.state.downloadLink = this.downloadLink
     this.state.closePreview = this.closePreview
+    this.state.getUserStats = this.getUserStats
     this.state.multipleLinks = this.multipleLinks
     this.state.setLinksOwner = this.setLinksOwner
     this.state.fetchUserLinks = this.fetchUserLinks

@@ -10,6 +10,7 @@
     </button>
     <div class="modalInner">
     teh statz
+    asset count: {{state.userStats[state.loggedinUserID].length}}
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
     }
   },
   mounted(){
-    this.state.getUserStats()
+    this.state.getUserStats(this.state.loggedinUserID)
     this.$refs.stats.focus()
   }
 }
