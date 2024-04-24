@@ -84,14 +84,6 @@
             title="view my stats, including views etc"
           >stats</button>
         </div>
-        <div class="sub" @click="">sub c</div>
-        <div class="sub" @click="">
-          submenus [unused]
-          <div class="sub2" @click="window.open('https://gifs.twilightparadox.com/df0898b287292aab8cf29efb75cb1783.gif', '_blank')">easter egg 1!</div>
-          <div class="sub2" @click="window.open('https://whr.rf.gd/a/full/2whT', '_blank')">easter egg 2!</div>
-          <div class="sub2" @click="window.open('https://emphasis.bizuit.com/?c=the%20super%20secret','_blank')">easter egg 3!</div>
-          <div class="sub2" @click="window.open('https://srmcgann.github.io/spaceflex','_blank')">easter egg 4!</div>
-        </div>
         <div class="sub" style="z-index: 100; min-width: 180px;" @click="state.showCollections=true">
           My Collections
           <div
@@ -113,6 +105,14 @@
             >✎</button>
             <span>{{state.shortText(collection.name, 16)}}</span>
           </div>
+        </div>
+        <div class="sub" @click="">sub c</div>
+        <div class="sub" @click="">
+          submenus [unused]
+          <div class="sub2" @click="window.open('https://gifs.twilightparadox.com/df0898b287292aab8cf29efb75cb1783.gif', '_blank')">easter egg 1!</div>
+          <div class="sub2" @click="window.open('https://whr.rf.gd/a/full/2whT', '_blank')">easter egg 2!</div>
+          <div class="sub2" @click="window.open('https://emphasis.bizuit.com/?c=the%20super%20secret','_blank')">easter egg 3!</div>
+          <div class="sub2" @click="window.open('https://srmcgann.github.io/spaceflex','_blank')">easter egg 4!</div>
         </div>
       </div>
     </div>
