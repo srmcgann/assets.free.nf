@@ -569,7 +569,7 @@ export default {
     loadCollection(id, show=false, sel=''){
       this.state.loadingCollections = true
       let sendData = {
-        userID: this.state.loggedinUserID ? -1 : this.state.loggedinUserID,
+        userID: !this.state.loggedinUserID ? -1 : this.state.loggedinUserID,
         passhash: this.state.loggedinUserID ? '' : this.state.passhash,
         //page: this.state.collectionsPage,
         //maxResultsPerPage: this.state.maxCollectionResultsPerPage
