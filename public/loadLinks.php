@@ -70,7 +70,7 @@ error_reporting(E_ALL);
           }
           if(!$cull) $newSlugs[] = $cslug;
         }
-        $meta->$slugs = $newSlugs;
+        $meta->{'slugs'} = $newSlugs;
         $newMeta = json_encode($meta);
         $sql = "UPDATE imjurCollections SET meta = \"$newMeta\" WHERE id = $collectionID";
         mysqli_query($link, $sql);
