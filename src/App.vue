@@ -306,7 +306,7 @@ export default {
       this.state.mode = 'col'
       this.state.previewCollection = collection
       console.log('loading collection', collection)
-      this.state.loadLinks(collection.meta.slugs, true)
+      this.state.loadLinks(collection.meta.slugs, true, collection.id)
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
     firstPage(){
@@ -1058,7 +1058,7 @@ export default {
         }
       }
     },
-    loadLinks(slugs, forCollection=false){
+    loadLinks(slugs, forCollection=false, collectionID=-1){
     
       slugs = slugs.filter(v=>v)
       let cullSlgs = []
@@ -1090,7 +1090,7 @@ export default {
       tgtSlugs = tgtSlugs.filter(slug => !cullSlgs.filter(slug_=> slug_==slug).length)
 
       if(tgtSlugs.length){
-        let sendData = { slugs: tgtSlugs }
+        let sendData = { slugs: tgtSlugs, forCollection, collectionID }
         fetch(`${this.URLbase}/` + 'loadLinks.php',{
           method: 'POST',
           headers: {
@@ -1141,8 +1141,17 @@ export default {
           }
         })
       }else{
-        this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
-        this.state.showModal = true
+        if(forCollection) {
+          if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+            this.state.showPreview = true
+          }else{
+            this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
+            this.state.showModal = true
+          }
+        } else {
+          this.state.showPreview = false
+        }
       }
     },
     showEditCollection(collection){

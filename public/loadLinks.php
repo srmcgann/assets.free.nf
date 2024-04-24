@@ -6,6 +6,8 @@ error_reporting(E_ALL);
   require_once('functions.php');
   $data = json_decode(file_get_contents('php://input'));
   $slugs = $data->{'slugs'};
+  $forCollection = $data->{'forCollection'};
+  $collectionID = mysqli_real_escape_string($link, $data->{'collectionID'});
 
   $sql = "SELECT * FROM imjurUploads WHERE slug LIKE BINARY";
   $ct = sizeof($slugs);
@@ -50,6 +52,30 @@ error_reporting(E_ALL);
   if(sizeof($links)){
     echo json_encode([true, $links, $meta]);
   }else{
+    // slug(s) were not found in database. it needs to be removed from the collection.
+    // this shouldn't generally occur, except during dev when strangeness happens
+    // normally, deleting an asset performs this function (in delete.php)
+    if($ct_ && $forCollection && $collectionID != -1){
+      $sql = "SELECT * FROM imjurCollections WHERE id = $collectionID";
+      $res = mysqli_query($link, $sql);
+      if(mysqli_num_rows($res)){
+        $row = mysqli_fetch_assoc($res);
+        $meta = json_decode($row['meta']);
+        $cslugs = $meta->{'slugs'};
+        $newSlugs = [];
+        forEach($cslugs as $cslug){
+          $cull = false;
+          forEach($slugs as $slug){
+            if($slug == $cslug) $cull = true;
+          }
+          if(!$cull) $newSlugs[] = $cslug;
+        }
+        $meta->$slugs = $newSlugs;
+        $newMeta = json_encode($meta);
+        $sql = "UPDATE imjurCollections SET meta = \"$newMeta\" WHERE id = $collectionID";
+        mysqli_query($link, $sql);
+      }
+    }
     echo json_encode([false, $sql, $ct, $ct_]);
   }
 ?>
