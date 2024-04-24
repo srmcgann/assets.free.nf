@@ -845,7 +845,7 @@ export default {
       })
     },
     preview(link){
-      switch(this.state.mode){
+      switch(this.state.mode || this.state.showEditCollection){
         case 'default':
           this.state.previewPosition = link.ct
           this.state.previewPosition += link.linkType == 'userLink' ? this.state.links.length : 0
