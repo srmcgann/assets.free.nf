@@ -78,7 +78,7 @@ todo
       @mousedown.stop.prevent
       class="linkThumb"
       ref="linkThumb"
-      @click.prevent.stop="preview()"
+      @click.prevent.stop="state.preview(link)"
       title="view this asset"
     ></div>
     <!--#{{link.ct+1}}-->
@@ -145,12 +145,6 @@ export default {
       }else{
         this.link.selected = true
       }
-    },
-    preview(){
-      this.state.previewPosition = this.link.ct
-      this.state.previewPosition += this.link.linkType == 'userLink' ? this.state.links.length : 0
-      this.state.previewLink = this.link
-      this.state.showPreview = true
     },
     getThumb(){
       let l

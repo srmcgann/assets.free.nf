@@ -94,6 +94,7 @@ export default {
         passhash: '',
         loggedinUserID: null,
         loadCollection: null,
+        preview: null,
         blockFade: false,
         fetchCollections: null,
         click: false,
@@ -229,13 +230,16 @@ export default {
           }
         break
         case 'col':
+          this.state.miscLinks.map((link, idx) => {
+            if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
+          })
           if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length - 1
           if(this.state.previewPosition>this.state.miscLinks.length-1){
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
           }else{
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
-          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewPosition}`)
+          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)          
         break
       }
       
@@ -257,13 +261,15 @@ export default {
           }
         break
         case 'col':
-          this.state.previewPosition %= this.state.miscLinks.length
+          this.state.miscLinks.map((link, idx) => {
+            if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
+          })
           if(this.state.previewPosition>this.state.miscLinks.length-1){
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
           }else{
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
-          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewPosition}`)
+          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)
         break
       }
       this.$nextTick(()=>{
@@ -307,6 +313,7 @@ export default {
       this.state.previewCollection = collection
       console.log('loading collection', collection)
       this.state.loadLinks(collection.meta.slugs, true, collection.id)
+      if(!sel && collection.meta.slugs.length) sel = collection.meta.slugs[0]
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
     firstPage(){
@@ -584,7 +591,7 @@ export default {
       }).then(res => res.json()).then(data => {
         this.state.loadingCollections = false
         console.log('data', data)
-        if(!!(+data[0])){
+        if(!!(+data[0]) && (!sel || data[1].meta.slugs.filter(slug=>slug==sel).length)){
           if(!this.state.collections.filter(v=>+v.id==+id).length){
             this.state.collections = [...this.state.collections, data[1]]
           }
@@ -815,6 +822,20 @@ export default {
         }
       })
     },
+    preview(link){
+      switch(this.state.mode){
+        case 'default':
+          this.state.previewPosition = link.ct
+          this.state.previewPosition += link.linkType == 'userLink' ? this.state.links.length : 0
+          this.state.previewLink = link
+          break
+        case 'col':
+          this.state.previewLink = link
+          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)
+        break
+      }
+      this.state.showPreview = true
+    },
     deleteCollection(collection){
       let prmpt = prompt(`\n\nARE YOU SURE YOU WANT TO DELETE THIS COLLECTION?\n\n   it contains ${collection.meta.slugs.length} items\n\nThe items if any, will not be deleted... only the collection\n\n>>> THIS ACTION CANNOT BE UNDONE! <<<\n\n  type 'yes' to continue"`)
       if(prmpt && prmpt.toLowerCase().indexOf('yes') != -1){
@@ -980,8 +1001,7 @@ export default {
                     break
                   }
                 }
-                let sel = typeof vars[l+3] != 'undefined' ? +vars[l+3] : ''
-                if(sel) this.state.previewPosition = +sel
+                let sel = typeof vars[l+3] != 'undefined' ? vars[l+3] : ''
                 this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
@@ -1528,6 +1548,7 @@ export default {
     this.state.logout = this.logout
     this.state.addLink = this.addLink
     this.state.URLbase = this.URLbase
+    this.state.preview = this.preview
     this.state.fileName = this.fileName
     this.state.copyLink = this.copyLink
     this.state.openLink = this.openLink
