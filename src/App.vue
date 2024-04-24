@@ -75,6 +75,7 @@ export default {
         uploadInProgress: false,
         showModal: false,
         fetchUserLinks: null,
+        fetchUserInfo: null,
         setCookie: null,
         mode: null,
         age: null,
@@ -160,6 +161,7 @@ export default {
         loadingAssets: true,
         previewCollection: null,
         loadingCollections: true,
+        userInfo: [],
         checkLogin: null,
         adminData: null,
         search: {
@@ -528,21 +530,11 @@ export default {
             this.state.loggedinUserID = +data[1]
             this.state.loggedInUser.avatar = data[2]
             this.state.username = this.state.regusername || this.state.loggedinUserName
-            //this.state.fetchUserData(this.state.loggedinUserID)
             this.setCookie()
             this.state.loginPromptVisible = false
             this.state.invalidLoginAttemp = false
-            //this.state.userInfo[this.state.loggedinUserID] = {}
-            //this.state.userInfo[this.state.loggedinUserID].name = this.state.regusername || this.state.loggedinUserName
-            //this.state.userInfo[this.state.loggedinUserID].avatar = data[2]
-            //this.state.userInfo[this.state.loggedinUserID].isAdmin = +data[3]
             if(+data[3]) this.state.isAdmin = true
-            
-            
-            //this.fetchUserLinks(this.state.loggedinUserID)
-            
-            
-            //this.state.maxResultsPerPage = +data[4]
+            this.state.fetchUserInfo(this.state.loggedinUserID)
           }else{
             console.log('not logged in.')
             this.state.loadingAssets = false
@@ -555,6 +547,28 @@ export default {
           }
           this.getMode()
         })
+      }
+    },
+    fetchUserInfo(userID){
+      if(userID) {
+        if(typeof this.state.userInfo[userID] == 'undefined'){
+          let sendData = { userID }
+          fetch(`${this.URLbase}/` + 'fetchUserInfo.php',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sendData),
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(!!(+data[0])){
+              this.state.userInfo[userID] = data[1]
+            }else{
+              console.log(`there was a problem fetching user info for user: ${userID}`)
+            }
+          })
+        }
       }
     },
     setLinksOwner(){
@@ -676,9 +690,15 @@ export default {
                 serverTZO: data[2][i].serverTZO,
                 views: data[2][i].views
               }
+              
               this.state.fetchEventTally++
               this.state.userLinks.push(obj)
             })
+            
+            this.state.userLinks.map(link => {
+              this.state.fetchUserInfo(link.userID)
+            })
+            
             this.state.totalPages = +data[3]
             if(this.state.curPage+1 > this.state.totalPages) this.lastPage()
             this.fetchCollections(userID)
@@ -1083,6 +1103,7 @@ export default {
     loadLinks(slugs, forCollection=false, collectionID=-1){
     
       slugs = slugs.filter(v=>v)
+      
       let cullSlgs = []
       let tgtSlugs = JSON.parse(JSON.stringify(slugs))
       
@@ -1149,7 +1170,7 @@ export default {
             if(!this.state.miscLinks.length) location.href = location.origin
             if(forCollection) {
               if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
-                this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+                this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)
                 this.state.showPreview = true
               }else{
                 this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
@@ -1161,7 +1182,7 @@ export default {
           }else{
             if(forCollection) {
               if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
-                this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+                this.state.previewLink = this.state.miscLinks[0]
                 this.state.showPreview = true
               }else{
                 this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
@@ -1582,6 +1603,7 @@ export default {
     this.state.getUserStats = this.getUserStats
     this.state.multipleLinks = this.multipleLinks
     this.state.setLinksOwner = this.setLinksOwner
+    this.state.fetchUserInfo = this.fetchUserInfo
     this.state.fetchUserLinks = this.fetchUserLinks
     this.state.viewCollection = this.viewCollection
     this.state.deleteSelected = this.deleteSelected
