@@ -1663,7 +1663,7 @@ a{
   border-radius: 10px;
   padding: 5px;
   position: absolute;
-  z-index: 1100;
+  z-index: 100000;
   right: 35px;
   top: 14px;
   min-width: 120px;

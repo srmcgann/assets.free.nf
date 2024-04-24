@@ -429,7 +429,7 @@ export default {
     width: 400px;
     position: fixed;
     left: 50%;
-    top: calc(50% - 26px);
+    top: calc(50% - 64px);
     transform: translate(-50%, -50%);
     padding: 38px;
     border-radius: 32%;
