@@ -845,11 +845,16 @@ export default {
       })
     },
     preview(link){
-      switch(this.state.mode || this.state.editCollection.length){
+      switch(this.state.mode){
         case 'default':
-          this.state.previewPosition = link.ct
-          this.state.previewPosition += link.linkType == 'userLink' ? this.state.links.length : 0
-          this.state.previewLink = link
+          if(this.state.editCollection.length){
+            this.state.previewLink = link
+            history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)
+          }else{
+            this.state.previewPosition = link.ct
+            this.state.previewPosition += link.linkType == 'userLink' ? this.state.links.length : 0
+            this.state.previewLink = link
+          }
           break
         case 'col':
           this.state.previewLink = link
