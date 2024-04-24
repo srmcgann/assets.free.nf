@@ -89,12 +89,12 @@
           <div
             class="sub2"
             v-for="collection in state.collections"
-            @click.stop.prevent="state.viewCollection(collection, 0)"
+            @click.stop.prevent="viewCollection(collection)"
           >
             <button
               class="toolbarButtons collectionsButton"
               style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
-              @click.stop.prevent="state.viewCollection(collection, 0)"
+              @click.stop.prevent="viewCollection(collection)"
               title="view this collection"
             >👁</button>
             <button
@@ -174,6 +174,10 @@ export default {
     }
   },
   methods: {
+    viewCollection(){
+      this.state.previewPosition = 0
+      this.state.viewCollection(collection, 0)
+    },
     keydown(e){
       if(e.keyCode == 46 || e.keyCode == 17 || this.state.keys[17] || e.keyCode == 18 || this.state.keys[18]) this.state.onkeydown(e)
     },
