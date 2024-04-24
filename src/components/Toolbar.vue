@@ -333,7 +333,6 @@ export default {
     min-height: 40px;
     min-width: 160px;
     padding-left: 10px;
-    max-height: 40px;
   }
   .sub2 {
     margin-left: 66px;
