@@ -12,6 +12,9 @@
             :style="`background-image: url(${state.userInfo[link.userID].avatar})`"
           ></div>
         </div>
+        <div style="display: inline-block; float: left;color: #fff;text-shadow: 0 0 3px #40f;margin: 5px;font-size: 16px;">
+          {{state.shortText(state.userInfo[link.userID].name, 16)}}
+        </div>
       </td>
     </tr>
     <tr>
