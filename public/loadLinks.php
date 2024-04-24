@@ -76,6 +76,6 @@ error_reporting(E_ALL);
         mysqli_query($link, $sql);
       }
     }
-    echo json_encode([false, $sql, $ct, $ct_]);
+    echo json_encode([false, $sql, $ct, $ct_, $slugs]);
   }
 ?>
