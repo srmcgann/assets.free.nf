@@ -102,7 +102,7 @@
           <button
             class="toolbarButtons"
             style="height: 24px; margin: unset; margin-right:5px;min-width: unset"
-            @click.stop.prevent="state.showStats = true"
+            @click.stop.prevent="state.getUserStats(state.loggedinUserID)"
             title="view my stats, including views etc"
           >stats</button>
         </div>

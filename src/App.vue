@@ -293,6 +293,7 @@ export default {
           this.state.loadingAssets = false
           if(!!(+data[0])){
             this.state.userStats[userID] = data[1]
+            this.state.showStats = true
           }
         })
       }

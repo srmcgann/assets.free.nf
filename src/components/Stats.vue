@@ -25,7 +25,6 @@ export default {
     }
   },
   mounted(){
-    this.state.getUserStats(this.state.loggedinUserID)
     this.$refs.stats.focus()
   }
 }
