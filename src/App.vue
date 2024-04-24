@@ -849,7 +849,7 @@ export default {
         case 'default':
           if(this.state.editCollection.length){
             this.state.previewLink = link
-            history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)
+            history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${link.slug}`)
           }else{
             this.state.previewPosition = link.ct
             this.state.previewPosition += link.linkType == 'userLink' ? this.state.links.length : 0
