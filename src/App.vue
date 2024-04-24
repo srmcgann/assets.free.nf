@@ -316,8 +316,8 @@ export default {
       this.state.mode = 'col'
       this.state.previewCollection = collection
       console.log('loading collection', collection)
-      this.state.loadLinks(collection.meta.slugs, true, collection.id, sel)
       if(!sel && collection.meta.slugs.length) sel = collection.meta.slugs[0]
+      this.state.loadLinks(collection.meta.slugs, true, collection.id, sel)
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
     firstPage(){
@@ -1173,7 +1173,7 @@ export default {
             if(forCollection) {
               if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
                 if(sel){
-                  this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)
+                  this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)[0]
                 }else{
                   this.state.previewLink = this.state.miscLinks[0]
                 }
@@ -1203,7 +1203,7 @@ export default {
         if(forCollection) {
           if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
             if(sel){
-              this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)
+              this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)[0]
             }else{
               this.state.previewLink = this.state.miscLinks[0]
             }
