@@ -162,6 +162,7 @@ export default{
       .then(data => {
         if(data[0]){
           this.avatarUpdateSuccessful = 1
+          this.state.userInfo[this.state.loggedinUserID].avatar = this.state.loggedInUser.avatar
           //this.state.user.avatar = this.state.loggedInUser.avatar
           setTimeout(()=>this.avatarUpdateSuccessful = 0, 2000)
         } else {

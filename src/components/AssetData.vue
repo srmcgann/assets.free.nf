@@ -4,7 +4,7 @@
     <tr>
       <td class="tdLeft">owner</td>
       <td class="tdRight">
-        <div class="loggedIn" style="display: inline-block;">
+        <div class="loggedIn" style="display: inline-block; float: left;">
           <div
             @click="showSettings()"
             class="avatar"
