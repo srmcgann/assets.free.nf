@@ -105,15 +105,15 @@ export default {
   },
   computed: {
     sortedByViews(){
-      let src = this.assetsArray
+      let src = JSON.parse(JSON.stringify(this.assetsArray))
       return src.sort((a, b) => (this.viewsSortDir?b:a).views - (this.viewsSortDir?a:b).views)
     },
     sortedByVotes(){
-      let src = this.assetsArray
+      let src = JSON.parse(JSON.stringify(this.assetsArray))
       return src.sort((a, b) => ((this.votesSortDir?b:a).upvotes + (this.votesSortDir?b:a).downvotes) - ((this.votesSortDir?a:b).upvotes + (this.votesSortDir?a:b).downvotes))
     },
     sortedBySizes(){
-      let src = this.assetsArray
+      let src = JSON.parse(JSON.stringify(this.assetsArray))
       return src.sort((a, b) => (this.sizesSortDir?b:a).size - (this.sizesSortDir?a:b).size)
     },
     assets(){

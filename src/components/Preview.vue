@@ -7,55 +7,54 @@
       <div class="slideshow" ref="slideshow"></div>
     </div>
   </div>
-  
-      <div class="inputs fade" ref="inputs">
-        <div class="linkButtons">
-          <div
-            class="visibilityButton"
-            @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
-            :class="{'private': link.private, 'notPrivate': !link.private}"
-            :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
-            v-if="link.userID == state.loggedinUserID || state.admin"
-          ></div>
-          <div
-            class="copyLinkButton"
-            @click.prevent.stop="state.copyLink(link.href)"
-            title="copy link to clipboard"
-          ></div>
-          <a
-            :href="state.URLbase + '/' + link.href"
-            class="openButton"
-            @click.prevent.stop="state.openLink(link)"
-            title="open link in new tab"
-          ></a>
-          <div
-            class="downloadButton"
-            @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
-            title="download asset"
-          ></div>
-          <div
-            class="deleteSingleButton"
-            @click.prevent.stop="state.deleteSingle(link)"
-            title="delete this asset only"
-            v-if="link.userID == state.loggedinUserID || state.admin"
-          ></div>
-        </div>
-        <AssetData :state="state" :link="link" @mousemove="bumpNavButtonOpacity()" />
-        <div
-          v-if="state.multipleLinks()"
-          class="leftButton"
-          ref = "leftButton"
-          @click="state.prev()"
-          title="view previous asset [left arrow]"
-        ></div>
-        <div
-          v-if="state.multipleLinks()"
-          class="rightButton"
-          ref = "rightButton"
-          @click="state.next()"
-          title="view next asset [right arrow]"
-        ></div>
-      </div>
+  <div class="inputs fade" ref="inputs">
+    <div class="linkButtons">
+      <div
+        class="visibilityButton"
+        @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
+        :class="{'private': link.private, 'notPrivate': !link.private}"
+        :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
+        v-if="link.userID == state.loggedinUserID || state.admin"
+      ></div>
+      <div
+        class="copyLinkButton"
+        @click.prevent.stop="state.copyLink(link.href)"
+        title="copy link to clipboard"
+      ></div>
+      <a
+        :href="state.URLbase + '/' + link.href"
+        class="openButton"
+        @click.prevent.stop="state.openLink(link)"
+        title="open link in new tab"
+      ></a>
+      <div
+        class="downloadButton"
+        @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
+        title="download asset"
+      ></div>
+      <div
+        class="deleteSingleButton"
+        @click.prevent.stop="state.deleteSingle(link)"
+        title="delete this asset only"
+        v-if="link.userID == state.loggedinUserID || state.admin"
+      ></div>
+    </div>
+    <AssetData :state="state" :link="link" @mousemove="bumpNavButtonOpacity()" />
+    <div
+      v-if="state.multipleLinks()"
+      class="leftButton"
+      ref = "leftButton"
+      @click="state.prev()"
+      title="view previous asset [left arrow]"
+    ></div>
+    <div
+      v-if="state.multipleLinks()"
+      class="rightButton"
+      ref = "rightButton"
+      @click="state.next()"
+      title="view next asset [right arrow]"
+    ></div>
+  </div>
 </template>
 
 <script>
