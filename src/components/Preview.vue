@@ -40,7 +40,7 @@
             v-if="link.userID == state.loggedinUserID || state.admin"
           ></div>
         </div>
-        <AssetData :state="state" :link="link" />
+        <AssetData :state="state" :link="link" @mousemove="bumpNavButtonOpacity()" />
         <div
           v-if="state.multipleLinks()"
           class="leftButton"
