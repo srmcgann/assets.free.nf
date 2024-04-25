@@ -110,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `imjurUploads` (
   `views` int(11) NOT NULL,
   `description` mediumtext NOT NULL,
   `originalSlug` varchar(64) NOT NULL,
+  `originalDate` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
