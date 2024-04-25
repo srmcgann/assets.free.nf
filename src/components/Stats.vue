@@ -22,11 +22,33 @@
       <table class="statsTable">
         <tr>
           <th>asset</th>
+          <th>thumb</th>
           <th>views</th>
+          <th>size</th>
+          <th>date</th>
+          <th>type</th>
+          <th>asset</th>
         </tr>
         <tr v-for="asset in sortedStats('views', viewsSortDirection)">
-          <td class="tdRight" v-html="asset.slug"></td>
+          <td class="td">
+            <div class="actualAsset" v-html="asset.slug"></div>
+          </td>
+          <td v-if="!asset.showPreview">
+            <button @click="asset.showPreview=true">show</button>
+          </td>
+          <td v-else-if="asset.filetype.indexOf('audio')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
+          <td v-else-if="asset.filetype.indexOf('image')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + asset.href});`" class="avatar"></div></a></td>
+          <td v-else-if="asset.filetype.indexOf('video')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><video autoplay loop muted :src="asset.href" class="avatar"></video></a></td>
           <td class="tdRight" v-html="asset.views"></td>
+          <td class="td">
+            <div class="actualAsset" v-html="state.size(asset.size)"></div>
+          </td>
+          <td class="td">
+            <div class="actualAsset" v-html="state.prettyDate(asset.date)"></div>
+          </td>
+          <td class="td">
+            <div class="actualAsset" v-html="asset.filetype"></div>
+          </td>
         </tr>
       </table>
       

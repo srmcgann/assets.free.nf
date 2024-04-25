@@ -303,7 +303,10 @@ export default {
         .then(data => {
           this.state.loadingAssets = false
           if(!!(+data[0])){
-            this.state.userStats[userID] = data[1]
+            this.state.userStats[userID] = data[1].map(v=>{
+              v.showPreview = false
+              return v
+            })
             this.state.showStats = true
           }
         })

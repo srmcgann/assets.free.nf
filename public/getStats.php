@@ -40,14 +40,16 @@ error_reporting(E_ALL);
       $row = mysqli_fetch_assoc($res);
       $originalSlug = $row['originalSlug'];
       $filetype     = $row['filetype'];
+      $resFile      = "$resourceDir/$originalSlug.".getSuffix($filetype);
       $obj = [
         'id'              => $row['id'],
         'slug'            => $row['slug'],
         'views'           => $row['views'],
-        'size'            => filesize("$resourceDir/$originalSlug.".getSuffix($filetype)),
+        'size'            => filesize($resFile),
         'originalSlug'    => $originalSlug,
         'date'            => $row['date'],
         'hash'            => $row['hash'],
+        'href'            => $resFile,
         'upvotes'         => $row['upvotes'],
         'downvotes'       => $row['downvotes'],
         'filetype'        => $filetype,
