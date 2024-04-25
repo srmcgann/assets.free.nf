@@ -81,7 +81,7 @@ export default {
     analyze(){
     },
     sortedStats(mode, dir){
-      let src = JSON.parse(JSON.stringify(state.userStats[state.loggedinUserID]))
+      let src = JSON.parse(JSON.stringify(this.state.userStats[state.loggedinUserID]))
       switch(mode){
         case 'views': return src.sort((a, b) => (dir?b:a).views - (dir?a:b).views); break
         case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
