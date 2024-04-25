@@ -15,6 +15,7 @@ error_reporting(E_ALL);
   
   $anon = false;
   $success = false;
+  $resourceDir = "resources";
 
   $enabled = 0;
   if($passhash){
@@ -37,16 +38,19 @@ error_reporting(E_ALL);
     $assets = [];
     for($i=0; $i<mysqli_num_rows($res); ++$i){
       $row = mysqli_fetch_assoc($res);
+      $originalSlug = $row['originalSlug'];
+      $filetype     = $row['filetype'];
       $obj = [
         'id'              => $row['id'],
         'slug'            => $row['slug'],
         'views'           => $row['views'],
-        'originalSlug'    => $row['originalSlug'],
+        'size'            => filesize("$resourceDir/$originalSlug".getSuffix($filetype)),
+        'originalSlug'    => $originalSlug,
         'date'            => $row['date'],
         'hash'            => $row['hash'],
         'upvotes'         => $row['upvotes'],
         'downvotes'       => $row['downvotes'],
-        'filetype'        => $row['filetype'],
+        'filetype'        => $filetype,
         'private'         => $row['private'],
         'meta'            => $row['meta'],
       ];
