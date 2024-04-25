@@ -8,11 +8,13 @@ error_reporting(0);
   $passhash = '';
   $data = json_decode(file_get_contents('php://input'));
   $preval = $data->{'userID'};
-  if($preval) $userID = mysqli_real_escape_string($link, $preval);
-  $preval = $data->{'passhash'};
-  if($preval) $passhash = mysqli_real_escape_string($link, $preval);
+  if($preval !== null && $preval){
+    $userID = mysqli_real_escape_string($link, $preval);
+    $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
+  }
   
-  $anon = $success = false;
+  $anon = false;
+  $success = false;
 
   $enabled = 0;
   if($passhash){
@@ -25,7 +27,7 @@ error_reporting(0);
     $anon = true;
   }
 
-  if(!$anon && !$enabled) $userID = $false;
+  if(!$anon && !$enabled) $userID = false;
 
   if($userID){
     $success = true;
