@@ -31,7 +31,7 @@ error_reporting(E_ALL);
 
   if($userID){
     $success = true;
-    $sql = "SELECT * FROM immurUploads WHERE userID = $userID AND ($enabled OR NOT private)";
+    $sql = "SELECT * FROM imjurUploads WHERE userID = $userID AND ($enabled OR NOT private)";
     $res = mysqli_query($link, $sql);
     $ret = [];
     $assets = [];
