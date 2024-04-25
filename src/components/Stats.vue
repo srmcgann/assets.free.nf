@@ -238,7 +238,7 @@ export default {
     text-align: center;
   }
   .avatar{
-    width; 160px;
+    width: 160px;
     height: 90px;
   }
 </style>
