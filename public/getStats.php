@@ -44,7 +44,7 @@ error_reporting(E_ALL);
         'id'              => $row['id'],
         'slug'            => $row['slug'],
         'views'           => $row['views'],
-        'size'            => filesize("$resourceDir/$originalSlug".getSuffix($filetype)),
+        'size'            => filesize("$resourceDir/$originalSlug.".getSuffix($filetype)),
         'originalSlug'    => $originalSlug,
         'date'            => $row['date'],
         'hash'            => $row['hash'],
