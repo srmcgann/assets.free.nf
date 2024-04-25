@@ -73,7 +73,7 @@ export default {
       sizesSortDirection: false,
       votesSortDirection: false,
     }
-  }
+  },
   methods: {
     close(){
       this.state.showStats = false
