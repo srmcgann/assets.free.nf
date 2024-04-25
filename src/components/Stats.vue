@@ -103,7 +103,8 @@ export default {
     analyze(){
     },
     sortedStats(mode, dir){
-      let src = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
+      //let src = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
+      let src = this.state.userStats[this.state.loggedinUserID]
       switch(mode){
         case 'views': return src.sort((a, b) => (dir?b:a).views - (dir?a:b).views); break
         case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
@@ -139,7 +140,7 @@ export default {
     text-shadow: 2px 2px 2px #000;
     background: #0003;
     display: inline-block;
-    width: 100px;
+    width: unset;
   }
   th{
     padding-left: 20px;
