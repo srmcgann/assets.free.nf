@@ -16,7 +16,6 @@
           <td class="tdRight" v-html="assets"></td>
         </tr>
       </table>
-      
       <br><br>
       top views<br>
       <table class="statsTable">
@@ -93,7 +92,9 @@ export default {
       viewsSortDir: true,
       sizesSortDir: true,
       votesSortDir: true,
-      assetsArray: this.state.userStats[this.state.loggedinUserID]
+      viewsArray: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID])),
+      votesArray: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID])),
+      sizesArray: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
     }
   },
   methods: {
@@ -105,15 +106,15 @@ export default {
   },
   computed: {
     sortedByViews(){
-      let src = JSON.parse(JSON.stringify(this.assetsArray))
+      let src = this.viewsArray
       return src.sort((a, b) => (this.viewsSortDir?b:a).views - (this.viewsSortDir?a:b).views)
     },
     sortedByVotes(){
-      let src = JSON.parse(JSON.stringify(this.assetsArray))
+      let src = this.votesArray
       return src.sort((a, b) => ((this.votesSortDir?b:a).upvotes + (this.votesSortDir?b:a).downvotes) - ((this.votesSortDir?a:b).upvotes + (this.votesSortDir?a:b).downvotes))
     },
     sortedBySizes(){
-      let src = JSON.parse(JSON.stringify(this.assetsArray))
+      let src = this.sizesArrray
       return src.sort((a, b) => (this.sizesSortDir?b:a).size - (this.sizesSortDir?a:b).size)
     },
     assets(){
