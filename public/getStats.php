@@ -11,7 +11,6 @@ error_reporting(E_ALL);
   if($preval) $userID = mysqli_real_escape_string($link, $preval);
   $preval = $data->{'passhash'};
   if($preval) $passhash = mysqli_real_escape_string($link, $preval);
-  $collectionID = mysqli_real_escape_string($link, $data->{'collectionID'});
   
   $anon = $success = false;
 
