@@ -27,7 +27,6 @@
           <th>size</th>
           <th>date</th>
           <th>type</th>
-          <th>asset</th>
         </tr>
         <tr v-for="asset in sortedStats('views', viewsSortDirection)">
           <td class="td">
@@ -94,6 +93,7 @@ export default {
       viewsSortDirection: true,
       sizesSortDirection: true,
       votesSortDirection: true,
+      assetsArray: []
     }
   },
   methods: {
@@ -103,8 +103,7 @@ export default {
     analyze(){
     },
     sortedStats(mode, dir){
-      //let src = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
-      let src = this.state.userStats[this.state.loggedinUserID]
+      let src = this.assetsArray
       switch(mode){
         case 'views': return src.sort((a, b) => (dir?b:a).views - (dir?a:b).views); break
         case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
@@ -118,6 +117,7 @@ export default {
     }
   },
   mounted(){
+    this.assetsArray = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
     this.$refs.stats.focus()
     this.analyze()
   }
