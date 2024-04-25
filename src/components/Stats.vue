@@ -22,12 +22,50 @@
         <tr>
           <th>asset</th>
           <th>thumb</th>
-          <th>views</th>
-          <th>size</th>
-          <th>date</th>
-          <th>type</th>
+          <th>
+            <button
+              @click="setSortMode('views')"
+              v-html="`views [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
+          <th>
+            <button
+              @click="setSortMode('sizes')"
+              v-html="`size [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
+          <th>
+            <button
+              @click="setSortMode('dates')"
+              v-html="`date [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
+          <th>
+            <button
+              @click="setSortMode('types')"
+              v-html="`type [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
+          <th>
+            <button
+              @click="setSortMode('upvotes')"
+              v-html="`upvotes [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
+          <th>
+            <button
+              @click="setSortMode('downvotes')"
+              v-html="`downvotes [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
+          <th>
+            <button
+              @click="setSortMode('avgvotes')"
+              v-html="`avg votes [${sortDir ? 'asc' : 'desc'}]`"
+            ></button>
+          </th>
         </tr>
-        <tr v-for="asset in sortedByViews">
+        <tr v-for="asset in sortedArray">
           <td class="td">
             <div class="actualAsset" v-html="asset.slug"></div>
           </td>
@@ -49,36 +87,6 @@
           </td>
         </tr>
       </table>
-      
-      <br><br>
-      top votes<br>
-      <table class="statsTable">
-        <tr>
-          <th>asset</th>
-          <th>upvotes</th>
-          <th>downvotes</th>
-          <th>avg</th>
-        </tr>
-        <tr v-for="asset in sortedByVotes">
-          <td class="tdRight" v-html="asset.slug"></td>
-          <td class="tdRight" v-html="asset.upvotes"></td>
-          <td class="tdRight" v-html="asset.downvotes"></td>
-          <td class="tdRight" v-html="(asset.upvotes+asset.downvotes)/2"></td>
-        </tr>
-      </table>
-      
-      <br><br>
-      footprint<br>
-      <table class="statsTable">
-        <tr>
-          <th>asset</th>
-          <th>size</th>
-        </tr>
-        <tr v-for="asset in sortedBySizes">
-          <td class="tdRight" v-html="asset.slug"></td>
-          <td class="tdRight" v-html="asset.size"></td>
-        </tr>
-      </table>
     </div>
   </div>
 </template>
@@ -89,36 +97,111 @@ export default {
   props: [ 'state' ],
   data(){
     return {
-      viewsSortDir: true,
-      sizesSortDir: true,
-      votesSortDir: true,
-      viewsArray: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID])),
-      votesArray: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID])),
-      sizesArray: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
+      sortDir: true,
+      sortMode: 'views',
+      array: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
     }
   },
   methods: {
     close(){
       this.state.showStats = false
     },
-    analyze(){
+    setSortMode(mode){
+      switch(mode){
+        case 'views':
+          if(this.sortMode == 'views'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'views'
+          }
+        break
+        case 'sizes':
+          if(this.sortMode == 'sizes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'sizes'
+          }
+        break
+        case 'dates':
+          if(this.sortMode == 'dates'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'dates'
+          }
+        break
+        case 'types':
+          if(this.sortMode == 'types'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'types'
+          }
+        break
+        case 'upvotes':
+          if(this.sortMode == 'upvotes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'upvotes'
+          }
+        break
+        case 'downvotes':
+          if(this.sortMode == 'downvotes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'downvotes'
+          }
+        break
+        case 'avgvotes':
+          if(this.sortMode == 'avgvotes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'avgvotes'
+          }
+        break
+      }
     }
   },
   computed: {
     sortedByViews(){
-      let src = this.viewsArray
-      return src.sort((a, b) => (this.viewsSortDir?b:a).views - (this.viewsSortDir?a:b).views)
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).views - (this.sortDir?a:b).views)
     },
-    sortedByVotes(){
-      let src = this.votesArray
-      return src.sort((a, b) => ((this.votesSortDir?b:a).upvotes + (this.votesSortDir?b:a).downvotes) - ((this.votesSortDir?a:b).upvotes + (this.votesSortDir?a:b).downvotes))
+    sortedByUpVotes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).upvotes - (this.sortDir?a:b).upvotes)
+    },
+    sortedByDownVotes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).downvotes - (this.sortDir?a:b).downvotes)
+    },
+    sortedByAvgVotes(){
+      let src = this.array
+      return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).downvotes) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).downvotes))
     },
     sortedBySizes(){
-      let src = this.sizesArray
-      return src.sort((a, b) => (this.sizesSortDir?b:a).size - (this.sizesSortDir?a:b).size)
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).size - (this.sortDir?a:b).size)
+    },
+    sortedByTypes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).filetype - (this.sortDir?a:b).filetype)
+    },
+    sortedByDates(){
+      let src = this.array
+      return src.sort((a, b) => (new Date((this.sortDir?b:a).date)) - (new Date((this.sortDir?a:b).date)))
     },
     assets(){
       return this.state.userStats[this.state.loggedinUserID].length
+    }
+    sortedArray(){
+      switch(this.sortMode){
+        case 'views'     : return this.sortedByViews; break
+        case 'upvotes'   : return this.sortedByUpVotes; break
+        case 'downvotes' : return this.sortedByDownVotes; break
+        case 'avgvotes'  : return this.sortedByAvgViews; break
+        case 'sizes'     : return this.sortedBySizes; break
+        case 'types'     : return this.sortedByTypes; break
+        case 'dates'     : return this.sortedByDates; break
+      }
     }
   },
   mounted(){
