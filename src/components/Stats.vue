@@ -114,7 +114,7 @@ export default {
       return src.sort((a, b) => ((this.votesSortDir?b:a).upvotes + (this.votesSortDir?b:a).downvotes) - ((this.votesSortDir?a:b).upvotes + (this.votesSortDir?a:b).downvotes))
     },
     sortedBySizes(){
-      let src = this.sizesArrray
+      let src = this.sizesArray
       return src.sort((a, b) => (this.sizesSortDir?b:a).size - (this.sizesSortDir?a:b).size)
     },
     assets(){
