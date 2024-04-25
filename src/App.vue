@@ -464,6 +464,7 @@ export default {
       this.state.showLoginPrompt = false
       this.state.userSettingsVisible = false
       this.state.showModal = false
+      this.state.showRegister = false
       this.state.showPreview = false
       this.state.showCollections = false
       this.state.showCollectionTemplate = false
