@@ -28,7 +28,7 @@
           <th>date</th>
           <th>type</th>
         </tr>
-        <tr v-for="asset in sortedStats('views', viewsSortDirection)">
+        <tr v-for="asset in sortedByViews()">
           <td class="td">
             <div class="actualAsset" v-html="asset.slug"></div>
           </td>
@@ -60,7 +60,7 @@
           <th>downvotes</th>
           <th>avg</th>
         </tr>
-        <tr v-for="asset in sortedStats('votes', votesSortDirection)">
+        <tr v-for="asset in sortedByVotes()">
           <td class="tdRight" v-html="asset.slug"></td>
           <td class="tdRight" v-html="asset.upvotes"></td>
           <td class="tdRight" v-html="asset.downvotes"></td>
@@ -75,7 +75,7 @@
           <th>asset</th>
           <th>size</th>
         </tr>
-        <tr v-for="asset in sortedStats('sizes', sizesSortDirection)">
+        <tr v-for="asset in sortedBySizes()">
           <td class="tdRight" v-html="asset.slug"></td>
           <td class="tdRight" v-html="asset.size"></td>
         </tr>
@@ -90,9 +90,9 @@ export default {
   props: [ 'state' ],
   data(){
     return {
-      viewsSortDirection: true,
-      sizesSortDirection: true,
-      votesSortDirection: true,
+      viewsSortDir: true,
+      sizesSortDir: true,
+      votesSortDir: true,
       assetsArray: this.state.userStats[this.state.loggedinUserID]
     }
   },
@@ -104,12 +104,17 @@ export default {
     }
   },
   computed: {
-    sortedStats(mode, dir){
-      let src = JSON.parse(JSON.stringify(this.assetsArray))
-      switch(mode){
-        case 'views': return src.sort((a, b) => (dir?b:a).views - (dir?a:b).views); break
-        case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
-        case 'sizes': return src.sort((a, b) => (dir?b:a).size - (dir?a:b).size); break
+    sortedByViews(){
+      let src = this.assetsArray
+      return src.sort((a, b) => (this.viewsSortDir?b:a).views - (this.viewsSortDir?a:b).views)
+    },
+    sortedByVotes(){
+      let src = this.assetsArray
+      return src.sort((a, b) => ((this.votesSortDir?b:a).upvotes + (this.votesSortDir?b:a).downvotes) - ((this.votesSortDir?a:b).upvotes + (this.votesSortDir?a:b).downvotes))
+    },
+    sortedBySizes(){
+      let src = this.assetsArray
+        return src.sort((a, b) => (this.sizesSortDir?b:a).size - (this.sizesSortDir?a:b).size)
       }
     },
     assets(){
