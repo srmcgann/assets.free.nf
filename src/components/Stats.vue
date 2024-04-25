@@ -8,7 +8,7 @@
     close/cancel
   </button>
   <div class="stats" ref="stats" tabindex="1000">
-    <div class="modalInner">
+    <div class="modalInner" style="overflow: auto;">
       overview<br>
       <table class="statsTable">
         <tr>
@@ -69,9 +69,9 @@ export default {
   props: [ 'state' ],
   data(){
     return {
-      viewsSortDirection: false,
-      sizesSortDirection: false,
-      votesSortDirection: false,
+      viewsSortDirection: true,
+      sizesSortDirection: true,
+      votesSortDirection: true,
     }
   },
   methods: {
@@ -116,6 +116,14 @@ export default {
     font-size: 14px;
     text-shadow: 2px 2px 2px #000;
     background: #0003;
-    width: 100%;
+    display: inline-block;
+    width: 100px;
+  }
+  th{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .tdLeft, .tdRight{
+    text-align: center;
   }
 </style>
