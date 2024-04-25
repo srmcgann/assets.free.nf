@@ -416,7 +416,7 @@ export default {
     downloadLink(link, fileName){
       let a = document.createElement('a')
       a.download = fileName
-      a.href = link.href
+      a.href = `${this.URLbase}/${link.href}`
       a.style.position = 'absolute'
       a.style.opacity = .01
       document.body.appendChild(a)
