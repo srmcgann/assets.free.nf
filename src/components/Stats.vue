@@ -93,7 +93,7 @@ export default {
       viewsSortDirection: true,
       sizesSortDirection: true,
       votesSortDirection: true,
-      assetsArray: []
+      assetsArray: this.state.userStats[this.state.loggedinUserID]
     }
   },
   methods: {
@@ -101,23 +101,23 @@ export default {
       this.state.showStats = false
     },
     analyze(){
-    },
+    }
+  },
+  computed: {
     sortedStats(mode, dir){
-      let src = this.assetsArray
+      let src = JSON.parse(JSON.stringify(this.assetsArray))
       switch(mode){
         case 'views': return src.sort((a, b) => (dir?b:a).views - (dir?a:b).views); break
         case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
         case 'sizes': return src.sort((a, b) => (dir?b:a).size - (dir?a:b).size); break
       }
-    }
-  },
-  computed: {
+    },
     assets(){
       return this.state.userStats[this.state.loggedinUserID].length
     }
   },
   mounted(){
-    this.assetsArray = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
+    //this.assetsArray = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
     this.$refs.stats.focus()
     this.analyze()
   }
