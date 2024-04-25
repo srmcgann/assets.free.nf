@@ -28,7 +28,7 @@
           <th>date</th>
           <th>type</th>
         </tr>
-        <tr v-for="asset in sortedByViews()">
+        <tr v-for="asset in sortedByViews">
           <td class="td">
             <div class="actualAsset" v-html="asset.slug"></div>
           </td>
@@ -60,7 +60,7 @@
           <th>downvotes</th>
           <th>avg</th>
         </tr>
-        <tr v-for="asset in sortedByVotes()">
+        <tr v-for="asset in sortedByVotes">
           <td class="tdRight" v-html="asset.slug"></td>
           <td class="tdRight" v-html="asset.upvotes"></td>
           <td class="tdRight" v-html="asset.downvotes"></td>
@@ -75,7 +75,7 @@
           <th>asset</th>
           <th>size</th>
         </tr>
-        <tr v-for="asset in sortedBySizes()">
+        <tr v-for="asset in sortedBySizes">
           <td class="tdRight" v-html="asset.slug"></td>
           <td class="tdRight" v-html="asset.size"></td>
         </tr>
