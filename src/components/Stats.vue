@@ -81,7 +81,7 @@ export default {
     analyze(){
     },
     sortedStats(mode, dir){
-      let src = JSON.parse(JSON.stringify(this.state.userStats[state.loggedinUserID]))
+      let src = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
       switch(mode){
         case 'views': return src.sort((a, b) => (dir?b:a).views - (dir?a:b).views); break
         case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     assets(){
-      return state.userStats[state.loggedinUserID].length
+      return this.state.userStats[this.state.loggedinUserID].length
     }
   },
   mounted(){
