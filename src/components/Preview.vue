@@ -140,6 +140,7 @@ export default {
       this.asset.style.objectFit = 'contain'
       this.asset.style.background = '#000'
       this.asset.loop = true
+      this.asset.muted = true
       this.asset.style.transform = 'translate(-50%, -50%)'
       this.asset.oncanplay = () => {
         this.asset.play()
