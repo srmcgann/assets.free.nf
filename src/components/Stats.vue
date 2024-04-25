@@ -39,7 +39,7 @@
           <th>downvotes</th>
           <th>avg</th>
         </tr>
-        <tr v-for="asset in sortedStats('votes', viewsSortDirection)">
+        <tr v-for="asset in sortedStats('votes', votesSortDirection)">
           <td class="tdRight" v-html="asset.slug"></td>
           <td class="tdRight" v-html="asset.upvotes"></td>
           <td class="tdRight" v-html="asset.downvotes"></td>
@@ -54,7 +54,7 @@
           <th>asset</th>
           <th>size</th>
         </tr>
-        <tr v-for="asset in sortedStats('sizes', viewsSortDirection)">
+        <tr v-for="asset in sortedStats('sizes', sizesSortDirection)">
           <td class="tdRight" v-html="asset.slug"></td>
           <td class="tdRight" v-html="asset.size"></td>
         </tr>
@@ -79,12 +79,6 @@ export default {
       this.state.showStats = false
     },
     analyze(){
-      
-    }
-  },
-  computed:{
-    assets(){
-      return state.userStats[state.loggedinUserID].length
     },
     sortedStats(mode, dir){
       let src = JSON.parse(JSON.stringify(state.userStats[state.loggedinUserID]))
@@ -93,6 +87,11 @@ export default {
         case 'votes': return src.sort((a, b) => ((dir?b:a).upvotes + (dir?b:a).downvotes) - ((dir?a:b).upvotes + (dir?a:b).downvotes)); break
         case 'sizes': return src.sort((a, b) => (dir?b:a).size - (dir?a:b).size); break
       }
+    }
+  },
+  computed: {
+    assets(){
+      return state.userStats[state.loggedinUserID].length
     }
   },
   mounted(){
