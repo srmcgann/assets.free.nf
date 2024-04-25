@@ -36,7 +36,7 @@
           </td>
           <td v-else-if="asset.filetype.indexOf('audio')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
           <td v-else-if="asset.filetype.indexOf('image')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + asset.href});`" class="avatar"></div></a></td>
-          <td v-else-if="asset.filetype.indexOf('video')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><video autoplay loop muted :src="asset.href" class="avatar"></video></a></td>
+          <td v-else-if="asset.filetype.indexOf('video')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><video autoplay loop muted :src="state.URLbase + '/' + asset.href" class="avatar"></video></a></td>
           <td class="tdRight" v-html="asset.views"></td>
           <td class="td">
             <div class="actualAsset" v-html="state.size(asset.size)"></div>
@@ -153,5 +153,9 @@ export default {
   }
   .tdLeft, .tdRight{
     text-align: center;
+  }
+  .avatar{
+    width; 160px;
+    height: 90px;
   }
 </style>
