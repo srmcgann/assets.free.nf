@@ -126,10 +126,10 @@ export default {
   },
   computed:{
     avatar(){
-      if(this.state.userInfo[link.userID].avatar === 'avatarDefault.png'){
+      if(this.state.userInfo[this.link.userID].avatar === 'avatarDefault.png'){
         return this.state.URLbase + '/avatarDefault.png'
       }else{
-        return this.state.userInfo[link.userID].avatar
+        return this.state.userInfo[this.link.userID].avatar
       }
     }
   },
