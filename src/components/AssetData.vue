@@ -126,7 +126,7 @@ export default {
   },
   computed:{
     avatar(){
-      if(state.userInfo[link.userID].avatar === 'avatarDefault.png'){
+      if(this.state.userInfo[link.userID].avatar === 'avatarDefault.png'){
         return this.state.URLbase + '/avatarDefault.png'
       }else{
         return this.state.userInfo[link.userID].avatar
