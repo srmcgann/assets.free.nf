@@ -24,42 +24,49 @@
           <th>thumb</th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='views'}"
               @click="setSortMode('views')"
               v-html="`views [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='sizes'}"
               @click="setSortMode('sizes')"
               v-html="`size [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='dates'}"
               @click="setSortMode('dates')"
               v-html="`date [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='types'}"
               @click="setSortMode('types')"
               v-html="`type [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='upvotes'}"
               @click="setSortMode('upvotes')"
               v-html="`upvotes [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='downvotes'}"
               @click="setSortMode('downvotes')"
               v-html="`downvotes [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='avgvotes'}"
               @click="setSortMode('avgvotes')"
               v-html="`avg votes [${sortDir ? 'asc' : 'desc'}]`"
             ></button>
@@ -80,10 +87,19 @@
             <div class="actualAsset" v-html="state.size(asset.size)"></div>
           </td>
           <td class="td">
-            <div class="actualAsset" v-html="state.prettyDate(asset.date)"></div>
+            <div class="actualAsset" v-html="asset.date"></div>
           </td>
           <td class="td">
             <div class="actualAsset" v-html="asset.filetype"></div>
+          </td>
+          <td class="td">
+            <div class="actualAsset" v-html="asset.upvotes"></div>
+          </td>
+          <td class="td">
+            <div class="actualAsset" v-html="asset.downvotes"></div>
+          </td>
+          <td class="td">
+            <div class="actualAsset" v-html="(asset.upvotes + asset.downvotes)/2"></div>
           </td>
         </tr>
       </table>
@@ -221,6 +237,7 @@ export default {
     width: 100vw;
     height: 100vh;
     font-size: 14px;
+    padding-bottom: 200px;
   }
   .statsTable{
     border-collapse: collapse;
@@ -230,12 +247,22 @@ export default {
     display: inline-block;
     width: unset;
   }
+  button{
+    background: #40f;
+    color: #fff;
+  }
+  .sortCol{
+    #2fc;
+    color: #000;
+  }
   th{
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .tdLeft, .tdRight{
+    padding: 5px;
     text-align: center;
+    font-size: 1.2em;
   }
   .avatar{
     width: 160px;
