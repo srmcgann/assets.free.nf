@@ -237,7 +237,6 @@ export default {
     width: 100vw;
     height: 100vh;
     font-size: 14px;
-    padding-bottom: 200px;
   }
   .statsTable{
     border-collapse: collapse;
@@ -249,6 +248,7 @@ export default {
   }
   .modalInner{
     height: 100vh;
+    padding-bottom: 200px;
   }
   button{
     background: #40f;
