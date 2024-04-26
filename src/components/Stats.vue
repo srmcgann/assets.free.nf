@@ -9,15 +9,21 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      overview of <b>{{state.loggedinUserName}}'s</b> assets<br>
+      overview of<br><b>{{state.loggedinUserName}}'s</b> assets<br>
       <table class="statsTable">
         <tr>
-          <td class="tdLeft">assets</td>
-          <td class="tdRight" v-html="assets"></td>
+          <td
+            class="tdLeft"
+            style="font-size:2em;"
+          >assets</td>
+          <td
+            class="tdRight"
+            style="font-size:2em;"
+            v-html="assets"
+          ></td>
         </tr>
       </table>
       <br><br>
-      top views<br>
       <table class="statsTable">
         <tr>
           <th>asset</th>
@@ -26,49 +32,49 @@
             <button
               :class="{'sortCol': sortMode=='views'}"
               @click="setSortMode('views')"
-              v-html="`views<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`views<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='sizes'}"
               @click="setSortMode('sizes')"
-              v-html="`size<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`size<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='dates'}"
               @click="setSortMode('dates')"
-              v-html="`date<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`date<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='types'}"
               @click="setSortMode('types')"
-              v-html="`type<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`type<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='upvotes'}"
               @click="setSortMode('upvotes')"
-              v-html="`upvotes<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`upvotes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='downvotes'}"
               @click="setSortMode('downvotes')"
-              v-html="`downvotes<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`downvotes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='avgvotes'}"
               @click="setSortMode('avgvotes')"
-              v-html="`avg votes<br>[${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`avg votes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
           </th>
         </tr>
@@ -250,9 +256,15 @@ export default {
     height: 100vh;
     padding-bottom: 200px;
   }
+  .cancelButton{
+    background: #822;
+    color: #f88;
+  }
   button{
     background: #40f;
     color: #fff;
+    min-width: unset;
+    text-shadow: 1px 1px 3px #40f;
   }
   .sortCol{
     background: #2fc;
