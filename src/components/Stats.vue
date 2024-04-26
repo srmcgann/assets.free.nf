@@ -26,49 +26,49 @@
             <button
               :class="{'sortCol': sortMode=='views'}"
               @click="setSortMode('views')"
-              v-html="`views [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`views<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='sizes'}"
               @click="setSortMode('sizes')"
-              v-html="`size [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`size<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='dates'}"
               @click="setSortMode('dates')"
-              v-html="`date [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`date<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='types'}"
               @click="setSortMode('types')"
-              v-html="`type [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`type<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='upvotes'}"
               @click="setSortMode('upvotes')"
-              v-html="`upvotes [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`upvotes<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='downvotes'}"
               @click="setSortMode('downvotes')"
-              v-html="`downvotes [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`downvotes<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='avgvotes'}"
               @click="setSortMode('avgvotes')"
-              v-html="`avg votes [${sortDir ? 'asc' : 'desc'}]`"
+              v-html="`avg votes<br>[${sortDir ? 'asc' : 'desc'}]`"
             ></button>
           </th>
         </tr>
@@ -246,6 +246,9 @@ export default {
     background: #0003;
     display: inline-block;
     width: unset;
+  }
+  .modalInner{
+    height: 100vh;
   }
   button{
     background: #40f;
