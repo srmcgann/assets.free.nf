@@ -38,7 +38,7 @@ error_reporting(0);
       forEach($slugs as $slug){
         $sql = "SELECT id FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
         $res2 = mysqli_query($link, $sql);
-        if(mysqli_num_rows($res2) $nSlugs[] = $slug;
+        if(mysqli_num_rows($res2)) $nSlugs[] = $slug;
       }
       $slugs = $nSlugs;
       
