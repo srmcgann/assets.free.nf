@@ -9,7 +9,7 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      overview<br>
+      overview of <b>{{state.loggedinUserName}}'s</b> assets<br>
       <table class="statsTable">
         <tr>
           <td class="tdLeft">assets</td>
