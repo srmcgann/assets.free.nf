@@ -191,7 +191,7 @@ export default {
     },
     assets(){
       return this.state.userStats[this.state.loggedinUserID].length
-    }
+    },
     sortedArray(){
       switch(this.sortMode){
         case 'views'     : return this.sortedByViews; break
