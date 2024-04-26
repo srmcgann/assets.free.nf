@@ -73,32 +73,32 @@
           </th>
         </tr>
         <tr v-for="asset in sortedArray">
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="asset.slug"></div>
           </td>
           <td v-if="!asset.showPreview">
             <button @click="asset.showPreview=true">show</button>
           </td>
-          <td v-else-if="asset.filetype.indexOf('audio')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
-          <td v-else-if="asset.filetype.indexOf('image')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + asset.href});`" class="avatar"></div></a></td>
-          <td v-else-if="asset.filetype.indexOf('video')!=-1" class="td"><a :href="state.URLbase + '/' + asset.href" target="_blank"><video autoplay loop muted :src="state.URLbase + '/' + asset.href" class="avatar"></video></a></td>
+          <td v-else-if="asset.filetype.indexOf('audio')!=-1" class="tdRight"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
+          <td v-else-if="asset.filetype.indexOf('image')!=-1" class="tdRight"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + asset.href});`" class="avatar"></div></a></td>
+          <td v-else-if="asset.filetype.indexOf('video')!=-1" class="tdRight"><a :href="state.URLbase + '/' + asset.href" target="_blank"><video autoplay loop muted :src="state.URLbase + '/' + asset.href" class="avatar"></video></a></td>
           <td class="tdRight" v-html="asset.views"></td>
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="state.size(asset.size)"></div>
           </td>
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="asset.date"></div>
           </td>
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="asset.filetype"></div>
           </td>
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="asset.upvotes"></div>
           </td>
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="asset.downvotes"></div>
           </td>
-          <td class="td">
+          <td class="tdRight">
             <div class="actualAsset" v-html="(asset.upvotes + asset.downvotes)/2"></div>
           </td>
         </tr>
