@@ -93,7 +93,7 @@
             <div class="actualAsset" v-html="state.size(asset.size)"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="asset.date"></div>
+            <div class="actualAsset" v-html="state.prettyDate({date: asset.date})"></div>
           </td>
           <td class="tdRight">
             <div class="actualAsset" v-html="asset.filetype"></div>

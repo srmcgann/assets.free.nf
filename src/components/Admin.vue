@@ -44,7 +44,7 @@
               <div class="actualAsset" v-html="state.size(state.adminData.fileSizes[idx])"></div>
             </td>
             <td class="td">
-              <div class="actualAsset" v-html="state.prettyDate(state.adminData.fileDates[idx])"></div>
+              <div class="actualAsset" v-html="state.prettyDate({date: state.adminData.fileDates[idx]})"></div>
             </td>
             <td class="td">
               <div class="actualAsset" v-html="state.adminData.filetypes[idx]"></div>
