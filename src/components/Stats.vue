@@ -252,7 +252,7 @@ export default {
     color: #fff;
   }
   .sortCol{
-    #2fc;
+    background: #2fc;
     color: #000;
   }
   th{
