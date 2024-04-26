@@ -22,6 +22,17 @@
             v-html="assets"
           ></td>
         </tr>
+        <tr>
+          <td
+            class="tdLeft"
+            style="font-size:2em;"
+          >footprint</td>
+          <td
+            class="tdRight"
+            style="font-size:2em;"
+            v-html="footprint"
+          ></td>
+        </tr>
       </table>
       <br><br>
       <table class="statsTable">
@@ -214,6 +225,13 @@ export default {
     assets(){
       return this.state.userStats[this.state.loggedinUserID].length
     },
+    footprint(){
+      let ret = 0
+      this.state.userStats[this.state.loggedinUserID].map(v=>{
+        ret += v.size
+      })
+      return this.state.size(ret)
+    },
     sortedArray(){
       switch(this.sortMode){
         case 'views'     : return this.sortedByViews; break
@@ -275,6 +293,7 @@ export default {
     padding-right: 10px;
   }
   .tdLeft, .tdRight{
+    max-width: unset;
     padding: 5px;
     text-align: center;
     font-size: 1.2em;
