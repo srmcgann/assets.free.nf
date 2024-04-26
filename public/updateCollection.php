@@ -32,6 +32,16 @@ error_reporting(0);
       $row = mysqli_fetch_assoc($res);
       $description = $colData->{'description'}; //escaped later
       $slugs = $colData->{'slugs'};
+      $nSlugs = [];
+      
+      // cull slugs which no longer exist (deleted)
+      forEach($slugs as $slug){
+        $sql = "SELECT id FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
+        $res2 = mysqli_query($link, $sql);
+        if(mysqli_num_rows($res2) $nSlugs[] = $slug;
+      }
+      $slugs = $nSlugs;
+      
       /*$originalSlugs = [];
       forEach($slugs as $slug){
         $sql = "SELECT originalSlug FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";

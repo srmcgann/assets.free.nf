@@ -245,9 +245,7 @@ export default {
     }
   },
   mounted(){
-    //this.assetsArray = JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
     this.$refs.stats.focus()
-    this.analyze()
   }
 }
 </script>
