@@ -698,7 +698,6 @@ export default {
                 serverTZO: data[2][i].serverTZO,
                 views: data[2][i].views
               }
-              
               this.state.fetchEventTally++
               this.state.userLinks.push(obj)
             })
@@ -1420,6 +1419,9 @@ export default {
     }
   },
   watch: {
+    'state.maxResultsPerPage'(){
+     this.state.fetchUserLinks(this.state.loggedinUserID)
+    },
     'state.choice'(val){
       val = JSON.parse(unescape(val))
       switch(val.function){
