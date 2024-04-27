@@ -76,13 +76,12 @@
         >
           select multiple items, then check here<br>for bulk assign-to-collection buttons
         </div>
-        <div class="sub" @click="">
-          <button
-            class="toolbarButtons"
-            style="height: 24px; margin: unset; margin-right:5px;min-width: unset"
-            @click.stop.prevent="state.getUserStats(state.loggedinUserID)"
-            title="view my stats, including views etc"
-          >stats</button>
+        <div
+          title="view my stats, including views etc"
+          class="sub"
+          @click="state.getUserStats(state.loggedinUserID)"
+        >
+          my stats
         </div>
         <div class="sub" style="z-index: 100; min-width: 180px;" @click="state.showCollections=true">
           My Collections
@@ -106,7 +105,9 @@
             <span>{{state.shortText(collection.name, 16)}}</span>
           </div>
         </div>
-        <div class="sub" @click="">sub c</div>
+        <div class="sub" @click="">
+          <PageSel :state="state" />
+        </div>
         <div class="sub" @click="">
           submenus [unused]
           <div class="sub2" @click="window.open('https://gifs.twilightparadox.com/df0898b287292aab8cf29efb75cb1783.gif', '_blank')">easter egg 1!</div>
@@ -132,6 +133,7 @@
 
 <script>
 import User from './User'
+import PageSel from './PageSel'
 import CollectionSelection from './CollectionSelection'
 
 export default {
@@ -139,6 +141,7 @@ export default {
   props: [ 'state' ],
   components: {
     User,
+    PageSel,
     CollectionSelection
   },
   data(){

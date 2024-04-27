@@ -32,9 +32,7 @@ todo
   ✔ random-slugify collections
   ✔ make asset "name" fields editable
   ✔ deleting asset also removes it from all connected collections
-  * sortable 'stats overview' page for users
-  * add sortability to collections list columns
-  * resource files are saved and named as file hash - convert existing
+  ✔ sortable 'stats overview' page for users
   * add items/page selection to user prefs
   * URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default
@@ -52,6 +50,7 @@ todo
         
   * uploading progress animations & color change @ 100%
   * search
+  * add sortability to collections list columns
   * "trending/popular" page
   * social media metadata
   * load/resource balancing
