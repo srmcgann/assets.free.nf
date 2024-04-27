@@ -1419,7 +1419,8 @@ export default {
     }
   },
   watch: {
-    'state.maxResultsPerPage'(){
+    'state.maxResultsPerPage'(val){
+      console.log('watcher detected new maxResluts val: ' + val)
      this.state.fetchUserLinks(this.state.loggedinUserID)
     },
     'state.choice'(val){
