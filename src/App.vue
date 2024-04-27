@@ -1018,6 +1018,9 @@ export default {
       }).then(res => res.json()).then(data => {
         console.log(data)
         if(data[0]){
+          switch(property){
+            case 'pageSel': this.state.maxResultsPerPage = +value; break
+          }
           console.log(`successfull set user pref: ${property} to ${value}`)
         }else{
           console.log('there was an error setting the user preference')
