@@ -13,7 +13,7 @@
           ></div>
         </div>
         <div style="display: inline-block; float: left;color: #fff;text-shadow: 0 0 3px #40f;margin: 10px;font-size: 16px;">
-          {{state.shortText(state.userInfo[link.userID].name, 16)}}
+          {{state.shortText(state.userInfo[link.userID]?.name, 16)}}
         </div>
       </td>
     </tr>
@@ -126,10 +126,10 @@ export default {
   },
   computed:{
     avatar(){
-      if(this.state.userInfo[this.link.userID].avatar === 'avatarDefault.png'){
+      if(this.state.userInfo[this.link.userID]?.avatar === 'avatarDefault.png'){
         return this.state.URLbase + '/avatarDefault.png'
       }else{
-        return this.state.userInfo[this.link.userID].avatar
+        return this.state.userInfo[this.link.userID]?.avatar
       }
     }
   },
