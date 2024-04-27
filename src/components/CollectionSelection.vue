@@ -37,6 +37,13 @@
           <span class="checkmark" style="margin-left: -30px;"></span>
           <span class="collectionName">
             {{state.shortText(collection.name, 28)}}
+            <button
+              v-if="mode=='default' && checked(collection)"
+              class="toolbarButtons collectionsButton"
+              style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px; margin-left: 5px;"
+              @click.stop.prevent="viewCollection(collection, links.slug)"
+              title="view this collection"
+            >👁</button>
             {{supplemental(collection)}}
           </span>
         </label><br>
