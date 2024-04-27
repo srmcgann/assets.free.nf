@@ -41,7 +41,7 @@
               v-if="mode!='multi' && checked(collection)"
               class="toolbarButtons collectionsButton"
               style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px; margin-left: 5px;"
-              @click.stop.prevent="viewCollection(collection, links.slug)"
+              @click.stop.prevent="this.state.viewCollection(collection, links.slug)"
               title="view this collection"
             >👁</button>
             {{supplemental(collection)}}
