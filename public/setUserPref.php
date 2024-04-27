@@ -5,11 +5,11 @@ error_reporting(0);
 
   require('db.php');
   $data = json_decode(file_get_contents('php://input'));
-  $userName = mysqli_real_escape_string($link, $data->{'userName'});
+  $userID = mysqli_real_escape_string($link, $data->{'userID'});
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
   $property = mysqli_real_escape_string($link, $data->{'property'});
   $value = mysqli_real_escape_string($link, $data->{'value'});
-  $sql = 'SELECT * FROM imjurUsers WHERE name LIKE "'.$userName.'" AND passhash = "'.$passhash.'"';
+  $sql = 'SELECT * FROM imjurUsers WHERE id = $id AND passhash = "'.$passhash.'"';
   $res = mysqli_query($link, $sql);
   $success = false;
   
