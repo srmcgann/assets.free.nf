@@ -6,11 +6,17 @@
     title="select how many items per page you like. warning: too many items may degrade performance!"
     class="pageSelection"
   >
-    <option value="5"  style="background: #0f04;"  >5</option>
-    <option value="10" style="background: #0f84;"  >10</option>
-    <option value="15" style="background: #ff04;"  >15</option>
-    <option value="20" style="background: #f804;"  >20</option>
-    <option value="25" style="background: #f004;"  >25</option>
+    <option value="1"  style="background: #0f04;"  >5</option>
+    <option value="2"  style="background: #0f04;"  >5</option>
+    <option value="3"  style="background: #0f24;"  >5</option>
+    <option value="4"  style="background: #0f44;"  >5</option>
+    <option value="5"  style="background: #0f84;"  >5</option>
+    <option value="6"  style="background: #4f04;"  >5</option>
+    <option value="8"  style="background: #ff04;"  >5</option>
+    <option value="10" style="background: #f884;"  >10</option>
+    <option value="15" style="background: #f604;"  >15</option>
+    <option value="30" style="background: #f404;"  >20</option>
+    <option value="50" style="background: #f004;"  >25</option>
   </select>
 </template>
 
