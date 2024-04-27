@@ -84,6 +84,7 @@
           <th>
             <button
               :class="{'sortCol': sortMode=='avgvotes'}"
+              style="min-width: 120px;"
               @click="setSortMode('avgvotes')"
               v-html="`avg votes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
             ></button>
