@@ -42,7 +42,7 @@
               class="toolbarButtons collectionsButton"
               style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px; margin-left: 5px; padding: 2px; padding-top: 7px;"
               @click.stop.prevent="this.state.viewCollection(collection, links.slug)"
-              title="view this collection"
+              title="view this item, in this collection"
             >👁</button>
             {{supplemental(collection)}}
           </span>
