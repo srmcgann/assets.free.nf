@@ -11,7 +11,7 @@
       $row['enabled'],
       $row['id'],
       $row['avatar'],
-      $row['admin']
+      $row['admin'],
       $row['pageSel'],
       //$row['demoPostsPerPage']
     ]);
