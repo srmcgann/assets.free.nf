@@ -51,16 +51,18 @@ error_reporting(E_ALL);
           $cullSlug = $slug;
           for($i=0; $i<mysqli_num_rows($res); ++$i){
             $row = mysqli_fetch_assoc($res);
-            $meta = json_decode($row['meta']);
-            $colID = $row['id'];
-            $ar = [];
-            forEach($meta->{'slugs'} as $slug){
-              if($slug != $cullSlug) $ar[] = $slug;
+            if(isset($row['meta'])){
+              $meta = json_decode($row['meta']);
+              $colID = $row['id'];
+              $ar = [];
+              forEach($meta->{'slugs'} as $slug){
+                if($slug != $cullSlug) $ar[] = $slug;
+              }
+              $meta->{'slugs'} = $ar;
+              $meta = mysqli_real_escape_string($link, json_encode($meta));
+              $sql = "UPDATE imjurCollections SET `meta` = \"$meta\" WHERE id = $colID";
+              mysqli_query($link, $sql);
             }
-            $meta->{'slugs'} = $ar;
-            $meta = mysqli_real_escape_string($link, json_encode($meta));
-            $sql = "UPDATE imjurCollections SET `meta` = \"$meta\" WHERE id = $colID";
-            mysqli_query($link, $sql);
           }
           $delRecCount++;
         }
