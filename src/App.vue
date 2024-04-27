@@ -531,6 +531,7 @@ export default {
         })
         .then(res => res.json())
         .then(data => {
+          console.log('checkEnabled.php: ', data)
           if(!!(+data[0])){
             console.log('logged in.')
             this.state.loggedIn= true
@@ -973,6 +974,7 @@ export default {
       })
       .then(res => res.json())
       .then(data => {
+        console.log('login.php: ', data)
         if(data[0]){
           this.state.modalContent = ''
           this.state.showModal = false
