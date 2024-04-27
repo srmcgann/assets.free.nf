@@ -321,7 +321,7 @@ export default {
       this.state.mode = 'col'
       this.state.previewCollection = collection
       console.log('loading collection', collection)
-      //if(!sel && collection.meta.slugs.length) sel = collection.meta.slugs[0]
+      if(!sel && collection.meta.slugs.length) sel = collection.meta.slugs[0]
       this.state.loadLinks(collection.meta.slugs, true, collection.id, sel)
       history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view${'/'+sel}`)
     },
