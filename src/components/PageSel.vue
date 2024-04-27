@@ -3,6 +3,7 @@
   <select
     ref="pageSel"
     @change="updatePgSel()"
+    :value="state.pageSel"
     title="select how many items per page you like. warning: too many items may degrade performance!"
     class="pageSelection"
   >

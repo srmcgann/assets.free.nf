@@ -981,6 +981,7 @@ export default {
           this.state.loggedinUserName = this.state.username
           this.state.loggedinUserID = +data[2]
           //this.state.fetchUserData(this.state.loggedinUserID)
+          this.state.pageSel = +data[5]
           this.state.isAdmin = +data[4]
           this.state.passhash = data[1]
           this.setCookie()

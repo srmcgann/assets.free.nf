@@ -8,7 +8,7 @@
           <div
             @click="state.getUserStats(link.userID)"
             class="avatar"
-            :title="`this asset belongs to ${state.userInfo[link.userID].name}`"
+            :title="`this asset belongs to ${state.userInfo[link.userID]?.name}`"
             :style="`background-image: url(${avatar})`"
           ></div>
         </div>

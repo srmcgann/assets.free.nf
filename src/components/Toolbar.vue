@@ -87,7 +87,7 @@
           my stats
         </div>
         <div class="sub" style="z-index: 100; min-width: 180px;" @click="state.showCollections=true">
-          My Collections
+          my collections
           <div
             class="sub2"
             v-for="collection in state.collections"
