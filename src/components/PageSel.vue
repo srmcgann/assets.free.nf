@@ -35,11 +35,11 @@ export default {
   },
   methods: {
     updatePgSel(){
-      let el = this.$refs.pageSel
-      console.log(`val: ${el.value}`)
+      this.state.setUserPref('pageSel', this.$refs.pageSel.value)
     }
   },
   mounted(){
+    this.$refs.pageSel.value = this.state.pageSel
   },
   watch:{
   }

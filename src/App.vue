@@ -75,6 +75,7 @@ export default {
         uploadInProgress: false,
         showModal: false,
         fetchUserLinks: null,
+        pageSel: 6,
         fetchUserInfo: null,
         setCookie: null,
         mode: null,
@@ -106,6 +107,7 @@ export default {
         showAssetPreview: [],
         showAvatarPreview: [],
         closePrompts: null,
+        setUserPref: null,
         defaultAvatar: 'avatarDefault.png',
         loggedInUser: {
           avatar: 'avatarDefault.png',
@@ -532,6 +534,7 @@ export default {
           if(!!(+data[0])){
             console.log('logged in.')
             this.state.loggedIn= true
+            this.state.pageSel = +data[4]
             this.state.loggedinUserID = +data[1]
             this.state.loggedInUser.avatar = data[2]
             this.state.username = this.state.regusername || this.state.loggedinUserName
@@ -996,6 +999,29 @@ export default {
     },
     isNumber(val){
       return val>-1e50&&+val<1e50
+    },
+    setUserPref(property, value){
+      let sendData = {
+        userID: this.state.loggedinUserID,
+        passhash: this.state.passhash,
+        property,
+        value
+      }
+      console.log(sendData)
+      fetch(`${this.URLbase}/` + 'setUserPref.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data => {
+        console.log(data)
+        if(data[0]){
+          console.log(`successfull set user pref: ${property} to ${value}`)
+        }else{
+          console.log('there was an error setting the user preference')
+        }
+      })
     },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
@@ -1622,6 +1648,7 @@ export default {
     this.state.advancePage = this.advancePage
     this.state.regressPage = this.regressPage
     this.state.deSelectAll = this.deSelectAll
+    this.state.setUserPref = this.setUserPref
     this.state.deleteSingle = this.deleteSingle
     this.state.getAdminData = this.getAdminData
     this.state.closePrompts = this.closePrompts

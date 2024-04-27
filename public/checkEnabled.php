@@ -12,6 +12,7 @@
       $row['id'],
       $row['avatar'],
       $row['admin']
+      $row['pageSel'],
       //$row['demoPostsPerPage']
     ]);
     $sql = "UPDATE imjurUsers SET dateSeen = NOW() WHERE id = {$row['id']}";
