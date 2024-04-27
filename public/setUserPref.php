@@ -9,7 +9,7 @@ error_reporting(0);
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
   $property = mysqli_real_escape_string($link, $data->{'property'});
   $value = mysqli_real_escape_string($link, $data->{'value'});
-  $sql = 'SELECT * FROM imjurUsers WHERE id = $id AND passhash = "'.$passhash.'"';
+  $sql = 'SELECT * FROM imjurUsers WHERE id = $userID AND passhash = "'.$passhash.'"';
   $res = mysqli_query($link, $sql);
   $success = false;
   
