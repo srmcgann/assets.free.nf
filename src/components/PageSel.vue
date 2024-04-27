@@ -3,7 +3,7 @@
   <select
     ref="pageSel"
     @change="updatePgSel()"
-    :value="state.pageSel"
+    :value="state.maxResultsPerPage"
     title="select how many items per page you like. warning: too many items may degrade performance!"
     class="pageSelection"
   >
@@ -40,7 +40,7 @@ export default {
     }
   },
   mounted(){
-    this.$refs.pageSel.value = this.state.pageSel
+    this.$refs.pageSel.value = this.state.maxResultsPerPage
   },
   watch:{
   }
