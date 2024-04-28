@@ -150,6 +150,7 @@ export default {
     }
   },
   beforeUnmount(){
+    if(this.linkType == 'video' || this.linkType == 'audio') this.asset.paused = true
     this.asset.src = ''
   }
 }

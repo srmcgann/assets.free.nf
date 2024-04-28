@@ -34,10 +34,14 @@
             type="checkbox"
             @change="updateSelection($event, collection)"
           >
-          <span class="checkmark" style="margin-left: -30px; font-size: 16px;"></span>
-          {{state.shortText(collection.name, 28)}}
+          <span class="checkmark" style="margin-left: -30px;"></span>
+          <span
+            style="margin-left: 32px; font-size: 16px;"
+            v-html="state.shortText(collection.name, 28)"
+          >
+          </span>
           <span class="collectionName">
-            <span style="margin-left: 32px; font-size: 16px;" v-html="supplemental(collection)"></span>
+             v-html="supplemental(collection)">
           </span>
         </label>
         <button
@@ -207,6 +211,7 @@ export default {
   }
   .checkboxLabel{
     padding-left: unset;
+    font-size: 16px;
   }
   input[type=checkbox]{
     margin: 4px;
