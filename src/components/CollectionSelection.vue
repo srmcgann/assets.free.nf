@@ -40,7 +40,7 @@
             style="margin-left: 32px; font-size: 16px;"
              v-html="state.shortText(collection.name, 28)"
           </span>
-          {{supplemental(collection)}}<br>
+          {{supplemental(collection)}}
         </label>
         <button
           v-if="mode!='multi' && checked(collection)"
@@ -49,6 +49,7 @@
           @click.stop.prevent="this.state.viewCollection(collection, links.slug)"
           title="view this item, in this collection"
         >👁</button>
+        <br>
       </div>
     </div>
   </div>
