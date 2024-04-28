@@ -49,7 +49,7 @@
       $ar           = [];
       $ar['id']     = $collectionID;
       $ar['name']   = $row['name'];
-      $ar['slug']   = $row['slug'];
+      $ar['slug']   = decToAlpha($collectionID);
       $ar['userID'] = $userID;
       $views        = intval($meta->{'views'})+1;
       $ar['meta']   = [

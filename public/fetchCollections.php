@@ -38,7 +38,7 @@ error_reporting(0);
       $ar           = [];
       $ar['id']     = $row['id'];
       $ar['name']   = $row['name'];
-      $ar['slug']   = $row['slug'];
+      $ar['slug']   = decToAlpha($row['id']);
       $ar['userID'] = $userID;
       $ar['meta']   = [
                       'date'          => json_decode($row['meta'])->{'date'},
