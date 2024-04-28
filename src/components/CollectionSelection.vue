@@ -37,7 +37,7 @@
           <span class="checkmark" style="margin-left: -30px;"></span>
           <span
             class="collectionName"
-            style="margin-left: 32px; font-size: 16px;"
+            :style="`font-size:16px; margin-left:${checked(collection) ? '26px':'-10px'};`"
              v-html="state.shortText(collection.name, 28)"
           </span>
           {{supplemental(collection)}}
