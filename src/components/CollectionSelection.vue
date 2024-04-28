@@ -40,7 +40,7 @@
             style="margin-left: 32px; font-size: 16px;"
              v-html="state.shortText(collection.name, 28)"
           </span>
-          {{supplemental(collection)}}
+          {{supplemental(collection)}}<br>
         </label>
         <button
           v-if="mode!='multi' && checked(collection)"
