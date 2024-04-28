@@ -36,17 +36,20 @@
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
           <span class="collectionName">
-            {{state.shortText(collection.name, 28)}}
             <button
               v-if="mode!='multi' && checked(collection)"
               class="toolbarButtons collectionsButton"
-              style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px; margin-left: 5px; padding: 2px; padding-top: 7px;"
+              style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px; margin-left: 35px; padding: 2px; padding-top: 7px;"
               @click.stop.prevent="this.state.viewCollection(collection, links.slug)"
               title="view this item, in this collection"
             >👁</button>
             {{supplemental(collection)}}
           </span>
-        </label><br>
+        </label>
+        <div
+          style="position: absolute; margin-left: 20px;"
+          v-html="state.shortText(collection.name, 28)"
+        ></div>
       </div>
     </div>
   </div>
