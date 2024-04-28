@@ -1,68 +1,7 @@
-<!--
-todo
-
-  ✔ upload targets @ not-logged-in
-  ✔ dropable files
-  ✔ fix video & audio thumbnails
-  ✔ file hash unifies same-upload sources
-  ✔ fix loading animations
-  ✔ preload loading (and other) assets
-  ✔ display errors
-  ✔ tile-able cards (flex)
-  ✔ log original file name
-  ✔ lightbox sim / previews
-  ✔ checkboxes & "with selected" toobar
-  ✔ uploading progress bars
-  ✔ upload progress bars
-  ✔ link tool buttons on preview modal
-  ✔ URL uploads
-  ✔ log & display asset origin
-  ✔ anonymous uploads are autodeleted after 24hrs
-  ✔ admin panel (auto-available to logged in admins)
-  ✔ random Link loading function (for general purposes, including viewing of collections)
-  ✔ clicking anywhere hides collection selection lists
-  ✔ scrollable edit-collection view
-  ✔ no collections -> membership button becomes 'create collection'
-  ✔ add 'last seen' update to login
-  ✔ link cache for all links loaded in current session
-  ✔ adding/deleting items refactors pagination, where appropriate
-  ✔ link tools in collections view are collection tools
-  ✔ menu item: w/selected -> add to collection
-  ✔ slideshow queues appropriate next/prev items, depending on mode (curpage vs collection etc)
-  ✔ random-slugify collections
-  ✔ make asset "name" fields editable
-  ✔ deleting asset also removes it from all connected collections
-  ✔ sortable 'stats overview' page for users
-  ✔ add items/page selection to user prefs
-  * uploading progress animations & color change @ 100%
-  * URLs for all "screens", including collections, with back-button functionality
-    └-> ✔ default
-    └-> ✔ collections
-    └-> *  asset management/tools
-           └->  ✔ collections
-           └->  ✔ stats/overview (when made)
-           └->  * comments (when made)
-  * users, optional logins/profiles
-    └-> ✔ login button
-    └-> ✔ profile page
-    └-> ✔ collections / share-ability
-    └-> * comments
-    └-> * votes
-        
-  * search
-  * add sortability to collections list columns
-  * "trending/popular" page
-  * social media metadata
-  * load/resource balancing
-  * admin data -> add 'owner' & 'number of owners' for disk assets
-  * youtube field  // likely not to work without shell access
-  
--->
-
 <template>
   <div
-    class="link"
-    ref="anchor"
+    class="loadingAnimation"
+    ref="loadingAnimation"
   >
     <label v-if="state.loggedIn" class="checkboxLabel" :key="link.linkType+link.ct+'key'">
       <input type="checkbox" v-model="link.selected" @input="updateLinkSelected()">
@@ -121,18 +60,26 @@ todo
 import AssetData from './AssetData'
 
 export default {
-  name: 'Link',
+  name: 'LoadingAnimation',
   components: { AssetData },
-  props: [ 'state', 'link' ],
+  props: [ 'state', 'percent', 'filename' ],
   data(){
     return {
       c: document.createElement('canvas'),
       x: null,
       linkType: '',
       img: null,
+      X: 0,
+      Y: 0,
+      Z: 0,
+      oX: 0,
+      oY: 0,
+      oZ: 0,
       w: 0,
       h: 0,
       t: 0,
+      icw: 1920,
+      ich: 200
     }
   },
   computed: {
@@ -155,51 +102,132 @@ export default {
     },
     Draw(){
       this.x.globalAlpha = 1
-      this.x.fillStyle='#0008'
+      this.x.fillStyle='#000f'
       this.x.fillRect(0,0,this.c.width,this.c.height)
-      let fillStyle = 'contain'
-      let scl
-      switch(fillStyle){
-        case 'contain':
-          scl = this.c.width/this.c.height <= 1.777777778 ? this.c.width/this.w : this.c.height/this.h
-          break
-        case 'cover':
-          scl = this.c.width/this.c.height > 1.777777778 ? this.c.width/this.w : this.c.height/this.h
-          break
+
+      var R=(Rl,Pt,Yw,m)=>{
+        if(m){
+          X+=oX
+          Y+=oY
+          Z+=oZ
+        }
       }
-      let margin = 5
-      let w = this.w * scl - margin
-      let h = this.h * scl - margin
-      this.x.drawImage(this.img,this.c.width/2-w/2,this.c.height/2-h/2,w,h)
-      this.t += 1/60
-      switch(this.linkType){
-        case 'image':
-          setTimeout(()=>{
-            if(!this.img.width || !this.img.height) this.getThumb()
-            requestAnimationFrame(this.Draw)
-          }, 1000)
-          break
-        case 'video':
-          if(!this.img.videoWidth || !this.img.videoHeight){
-            setTimeout(()=>{
-              this.getThumb()
-              requestAnimationFrame(this.Draw)
-            }, 1000)
-          }else{
-            requestAnimationFrame(this.Draw)
+      var Q=()=>[c.width/2+X/Z*900,c.height/2+Y/Z*900]
+
+      if(!this.t){
+        var stroke = (scol, fcol, lwo=1, od=true, oga=1) => {
+          if(scol){
+            //x.closePath()
+            if(od) x.globalAlpha = .2*oga
+            x.strokeStyle = scol
+            x.lineWidth = Math.min(1000,100*lwo/Z)
+            if(od) x.stroke()
+            x.lineWidth /= 4
+            x.globalAlpha = 1*oga
+            x.stroke()
           }
-          break
+          if(fcol){
+            x.globalAlpha = 1*oga
+            x.fillStyle = fcol
+            x.fill()
+          }
+        }
+
+        var starsLoaded = false, starImgs = [{loaded: false}]
+        var starImgs = Array(9).fill().map((v,i) => {
+          let a = {img: new Image(), loaded: false}
+          a.img.onload = () => {
+            a.loaded = true
+            setTimeout(()=>{
+              if(starImgs.filter(v=>v.loaded).length == 9) starsLoaded = true
+            }, 0)
+          }
+          a.img.src = `https://srmcgann.github.io/stars/star${i+1}.png`
+          return a
+        })
       }
+
+      this.oX=0
+      this.oY=0
+      this.oZ=28
+
+      this.x.globalAlpha = 1
+      this.x.fillStyle='#000f'
+      this.x.fillRect(0,0,c.width,c.height)
+      this.x.lineJoin = x.lineCap = 'round'
+
+      this.percent
+      x.textAlign = 'left'
+      for(j=0;j<99*this.percent|0;j++){
+        sd = 1
+        w = 1
+        sp = .5
+        tx = (j-50) * sp + (-w/2+.5) * sp - 3.5
+        ty = -1
+        tz = 0
+        ls1 = sp*2
+        r = 16
+        q2 = Math.PI * 2 / r * j
+        for(m=2;m--;) {
+          x.beginPath()
+          q = (this.percent<1?t*8:t)+(m?Math.PI:0)
+          for(i=sd; i--;){
+            X = tx + w/sd*i*sp
+            Y = ty + S(p=Math.PI*2/sd*i/r + q + q2)*ls1
+            Z = tz + C(p)*ls1
+            R(Rl,Pt,Yw,1)
+            if(Z>0) x.lineTo(...Q())
+            X = tx + w/sd*(i+1)*sp
+            Y = ty + S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
+            Z = tz + C(p)*ls1
+            R(Rl,Pt,Yw,1)
+            if(Z>0){
+              if(m){
+                l1 = Q()
+                x.lineTo(...l1)
+              }else{
+                l2 = Q()
+                x.lineTo(...l2)
+              }
+            }
+          }
+          col1 = `hsla(${this.percent<1?m*180:120},99%,50%,.7)`
+          stroke(col1,'', 4, true)
+        }
+        if(typeof ipx == 'undefined') ipx = (l1[0]+l2[0])/2
+      }
+      if(typeof l1 != 'undefined'){
+        x.font = (fs = 85) + "px Courier Prime"
+        x.fillStyle = '#fff'
+        ipx += (((l1[0]+l2[0])/2+fs/2) - ipx)/4
+        //x.lineWidth = 5
+        //x.strokeStyle='#000'
+        //x.strokeText((Math.round(this.percent*100)/1) + '%', ipx+fs*.25, c.height/2 + fs/3)
+        s = 200
+        x.drawImage(starImgs[this.percent<1?((t*10|0)%2?1:6):4].img,ipx-fs*1.5,c.height/2-s/1.6,s,s)
+        x.fillText((Math.round(this.percent*100)/1) + '%', ipx+fs*.25, c.height/2 - fs/16)
+      }
+      
+      filename = "abcdefghijklm...xyz0123456789.exe"
+      x.fillStyle = '#8888'
+      x.textAlign = 'center'
+      x.fillText(filename,c.width/2,c.height/2+fs)
+
+      
+      requestAnimationFrame(this.Draw)
     }
   },
   mounted(){
     this.$refs.linkThumb.appendChild(this.c)
     this.x = this.c.getContext('2d')
     this.linkType = this.link.filetype.split('/')[0]
-    this.c.width = 500
-    this.c.height = 500/1.77777778
-    this.c.style.width = '200px'
+    this.c.width = 1920
+    this.c.height = 200
+    this.c.style.width = 'calc(100% - 40px)'
     this.c.style.height = '113px'
+    this.$refs.loadingAnimation.onresize = () =>{
+      this.c.style.height = this.c.clientWidth*(this.ich/this.icw) + 'px'
+    }
     this.c.style.borderRadius = '20px'
     if(this.linkType == 'video'){
       this.img = document.createElement('video')
@@ -277,4 +305,3 @@ export default {
     background-size: 49px 49px;
   }
 </style>
-

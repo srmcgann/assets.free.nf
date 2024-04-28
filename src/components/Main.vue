@@ -7,6 +7,9 @@
           <div class="progressBarInner" :style="'width:calc(' + (file.perc) + '%)'"></div>
         </div>
         <span class="progressText" v-html="(Math.round(file.perc*100)/100) + '%' + ' - ' + shortUploadName(file.uploadName)"></span>
+        <!--
+          <LoadingAnimation :state="state" :percent="file.perc/100" :filename="file.uploadName" />
+        -->
       </div>
     </div>
     <div
