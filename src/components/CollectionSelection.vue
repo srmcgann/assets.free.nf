@@ -36,13 +36,11 @@
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
           <span
+            class="collectionName"
             style="margin-left: 32px; font-size: 16px;"
-            v-html="state.shortText(collection.name, 28)"
-          >
+             v-html="state.shortText(collection.name, 28)"
           </span>
-          <span class="collectionName">
-             v-html="supplemental(collection)">
-          </span>
+          {{supplemental(collection)}}
         </label>
         <button
           v-if="mode!='multi' && checked(collection)"
