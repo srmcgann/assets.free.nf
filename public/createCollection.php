@@ -62,6 +62,7 @@ error_reporting(0);
       $ret           = [];
       $ret['id']     = $id; //mysqli_insert_id($link);
       $ret['name']   = $colData->{'name'};
+      $ret['slug']   = $slug;
       $ret['userID'] = $userID;
       $ret['meta']   = $meta_;
       
