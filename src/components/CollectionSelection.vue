@@ -34,16 +34,17 @@
             type="checkbox"
             @change="updateSelection($event, collection)"
           >
+          <font style="font-size: 16px;">
           <span class="checkmark" style="margin-left: -30px;"></span>
-          <span class="collectionName">
-            {{supplemental(collection)}}
-          </span>
           {{state.shortText(collection.name, 28)}}
+          <span class="collectionName">
+            <span style="margin-left: 32px;" v-html="supplemental(collection)"></span>
+          </span>
         </label>
         <button
           v-if="mode!='multi' && checked(collection)"
           class="toolbarButtons collectionsButton"
-          style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px; padding: 0;font-size:32px;padding-top:7px;position: absolute; margin-left: 20px;"
+          style="color: #fff; z-index:1000; min-width: unset; height: 27px; background: #84fd;margin: unset;margin-top: -1px; margin-right:5px; padding: 0;font-size:32px;padding-top:7px;position: absolute; margin-left: 28px;"
           @click.stop.prevent="this.state.viewCollection(collection, links.slug)"
           title="view this item, in this collection"
         >👁</button>
