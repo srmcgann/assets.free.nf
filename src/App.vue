@@ -1556,12 +1556,12 @@ export default {
       let a = {img: new Image(), loaded: false}
       a.img.onload = () => {
         a.loaded = true
-        setTimeout(()=>{
+        this.$nextTick(()=>{
           if(this.state.starImgs.filter(v=>v.loaded).length == 9){
             console.log('stars loaded')
             this.state.starsLoaded = true
           }
-        }, 0)
+        })
       }
       a.img.src = `${this.state.URLbase}/star${i+1}.png`
       return a
