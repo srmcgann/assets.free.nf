@@ -98,7 +98,7 @@ export default {
       this.x.clearRect(0,0,this.c.width,this.c.height)
       this.x.lineJoin = this.x.lineCap = 'roud'
       
-      this.x.fillStyle='#40f2'
+      this.x.fillStyle='#0f44'
       this.x.fillRect(0,0,this.c.width*this.percent,this.c.height)
 
       let p, l1, l2, fs, s
@@ -181,10 +181,9 @@ export default {
 .loadingAnimation{
   display: block;
   border-bottom: 4px solid #40f8;
-  
 }
 canvas{
   background:#0000;
-  height: 120px;
+  height: 100px;
 }
 </style>

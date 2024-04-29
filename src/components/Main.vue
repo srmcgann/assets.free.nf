@@ -2,17 +2,6 @@
   <div class="main" ref="main" tabindex="0">
     <div v-if="showUploadProgress" class="uploadProgressContainer">
       <br>uploading {{filesUploading.length}} file{{filesUploading.length > 1 ? 's':''}}...
-      <!--
-      <div class="progressBar" v-for="file in filesUploading">
-        <div class="progressBarInnerOutline">
-          <div class="progressBarInner" :style="'width:calc(' + (file.perc) + '%)'"></div>
-        </div>
-        <span
-          class="progressText"
-          v-html="(Math.round(file.perc*100)/100) + '%' + ' - ' + shortUploadName(file.uploadName)"
-        ></span>
-      </div>
-      -->
       <LoadingAnimation
         class="progressBar"
         v-for="file in filesUploading"
@@ -224,6 +213,7 @@ export default {
             })
             
             if(finished) {
+              this.state.showLoading = true
               console.log('finished')
               this.showUploadProgress = false
               this.$refs.main.style.zIndex = 0
