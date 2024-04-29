@@ -97,6 +97,9 @@ export default {
       this.x.globalAlpha = 1
       this.x.clearRect(0,0,this.c.width,this.c.height)
       this.x.lineJoin = this.x.lineCap = 'roud'
+      
+      this.x.fillStyle='#40f2'
+      this.x.fillRect(0,0,this.c.width*this.percent,this.c.height)
 
       let p, l1, l2, fs, s
       this.x.textAlign = 'left'
@@ -177,13 +180,11 @@ export default {
 <style scoped>
 .loadingAnimation{
   display: block;
+  border-bottom: 4px solid #40f8;
+  
 }
 canvas{
   background:#0000;
-  display: inline-block;
-  vertical-align: top;
-  min-width: 600px;
-  max-width: 600px;
-  height: 90px;
+  height: 120px;
 }
 </style>
