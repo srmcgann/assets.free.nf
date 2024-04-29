@@ -169,6 +169,8 @@ export default {
     this.x = this.c.getContext('2d')
     this.c.width = 1920
     this.c.height = 200
+    this.c.style.height = '83px'
+    this.c.style.width = '800px'
     this.Draw()
   },
   beforeUnmount(){
@@ -185,8 +187,5 @@ export default {
 }
 canvas{
   background:#0000;
-  height: 83px;
-  min-height: unset;
-  max-height: unset;
 }
 </style>
