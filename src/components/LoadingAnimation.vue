@@ -24,6 +24,8 @@ export default {
       Y: 0,
       Z: 0,
       oZ: 0,
+      S: Math.sin,
+      C: Math.cos,
       w: 0,
       h: 0,
       t: 0,
@@ -116,13 +118,13 @@ export default {
           let q = (this.percent<1?this.t*8:this.t)+(m?Math.PI:0)
           for(let i=sd; i--;){
             this.X = tx + w/sd*i*sp
-            this.Y = ty + S(p=Math.PI*2/sd*i/r + q + q2)*ls1
-            this.Z = tz + C(p)*ls1
+            this.Y = ty + this.S(p=Math.PI*2/sd*i/r + q + q2)*ls1
+            this.Z = tz + this.C(p)*ls1
             this.Z += oZ
             if(this.Z>0) this.x.lineTo(...this.Q())
             this.X = tx + w/sd*(i+1)*sp
-            this.Y = ty + S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
-            this.Z = tz + C(p)*ls1
+            this.Y = ty + this.S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
+            this.Z = tz + this.C(p)*ls1
             this.Z += oZ
             if(this.Z>0){
               if(m){
