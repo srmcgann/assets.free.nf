@@ -75,25 +75,7 @@ export default {
       this.x.globalAlpha = 1
       this.x.fillStyle='#000f'
       this.x.fillRect(0,0,this.c.width,this.c.height)
-
-      if(!this.t){
-        var starsLoaded = false
-        this.starImgs = [{loaded: false}]
-        this.starImgs = Array(9).fill().map((v,i) => {
-          let a = {img: new Image(), loaded: false}
-          a.img.onload = () => {
-            a.loaded = true
-            setTimeout(()=>{
-              if(this.starImgs.filter(v=>v.loaded).length == 9) starsLoaded = true
-            }, 0)
-          }
-          a.img.src = `${this.state.URLbase}/star${i+1}.png`
-          return a
-        })
-        this.oZ=28
-      }
-
-
+      this.oZ=28
       this.x.globalAlpha = 1
       this.x.clearRect(0,0,this.c.width,this.c.height)
       this.x.lineJoin = this.x.lineCap = 'roud'
@@ -147,11 +129,11 @@ export default {
         this.ipx += (((l1[0]+l2[0])/2+fs/2) - this.ipx)/4
         s = 100
         if(this.percent<1){
-          this.x.drawImage(this.starImgs[6].img,l1[0]-s/2,-s/2+l1[1],s,s)      
-          this.x.drawImage(this.starImgs[1].img,l2[0]-s/2,-s/2+l2[1],s,s)      
+          this.x.drawImage(this.state.starImgs[6].img,l1[0]-s/2,-s/2+l1[1],s,s)      
+          this.x.drawImage(this.state.starImgs[1].img,l2[0]-s/2,-s/2+l2[1],s,s)      
         }else{
-          this.x.drawImage(this.starImgs[4].img,l1[0]-s/2,-s/2+l1[1],s,s)
-          this.x.drawImage(this.starImgs[4].img,l2[0]-s/2,-s/2+l2[1],s,s)
+          this.x.drawImage(this.state.starImgs[4].img,l1[0]-s/2,-s/2+l1[1],s,s)
+          this.x.drawImage(this.state.starImgs[4].img,l2[0]-s/2,-s/2+l2[1],s,s)
         }
         this.x.fillText((Math.round(this.percent*100)/1) + '%', this.ipx+fs*.25, this.c.height/2 - fs/16)
       }

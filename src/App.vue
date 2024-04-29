@@ -107,6 +107,8 @@ export default {
         showAvatarPreview: [],
         closePrompts: null,
         setUserPref: null,
+        starImgs: [],
+        starsLoaded: false,
         defaultAvatar: 'avatarDefault.png',
         loggedInUser: {
           avatar: 'avatarDefault.png',
@@ -1549,6 +1551,20 @@ export default {
     }
   },
   mounted(){
+    this.state.starsLoaded = false
+    this.state.starImgs = [{loaded: false}]
+    this.state.starImgs = Array(9).fill().map((v,i) => {
+      let a = {img: new Image(), loaded: false}
+      a.img.onload = () => {
+        a.loaded = true
+        setTimeout(()=>{
+          if(this.state.starImgs.filter(v=>v.loaded).length == 9) this.state.starsLoaded = true
+        }, 0)
+      }
+      a.img.src = `${this.state.URLbase}/star${i+1}.png`
+      return a
+    })
+    
     document.body.style.backgroundImage = `url(./assets/new_bg.jpg)`
     window.choose = choice => {
       this.state.choice = choice
