@@ -166,7 +166,7 @@ export default {
     this.x = this.c.getContext('2d')
     this.c.width = 1920
     this.c.height = 200
-    this.c.style.width = 'calc(100% - 10px)'
+    this.c.style.width = '50%'
     this.c.style.height = '113px'
     this.$refs.loadingAnimation.onresize = () =>{
       this.c.style.height = this.c.clientWidth*(200/1920) + 'px'
@@ -187,5 +187,6 @@ canvas{
   background:#0000;
   display: inline-block;
   vertical-align: top;
+  min-width: 500px;
 }
 </style>
