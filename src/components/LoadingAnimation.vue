@@ -136,7 +136,7 @@ export default {
               }
             }
           }
-          col1 = `hsla(${this.percent<1?m*180:120},99%,50%,.7)`
+          let col1 = `hsla(${this.percent<1?m*180:120},99%,50%,.7)`
           this.stroke(col1,'', 4, true)
         }
         if(!this.ipx) this.ipx = (l1[0]+l2[0])/2
