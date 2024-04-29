@@ -128,12 +128,14 @@ export default {
         this.x.fillStyle = '#fff'
         this.ipx += (((l1[0]+l2[0])/2+fs/2) - this.ipx)/4
         s = 100
-        if(this.percent<1){
-          this.x.drawImage(this.state.starImgs[6].img,l1[0]-s/2,-s/2+l1[1],s,s)      
-          this.x.drawImage(this.state.starImgs[1].img,l2[0]-s/2,-s/2+l2[1],s,s)      
-        }else{
-          this.x.drawImage(this.state.starImgs[4].img,l1[0]-s/2,-s/2+l1[1],s,s)
-          this.x.drawImage(this.state.starImgs[4].img,l2[0]-s/2,-s/2+l2[1],s,s)
+        if(this.state.starsLoaded){
+          if(this.percent<1){
+            this.x.drawImage(this.state.starImgs[6].img,l1[0]-s/2,-s/2+l1[1],s,s)      
+            this.x.drawImage(this.state.starImgs[1].img,l2[0]-s/2,-s/2+l2[1],s,s)      
+          }else{
+            this.x.drawImage(this.state.starImgs[4].img,l1[0]-s/2,-s/2+l1[1],s,s)
+            this.x.drawImage(this.state.starImgs[4].img,l2[0]-s/2,-s/2+l2[1],s,s)
+          }
         }
         this.x.fillText((Math.round(this.percent*100)/1) + '%', this.ipx+fs*.25, this.c.height/2 - fs/16)
       }

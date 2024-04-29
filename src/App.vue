@@ -1552,7 +1552,6 @@ export default {
   },
   mounted(){
     this.state.starsLoaded = false
-    this.state.starImgs = [{loaded: false}]
     this.state.starImgs = Array(9).fill().map((v,i) => {
       let a = {img: new Image(), loaded: false}
       a.img.onload = () => {
