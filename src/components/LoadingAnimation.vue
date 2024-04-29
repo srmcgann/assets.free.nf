@@ -113,7 +113,7 @@ export default {
         let q2 = Math.PI * 2 / r * j
         for(let m=2;m--;) {
           this.x.beginPath()
-          let q = (this.percent<1?t*8:t)+(m?Math.PI:0)
+          let q = (this.percent<1?this.t*8:this.t)+(m?Math.PI:0)
           for(let i=sd; i--;){
             this.X = tx + w/sd*i*sp
             this.Y = ty + S(p=Math.PI*2/sd*i/r + q + q2)*ls1
@@ -187,6 +187,7 @@ loadingAnimation{
   display: block;
   width: 100%;
   z-index: 1000;
+  margin: 10px;
 }
 canvas{
   background:#000;
