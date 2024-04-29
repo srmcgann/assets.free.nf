@@ -1552,12 +1552,15 @@ export default {
   },
   mounted(){
     this.state.starsLoaded = false
-    this.state.starImgs = Array(9).fill().map((v,i) => {
+    this.state.starImgs = Array(9).fill().map((v, i) => {
       let a = {img: new Image(), loaded: false}
       a.img.onload = () => {
         a.loaded = true
         setTimeout(()=>{
-          if(this.state.starImgs.filter(v=>v.loaded).length == 9) this.state.starsLoaded = true
+          if(this.state.starImgs.filter(v=>v.loaded).length == 9){
+            console.log('stars loaded')
+            this.state.starsLoaded = true
+          }
         }, 0)
       }
       a.img.src = `${this.state.URLbase}/star${i+1}.png`

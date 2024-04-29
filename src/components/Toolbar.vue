@@ -250,7 +250,7 @@ export default {
           }
           this.$refs.uploadURL = ''
           //this.$refs.uploadURL.focus()
-          this.state.showLoading = false
+          //this.state.showLoading = false
         })
       }
     }
