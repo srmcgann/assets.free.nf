@@ -189,11 +189,8 @@ loadingAnimation{
   margin: 20px;
 }
 canvas{
-  background:#000;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border: 1px solid #4f82;
-  transform: translate(-50%, -50%);
+  background:#0000;
+  display: inline-block;
+  vertical-align: top;
 }
 </style>
