@@ -120,12 +120,12 @@ export default {
             this.X = tx + w/sd*i*sp
             this.Y = ty + this.S(p=Math.PI*2/sd*i/r + q + q2)*ls1
             this.Z = tz + this.C(p)*ls1
-            this.Z += oZ
+            this.Z += this.oZ
             if(this.Z>0) this.x.lineTo(...this.Q())
             this.X = tx + w/sd*(i+1)*sp
             this.Y = ty + this.S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
             this.Z = tz + this.C(p)*ls1
-            this.Z += oZ
+            this.Z += this.oZ
             if(this.Z>0){
               if(m){
                 l1 = this.Q()
