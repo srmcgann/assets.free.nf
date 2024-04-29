@@ -1563,7 +1563,7 @@ export default {
           }
         })
       }
-      a.img.src = `${/star${i+1}.png`
+      a.img.src = `/star${i+1}.png`
       return a
     })
     
