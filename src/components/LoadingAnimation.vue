@@ -78,8 +78,10 @@ export default {
       w: 0,
       h: 0,
       t: 0,
+      ipx: 0,
       icw: 1920,
-      ich: 200
+      ich: 200,
+      starImgs: []
     }
   },
   computed: {
@@ -100,49 +102,43 @@ export default {
         console.log(error)
       }
     },
+    stroke(scol, fcol, lwo=1, od=true, oga=1){
+      if(scol){
+        //x.closePath()
+        if(od) this.x.globalAlpha = .2*oga
+        this.x.strokeStyle = scol
+        this.x.lineWidth = Math.min(1000,100*lwo/Z)
+        if(od) this.x.stroke()
+        this.x.lineWidth /= 4
+        this.x.globalAlpha = 1*oga
+        this.x.stroke()
+      }
+      if(fcol){
+        this.x.globalAlpha = 1*oga
+        this.x.fillStyle = fcol
+        this.x.fill()
+      }
+    },
+    Q(){
+      return [this.c.width/2+this.X/this.Z*900, this.c.height/2+this.Y/this.Z*900]
+    },
     Draw(){
       this.x.globalAlpha = 1
       this.x.fillStyle='#000f'
       this.x.fillRect(0,0,this.c.width,this.c.height)
 
-      var R=(Rl,Pt,Yw,m)=>{
-        if(m){
-          X+=oX
-          Y+=oY
-          Z+=oZ
-        }
-      }
-      var Q=()=>[c.width/2+X/Z*900,c.height/2+Y/Z*900]
-
       if(!this.t){
-        var stroke = (scol, fcol, lwo=1, od=true, oga=1) => {
-          if(scol){
-            //x.closePath()
-            if(od) x.globalAlpha = .2*oga
-            x.strokeStyle = scol
-            x.lineWidth = Math.min(1000,100*lwo/Z)
-            if(od) x.stroke()
-            x.lineWidth /= 4
-            x.globalAlpha = 1*oga
-            x.stroke()
-          }
-          if(fcol){
-            x.globalAlpha = 1*oga
-            x.fillStyle = fcol
-            x.fill()
-          }
-        }
-
-        var starsLoaded = false, starImgs = [{loaded: false}]
-        var starImgs = Array(9).fill().map((v,i) => {
+        var starsLoaded = false
+        this.starImgs = [{loaded: false}]
+        this.starImgs = Array(9).fill().map((v,i) => {
           let a = {img: new Image(), loaded: false}
           a.img.onload = () => {
             a.loaded = true
             setTimeout(()=>{
-              if(starImgs.filter(v=>v.loaded).length == 9) starsLoaded = true
+              if(this.starImgs.filter(v=>v.loaded).length == 9) starsLoaded = true
             }, 0)
           }
-          a.img.src = `https://srmcgann.github.io/stars/star${i+1}.png`
+          a.img.src = `/star${i+1}.png`
           return a
         })
       }
@@ -154,65 +150,67 @@ export default {
       this.x.globalAlpha = 1
       this.x.fillStyle='#000f'
       this.x.fillRect(0,0,c.width,c.height)
-      this.x.lineJoin = x.lineCap = 'round'
+      this.x.lineJoin = this.x.lineCap = 'round'
 
+      let p, l1, l2, fs, s
       this.percent
-      x.textAlign = 'left'
-      for(j=0;j<99*this.percent|0;j++){
-        sd = 1
-        w = 1
-        sp = .5
-        tx = (j-50) * sp + (-w/2+.5) * sp - 3.5
-        ty = -1
-        tz = 0
-        ls1 = sp*2
-        r = 16
-        q2 = Math.PI * 2 / r * j
-        for(m=2;m--;) {
-          x.beginPath()
-          q = (this.percent<1?t*8:t)+(m?Math.PI:0)
-          for(i=sd; i--;){
-            X = tx + w/sd*i*sp
-            Y = ty + S(p=Math.PI*2/sd*i/r + q + q2)*ls1
-            Z = tz + C(p)*ls1
-            R(Rl,Pt,Yw,1)
-            if(Z>0) x.lineTo(...Q())
-            X = tx + w/sd*(i+1)*sp
-            Y = ty + S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
-            Z = tz + C(p)*ls1
-            R(Rl,Pt,Yw,1)
+      this.x.textAlign = 'left'
+      for(let j=0;j<99*this.percent|0;j++){
+        let sd = 1
+        let w = 1
+        let sp = .5
+        let tx = (j-50) * sp + (-w/2+.5) * sp - 3.5
+        let ty = -1
+        let tz = 0
+        let ls1 = sp*2
+        let r = 16
+        let q2 = Math.PI * 2 / r * j
+        for(let m=2;m--;) {
+          this.x.beginPath()
+          let q = (this.percent<1?t*8:t)+(m?Math.PI:0)
+          for(let i=sd; i--;){
+            this.X = tx + w/sd*i*sp
+            this.Y = ty + S(p=Math.PI*2/sd*i/r + q + q2)*ls1
+            this.Z = tz + C(p)*ls1
+            this.Z += oZ
+            if(Z>0) this.x.lineTo(...this.Q())
+            this.X = tx + w/sd*(i+1)*sp
+            this.Y = ty + S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
+            this.Z = tz + C(p)*ls1
+            this.Z += oZ
             if(Z>0){
               if(m){
-                l1 = Q()
-                x.lineTo(...l1)
+                l1 = this.Q()
+                this.x.lineTo(...l1)
               }else{
-                l2 = Q()
-                x.lineTo(...l2)
+                l2 = this.Q()
+                this.x.lineTo(...l2)
               }
             }
           }
           col1 = `hsla(${this.percent<1?m*180:120},99%,50%,.7)`
-          stroke(col1,'', 4, true)
+          this.stroke(col1,'', 4, true)
         }
-        if(typeof ipx == 'undefined') ipx = (l1[0]+l2[0])/2
+        if(!this.ipx) this.ipx = (l1[0]+l2[0])/2
       }
       if(typeof l1 != 'undefined'){
-        x.font = (fs = 85) + "px Courier Prime"
-        x.fillStyle = '#fff'
-        ipx += (((l1[0]+l2[0])/2+fs/2) - ipx)/4
-        //x.lineWidth = 5
-        //x.strokeStyle='#000'
-        //x.strokeText((Math.round(this.percent*100)/1) + '%', ipx+fs*.25, c.height/2 + fs/3)
-        s = 200
-        x.drawImage(starImgs[this.percent<1?((t*10|0)%2?1:6):4].img,ipx-fs*1.5,c.height/2-s/1.6,s,s)
-        x.fillText((Math.round(this.percent*100)/1) + '%', ipx+fs*.25, c.height/2 - fs/16)
+        this.x.font = (fs = 85) + "px Courier Prime"
+        this.x.fillStyle = '#fff'
+        this.ipx += (((l1[0]+l2[0])/2+fs/2) - this.ipx)/4
+        s = 100
+        if(this.percent<1){
+          this.x.drawImage(this.starImgs[6].img,l1[0]-s/2,-s/2+l1[1],s,s)      
+          this.x.drawImage(this.starImgs[1].img,l2[0]-s/2,-s/2+l2[1],s,s)      
+        }else{
+          this.x.drawImage(this.starImgs[4].img,l1[0]-s/2,-s/2+l1[1],s,s)
+          this.x.drawImage(this.starImgs[4].img,l2[0]-s/2,-s/2+l2[1],s,s)
+        }
+        this.x.fillText((Math.round(this.percent*100)/1) + '%', this.ipx+fs*.25, this.c.height/2 - fs/16)
       }
       
-      filename = "abcdefghijklm...xyz0123456789.exe"
-      x.fillStyle = '#8888'
-      x.textAlign = 'center'
-      x.fillText(filename,c.width/2,c.height/2+fs)
-
+      this.x.fillStyle = '#8888'
+      this.x.textAlign = 'center'
+      this.x.fillText(this.filename,this.c.width/2,this.c.height/2+fs)
       
       requestAnimationFrame(this.Draw)
     }
