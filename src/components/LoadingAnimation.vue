@@ -30,8 +30,6 @@ export default {
       h: 0,
       t: 0,
       ipx: 0,
-      icw: 1920,
-      ich: 200,
       starImgs: []
     }
   },
@@ -97,8 +95,7 @@ export default {
 
 
       this.x.globalAlpha = 1
-      this.x.fillStyle='#000f'
-      this.x.fillRect(0,0,this.c.width,this.c.height)
+      this.x.clearRect(0,0,this.c.width,this.c.height)
       this.x.lineJoin = this.x.lineCap = 'round'
 
       let p, l1, l2, fs, s
@@ -169,12 +166,11 @@ export default {
     this.x = this.c.getContext('2d')
     this.c.width = 1920
     this.c.height = 200
-    this.c.style.width = 'calc(100% - 40px)'
+    this.c.style.width = 'calc(100% - 10px)'
     this.c.style.height = '113px'
     this.$refs.loadingAnimation.onresize = () =>{
-      this.c.style.height = this.c.clientWidth*(this.ich/this.icw) + 'px'
+      this.c.style.height = this.c.clientWidth*(200/1920) + 'px'
     }
-    this.c.style.borderRadius = '20px'
     this.Draw()
   },
   beforeUnmount(){
@@ -187,6 +183,7 @@ export default {
 .loadingAnimation{
   display: block;
   margin: 20px;
+  min-height: 100px;
 }
 canvas{
   background:#0000;

@@ -406,10 +406,7 @@ export default {
     background: #0246;
   }
   .progressBar{
-    width: 80%;
-    height: 16px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     margin-top: 10px;
   }
   .progressBarInner{
