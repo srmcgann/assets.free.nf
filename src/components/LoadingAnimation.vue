@@ -96,7 +96,7 @@ export default {
 
       this.x.globalAlpha = 1
       this.x.clearRect(0,0,this.c.width,this.c.height)
-      this.x.lineJoin = this.x.lineCap = 'round'
+      this.x.lineJoin = this.x.lineCap = 'roud'
 
       let p, l1, l2, fs, s
       this.x.textAlign = 'left'
@@ -182,8 +182,6 @@ export default {
 <style scoped>
 .loadingAnimation{
   display: block;
-  margin: 20px;
-  min-height: 100px;
 }
 canvas{
   background:#0000;
