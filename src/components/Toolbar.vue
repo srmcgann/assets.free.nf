@@ -312,7 +312,7 @@ export default {
   .URLinput{
     font-size: 16px;
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 10px;
     background: #001;
     color: #4f8;
     width: 255px;

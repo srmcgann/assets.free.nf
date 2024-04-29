@@ -67,13 +67,12 @@ export default {
     return {
       c: document.createElement('canvas'),
       x: null,
+      break: false,
       linkType: '',
       img: null,
       X: 0,
       Y: 0,
       Z: 0,
-      oX: 0,
-      oY: 0,
       oZ: 0,
       w: 0,
       h: 0,
@@ -138,22 +137,19 @@ export default {
               if(this.starImgs.filter(v=>v.loaded).length == 9) starsLoaded = true
             }, 0)
           }
-          a.img.src = `/star${i+1}.png`
+          a.img.src = `${this.state.URLbase}/star${i+1}.png`
           return a
         })
+        this.oZ=28
       }
 
-      this.oX=0
-      this.oY=0
-      this.oZ=28
 
       this.x.globalAlpha = 1
       this.x.fillStyle='#000f'
-      this.x.fillRect(0,0,c.width,c.height)
+      this.x.fillRect(0,0,this.c.width,this.c.height)
       this.x.lineJoin = this.x.lineCap = 'round'
 
       let p, l1, l2, fs, s
-      this.percent
       this.x.textAlign = 'left'
       for(let j=0;j<99*this.percent|0;j++){
         let sd = 1
@@ -173,12 +169,12 @@ export default {
             this.Y = ty + S(p=Math.PI*2/sd*i/r + q + q2)*ls1
             this.Z = tz + C(p)*ls1
             this.Z += oZ
-            if(Z>0) this.x.lineTo(...this.Q())
+            if(this.Z>0) this.x.lineTo(...this.Q())
             this.X = tx + w/sd*(i+1)*sp
             this.Y = ty + S(p=Math.PI*2/sd*(i+1)/r + q + q2)*ls1
             this.Z = tz + C(p)*ls1
             this.Z += oZ
-            if(Z>0){
+            if(this.Z>0){
               if(m){
                 l1 = this.Q()
                 this.x.lineTo(...l1)
@@ -212,7 +208,8 @@ export default {
       this.x.textAlign = 'center'
       this.x.fillText(this.filename,this.c.width/2,this.c.height/2+fs)
       
-      requestAnimationFrame(this.Draw)
+      this.t+=1/60
+      if(!this.break) requestAnimationFrame(this.Draw)
     }
   },
   mounted(){
@@ -227,79 +224,27 @@ export default {
       this.c.style.height = this.c.clientWidth*(this.ich/this.icw) + 'px'
     }
     this.c.style.borderRadius = '20px'
-    if(this.linkType == 'video'){
-      this.img = document.createElement('video')
-      this.img.loop = true
-      this.img.muted = true
-      this.img.oncanplay = () => {
-        this.w = this.img.videoWidth
-        this.h = this.img.videoHeight
-        this.img.play()
-        this.Draw()
-      }
-      this.img.src = `${this.state.URLbase}/resources/` + this.link.originalSlug + '.' + this.link.href.split('.')[1]
-    }
-    if(this.linkType == 'image' || this.linkType == 'audio'){
-      this.img = new Image()
-      this.img.onload = () => {
-        this.w = this.img.width
-        this.h = this.img.height
-        this.Draw()
-      }
-      this.getThumb()
-    }
+    this.Draw()
+  },
+  beforeUnmount(){
+    this.break = true
   }
 }
 </script>
 
 <style scoped>
-  .link:hover{
-    background-color: #408a;
-  }
-  .link{
-    display: inline-block;
-    color: #acd;
-    background-color: #002a;
-    font-size: 20px;
-    box-sizing: border-box;
-    text-align: left;
-    margin: 5px;
-    word-break: break-word;
-    border-radius: 10px;
-    vertical-align: top;
-    border: 3px solid #4086;
-    padding: 5px;
-    min-width: 324px
-  }
-  .href{
-    font-size: .6em;
-    color: #0ff;
-    margin: 5px;
-    padding: 3px;
-    width: calc(100% - 10px);
-  }
-  .linkThumb{
-    float: left;
-    width: 200px;
-    height: 113px;
-    margin: 5px;
-    margin-top: 10px;
-    cursor: pointer;
-    background-size: contain;
-    background-position: 20px 20px;
-    background-repeat: no-repeat;
-    background-color: #000;
-    border-radius: 20px;
-  }
-  .views{
-    position: relative;
-    min-width: 124px;
-    text-align: right;
-    right: 10px;
-  }
-  .visibilityButton{
-    width: 64px;
-    height: 45px;
-    background-size: 49px 49px;
-  }
+loadingAnimation{
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: 1000;
+}
+canvas{
+  background:#000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid #4f82;
+  transform: translate(-50%, -50%);
+}
 </style>
