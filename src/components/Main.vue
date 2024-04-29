@@ -352,92 +352,6 @@ export default {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
-  @keyframes colorCycle{
-    0% {
-      background-color:  #ff000022;
-      box-shadow: 0 0 150px 150px #ff000022;
-    }
-    5% {
-      background-color: #ff4c0022;
-      box-shadow: 0 0 150px 150px #ff4c0022;
-    }
-    10% {
-      background-color: #ff990022;
-      box-shadow: 0 0 150px 150px #ff990022;
-    }
-    15% {
-      background-color: #ffe50022;
-      box-shadow: 0 0 150px 150px #ffe50022;
-    }
-    20% {
-      background-color: #ccff0022;
-      box-shadow: 0 0 150px 150px #ccff0022;
-    }
-    25% {
-      background-color: #7fff0022;
-      box-shadow: 0 0 150px 150px #7fff0022;
-    }
-    30% {
-      background-color: #32ff0022;
-      box-shadow: 0 0 150px 150px #32ff0022;
-    }
-    35% {
-      background-color: #00ff1922;
-      box-shadow: 0 0 150px 150px #00ff1922;
-    }
-    40% {
-      background-color: #00ff6522;
-      box-shadow: 0 0 150px 150px #00ff6522;
-    }
-    45% {
-      background-color: #00ffb222;
-      box-shadow: 0 0 150px 150px #00ffb222;
-    }
-    50% {
-      background-color: #00ffff22;
-      box-shadow: 0 0 150px 150px #00ffff22;
-    }
-    55% {
-      background-color: #00b2ff22;
-      box-shadow: 0 0 150px 150px #00b2ff22;
-    }
-    60% {
-      background-color: #0065ff22;
-      box-shadow: 0 0 150px 150px #0065ff22;
-    }
-    65% {
-      background-color: #0019ff22;
-      box-shadow: 0 0 150px 150px #0019ff22;
-    }
-    70% {
-      background-color: #3300ff22;
-      box-shadow: 0 0 150px 150px #3300ff22;
-    }
-    75% {
-      background-color: #7f00ff22;
-      box-shadow: 0 0 150px 150px #7f00ff22;
-    }
-    80% {
-      background-color: #cb00ff22;
-      box-shadow: 0 0 150px 150px #cb00ff22;
-    }
-    85% {
-      background-color: #ff00e522;
-      box-shadow: 0 0 150px 150px #ff00e522;
-    }
-    90% {
-      background-color: #ff009822;
-      box-shadow: 0 0 150px 150px #ff009822;
-    }
-    95% {
-      background-color: #ff004c22;
-      box-shadow: 0 0 150px 150px #ff004c22;
-    }
-    100% {
-      background-color: #ff000022;
-      box-shadow: 0 0 150px 150px #ff000022;
-    }
-  }
   #dropTargetCaption{
     display: inline-block;
     width: 400px;
@@ -452,7 +366,6 @@ export default {
     padding-right: 28px;
     background-color: #103c;
     box-shadow: 0 0 150px 150px #103c;
-    /*animation: colorCycle 5s infinite linear;*/
   }
   .uploadModal{
     position: fixed;

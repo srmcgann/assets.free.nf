@@ -185,11 +185,8 @@ export default {
 
 <style scoped>
 loadingAnimation{
-  position: relative;
   display: block;
-  width: 100%;
-  z-index: 1000;
-  margin: 10px;
+  margin: 20px;
 }
 canvas{
   background:#000;
