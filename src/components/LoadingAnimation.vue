@@ -58,7 +58,7 @@ export default {
         //x.closePath()
         if(od) this.x.globalAlpha = .2*oga
         this.x.strokeStyle = scol
-        this.x.lineWidth = Math.min(1000,100*lwo/Z)
+        this.x.lineWidth = Math.min(1000,100*lwo/this.Z)
         if(od) this.x.stroke()
         this.x.lineWidth /= 4
         this.x.globalAlpha = 1*oga
