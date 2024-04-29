@@ -194,6 +194,11 @@ export default {
             let perc = (e.loaded / e.total)*100
             this.filesUploading[i].uploadName = v.name
             this.filesUploading[i].perc = perc
+            let preFinish = true
+            this.filesUploading.map(v=>{
+              if(v.perc<100) preFinish = false
+            })
+            if(preFinish) this.state.showLoading = true
           })
           request.addEventListener('load', e=> {
             v.completed = true
@@ -213,7 +218,6 @@ export default {
             })
             
             if(finished) {
-              this.state.showLoading = true
               console.log('finished')
               this.showUploadProgress = false
               this.$refs.main.style.zIndex = 0
@@ -397,6 +401,8 @@ export default {
   }
   .progressBar{
     width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .progressBarInner{
     background: #40f8;

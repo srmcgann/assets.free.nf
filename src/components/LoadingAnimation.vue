@@ -171,6 +171,7 @@ export default {
     this.c.height = 200
     this.c.style.height = '83px'
     this.c.style.width = '800px'
+    this.c.style.verticalAlign = 'top'
     this.Draw()
   },
   beforeUnmount(){
@@ -183,7 +184,6 @@ export default {
 .loadingAnimation{
   display: block;
   border-bottom: 4px solid #40f8;
-  vertical-align: top;
 }
 canvas{
   background:#0000;
