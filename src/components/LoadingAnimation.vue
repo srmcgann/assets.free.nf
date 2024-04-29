@@ -3,56 +3,6 @@
     class="loadingAnimation"
     ref="loadingAnimation"
   >
-    <label v-if="state.loggedIn" class="checkboxLabel" :key="link.linkType+link.ct+'key'">
-      <input type="checkbox" v-model="link.selected" @input="updateLinkSelected()">
-      <span class="checkmark" style="margin-left: -30px;"></span>
-      <span style="font-size:.75em;margin-top:5px;display:block;color:#4f88;padding:0;margin-left:-34px;">select</span><br>
-    </label>
-    
-    <div class="views" v-html="state.views(link)">
-    </div>
-    
-    <div
-      @mousedown.stop.prevent
-      class="linkThumb"
-      ref="linkThumb"
-      @click.prevent.stop="state.preview(link)"
-      title="view this asset"
-    ></div>
-    <!--#{{link.ct+1}}-->
-    <div class="linkButtons" @mousedown.stop.prevent @click.stop.prevent>
-      <div
-        class="visibilityButton"
-        @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
-        :class="{'private': link.private, 'notPrivate': !link.private}"
-        :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
-        v-if="link.userID == state.loggedinUserID || state.admin"
-      ></div>
-      <div
-        class="copyLinkButton"
-        @click.prevent.stop="state.copyLink(link.href)"
-        title="copy link to clipboard"
-      ></div>
-      <a
-        :href="state.URLbase + '/' + link.href"
-        class="openButton"
-        @click.prevent.stop="state.openLink(link)"
-        title="open link in new tab"
-      ></a>
-      <div
-        class="downloadButton"
-        @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
-        title="download asset"
-      ></div>
-      <div
-        class="deleteSingleButton"
-        @click.prevent.stop="state.deleteSingle(link)"
-        title="delete this asset only"
-        v-if="link.userID == state.loggedinUserID || state.admin"
-      ></div>
-    </div>
-    <br>
-    <AssetData :state="state" :link="link" />
   </div>
 </template>
 
@@ -213,9 +163,8 @@ export default {
     }
   },
   mounted(){
-    this.$refs.linkThumb.appendChild(this.c)
+    this.$refs.loadingAnimation.appendChild(this.c)
     this.x = this.c.getContext('2d')
-    this.linkType = this.link.filetype.split('/')[0]
     this.c.width = 1920
     this.c.height = 200
     this.c.style.width = 'calc(100% - 40px)'

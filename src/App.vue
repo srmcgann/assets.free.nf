@@ -2056,13 +2056,13 @@ select:focus{
 .checkboxLabel .checkmark:after {
   left: 7px;
   top: 1px;
-  width: 7px;
-  height: 16px;
+  width: 10px;
+  height: 18px;
   border: solid white;
-  border-width: 0 5px 5px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(34deg);
+  -ms-transform: rotate(34deg);
+  transform: rotate(34deg);
 }
 ::-webkit-scrollbar {
   width: 20px;

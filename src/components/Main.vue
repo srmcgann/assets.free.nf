@@ -2,8 +2,8 @@
   <div class="main" ref="main" tabindex="0">
     <div v-if="showUploadProgress" class="uploadProgressContainer">
       <br>uploading {{filesUploading.length}} file{{filesUploading.length > 1 ? 's':''}}...
+      <!--
       <div class="progressBar" v-for="file in filesUploading">
-        <!--
         <div class="progressBarInnerOutline">
           <div class="progressBarInner" :style="'width:calc(' + (file.perc) + '%)'"></div>
         </div>
@@ -11,13 +11,15 @@
           class="progressText"
           v-html="(Math.round(file.perc*100)/100) + '%' + ' - ' + shortUploadName(file.uploadName)"
         ></span>
-        -->
-        <LoadingAnimation
-          :state="state"
-          :percent="file.perc/100"
-          :filename="state.shortText(file.uploadName, 30)"
-        />
       </div>
+      -->
+      <LoadingAnimation
+        class="progressBar"
+        v-for="file in filesUploading"
+        :state="state"
+        :percent="file.perc/100"
+        :filename="state.shortText(file.uploadName, 30)"
+      />
     </div>
     <div
       v-if="state.showUploadModal"
