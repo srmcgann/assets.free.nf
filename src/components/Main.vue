@@ -196,9 +196,12 @@ export default {
             this.filesUploading[i].perc = perc
             let preFinish = true
             this.filesUploading.map(v=>{
-              if(v.perc<100) preFinish = false
+              if(v.perc<99) preFinish = false
             })
-            if(preFinish) this.state.showLoading = true
+            if(preFinish) {
+              console.log('showing loading...')
+              this.state.showLoading = true
+            }
           })
           request.addEventListener('load', e=> {
             v.completed = true

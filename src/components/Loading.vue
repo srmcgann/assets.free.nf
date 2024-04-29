@@ -29,7 +29,7 @@ export default {
     height: 100vh;
     box-sizing: border-box;
     padding: 100px;
-    z-index: 10000;
+    z-index: 50000;
   }
   .loadingVid{
     position: absolute;
