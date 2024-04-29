@@ -107,12 +107,14 @@
 
 <script>
 import Link from './Link'
+import LoadingAnimation from './LoadingAnimation'
 
 export default {
   name: 'Main',
   props: [ 'state' ],
   components: {
-    Link
+    Link,
+    LoadingAnimation,
   },
   data(){
     return {
