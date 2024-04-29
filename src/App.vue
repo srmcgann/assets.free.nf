@@ -1555,14 +1555,15 @@ export default {
     this.state.starImgs = Array(9).fill().map((v, i) => {
       let a = {img: new Image(), loaded: false}
       a.img.onload = () => {
+        a.loaded = true
         this.$nextTick(()=>{
-          if(this.state.starImgs.filter(v=>!!v.src).length == 9){
+          if(this.state.starImgs.filter(v=>v.loaded).length == 9){
             console.log('stars loaded')
             this.state.starsLoaded = true
           }
         })
       }
-      a.img.src = `${this.state.URLbase}/star${i+1}.png`
+      a.img.src = `${/star${i+1}.png`
       return a
     })
     
