@@ -184,7 +184,7 @@ export default {
 </script>
 
 <style scoped>
-loadingAnimation{
+.loadingAnimation{
   display: block;
   margin: 20px;
 }
