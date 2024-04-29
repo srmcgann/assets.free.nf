@@ -181,9 +181,12 @@ export default {
 .loadingAnimation{
   display: block;
   border-bottom: 4px solid #40f8;
+  vertical-align: top;
 }
 canvas{
   background:#0000;
-  height: 100px;
+  height: 83px;
+  min-height: unset;
+  max-height: unset;
 }
 </style>
