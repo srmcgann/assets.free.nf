@@ -4,7 +4,6 @@
     <tr>
       <td class="tdLeft">
         <button
-          v-if="link.expandedInfo"
           @click.stop.prevent="link.expandedInfo = !link.expandedInfo"
           class="expandInfoButton"
           v-html="'show ' + (link.expandedInfo ? 'less' : 'more')"
