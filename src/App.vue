@@ -8,6 +8,7 @@
     <LoginPrompt         :state="state" v-if="state.showLoginPrompt" />
     <Admin               :state="state" v-if="showAdminButton" />
     <Stats               :state="state" v-if="state.showStats" />
+    <ComposeComment      :state="state" v-if="state.showComposeComment"/>
     <Collections         :state="state" v-if="state.showCollections" />
     <EditCollection      :state="state" v-if="state.editCollection.length"
                          :collection="state.editCollection[0]" />
@@ -44,6 +45,7 @@ import Collections from './components/Collections'
 import LoginPrompt from './components/LoginPrompt'
 import UserSettings from './components/UserSettings'
 import EditCollection from './components/EditCollection'
+import ComposeComment from './components/ComposeComment'
 import CollectionTemplate from './components/CollectionTemplate'
 
 export default {
@@ -61,6 +63,7 @@ export default {
     LoginPrompt,
     Collections,
     UserSettings,
+    ComposeComment,
     EditCollection,
     CollectionTemplate,
   },
@@ -142,10 +145,12 @@ export default {
         showCollection: false,  // to view an individual collection
         showCollections: false,  // to invoke user's collection list view
         logout: null,
+        showComposeComment: false,
         onkeydown: null,
         showAdmin: false,
         uploadEventTally: 0,
         fetchEventTally: 0,
+        newComment: '',
         deleteEventTally: 0,
         regusername: '',
         username: '',
@@ -163,6 +168,7 @@ export default {
         regpassword: '',
         showUploadModal: false,
         loadingAssets: true,
+        composeCommentLink: null,
         previewCollection: null,
         loadingCollections: true,
         userInfo: [],
@@ -468,6 +474,15 @@ export default {
       setTimeout(()=>{reduceOpacity()}, 250)
     },
     closePrompts(){
+      if(this.state.newComment){
+        if(confirm('are you sure you want to leave?\n\nthis comment may be lost')){
+          this.state.showComposeComment = false
+          this.state.newComment = ''
+          this.state.composeCommentLink = null
+        }
+      }else{
+        this.state.showComposeComment = false
+      }
       this.state.showLoginPrompt = false
       this.state.userSettingsVisible = false
       this.state.showModal = false
@@ -693,6 +708,7 @@ export default {
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
                 origin: data[2][i].origin,
+                comments: data[2][i].comments,
                 hash: data[2][i].hash,
                 date: data[2][i].date,
                 private: !!(+data[2][i].private),
@@ -1208,6 +1224,7 @@ export default {
                 description: decodeURIComponent(data[2][i].description),
                 slug: data[2][i].slug,
                 hash: data[2][i].hash,
+                comments: data[2][i].comments,
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
                 origin: data[2][i].origin,
@@ -1527,6 +1544,8 @@ export default {
       return this.state.loggedIn && 
              this.state.isAdmin && 
              !this.state.showModal &&
+             !this.state.showComposeComment &&
+             !this.state.showEditCollection &&
              !this.state.showPreview &&
              !this.state.showLogin &&
              !this.state.showCollections
@@ -1541,6 +1560,7 @@ export default {
     },
     popupVisible(){
       return this.state.userSettingsVisible ||
+      this.state.showComposeComment ||
       this.state.showLoginPrompt ||
       this.state.showCollections ||
       this.state.editCollection.length ||
@@ -1931,7 +1951,7 @@ a{
   margin: unset;
   margin-right: 5px;
 }
-.collectionsButton{
+.assetDataButton{
   line-height: 13px;
   font-weight: 400;
   font-size: 20px;

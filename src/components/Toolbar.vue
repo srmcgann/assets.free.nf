@@ -94,13 +94,13 @@
             @click.stop.prevent="viewCollection(collection)"
           >
             <button
-              class="toolbarButtons collectionsButton"
+              class="toolbarButtons assetDataButton"
               style="color: #fff; min-width: unset; height: 24px; background: #84fd;margin: unset;margin-right:5px;"
               @click.stop.prevent="viewCollection(collection)"
               title="view this collection"
             >👁</button>
             <button
-              class="toolbarButtons collectionsButton"
+              class="toolbarButtons assetDataButton"
               style="height: 24px; margin: unset; margin-right:5px;min-width: unset"
               @click.stop.prevent="state.showEditCollection(collection)"
               title="edit this collection"

@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <span v-html="state.footerMsg"></span>
-    <Pages :state="state" />
+    <Pages :state="state" v-if="state.mode!='col'" />
   </div>
 </template>
 

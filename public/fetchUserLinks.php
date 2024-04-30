@@ -1,7 +1,7 @@
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
   require_once('db.php');
   require_once('functions.php');
   $data = json_decode(file_get_contents('php://input'));
@@ -26,8 +26,9 @@ error_reporting(0);
   for($i=0; $i<mysqli_num_rows($res); ++$i){
     $row = mysqli_fetch_assoc($res);
     $slug = $row['slug'];
+    $uploadID = $row['id'];
     $m = [
-      'id'             => $row['id'],
+      'id'             => $uploadID,
       'slug'           => $slug,
       'size'           => json_decode($row['meta'])->{'file size'},
       'hash'           => $row['hash'],
@@ -51,6 +52,17 @@ error_reporting(0);
     $meta[] = $m;
   }
   if(sizeof($links)){
+    forEach($meta as &$mta){
+      $comments = [];
+      $uploadID = $mta['id'];
+      $sql = "SELECT * FROM imjurComments WHERE uploadID = $uploadID";
+      $res = mysqli_query($link, $sql);
+      for($i=0; $i<mysqli_num_rows($res); ++$i){
+        $row = mysqli_fetch_assoc($res);
+        $comments[] = $row;
+      }
+      $mta["comments"] = $comments;
+    }
     echo json_encode([true, $links, $meta, $totalPages]);
   }else{
     echo json_encode([false]);

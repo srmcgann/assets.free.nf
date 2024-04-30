@@ -3,7 +3,7 @@
     <button
       @mousedown.stop.prevent
       @click.stop.prevent="toggleShowCollection()"
-      class="collectionsButton"
+      class="assetDataButton"
       style="background: #84fd; color: #fff;"
       title="include or exclude this link from collections"
       v-html="showCollection?'close':'assign'"
@@ -13,7 +13,7 @@
     <button
       @mousedown.stop.prevent
       @click.stop.prevent="manageCollections()"
-      class="collectionsButton"
+      class="assetDataButton"
       style="background: #4f8d"
       title="view and edit your collections"
       v-html="state.collections.length ? 'manage' : 'create a collection'"
@@ -44,7 +44,7 @@
         </label>
         <button
           v-if="mode!='multi' && checked(collection)"
-          class="toolbarButtons collectionsButton"
+          class="toolbarButtons assetDataButton"
           style="color: #fff; z-index:1000; min-width: unset; height: 27px; background: #84fd;margin: unset;margin-top: -1px; margin-right:5px; padding: 0;font-size:32px;padding-top:7px;position: absolute; margin-left: 28px;"
           @click.stop.prevent="this.state.viewCollection(collection, links.slug)"
           title="view this item, in this collection"

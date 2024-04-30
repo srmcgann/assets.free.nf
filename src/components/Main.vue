@@ -65,6 +65,7 @@
       <div v-if="state.mode=='default' && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
         <Link
           :state="state"
+          :omitAssetData="false"
           v-for="link in state.links"
           :link="link"
           :linkMode="'link'"
@@ -73,6 +74,7 @@
         />
         <Link
           :state="state"
+          :omitAssetData="false"
           v-for="link in state.userLinks"
           :link="link"
           :linkMode="'userLink'"
@@ -83,6 +85,7 @@
       <div v-if="state.mode=='col' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
         <Link
           :state="state"
+          :omitAssetData="false"
           v-for="link in filteredLinks"
           :link="link"
           :linkMode="'userLink'"

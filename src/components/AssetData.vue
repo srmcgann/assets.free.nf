@@ -5,6 +5,7 @@
       <td class="tdLeft">
         <button
           @click.stop.prevent="link.expandedInfo = !link.expandedInfo"
+          v-if="!omitAssetData"
           class="expandInfoButton"
           title="show less-common/extra details about this asset"
           v-html="link.expandedInfo ? 'less' : 'more'"
@@ -26,7 +27,7 @@
         </div>
       </td>
     </tr>
-    <tr>
+    <tr v-if="!omitAssetData">
       <td class="tdLeft">
         slug
       </td>
@@ -65,7 +66,7 @@
         v-html="state.fileName(link)"
       ></td>
     </tr>
-    <tr>
+    <tr v-if="link.description">
       <td
         class="tdLeft">description</td><td class="tdRight"
         v-if="state.loggedinUserID == link.userID"
@@ -95,7 +96,7 @@
     <tr v-if="link.downvotes">
       <td class="tdLeft">downvotes</td><td class="tdRight" v-html="link.downvotes"></td>
     </tr>
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">hash</td>
       <td
         class="tdRight"
@@ -103,52 +104,62 @@
         style="font-size:11px;"
       ></td>
     </tr>
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">filetype</td>
       <td class="tdRight" v-html="link.filetype"></td>
     </tr>
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">owner ID</td>
       <td class="tdRight" v-html="link.userID"></td>
     </tr>
 
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">uploaded</td>
       <td class="tdRight" v-html="state.prettyDate(link)"></td>
     </tr>
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">age</td>
       <td class="tdRight" v-html="state.age(link)"></td>
     </tr>
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">size</td>
       <td class="tdRight" v-html="state.size(link.size)"></td>
     </tr>
-    <tr v-if="link.userID == state.loggedinUserID || state.admin">
+    <tr v-if="!omitAssetData && link.userID == state.loggedinUserID || state.admin">
       <td class="tdLeft">collections</td><td class="tdRight">
         <CollectionSelection :state="state" :links="link" :mode="default" :someSelected="true"/>
       </td>
     </tr>
-    <tr v-if="link.expandedInfo">
-      <td class="tdLeft">id</td>
+    <tr v-if="!omitAssetData && link.expandedInfo">
+      <td class="tdLeft">asset id</td>
       <td class="tdRight" v-html="link.id"></td>
     </tr>
-    <tr v-if="link.expandedInfo">
+    <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">origin</td>
       <td class="tdRight" v-html="link.origin.split(':')[0]"></td>
     </tr>
-    <!-- <tr><td class="tdLeft">first seen</td><td class="tdRight"v-html="state.firstSeen(link)"></td></tr> --> 
+    <!-- <tr><td class="tdLeft">first seen</td><td class="tdRight"v-html="state.firstSeen(link)"></td></tr> -->
+    <tr v-if="!omitAssetData">
+      <td class="tdLeft">
+        comments
+      </td>
+      <td class="tdRight">
+        <LinkComments :state="state" :link="link" />
+      </td>
+    </tr>
   </table>
 </template>
 
 <script>
 import CollectionSelection from './CollectionSelection.vue'
+import LinkComments from './LinkComments.vue'
 
 export default {
   name: 'AssetData',
-  props: [ 'state', 'link' ],
+  props: [ 'state', 'link', 'omitAssetData' ],
   components: {
-    CollectionSelection
+    CollectionSelection,
+    LinkComments
   },
   data(){
     return {

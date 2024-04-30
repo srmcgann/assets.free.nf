@@ -43,6 +43,7 @@
           v-if="collection.meta.slugs.length">
           <Link
             v-for="link in state.miscLinks"
+            :omitAssetData="false"
             :key="link.id"
             :state="state" :link="link" />
         </div>
