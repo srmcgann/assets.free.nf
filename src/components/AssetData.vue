@@ -6,7 +6,8 @@
         <button
           @click.stop.prevent="link.expandedInfo = !link.expandedInfo"
           class="expandInfoButton"
-          v-html="'show ' + (link.expandedInfo ? 'less' : 'more')"
+          title="show less-common/extra details about this asset"
+          v-html="link.expandedInfo ? 'less' : 'more'"
         >
         </button>
         owner
@@ -203,6 +204,16 @@ export default {
     padding-right: 10px;
   }
   .expandInfoButton{
+    font-size: 11px;
+    padding: 2px;
+    width: 40px;
+    background: #044
+    color: #8f8;
+    min-width: unset;
+    float: left;
+    position: relative;
+    font-weight: 100;
+    top: 2px;
   }
   .assetNameInput{
     max-width: 225px;
@@ -213,5 +224,6 @@ export default {
   .tdLeft{
     width: 100px;
     max-width: unset;
+    min-width: 105px;
   }
 </style>
