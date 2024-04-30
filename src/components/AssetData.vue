@@ -2,7 +2,16 @@
   <table class="assetData">
     <tr v-if="state.showPreview"><td class="tdLeft">views</td><td class="tdRight" v-html="state.views(link)"></td></tr>
     <tr>
-      <td class="tdLeft">owner</td>
+      <td class="tdLeft">
+        <button
+          v-if="link.expandedInfo"
+          @click.stop.prevent="link.expandedInfo = !link.expandedInfo"
+          class="expandInfoButton"
+          v-html="'show ' + (link.expandedInfo ? 'less' : 'more')"
+        >
+        </button>
+        owner
+      </td>
       <td class="tdRight">
         <div class="loggedIn" style="display: inline-block; float: left;">
           <div
@@ -86,7 +95,7 @@
     <tr v-if="link.downvotes">
       <td class="tdLeft">downvotes</td><td class="tdRight" v-html="link.downvotes"></td>
     </tr>
-    <tr>
+    <tr v-if="link.expandedInfo">
       <td class="tdLeft">hash</td>
       <td
         class="tdRight"
@@ -94,19 +103,40 @@
         style="font-size:11px;"
       ></td>
     </tr>
-    <tr><td class="tdLeft">filetype</td><td class="tdRight" v-html="link.filetype"></td></tr>
-    <tr><td class="tdLeft">owner ID</td><td class="tdRight" v-html="link.userID"></td></tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">filetype</td>
+      <td class="tdRight" v-html="link.filetype"></td>
+    </tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">owner ID</td>
+      <td class="tdRight" v-html="link.userID"></td>
+    </tr>
 
-    <tr><td class="tdLeft">uploaded</td><td class="tdRight" v-html="state.prettyDate(link)"></td></tr>
-    <tr><td class="tdLeft">age</td><td class="tdRight" v-html="state.age(link)"></td></tr>
-    <tr><td class="tdLeft">size</td><td class="tdRight" v-html="state.size(link.size)"></td></tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">uploaded</td>
+      <td class="tdRight" v-html="state.prettyDate(link)"></td>
+    </tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">age</td>
+      <td class="tdRight" v-html="state.age(link)"></td>
+    </tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">size</td>
+      <td class="tdRight" v-html="state.size(link.size)"></td>
+    </tr>
     <tr v-if="link.userID == state.loggedinUserID || state.admin">
       <td class="tdLeft">collections</td><td class="tdRight">
         <CollectionSelection :state="state" :links="link" :mode="default" :someSelected="true"/>
       </td>
     </tr>
-    <tr><td class="tdLeft">id</td><td class="tdRight" v-html="link.id"></td></tr>
-    <tr><td class="tdLeft">origin</td><td class="tdRight" v-html="link.origin.split(':')[0]"></td></tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">id</td>
+      <td class="tdRight" v-html="link.id"></td>
+    </tr>
+    <tr v-if="link.expandedInfo">
+      <td class="tdLeft">origin</td>
+      <td class="tdRight" v-html="link.origin.split(':')[0]"></td>
+    </tr>
     <!-- <tr><td class="tdLeft">first seen</td><td class="tdRight"v-html="state.firstSeen(link)"></td></tr> --> 
   </table>
 </template>
@@ -144,6 +174,9 @@ export default {
     }
   },
   mounted(){
+    if(typeof this.link.expandedInfo == 'undefined'){
+      this.link.expandedInfo = false
+    }
   }
 }
 </script>
@@ -169,6 +202,8 @@ export default {
     background-size: 10px 10px;
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .expandInfoButton{
   }
   .assetNameInput{
     max-width: 225px;
