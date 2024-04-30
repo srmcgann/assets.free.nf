@@ -207,7 +207,7 @@ export default {
     font-size: 11px;
     padding: 2px;
     width: 40px;
-    background: #044
+    background: #044;
     color: #8f8;
     min-width: unset;
     float: left;
