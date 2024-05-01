@@ -29,15 +29,15 @@
         class="commentRow"
       >
         <div
-          @click="state.getUserStats(comment.userID)"
+          @click="state.getUserStats(comment?.userID)"
           class="avatar"
-          :title="`this comment was posted by ${state.userInfo[comment.userID]?.name}`"
+          :title="`this comment was posted by ${state.userInfo[comment?.userID]?.name}`"
           :style="`background-image: url(${avatar(comment)})`"
         ></div>
         
         <div class="commentHeader">
           <div
-            v-if="typeof comment != 'undefined' && +comment.userID == +state.loggedinUserID"
+            v-if="typeof comment != 'undefined' && +comment?.userID == +state.loggedinUserID"
           >
             <button
               class="commentButton"
