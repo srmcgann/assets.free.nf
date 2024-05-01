@@ -88,6 +88,8 @@ export default {
         showEditCollection: null,
         editCollection: [],
         multipleLinks: null,
+        deleteComment: null,
+        updateComment: null,
         getAvatar: null,
         showLoading: false,
         
@@ -598,6 +600,48 @@ export default {
         }
       }
     },
+    updateComment(comment){
+      let sendData = {
+        userName: this.state.username,
+        passhash: this.state.passhash,
+        commentText: comment.text,
+        commentID: comment.id,
+      }
+      fetch(`${this.URLbase}/` + 'updateComment.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data=>{
+        if(!data[0]){
+          alert('there was an error updating the comment... :(')
+        }
+      })
+    },
+    deleteComment(comment){
+      let sendData = {
+        userName: this.state.username,
+        passhash: this.state.passhash,
+        commentID: comment.id,
+      }
+      fetch(`${this.URLbase}/` + 'deleteComment.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data=>{
+        if(data[0]){
+          this.state.links = this.state.links.filter(link => +link.id != +comment.uploadID)
+          this.state.userLinks = this.state.userLinks.filter(link => +link.id != +comment.uploadID)
+          this.state.miscLinks = this.state.miscLinks.filter(link => +link.id != +comment.uploadID)
+          this.state.cacheLinks = this.state.cacheLinks.filter(link => +link.id != +comment.uploadID)
+        }else{
+          alert('there was an error deleting the comment... :(')
+        }
+      })
+    },
     setLinksOwner(){
       if(!this.state.links.length) return
       let sendData = {
@@ -710,7 +754,9 @@ export default {
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
                 origin: data[2][i].origin,
-                comments: data[2][i].comments,
+                comments: data[2][i].comments.map(v=>{
+                  v.editing = false
+                }),
                 hash: data[2][i].hash,
                 date: data[2][i].date,
                 private: !!(+data[2][i].private),
@@ -1137,16 +1183,24 @@ export default {
         console.log(data)
         if(data[0]){
           this.state.links.map(link => {
-            if(+link.id == +linkID) link.comments = data[1]
+            if(+link.id == +linkID) link.comments = data[1].map(v=>{
+              v.editing = false
+            })
           })
           this.state.userLinks.map(link => {
-            if(+link.id == +linkID) link.comments = data[1]
+            if(+link.id == +linkID) link.comments = data[1].map(v=>{
+              v.editing = false
+            })
           })
           this.state.miscLinks.map(link => {
-            if(+link.id == +linkID) link.comments = data[1]
+            if(+link.id == +linkID) link.comments = data[1].map(v=>{
+              v.editing = false
+            })
           })
           this.state.cacheLinks.map(link => {
-            if(+link.id == +linkID) link.comments = data[1]
+            if(+link.id == +linkID) link.comments = data[1].map(v=>{
+              v.editing = false
+            })
           })
           this.state.showComposeComment = false
           this.state.newComment = ''
@@ -1270,7 +1324,9 @@ export default {
                 description: decodeURIComponent(data[2][i].description),
                 slug: data[2][i].slug,
                 hash: data[2][i].hash,
-                comments: data[2][i].comments,
+                comments: data[2][i].comments.map(v=>{
+                  v.editing = false
+                }),
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
                 origin: data[2][i].origin,
@@ -1752,6 +1808,8 @@ export default {
     this.state.getUserStats = this.getUserStats
     this.state.submitComment = this.submitComment
     this.state.multipleLinks = this.multipleLinks
+    this.state.deleteComment = this.deleteComment
+    this.state.updateComment = this.updateComment
     this.state.setLinksOwner = this.setLinksOwner
     this.state.fetchUserInfo = this.fetchUserInfo
     this.state.fetchUserLinks = this.fetchUserLinks

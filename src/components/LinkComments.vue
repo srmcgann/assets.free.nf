@@ -35,25 +35,45 @@
           :style="`background-image: url(${avatar})`"
         ></div>
         
-        <span class="commentHeader">
-          <button
-            class="commentButton"
-            @click.stop.prevent="editComment(comment)"
-          >edit</button>
+        <div class="commentHeader">
+          <div v-if="+comment.userID == +state.loggedinUserID">
+            <button
+              class="commentButton"
+              style="background:#4f8"
+              title="edit comment text"
+              v-if="!comment.editing"
+              @click.stop.prevent="comment.editing = true"
+            >edit</button>
+            <button
+              v-else
+              class="commentButton"
+              style="background:#4f8"
+              title="finish editing your comment - changes are recorded in real time"
+              @click.stop.prevent="comment.editing = false"
+            >close edit</button>
+          </div>
 
           <button
             class="commentButton"
+            style="background:#f04"
+            title="permanently delete this comment"
             @click.stop.prevent="deleteComment(comment)"
           >delete</button>
           <br>
         
           {{header(comment)}}
-        </span>
+        </div>
 
         <span
           class="commentText"
           v-html="comment.text"
+          v-if="!comment.editing"
         </span>
+        <input v-else type="text"
+          class="editCommentInput"
+          @keydown="state.updateComment(comment)"
+          v-model="comment.text"
+        >
         
         
         <!--
@@ -127,14 +147,11 @@ export default {
     }
   },
   methods: {
-    editComment(comment){
-      console.log('editing comment')
-    },
     deleteComment(comment){
-      console.log('deleting comment')
+      this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 10) + ' : ' + this.state.prettyDate({date: comment.date}) + "<br>"
+      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + "<br>"
     },
     checked(comment){
       switch(this.mode){
@@ -245,11 +262,15 @@ export default {
     display: block;
   }
   .commentHeader, .commentText{
-    font-size:14px;
+    font-size:12px;
     color:#4f8;
   }
   .commentHeader{
     color: #ff0;
+    display: block;
+  }
+  .commentText{
+    font-size: 16px;
   }
   .checkboxLabel{
     padding-left: unset;
@@ -260,7 +281,7 @@ export default {
     margin-right: 0;
   }
   .commentRow{
-    display: inline-block;
+    display: block;
     margin-bottom: 10px;
     margin: 0;
     line-height: 1em;
@@ -275,5 +296,17 @@ export default {
     height: 45px;
     display: inline-block;
     float: left;
+  }
+  .commentButton{
+    padding:0;
+    min-width: 60px;
+    line-height: 14px;
+    font-size: 13px;
+    padding-top: 1px;
+    margin: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .editCommentInput{
   }
 </style>
