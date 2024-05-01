@@ -46,8 +46,7 @@ export default {
   },
   methods: {
     submit(){
-      console.log('faux submitting...', this.state.newComment)
-      this.state.newComment = ''
+      this.state.submitComment()
     }
   },
   mounted(){
@@ -66,15 +65,18 @@ export default {
     font-size: 14px;
   }
   .disabled{
-    background: #333;
+    background: #333!important;
     color: #888;
+    text-shadow: 0 0 3px #fff!important;
   }
   .commentInput{
     border: 1px solid #40f;
-    width: 600px;
+    width: calc(100vw - 80px);
+    max-width: 700px;
     background: #102;
     font-size: 16px;
     margin-top: 50px;
+    color: #fff;
   }
   .submitCommentButton{
     background: #0f8;

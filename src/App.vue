@@ -90,6 +90,7 @@ export default {
         multipleLinks: null,
         getAvatar: null,
         showLoading: false,
+        
         showPreview: false,
         rootDomain: location.hostname,
         modalContent: '',
@@ -112,6 +113,7 @@ export default {
         setUserPref: null,
         starImgs: [],
         starsLoaded: false,
+        submitComment: null,
         defaultAvatar: 'avatarDefault.png',
         loggedInUser: {
           avatar: 'avatarDefault.png',
@@ -1055,7 +1057,6 @@ export default {
         if(this.state.isNumber(vars[l])){
           this.state.mode = 'default'
           let search = ''
-          
           if(vars[l]){
             this.state.curPage = (+vars[l])-1
             if(''+this.state.curPage == 'NaN') this.state.curPage = 0
@@ -1110,6 +1111,50 @@ export default {
         this.state.mode = 'default'
       }
       console.log('mode', this.state.mode)
+    },
+    submitComment(){
+      if(!this.state.loggedIn ||
+         !this.state.newComment ||
+         typeof this.state.composeCommentLink == null) return
+         
+      let linkID = this.state.composeCommentLink.id
+      let comment = this.state.newComment
+      let sendData = {
+        userID: this.state.loggedinUserID,
+        passhash: this.state.passhash,
+        linkID,
+        comment
+      }
+      console.log(sendData)
+      fetch(`${this.URLbase}/` + 'submitComment.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data => {
+        console.log(data)
+        if(data[0]){
+          this.state.links.map(link => {
+            if(+link.id == +linkID) link.comments = data[1]
+          })
+          this.state.userLinks.map(link => {
+            if(+link.id == +linkID) link.comments = data[1]
+          })
+          this.state.miscLinks.map(link => {
+            if(+link.id == +linkID) link.comments = data[1]
+          })
+          this.state.cacheLinks.map(link => {
+            if(+link.id == +linkID) link.comments = data[1]
+          })
+          this.state.showComposeComment = false
+          this.state.newComment = ''
+          this.state.composeCommentLink = null
+          this.state.closePrompts()
+        }else{
+          console.log('there was an error submitting the comment')
+        }
+      })
     },
     setLinkPropertySelected(property, value){
       this.state.links.map(link=>{
@@ -1704,6 +1749,7 @@ export default {
     this.state.downloadLink = this.downloadLink
     this.state.closePreview = this.closePreview
     this.state.getUserStats = this.getUserStats
+    this.state.submitComment = this.submitComment
     this.state.multipleLinks = this.multipleLinks
     this.state.setLinksOwner = this.setLinksOwner
     this.state.fetchUserInfo = this.fetchUserInfo
