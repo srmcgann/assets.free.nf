@@ -764,6 +764,7 @@ export default {
                 comments: data[2][i].comments.map(v=>{
                   v.editing = false
                   this.state.fetchUserInfo(v.userID)
+                  return v
                 }),
                 hash: data[2][i].hash,
                 date: data[2][i].date,
@@ -1335,6 +1336,7 @@ export default {
                 comments: data[2][i].comments.map(v=>{
                   v.editing = false
                   this.state.fetchUserInfo(v.userID)
+                  return v
                 }),
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
