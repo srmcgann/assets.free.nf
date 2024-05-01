@@ -29,14 +29,16 @@
         class="commentRow"
       >
         <div
-          @click="state.getUserStats(link.userID)"
+          @click="state.getUserStats(comment.userID)"
           class="avatar"
-          :title="`this comment was posted by ${state.userInfo[link.userID]?.name}`"
-          :style="`background-image: url(${avatar})`"
+          :title="`this comment was posted by ${state.userInfo[comment.userID]?.name}`"
+          :style="`background-image: url(${avatar(comment)})`"
         ></div>
         
         <div class="commentHeader">
-          <div v-if="+comment.userID == +state.loggedinUserID">
+          <div
+            v-if="typeof comment != 'undefined' && +comment.userID == +state.loggedinUserID"
+          >
             <button
               class="commentButton"
               style="background:#4f8"
@@ -89,8 +91,8 @@
           <div
             @click="state.getUserStats(link.userID)"
             class="avatar"
-            :title="`this comment was posted by ${state.userInfo[link.userID]?.name}`"
-            :style="`background-image: url(${avatar});`"
+            :title="`this comment was posted by ${state.userInfo[comment.userID]?.name}`"
+            :style="`background-image: url(${avatar(comment)});`"
           ></div>
           
           <span
@@ -130,13 +132,6 @@ export default {
     }
   },
   computed:{
-    avatar(){
-      if(this.state.userInfo[this.link.userID]?.avatar.indexOf('avatarDefault.png') != -1){
-        return this.state.URLbase + '/avatarDefault.png'
-      }else{
-        return this.state.userInfo[this.link.userID]?.avatar
-      }
-    },
     filteredcomments(){
       let ret = ['none']
       ret = [...ret, ...this.link.comments]
@@ -147,6 +142,13 @@ export default {
     }
   },
   methods: {
+    avatar(comment){
+      if(this.state.userInfo[comment.userID]?.avatar.indexOf('avatarDefault.png') != -1){
+        return this.state.URLbase + '/avatarDefault.png'
+      }else{
+        return this.state.userInfo[comment.userID]?.avatar
+      }
+    },
     deleteComment(comment){
       this.state.deleteComment(comment)
     },

@@ -1,4 +1,5 @@
 <template>
+<template>
   <div>
     <Header              :state="state" v-if="!popupVisible" />
     <Toolbar             :state="state" v-if="!popupVisible" />
@@ -87,6 +88,7 @@ export default {
         deleteSelected: null,
         showEditCollection: null,
         editCollection: [],
+        fetchUserInfoMemo: [],
         multipleLinks: null,
         deleteComment: null,
         updateComment: null,
@@ -580,23 +582,29 @@ export default {
     },
     fetchUserInfo(userID){
       if(userID) {
-        if(typeof this.state.userInfo[userID] == 'undefined'){
-          let sendData = { userID }
-          fetch(`${this.URLbase}/` + 'fetchUserInfo.php',{
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(sendData),
-          })
-          .then(res => res.json())
-          .then(data => {
-            if(!!(+data[0])){
-              this.state.userInfo[userID] = data[1]
-            }else{
-              console.log(`there was a problem fetching user info for user: ${userID}`)
-            }
-          })
+        if(this.state.fetchUserInfoMemo.indexOf(userID)==-1){
+          this.state.fetchUserInfoMemo = [...this.state.fetchUserInfoMemo, userID]
+          if(typeof this.state.userInfo[userID] == 'undefined'){
+            let sendData = { userID }
+            fetch(`${this.URLbase}/` + 'fetchUserInfo.php',{
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(sendData),
+            })
+            .then(res => res.json())
+            .then(data => {
+              if(!!(+data[0])){
+                this.state.userInfo[userID] = data[1]
+                this.state.fetchUserInfoMemo = this.state.fetchUserInfoMemo.filter(v=>{
+                  return v!=userID
+                })
+              }else{
+                console.log(`there was a problem fetching user info for user: ${userID}`)
+              }
+            })
+          }
         }
       }
     },
@@ -756,6 +764,7 @@ export default {
                 origin: data[2][i].origin,
                 comments: data[2][i].comments.map(v=>{
                   v.editing = false
+                  this.state.fetchUserInfo(v.userID)
                 }),
                 hash: data[2][i].hash,
                 date: data[2][i].date,
@@ -1326,6 +1335,7 @@ export default {
                 hash: data[2][i].hash,
                 comments: data[2][i].comments.map(v=>{
                   v.editing = false
+                  this.state.fetchUserInfo(v.userID)
                 }),
                 originalSlug: data[2][i].originalSlug,
                 originalDate: data[2][i].originalDate,
