@@ -1,5 +1,4 @@
 <template>
-<template>
   <div>
     <Header              :state="state" v-if="!popupVisible" />
     <Toolbar             :state="state" v-if="!popupVisible" />
