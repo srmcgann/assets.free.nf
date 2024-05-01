@@ -31,6 +31,7 @@ error_reporting(E_ALL);
         }
         $success = true;
         echo json_encode([$success, $comments]);
+        die();
       }
     }
   }

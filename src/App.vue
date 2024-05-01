@@ -1120,7 +1120,7 @@ export default {
       let linkID = this.state.composeCommentLink.id
       let comment = this.state.newComment
       let sendData = {
-        userID: this.state.loggedinUserID,
+        userName: this.state.loggedinUserName,
         passhash: this.state.passhash,
         linkID,
         comment

@@ -26,9 +26,22 @@
     >
       <div
         v-for="comment in link.comments"
-        style="position: relative;"
         class="commentRow"
       >
+        <div
+          @click="state.getUserStats(link.userID)"
+          class="avatar"
+          :title="`this comment was posted by ${state.userInfo[link.userID]?.name}`"
+          :style="`background-image: url(${avatar})`"
+        ></div>
+        
+        <span
+          class="commentText"
+          v-html="comment.text"
+        </span>
+        
+        
+        <!--
         <label
           class="checkboxLabel commentLabel"
         >
@@ -38,12 +51,21 @@
             @change="updateSelection($event, comment)"
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
+          <div
+            @click="state.getUserStats(link.userID)"
+            class="avatar"
+            :title="`this comment was posted by ${state.userInfo[link.userID]?.name}`"
+            :style="`background-image: url(${avatar})`"
+          ></div>
+          
           <span
             class="commentText"
             :style="`font-size:16px; margin-left:${checked(comment) ? '26px':'-10px'};`"
              v-html="comment.text"
           </span>
         </label>
+        -->
+        
         <!--
         <button
           v-if="mode!='multi' && checked(comment)"
@@ -73,6 +95,13 @@ export default {
     }
   },
   computed:{
+    avatar(){
+      if(this.state.userInfo[this.link.userID]?.avatar.indexOf('avatarDefault.png') != -1){
+        return this.state.URLbase + '/avatarDefault.png'
+      }else{
+        return this.state.userInfo[this.link.userID]?.avatar
+      }
+    },
     filteredcomments(){
       let ret = ['none']
       ret = [...ret, ...this.link.comments]
@@ -183,7 +212,7 @@ export default {
     border: 1px solid #0ff4;
     position: absolute;
     z-index: 50;
-    height: -webkit-fill-available;
+    max-height: -webkit-fill-available;
   }
   .commentLabel:hover{
     background: #0f44;
@@ -193,15 +222,7 @@ export default {
   }
   .commentText{
     font-size:14px;
-    display:block;
-    width: 261px;
-    overflow: hidden;
-    word-break: auto-phrase;
     color:#4f8;
-    padding:0;
-    margin-left: -10px;
-    padding-left: 10px;
-    
   }
   .checkboxLabel{
     padding-left: unset;
@@ -212,8 +233,10 @@ export default {
     margin-right: 0;
   }
   .commentRow{
-    display: block;
-    margin-bottom: 2em;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 10px;
     line-height: 1em;
+    position: relative;
   }
 </style>
