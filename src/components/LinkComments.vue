@@ -45,10 +45,11 @@
             class="commentButton"
             @click.stop.prevent="deleteComment(comment)"
           >delete</button>
-        </span>
+          <br>
         
-        {{header(comment)}}
+          {{header(comment)}}
         </span>
+
         <span
           class="commentText"
           v-html="comment.text"
