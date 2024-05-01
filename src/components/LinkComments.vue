@@ -16,7 +16,7 @@
       class="assetDataButton"
       style="background: #4f8d"
       title="view and edit your comments"
-      v-html="link.comments.length ? 'comment' : 'create a comment'"
+      v-html="link.comments.length ? 'comment' : 'be the first to comment'"
     ></button><br>
     <div
       @mousedown.stop.prevent
@@ -35,9 +35,19 @@
           :style="`background-image: url(${avatar})`"
         ></div>
         
-        <span
-          class="commentHeader"
-          v-html="header(comment)"
+        <span class="commentHeader">
+          <button
+            class="commentButton"
+            @click.stop.prevent="editComment(comment)"
+          >edit</button>
+
+          <button
+            class="commentButton"
+            @click.stop.prevent="deleteComment(comment)"
+          >delete</button>
+        </span>
+        
+        {{header(comment)}}
         </span>
         <span
           class="commentText"
@@ -116,6 +126,12 @@ export default {
     }
   },
   methods: {
+    editComment(comment){
+      console.log('editing comment')
+    },
+    deleteComment(comment){
+      console.log('deleting comment')
+    },
     header(comment){
       return this.state.shortText(this.state.userInfo[comment.userID].name, 10) + ' : ' + this.state.prettyDate({date: comment.date}) + "<br>"
     },
@@ -219,7 +235,7 @@ export default {
     border: 1px solid #0ff4;
     position: absolute;
     z-index: 50;
-    max-height: -webkit-fill-available;
+    max-height: 340px;
   }
   .commentLabel:hover{
     background: #0f44;
@@ -247,8 +263,9 @@ export default {
     margin-bottom: 10px;
     margin: 0;
     line-height: 1em;
-    border-bottom: 1px solid 4f88;
+    border-bottom: 1px solid #0ff4;
     position: relative;
+    width: 100%;
   }
   .avatar{
     margin: 3px;
