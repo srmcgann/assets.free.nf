@@ -89,7 +89,7 @@
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
           <div
-            @click="state.getUserStats(link.userID)"
+            @click="state.getUserStats(comment.userID)"
             class="avatar"
             :title="`this comment was posted by ${state.userInfo[comment.userID]?.name}`"
             :style="`background-image: url(${avatar(comment)});`"
@@ -143,17 +143,17 @@ export default {
   },
   methods: {
     avatar(comment){
-      if(this.state.userInfo[comment.userID]?.avatar.indexOf('avatarDefault.png') != -1){
+      if(this.state.userInfo[comment?.userID]?.avatar.indexOf('avatarDefault.png') != -1){
         return this.state.URLbase + '/avatarDefault.png'
       }else{
-        return this.state.userInfo[comment.userID]?.avatar
+        return this.state.userInfo[comment?.userID]?.avatar
       }
     },
     deleteComment(comment){
       this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + "<br>"
+      return this.state.shortText(this.state.userInfo[comment?.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + "<br>"
     },
     checked(comment){
       switch(this.mode){
