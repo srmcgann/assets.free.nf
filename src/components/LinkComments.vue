@@ -210,7 +210,7 @@ export default {
   },
   watch:{
     'state.click'(val){
-      if(val) this.showComment = false
+      //if(val) this.showComment = false
     }
   }
 }
