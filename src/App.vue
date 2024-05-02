@@ -1204,21 +1204,25 @@ export default {
           this.state.links.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              return v
             })
           })
           this.state.userLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              return v
             })
           })
           this.state.miscLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              return v
             })
           })
           this.state.cacheLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              return v
             })
           })
           this.state.showComposeComment = false
