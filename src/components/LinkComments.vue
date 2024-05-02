@@ -73,12 +73,9 @@
         <input v-else type="text"
           class="editCommentInput"
           autofocus
-          @keypress.stop.prevent
-          @keyup.stop.prevent="state.updateComment(comment)"
-          @keydown.stop.prevent
+          @keyup="state.updateComment(comment)"
           v-model="comment.text"
         >
-
         <!--
         <button
           v-if="mode!='multi' && checked(comment)"
