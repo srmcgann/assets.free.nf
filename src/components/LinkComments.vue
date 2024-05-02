@@ -14,9 +14,9 @@
       @mousedown.stop.prevent
       @click.stop.prevent="manageComments()"
       class="assetDataButton"
-      style="background: #4f8d"
+      :style="`background: #4f8d;${link.comments.length?'':'float:left;margin-left:10px;'}`"
       title="view and edit your comments"
-      v-html="link.comments.length ? 'comment' : 'be the first to comment'"
+      v-html="link.comments.length ? 'comment' : 'be first to comment'"
     ></button><br>
     <div
       @mousedown.stop.prevent
@@ -62,8 +62,7 @@
               @click.stop.prevent="deleteComment(comment)"
             >delete</button>
           </div>
-        
-          {{header(comment)}}
+          {{header(comment)}}<br>
         </div>
 
         <span
@@ -73,7 +72,7 @@
         </span>
         <input v-else type="text"
           class="editCommentInput"
-          ref="commentEdit"
+          autofocus
           @keypress.stop.prevent
           @keyup.stop.prevent="state.updateComment(comment)"
           @keydown.stop.prevent
@@ -121,9 +120,9 @@ export default {
   methods: {
     editComment(comment){
       comment.editing = true
-      this.$nextTick(() => {
-        this.$refs.commentEdit.focus()
-      })
+      //this.$nextTick(() => {
+      //  this.$refs.commentEdit.focus()
+      //})
     },
     avatar(comment){
       if(this.state.userInfo[comment.userID].avatar.indexOf('avatarDefault.png') != -1){
@@ -136,7 +135,7 @@ export default {
       this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + "<br>"
+      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date})
     },
     checked(comment){
       switch(this.mode){
