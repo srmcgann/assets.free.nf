@@ -38,7 +38,7 @@
         
         <div class="commentHeader">
           <div
-            v-if="typeof comment != 'undefined' && +comment.userID == +state.loggedinUserID"
+            v-if="+comment.userID == +state.loggedinUserID"
           >
             <button
               class="commentButton"
@@ -54,15 +54,14 @@
               title="finish editing your comment - changes are recorded in real time"
               @click.stop.prevent="comment.editing = false"
             >close edit</button>
-          </div>
 
-          <button
-            class="commentButton"
-            style="background:#f04"
-            title="permanently delete this comment"
-            @click.stop.prevent="deleteComment(comment)"
-          >delete</button>
-          <br>
+            <button
+              class="commentButton"
+              style="background:#f04"
+              title="permanently delete this comment"
+              @click.stop.prevent="deleteComment(comment)"
+            >delete</button>
+          </div>
         
           {{header(comment)}}
         </div>
@@ -311,5 +310,6 @@ export default {
     padding-right: 2px;
   }
   .editCommentInput{
+    background: #000;
   }
 </style>
