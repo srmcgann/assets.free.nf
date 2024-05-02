@@ -68,7 +68,7 @@
           >
             [edited]
           </span>
-        </div><br>
+        </div>
 
         <span
           class="commentText"
@@ -90,7 +90,6 @@
           @click.stop.prevent="this.state.viewComment(comment, links.slug)"
           title="view this item, in this comment"
         >👁</button> -->
-        <br>
       </div>
     </div>
   </div>
@@ -252,6 +251,7 @@ export default {
     position: absolute;
     z-index: 50;
     max-height: 340px;
+    margin-left: -95px;
   }
   .commentLabel:hover{
     background: #0f44;
