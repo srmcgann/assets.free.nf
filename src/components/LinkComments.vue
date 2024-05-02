@@ -166,6 +166,8 @@ export default {
             this.showComment = !this.showComment
           })
         })
+      }else{
+        this.showComment = !this.showComment
       }
     },
     pushUpdate(comment){
