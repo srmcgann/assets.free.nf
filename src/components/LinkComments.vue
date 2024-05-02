@@ -62,6 +62,12 @@
             >delete</button>
           </div>
           {{header(comment)}}
+          <span
+            v-if="comment.edited"
+            class="edited"
+          >
+            [edited]
+          </span>
         </div><br>
 
         <span
@@ -141,7 +147,7 @@ export default {
       this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + (comment.edited ? ' : <span class="edited">[edited]</span>' : '')
+      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date})
     },
     checked(comment){
       switch(this.mode){
