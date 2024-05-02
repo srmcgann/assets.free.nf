@@ -627,27 +627,37 @@ export default {
       })
     },
     deleteComment(comment){
-      let sendData = {
-        userName: this.state.username,
-        passhash: this.state.passhash,
-        commentID: comment.id,
-      }
-      fetch(`${this.URLbase}/` + 'deleteComment.php',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(sendData),
-      }).then(res => res.json()).then(data=>{
-        if(data[0]){
-          this.state.links = this.state.links.filter(link => +link.id != +comment.uploadID)
-          this.state.userLinks = this.state.userLinks.filter(link => +link.id != +comment.uploadID)
-          this.state.miscLinks = this.state.miscLinks.filter(link => +link.id != +comment.uploadID)
-          this.state.cacheLinks = this.state.cacheLinks.filter(link => +link.id != +comment.uploadID)
-        }else{
-          alert('there was an error deleting the comment... :(')
+      if(confirm('are you sure you want to delete this comment?\n\nthis action is irreversible!!!')){
+        let sendData = {
+          userName: this.state.username,
+          passhash: this.state.passhash,
+          commentID: comment.id,
         }
-      })
+        fetch(`${this.URLbase}/` + 'deleteComment.php',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sendData),
+        }).then(res => res.json()).then(data=>{
+          if(data[0]){
+            this.state.links.map(link => {
+              link.comments = link.comments.filter(cmt => +cmt.id != +comment.id)
+            })
+            this.state.userLinks.map(link => {
+              link.comments = link.comments.filter(cmt => +cmt.id != +comment.id)
+            })
+            this.state.miscLinks.map(link => {
+              link.comments = link.comments.filter(cmt => +cmt.id != +comment.id)
+            })
+            this.state.cacheLinks.map(link => {
+              link.comments = link.comments.filter(cmt => +cmt.id != +comment.id)
+            })
+          }else{
+            alert('there was an error deleting the comment... :(')
+          }
+        })
+      }
     },
     setLinksOwner(){
       if(!this.state.links.length) return
