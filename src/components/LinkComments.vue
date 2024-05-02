@@ -69,13 +69,12 @@
           v-html="comment.text"
           v-if="!comment.editing"
         </span>
-        <input v-else type="text"
+        <textarea v-else type="text"
           ref="commentEdit"
           class="editCommentInput"
-          autofocus
           @keyup="state.updateComment(comment)"
           v-model="comment.text"
-        >
+        ></textarea>
         <div style="clear: both;"></div>
         <!--
         <button
@@ -126,7 +125,9 @@ export default {
       this.state.editingComment = true
       comment.editing = true
       this.$nextTick(() => {
-        this.$refs.commentEdit.focus()
+        this.$nextTick(() => {
+          this.$refs.commentEdit.focus()
+        })
       })
     },
     avatar(comment){
@@ -140,7 +141,7 @@ export default {
       this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + (comment.edite ? ' : <span class="edited">[edited]</span>' : '')
+      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + (comment.edited ? ' : <span class="edited">[edited]</span>' : '')
     },
     checked(comment){
       switch(this.mode){
