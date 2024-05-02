@@ -34,7 +34,6 @@
           :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
           :style="`background-image: url(${avatar(comment)})`"
         ></div>
-        <div style="clear: both;"></div>
         
         <div class="commentHeader">
           <div
@@ -77,6 +76,7 @@
           @keyup="state.updateComment(comment)"
           v-model="comment.text"
         >
+        <div style="clear: both;"></div>
         <!--
         <button
           v-if="mode!='multi' && checked(comment)"
@@ -259,7 +259,6 @@ export default {
   .commentHeader{
     color: #ff0;
     display: block;
-    border-bottom: 1px solid #4f8
   }
   .commentText{
     font-size: 16px;
