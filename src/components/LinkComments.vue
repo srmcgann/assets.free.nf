@@ -34,6 +34,7 @@
           :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
           :style="`background-image: url(${avatar(comment)})`"
         ></div>
+        <div style="clear: both;"></div>
         
         <div class="commentHeader">
           <div
