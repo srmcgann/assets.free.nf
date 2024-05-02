@@ -1739,6 +1739,7 @@ export default {
     }
     
     this.state.onkeydown = window.onkeydown = e => {
+      if(this.state.editingComment) return
       this.state.keys[e.keyCode] = true
       console.log(e.keyCode)
       if(this.state.keys[18]){

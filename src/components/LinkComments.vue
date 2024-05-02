@@ -19,7 +19,6 @@
       v-html="link.comments.length ? 'comment' : 'be first to comment'"
     ></button><br>
     <div
-      @mousedown.stop.prevent
       ref="commentList"
       class="commentList"
       :class="{'show': showComment, 'hide': !showComment}"
@@ -71,6 +70,7 @@
           v-if="!comment.editing"
         </span>
         <input v-else type="text"
+          ref="commentEdit"
           class="editCommentInput"
           autofocus
           @keyup="state.updateComment(comment)"
@@ -122,9 +122,9 @@ export default {
     editComment(comment){
       this.state.editingComment = true
       comment.editing = true
-      //this.$nextTick(() => {
-      //  this.$refs.commentEdit.focus()
-      //})
+      this.$nextTick(() => {
+        this.$refs.commentEdit.focus()
+      })
     },
     avatar(comment){
       if(this.state.userInfo[comment.userID].avatar.indexOf('avatarDefault.png') != -1){
