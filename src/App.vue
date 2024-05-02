@@ -775,6 +775,7 @@ export default {
                 origin: data[2][i].origin,
                 comments: data[2][i].comments.map(v=>{
                   v.editing = false
+                  v.edited = !!(+v.edited)
                   this.state.fetchUserInfo(v.userID)
                   return v
                 }),
@@ -1206,24 +1207,28 @@ export default {
           this.state.links.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              v.edited = !!(+v.edited)
               return v
             })
           })
           this.state.userLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              v.edited = !!(+v.edited)
               return v
             })
           })
           this.state.miscLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              v.edited = !!(+v.edited)
               return v
             })
           })
           this.state.cacheLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.editing = false
+              v.edited = !!(+v.edited)
               return v
             })
           })
@@ -1351,6 +1356,7 @@ export default {
                 hash: data[2][i].hash,
                 comments: data[2][i].comments.map(v=>{
                   v.editing = false
+                  v.edited = !!(+v.edited)
                   this.state.fetchUserInfo(v.userID)
                   return v
                 }),
