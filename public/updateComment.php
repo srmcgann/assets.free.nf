@@ -1,7 +1,7 @@
 <?php
 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(0);
 
   require('db.php');
@@ -9,7 +9,7 @@ error_reporting(0);
   $userName = mysqli_real_escape_string($link, $data->{'userName'});
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
   $commentText = mysqli_real_escape_string($link, $data->{'commentText'});
-  $commentID = mysqli_real_escape_string($link, $data->{'commentID'});
+  $commentID = intval(mysqli_real_escape_string($link, $data->{'commentID'}));
   
   $success = false;
   $sql = "SELECT * FROM imjurUsers WHERE name LIKE \"$userName\" AND passhash LIKE BINARY \"$passhash\";";
@@ -18,7 +18,7 @@ error_reporting(0);
     $row = mysqli_fetch_assoc($res);
     if($row['enabled'] || $row['admin']){
       $userID = $row['id'];
-      $sql = "UPDATE imjurComments SET text = $commentText WHERE id = $commentID AND userID = $userID";
+      $sql = "UPDATE imjurComments SET text = \"$commentText\" WHERE id = $commentID AND userID = $userID";
       mysqli_query($link, $sql);
       $success = true;
     }
