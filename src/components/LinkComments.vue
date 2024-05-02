@@ -45,7 +45,7 @@
               style="background:#4f8"
               title="edit comment text"
               v-if="!comment.editing"
-              @click.stop.prevent="comment.editing = true"
+              @click.stop.prevent="editComment(comment)"
             >edit</button>
             <button
               v-else
@@ -73,36 +73,13 @@
         </span>
         <input v-else type="text"
           class="editCommentInput"
-          @keydown="state.updateComment(comment)"
+          ref="commentEdit"
+          @keypress.stop.prevent
+          @keyup.stop.prevent="state.updateComment(comment)"
+          @keydown.stop.prevent
           v-model="comment.text"
         >
-        
-        
-        <!--
-        <label
-          class="checkboxLabel commentLabel"
-        >
-          <input
-            :checked="checked(comment)"
-            type="checkbox"
-            @change="updateSelection($event, comment)"
-          >
-          <span class="checkmark" style="margin-left: -30px;"></span>
-          <div
-            @click="state.getUserStats(comment.userID)"
-            class="avatar"
-            :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
-            :style="`background-image: url(${avatar(comment)});`"
-          ></div>
-          
-          <span
-            class="commentText"
-            :style="`font-size:16px; margin-left:${checked(comment) ? '26px':'-10px'};`"
-             v-html="comment.text"
-          </span>
-        </label>
-        -->
-        
+
         <!--
         <button
           v-if="mode!='multi' && checked(comment)"
@@ -142,6 +119,12 @@ export default {
     }
   },
   methods: {
+    editComment(comment){
+      comment.editing = true
+      this.$nextTick(() => {
+        this.$refs.commentEdit.focus()
+      })
+    },
     avatar(comment){
       if(this.state.userInfo[comment.userID].avatar.indexOf('avatarDefault.png') != -1){
         return this.state.URLbase + '/avatarDefault.png'
