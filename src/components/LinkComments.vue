@@ -14,7 +14,7 @@
       @mousedown.stop.prevent
       @click.stop.prevent="manageComments()"
       class="assetDataButton"
-      :style="`background: #4f8d;${link.comments.length?'':'float:left;margin-left:10px;'}`"
+      :style="`background: #4f8d;${link.comments.length?'':'float:left;margin-left:10px;width:calc(100% - 20px)'}`"
       title="view and edit your comments"
       v-html="link.comments.length ? 'comment' : 'be first to comment'"
     ></button><br>
@@ -106,7 +106,7 @@ export default {
     }
   },
   computed:{
-    filteredcomments(){
+    filteredComments(){
       let ret = [] // reverse-sort comments
       this.link.comments.map((v,i) => {
         ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
