@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `imjurComments` (
   `upvotes` int(11) NOT NULL,
   `downvotes` int(11) NOT NULL,
   `uploadID` bigint(20) NOT NULL,
+  `edited` BOOLEAN NOT NULL DEFAULT FALSE,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

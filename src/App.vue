@@ -194,6 +194,7 @@ export default {
         doMouseDown: null,
         totalPages: 0,
         totalUserPages: 0,
+        userInteraction: false,
         setLinksOwner: null,
         curPage: 0,
         shortText: null,
@@ -1722,6 +1723,7 @@ export default {
     this.state.doMouseDown = window.onmousedown = e => {
       this.state.keys[18] = false
       this.state.click = true
+      this.state.userInteraction = true
       this.$nextTick(() => {
         this.state.click = false
       })

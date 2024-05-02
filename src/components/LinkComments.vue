@@ -25,7 +25,7 @@
       v-if="link.comments.length"
     >
       <div
-        v-for="comment in link.comments"
+        v-for="comment in filteredComments"
         class="commentRow"
       >
         <div
@@ -62,8 +62,8 @@
               @click.stop.prevent="deleteComment(comment)"
             >delete</button>
           </div>
-          {{header(comment)}}<br>
-        </div>
+          {{header(comment)}}
+        </div><br>
 
         <span
           class="commentText"
@@ -107,8 +107,10 @@ export default {
   },
   computed:{
     filteredcomments(){
-      let ret = ['none']
-      ret = [...ret, ...this.link.comments]
+      let ret = [] // reverse-sort comments
+      this.link.comments.map((v,i) => {
+        ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
+      })
       return ret
     },
     colHeight(){
@@ -138,7 +140,7 @@ export default {
       this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date})
+      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date}) + (comment.edite ? ' : <span class="edited">[edited]</span>' : '')
     },
     checked(comment){
       switch(this.mode){
@@ -257,6 +259,7 @@ export default {
   .commentHeader{
     color: #ff0;
     display: block;
+    border-bottom: 1px solid #4f8
   }
   .commentText{
     font-size: 16px;
@@ -298,5 +301,9 @@ export default {
   }
   .editCommentInput{
     background: #000;
+  }
+  .edited{
+    font-size: .9em;
+    color: #ade;
   }
 </style>
