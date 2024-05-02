@@ -52,7 +52,7 @@
               class="commentButton"
               style="background:#4f8"
               title="finish editing your comment - changes are recorded in real time"
-              @click.stop.prevent="comment.editing = false"
+              @click.stop.prevent="closeComment(comment)"
             >close edit</button>
 
             <button
@@ -115,7 +115,12 @@ export default {
     }
   },
   methods: {
+    closeComment(comment){
+      this.state.editingComment = false
+      comment.editing = false
+    },
     editComment(comment){
+      this.state.editingComment = true
       comment.editing = true
       //this.$nextTick(() => {
       //  this.$refs.commentEdit.focus()

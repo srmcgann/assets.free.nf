@@ -88,6 +88,7 @@ export default {
         showEditCollection: null,
         editCollection: [],
         fetchUserInfoMemo: [],
+        editingComment: false,
         multipleLinks: null,
         deleteComment: null,
         updateComment: null,
