@@ -2117,7 +2117,6 @@ a{
   margin: 0;
   margin-right: 10px;
   min-width: 100px;
-  float: right;
 }
 #copyConfirmation{
   display: none;

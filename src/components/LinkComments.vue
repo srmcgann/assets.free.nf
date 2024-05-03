@@ -1,27 +1,30 @@
 <template>
   <div class="linkComments">
-  
-    <button
-      @click.stop.prevent="decrementNumComments()"
-      v-if="link.comments.length"
-      class="expandInfoButton lessButton"
-      :disabled="numComments==0"
-      :class="{'disabledButton': numComments==0}"
-      title="show less-common/extra details about this asset"
-    >
-      less
-    </button>
-    
-    <button
-      @click.stop.prevent="incrementNumComments()"
-      v-if="link.comments.length"
-      class="expandInfoButton"
-      :disabled="numComments==link.comments.length"
-      :class="{'disabledButton': numComments==link.comments.length}"
-      title="show less-common/extra details about this asset"
-    >
-      more
-    </button>
+    <div class="comButNavLabel">
+      show
+      <br>
+      <button
+        @click.stop.prevent="decrementNumComments()"
+        v-if="link.comments.length"
+        class="expandInfoButton lessButton"
+        :disabled="numComments==0"
+        :class="{'disabledButton': numComments==0}"
+        title="show less-common/extra details about this asset"
+      >
+        less
+      </button>
+      
+      <button
+        @click.stop.prevent="incrementNumComments()"
+        v-if="link.comments.length"
+        class="expandInfoButton"
+        :disabled="numComments==link.comments.length"
+        :class="{'disabledButton': numComments==link.comments.length}"
+        title="show less-common/extra details about this asset"
+      >
+        more
+      </button>
+    </div>
     
     <button
       @mousedown.stop.prevent
@@ -378,6 +381,13 @@ export default {
   .lessButton{
     background: #604;
     color: #fff;
+  }
+  .comButNavLabel{
+    display: inline-block;
+    text-align: center;
+    width:50px;
+    color: #ff08;
+    font-size:9px;
   }
   .expandInfoButton{
     float: unset;
