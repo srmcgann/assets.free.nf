@@ -1519,8 +1519,9 @@ export default {
       //ret += seconds? `${seconds} second${seconds>1?'s':''}` : ''
       return ret ? ret : 'added just now...'
     },
-    prettyDate(link){
-      return (new Date(link.date)).toLocaleString().split(',')[0]
+    prettyDate(link, full=false){
+      let ret = (new Date(link.date)).toLocaleString()
+      return full ? ret : ret.split(',')[0]
     },
     firstSeen(link){
       let tseconds = (((new Date()) - (new Date(link.originalDate)))/1000|0) + 3600 * (((new Date).getTimezoneOffset()/60) - 4)

@@ -29,16 +29,21 @@
         class="commentRow"
       >
         <div
-          @click="state.getUserStats(comment.userID)"
-          class="avatar"
-          :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
-          :style="`background-image: url(${avatar(comment)})`"
-        ></div>
+          class="avatarContainer"
+          <div
+            @click="state.getUserStats(comment.userID)"
+            class="avatar"
+            :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
+            :style="`background-image: url(${avatar(comment)})`"
+          ></div>
+          {{state.shortText(this.state.userInfo[comment.userID].name, 18)}}
+        </div>
         
         <div class="commentHeader">
           <div
             v-if="+comment.userID == +state.loggedinUserID"
           >
+            <span class="headerText" v-html="header(comment)"></span>
             <button
               class="commentButton"
               style="background:#4f8"
@@ -61,7 +66,6 @@
               @click.stop.prevent="deleteComment(comment)"
             >delete</button>
           </div>
-          {{header(comment)}}
           <span
             v-if="comment.edited"
             class="edited"
@@ -146,7 +150,7 @@ export default {
       this.state.deleteComment(comment)
     },
     header(comment){
-      return this.state.shortText(this.state.userInfo[comment.userID].name, 18) + ' : ' + this.state.prettyDate({date: comment.date})
+      return this.state.prettyDate({date: comment.date}, 1)
     },
     checked(comment){
       switch(this.mode){
@@ -278,6 +282,10 @@ export default {
     margin: 4px;
     margin-right: 0;
   }
+  .headerText{
+    color: #ff0;
+    margin: 2px;
+  }
   .commentRow{
     display: block;
     margin-bottom: 10px;
@@ -287,13 +295,15 @@ export default {
     position: relative;
     width: 100%;
   }
-  .avatar{
+  .avatarContainer{
+    display: inline-block;
+    float: left;
     margin: 3px;
+  }
+  .avatar{
     margin-left: 0;
     width: 80px;
     height: 45px;
-    display: inline-block;
-    float: left;
   }
   .commentButton{
     padding:0;

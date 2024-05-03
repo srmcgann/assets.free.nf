@@ -67,7 +67,7 @@ export default {
   .disabled{
     background: #333!important;
     color: #888;
-    text-shadow: 0 0 3px #fff!important;
+    text-shadow: 0 0 3px #000!important;
   }
   .commentInput{
     border: 1px solid #40f;
