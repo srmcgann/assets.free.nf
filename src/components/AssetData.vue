@@ -140,9 +140,8 @@
     </tr>
     <tr style="height: 28px;">
       <td class="tdLeft">
-        comments
-        <span
-          style="font-size:15px;"
+        comments<span
+          style="font-size:13px;"
           v-html="`(${link.comments.length})`"
         ></span>
       </td>

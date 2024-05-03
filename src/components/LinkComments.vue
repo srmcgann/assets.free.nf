@@ -378,6 +378,7 @@ export default {
     position: absolute;
     margin-top: -2px;
     height: 23px;
+    margin-left: -7px;
   }
   .edited{
     font-size: .9em;
@@ -400,7 +401,7 @@ export default {
     float: unset;
     display: inline-block;
     margin: 3px;
-    margin-left: 6px;
+    margin-left: 0;
     margin-top: 0;
     margin-bottom: 0;
     width: 46px;

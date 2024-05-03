@@ -209,7 +209,7 @@ export default {
     ttlViews(){
       let ttl = 0
       this.array.map(v=>{
-        ttl+=v.views
+        ttl+=+v.views
       })
       return ttl
     },
