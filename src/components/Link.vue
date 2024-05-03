@@ -241,7 +241,7 @@ export default {
     word-break: break-word;
     border-radius: 10px;
     vertical-align: top;
-    border: 3px solid #4086;
+    border: 6px solid #50f2;
     padding: 5px;
     min-width: 324px
   }

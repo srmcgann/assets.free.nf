@@ -274,12 +274,11 @@ export default {
     background: #123;
     line-height: 28px;
     margin-top: 5px;
-    padding-left: 2px;
     padding-top: 2px;
     overflow-y: auto;
     overflow-x: hidden;
     border: 1px solid #0ff4;
-    /*position: absolute;*/
+    border-radius: 10px;
     z-index: 50;
     max-width: 340px;
     max-height: 340px;
@@ -396,7 +395,6 @@ export default {
     color: #f80;
     font-size:9px;
     line-height: 0;
-    margin-left: -14px;
     vertical-align: top;
   }
   .expandInfoButton{
