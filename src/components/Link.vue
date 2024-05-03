@@ -243,7 +243,7 @@ export default {
     vertical-align: top;
     border: 6px solid #50f2;
     padding: 5px;
-    min-width: 324px
+    width: 370px;
   }
   .href{
     font-size: .6em;

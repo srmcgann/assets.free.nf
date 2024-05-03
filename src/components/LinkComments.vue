@@ -280,7 +280,6 @@ export default {
     border: 1px solid #0ff4;
     border-radius: 10px;
     z-index: 50;
-    max-width: 340px;
     max-height: 340px;
   }
   .commentLabel:hover{
@@ -334,7 +333,7 @@ export default {
   }
   .linkComments{
     position: absolute;
-    margin-left: 118px;
+    margin-left: 109px;
     margin-top: -24px;
   }
   .commentButton{
