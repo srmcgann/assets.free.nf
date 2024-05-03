@@ -43,7 +43,6 @@
   <div
     ref="commentList"
     class="commentList"
-    :class="{'show': showComment, 'hide': !showComment}"
     v-if="link.comments.length"
   >
     <div
@@ -131,7 +130,8 @@ export default {
   data(){
     return {
       showComment: false,
-      numComments: 3
+      numComments: 3,
+      commentIncrVal: 4
     }
   },
   computed:{
@@ -148,10 +148,10 @@ export default {
   },
   methods: {
     decrementNumComments(){
-      this.numComments = Math.max(0, this.numComments-1)
+      this.numComments = Math.max(0, this.numComments-this.commentIncrVal)
     },
     incrementNumComments(){
-      this.numComments = Math.min(this.link.comments.length, this.numComments+1)
+      this.numComments = Math.min(this.link.comments.length, this.numComments+this.commentIncrVal)
     },
     closeComment(comment){
       this.state.editingComment = false
@@ -363,7 +363,6 @@ export default {
   .noCommentsButton{
     background:#4f8d;
     position:absolute;
-    margin-left:-110px;
     margin-top: -2px;
     width: 210px;
     line-height: 12px;
@@ -375,7 +374,8 @@ export default {
   }
   .addCommentButton{
     padding: 2px;
-    line-height: 18px;
+    line-height: 16px;
+    font-size: 13px;
     vertical-align: bottom;
     position: absolute;
     margin-top: -2px;
