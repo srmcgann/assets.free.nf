@@ -1,6 +1,6 @@
 <template>
   <div class="linkComments">
-    <div class="comButNavLabel" v-if="comments.length">
+    <div class="comButNavLabel" v-if="link.comments.length">
       show
       <br>
       <button
@@ -137,8 +137,8 @@ export default {
   computed:{
     filteredComments(){
       let ret = [] // reverse-sort comments
-      this.link.comments.map((v,i) => {
-        if(ret.length < this.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
+      this.link.comments.map((v, i) => {
+        if(i < this.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
       })
       return ret
     },
@@ -393,7 +393,7 @@ export default {
     display: inline-block;
     text-align: center;
     width:124px;
-    color: #ff08;
+    color: #f80;
     font-size:9px;
     line-height: 0;
     margin-left: -14px;
