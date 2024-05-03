@@ -342,7 +342,7 @@ export default {
     height: 24px;
   }
   .assetDataButton{
-    #4f8;
+    background: #4f8;
   }
   .edited{
     font-size: .9em;
