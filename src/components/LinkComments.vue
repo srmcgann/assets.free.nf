@@ -1,11 +1,10 @@
 <template>
   <div class="linkComments">
-    <div class="comButNavLabel">
+    <div class="comButNavLabel" v-if="comments.length">
       show
       <br>
       <button
         @click.stop.prevent="decrementNumComments()"
-        v-if="link.comments.length"
         class="expandInfoButton lessButton"
         :disabled="numComments==0"
         :class="{'disabledButton': numComments==0}"
@@ -16,7 +15,6 @@
       
       <button
         @click.stop.prevent="incrementNumComments()"
-        v-if="link.comments.length"
         class="expandInfoButton"
         :disabled="numComments==link.comments.length"
         :class="{'disabledButton': numComments==link.comments.length}"
@@ -36,7 +34,7 @@
     <button
       @mousedown.stop.prevent
       @click.stop.prevent="manageComments()"
-      class="assetDataButton"
+      class="assetDataButton addCommentButton"
       title="view and edit your comments"
       style="padding: 2px;"
       v-else
@@ -338,7 +336,7 @@ export default {
   .linkComments{
     position: absolute;
     margin-left: 118px;
-    margin-top: -27px;
+    margin-top: -24px;
   }
   .commentButton{
     padding:0;
@@ -365,14 +363,23 @@ export default {
   .noCommentsButton{
     background:#4f8d;
     position:absolute;
-    margin-left:118px;
-    margin-top: -26px;
+    margin-left:-110px;
+    margin-top: -2px;
     width: 210px;
     line-height: 12px;
-    height: 24px;
+    height: 23px;
   }
   .assetDataButton{
     background: #4f8d;
+    height: 23px;
+  }
+  .addCommentButton{
+    padding: 2px;
+    line-height: 18px;
+    vertical-align: bottom;
+    position: absolute;
+    margin-top: -2px;
+    height: 23px;
   }
   .edited{
     font-size: .9em;
@@ -385,12 +392,20 @@ export default {
   .comButNavLabel{
     display: inline-block;
     text-align: center;
-    width:50px;
+    width:124px;
     color: #ff08;
     font-size:9px;
+    line-height: 0;
+    margin-left: -14px;
+    vertical-align: top;
   }
   .expandInfoButton{
     float: unset;
     display: inline-block;
+    margin: 3px;
+    margin-left: 6px;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 46px;
   }
 </style>
