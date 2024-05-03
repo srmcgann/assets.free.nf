@@ -138,7 +138,6 @@
       <td class="tdLeft">origin</td>
       <td class="tdRight" v-html="link.origin.split(':')[0]"></td>
     </tr>
-    <!-- <tr><td class="tdLeft">first seen</td><td class="tdRight"v-html="state.firstSeen(link)"></td></tr> -->
     <tr style="height: 28px;">
       <td class="tdLeft">
         comments
