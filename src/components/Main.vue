@@ -350,8 +350,9 @@ export default {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-evenly;
+    row-gap: 30px;
+    column-gap: 30px;
+    /*justify-content: space-evenly;*/
   }
   #dropTargetCaption{
     display: inline-block;

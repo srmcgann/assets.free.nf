@@ -13,11 +13,16 @@
     <button
       @mousedown.stop.prevent
       @click.stop.prevent="manageComments()"
-      class="assetDataButton"
-      :style="`background: #4f8d;${link.comments.length?'':'float:left;margin-left:10px;width:calc(100% - 20px)'}`"
+      class="assetDataButton noCommentsButton"
       title="view and edit your comments"
-      v-html="link.comments.length ? 'comment' : 'be first to comment'"
-    ></button><br>
+    >be first to comment</button>
+    <button
+      @mousedown.stop.prevent
+      @click.stop.prevent="manageComments()"
+      class="assetDataButton"
+      title="view and edit your comments"
+      v-if="link.comments.length"
+    >comment</button><br>
     <div
       ref="commentList"
       class="commentList"
@@ -298,6 +303,7 @@ export default {
     display: inline-block;
     float: left;
     margin: 3px;
+    font-size: 12px;
   }
   .avatar{
     margin-left: 0;
@@ -325,6 +331,18 @@ export default {
     font-size: 14px;
     color: #fff;
     min-height: 60px;
+  }
+  .noCommentsButton{
+    background:#4f8d;
+    position:absolute;
+    margin-left:118px;
+    margin-top: -24px;
+    width: 210px;
+    line-height: 12px;
+    height: 24px;
+  }
+  .assetDataButton{
+    #4f8;
   }
   .edited{
     font-size: .9em;
