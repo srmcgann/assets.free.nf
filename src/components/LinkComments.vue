@@ -1,15 +1,28 @@
 <template>
   <div class="linkComments">
+  
     <button
-      @mousedown.stop.prevent
-      @click.stop.prevent="toggleShowComments()"
-      class="assetDataButton"
-      style="background: #84fd; color: #fff;"
-      title="show or hide comments"
-      v-html="showComment?`close`:`show (${link.comments.length})`"
-      v-if="!!link.comments.length"
+      @click.stop.prevent="decrementNumComments()"
+      v-if="link.comments.length"
+      class="expandInfoButton lessButton"
+      :disabled="numComments==0"
+      :class="{'disabledButton': numComments==0}"
+      title="show less-common/extra details about this asset"
     >
+      less
     </button>
+    
+    <button
+      @click.stop.prevent="incrementNumComments()"
+      v-if="link.comments.length"
+      class="expandInfoButton"
+      :disabled="numComments==comments.length"
+      :class="{'disabledButton': numComments==comments.length}"
+      title="show less-common/extra details about this asset"
+    >
+      more
+    </button>
+    
     <button
       @mousedown.stop.prevent
       @click.stop.prevent="manageComments()"
@@ -22,84 +35,85 @@
       @click.stop.prevent="manageComments()"
       class="assetDataButton"
       title="view and edit your comments"
+      style="padding: 2px;"
       v-else
-    >comment</button><br>
+    >add comment</button><br>
+  </div>
+  <div
+    ref="commentList"
+    class="commentList"
+    :class="{'show': showComment, 'hide': !showComment}"
+    v-if="link.comments.length"
+  >
     <div
-      ref="commentList"
-      class="commentList"
-      :class="{'show': showComment, 'hide': !showComment}"
-      v-if="link.comments.length"
+      v-for="comment in filteredComments"
+      class="commentRow"
     >
-      <div
-        v-for="comment in filteredComments"
-        class="commentRow"
-      >
-        <div class="avatarContainer">
-          <div
-            @click="state.getUserStats(comment.userID)"
-            class="avatar"
-            :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
-            :style="`background-image: url(${avatar(comment)})`"
-          ></div>
-          {{state.shortText(this.state.userInfo[comment.userID].name, 18)}}
-        </div>
-        
-        <div class="commentHeader">
-          <div
-            v-if="+comment.userID == +state.loggedinUserID"
-          >
-            <span class="headerText" v-html="header(comment, !comment.edited)"></span>
-            <span
-              v-if="comment.edited"
-              class="edited"
-            >
-              [edited]
-            </span>
-            <button
-              class="commentButton"
-              style="background:#4f8"
-              title="edit comment text"
-              v-if="!comment.editing"
-              @click.stop.prevent="editComment(comment)"
-            >edit</button>
-            <button
-              v-else
-              class="commentButton"
-              style="background:#4f8"
-              title="finish editing your comment - changes are recorded in real time"
-              @click.stop.prevent="closeComment(comment)"
-            >close edit</button>
-
-            <button
-              class="commentButton"
-              style="background:#f04"
-              title="permanently delete this comment"
-              @click.stop.prevent="deleteComment(comment)"
-            >delete</button>
-          </div>
-        </div>
-
-        <span
-          class="commentText"
-          v-html="comment.text"
-          v-if="!comment.editing"
-        ></span>
-        <textarea v-else type="text"
-          ref="commentEdit"
-          class="editCommentInput"
-          @keyup="state.updateComment(comment)"
-          v-model="comment.text"
-        ></textarea>
-        <div style="clear: both;"></div>
-        <!--
-        <button
-          v-if="mode!='multi' && checked(comment)"
-          class="toolbarButtons commentsButton"
-          style="color: #fff; z-index:1000; min-width: unset; height: 27px; background: #84fd;margin: unset;margin-top: -1px; margin-right:5px; padding: 0;font-size:32px;padding-top:7px;position: absolute; margin-left: 28px;"
-          @click.stop.prevent="this.state.viewComment(comment, links.slug)"
-          title="view this item, in this comment"
-        >👁</button> -->
+      <div class="avatarContainer">
+        <div
+          @click="state.getUserStats(comment.userID)"
+          class="avatar"
+          :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
+          :style="`background-image: url(${avatar(comment)})`"
+        ></div>
+        {{state.shortText(this.state.userInfo[comment.userID].name, 18)}}
       </div>
+      
+      <div class="commentHeader">
+        <div
+          v-if="+comment.userID == +state.loggedinUserID"
+        >
+          <span class="headerText" v-html="header(comment, !comment.edited)"></span>
+          <span
+            v-if="comment.edited"
+            class="edited"
+          >
+            [edited]
+          </span>
+          <button
+            class="commentButton"
+            style="background:#4f8"
+            title="edit comment text"
+            v-if="!comment.editing"
+            @click.stop.prevent="editComment(comment)"
+          >edit</button>
+          <button
+            v-else
+            class="commentButton"
+            style="background:#4f8"
+            title="finish editing your comment - changes are recorded in real time"
+            @click.stop.prevent="closeComment(comment)"
+          >close edit</button>
+
+          <button
+            class="commentButton"
+            style="background:#f04"
+            title="permanently delete this comment"
+            @click.stop.prevent="deleteComment(comment)"
+          >delete</button>
+        </div>
+      </div>
+
+      <span
+        class="commentText"
+        v-html="comment.text"
+        v-if="!comment.editing"
+      ></span>
+      <textarea v-else type="text"
+        ref="commentEdit"
+        class="editCommentInput"
+        @keyup="state.updateComment(comment)"
+        v-model="comment.text"
+      ></textarea>
+      <div style="clear: both;"></div>
+      <!--
+      <button
+        v-if="mode!='multi' && checked(comment)"
+        class="toolbarButtons commentsButton"
+        style="color: #fff; z-index:1000; min-width: unset; height: 27px; background: #84fd;margin: unset;margin-top: -1px; margin-right:5px; padding: 0;font-size:32px;padding-top:7px;position: absolute; margin-left: 28px;"
+        @click.stop.prevent="this.state.viewComment(comment, links.slug)"
+        title="view this item, in this comment"
+      >👁</button> -->
     </div>
   </div>
 </template>
@@ -116,13 +130,14 @@ export default {
   data(){
     return {
       showComment: false,
+      numComments: 3
     }
   },
   computed:{
     filteredComments(){
       let ret = [] // reverse-sort comments
       this.link.comments.map((v,i) => {
-        ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
+        if(ret.length < this.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
       })
       return ret
     },
@@ -131,6 +146,12 @@ export default {
     }
   },
   methods: {
+    decrementNumComments(){
+      this.numComments = Math.max(0, this.numComments-1)
+    },
+    incrementNumComments(){
+      this.numComments = Math.min(this.comments.length, this.numComments+1)
+    },
     closeComment(comment){
       this.state.editingComment = false
       comment.editing = false
@@ -311,6 +332,11 @@ export default {
     width: 80px;
     height: 45px;
   }
+  .linkComments{
+    position: absolute;
+    margin-left: 118px;
+    margin-top: -27px;
+  }
   .commentButton{
     padding:0;
     min-width: 60px;
@@ -343,10 +369,18 @@ export default {
     height: 24px;
   }
   .assetDataButton{
-    background: #4f8;
+    background: #4f8d;
   }
   .edited{
     font-size: .9em;
     color: #ade;
+  }
+  .lessButton{
+    background: #604;
+    color: #fff;
+  }
+  .expandInfoButton{
+    float: unset;
+    display: inline-block;
   }
 </style>

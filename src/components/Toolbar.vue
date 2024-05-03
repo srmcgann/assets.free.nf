@@ -296,11 +296,6 @@ export default {
     border-color: #0808;
     border-radius: 40%;
   }
-  .disabledButton{
-    color: #888;
-    background-color: #333d;
-    border-color: #0008;
-  }
   .goButton{
     min-width: unset;
     width: 36px;

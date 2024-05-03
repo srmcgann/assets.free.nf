@@ -214,18 +214,6 @@ export default {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .expandInfoButton{
-    font-size: 11px;
-    padding: 2px;
-    width: 40px;
-    background: #044;
-    color: #8f8;
-    min-width: unset;
-    float: left;
-    position: relative;
-    font-weight: 100;
-    top: 2px;
-  }
   .assetNameInput{
     max-width: 225px;
     font-size: 14px;

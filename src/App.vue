@@ -2084,6 +2084,23 @@ a{
 .viewCollectionButton{
   background: #84fd;
 }
+.expandInfoButton{
+  font-size: 11px;
+  padding: 2px;
+  width: 40px;
+  background: #044;
+  color: #8f8;
+  min-width: unset;
+  float: left;
+  position: relative;
+  font-weight: 100;
+  top: 2px;
+}
+.disabledButton{
+  color: #888!important;
+  background-color: #333d!important;
+  border-color: #0008!important;
+}
 .viewCollectionButton, .editCollectionButton{
   height: 24px;
   line-height: 14px;
