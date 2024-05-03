@@ -16,7 +16,7 @@
       @click.stop.prevent="incrementNumComments()"
       v-if="link.comments.length"
       class="expandInfoButton"
-      :disabled="numComments==comments.length"
+      :disabled="numComments==link.comments.length"
       :class="{'disabledButton': numComments==link.comments.length}"
       title="show less-common/extra details about this asset"
     >
