@@ -43,7 +43,13 @@
           <div
             v-if="+comment.userID == +state.loggedinUserID"
           >
-            <span class="headerText" v-html="header(comment)"></span>
+            <span class="headerText" v-html="header(comment, !comment.edited)"></span>
+            <span
+              v-if="comment.edited"
+              class="edited"
+            >
+              [edited]
+            </span>
             <button
               class="commentButton"
               style="background:#4f8"
@@ -66,19 +72,13 @@
               @click.stop.prevent="deleteComment(comment)"
             >delete</button>
           </div>
-          <span
-            v-if="comment.edited"
-            class="edited"
-          >
-            [edited]
-          </span>
         </div>
 
         <span
           class="commentText"
           v-html="comment.text"
           v-if="!comment.editing"
-        </span>
+        ></span>
         <textarea v-else type="text"
           ref="commentEdit"
           class="editCommentInput"
@@ -149,8 +149,8 @@ export default {
     deleteComment(comment){
       this.state.deleteComment(comment)
     },
-    header(comment){
-      return this.state.prettyDate({date: comment.date}, 1)
+    header(comment, full){
+      return this.state.prettyDate({date: comment.date}, full)
     },
     checked(comment){
       switch(this.mode){
