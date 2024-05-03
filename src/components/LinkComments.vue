@@ -17,7 +17,7 @@
       v-if="link.comments.length"
       class="expandInfoButton"
       :disabled="numComments==comments.length"
-      :class="{'disabledButton': numComments==comments.length}"
+      :class="{'disabledButton': numComments==link.comments.length}"
       title="show less-common/extra details about this asset"
     >
       more
@@ -150,7 +150,7 @@ export default {
       this.numComments = Math.max(0, this.numComments-1)
     },
     incrementNumComments(){
-      this.numComments = Math.min(this.comments.length, this.numComments+1)
+      this.numComments = Math.min(this.link.comments.length, this.numComments+1)
     },
     closeComment(comment){
       this.state.editingComment = false
