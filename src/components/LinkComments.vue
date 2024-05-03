@@ -239,7 +239,7 @@ export default {
     display: none;
   }
   .commentList{
-    width: 315px;
+    width: 100%;
     background: #123;
     line-height: 28px;
     margin-top: 5px;
@@ -250,8 +250,8 @@ export default {
     border: 1px solid #0ff4;
     /*position: absolute;*/
     z-index: 50;
+    max-width: 340px;
     max-height: 340px;
-    margin-left: -95px;
   }
   .commentLabel:hover{
     background: #0f44;
@@ -305,8 +305,17 @@ export default {
     padding-left: 2px;
     padding-right: 2px;
   }
+  .editCommentInput:focus{
+    outline: none;
+  }
   .editCommentInput{
     background: #000;
+    border: 4px solid #f084;
+    width: 100%;
+    vertical-align: top;
+    font-size: 14px;
+    color: #fff;
+    min-height: 60px;
   }
   .edited{
     font-size: .9em;
