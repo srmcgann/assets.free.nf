@@ -43,7 +43,7 @@
   <div
     ref="commentList"
     class="commentList"
-    v-if="link.comments.length"
+    v-if="link.comments.length && numComments"
   >
     <div
       v-for="comment in filteredComments"

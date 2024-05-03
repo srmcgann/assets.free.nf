@@ -141,7 +141,11 @@
     <!-- <tr><td class="tdLeft">first seen</td><td class="tdRight"v-html="state.firstSeen(link)"></td></tr> -->
     <tr v-if="!omitAssetData" style="height: 28px;">
       <td class="tdLeft">
-        comments ({{link.comments.length}})
+        comments
+        <span
+          style="font-size:10px;"
+          v-html="` (${link.comments.length}`"
+        ></span>
       </td>
       <td class="tdRight">
       </td>

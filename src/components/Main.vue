@@ -352,6 +352,7 @@ export default {
     flex-wrap: wrap;
     row-gap: 30px;
     column-gap: 30px;
+    align-items: flex-start;
     justify-content: space-evenly;
   }
   #dropTargetCaption{
