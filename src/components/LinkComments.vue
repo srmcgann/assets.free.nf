@@ -28,8 +28,7 @@
         v-for="comment in filteredComments"
         class="commentRow"
       >
-        <div
-          class="avatarContainer"
+        <div class="avatarContainer">
           <div
             @click="state.getUserStats(comment.userID)"
             class="avatar"
