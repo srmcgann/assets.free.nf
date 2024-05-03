@@ -15,13 +15,14 @@
       @click.stop.prevent="manageComments()"
       class="assetDataButton noCommentsButton"
       title="view and edit your comments"
+      v-if="!link.comments.length"
     >be first to comment</button>
     <button
       @mousedown.stop.prevent
       @click.stop.prevent="manageComments()"
       class="assetDataButton"
       title="view and edit your comments"
-      v-if="link.comments.length"
+      v-else
     >comment</button><br>
     <div
       ref="commentList"
@@ -336,7 +337,7 @@ export default {
     background:#4f8d;
     position:absolute;
     margin-left:118px;
-    margin-top: -24px;
+    margin-top: -26px;
     width: 210px;
     line-height: 12px;
     height: 24px;
