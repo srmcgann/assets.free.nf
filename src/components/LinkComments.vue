@@ -69,7 +69,7 @@
             class="edited"
           >
             [edited]
-          </span>
+          </span><br>
           <button
             class="commentButton"
             style="background:#4f8"
