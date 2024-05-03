@@ -26,6 +26,17 @@
           <td
             class="tdLeft"
             style="font-size:2em;"
+          >ttl views</td>
+          <td
+            class="tdRight"
+            style="font-size:2em;"
+            v-html="ttlViews"
+          ></td>
+        </tr>
+        <tr>
+          <td
+            class="tdLeft"
+            style="font-size:2em;"
           >footprint</td>
           <td
             class="tdRight"
@@ -195,6 +206,13 @@ export default {
     }
   },
   computed: {
+    ttlViews(){
+      let ttl = 0
+      this.array.map(v=>{
+        ttl+=v.views
+      })
+      return ttl
+    },
     sortedByViews(){
       let src = this.array
       return src.sort((a, b) => (this.sortDir?b:a).views - (this.sortDir?a:b).views)
