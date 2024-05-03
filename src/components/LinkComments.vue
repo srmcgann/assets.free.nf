@@ -130,8 +130,8 @@ export default {
   data(){
     return {
       showComment: false,
-      numComments: 3,
-      commentIncrVal: 4
+      numComments: 2,
+      commentIncrVal: 2
     }
   },
   computed:{

@@ -143,8 +143,8 @@
       <td class="tdLeft">
         comments
         <span
-          style="font-size:10px;"
-          v-html="` (${link.comments.length}`"
+          style="font-size:12px;"
+          v-html="`(${link.comments.length})`"
         ></span>
       </td>
       <td class="tdRight">
