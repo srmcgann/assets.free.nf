@@ -144,10 +144,10 @@
         comments
       </td>
       <td class="tdRight">
-        <LinkComments :state="state" :link="link" />
       </td>
     </tr>
   </table>
+  <LinkComments :state="state" :link="link" />
 </template>
 
 <script>

@@ -248,7 +248,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     border: 1px solid #0ff4;
-    position: absolute;
+    /*position: absolute;*/
     z-index: 50;
     max-height: 340px;
     margin-left: -95px;
