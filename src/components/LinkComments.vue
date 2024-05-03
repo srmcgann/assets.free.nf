@@ -17,7 +17,7 @@
         @click.stop.prevent="incrementNumComments()"
         class="expandInfoButton"
         :disabled="numComments==link.comments.length"
-        :class="{'disabledButton': numComments==link.comments.length}"
+        :class="{'disabledButton': numComments>=link.comments.length}"
         title="show less-common/extra details about this asset"
       >
         more
