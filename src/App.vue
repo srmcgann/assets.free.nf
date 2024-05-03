@@ -2146,7 +2146,7 @@ a{
   width: 300px;
   color: #ffa;
 }
-input[type=text], input[type=password]{
+input[type=text], input[type=password], textarea{
   font-family: Courier Prime;
   font-size: 24px;
   background: #0004;
