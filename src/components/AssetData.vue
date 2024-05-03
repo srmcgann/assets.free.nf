@@ -143,7 +143,7 @@
       <td class="tdLeft">
         comments
         <span
-          style="font-size:12px;"
+          style="font-size:15px;"
           v-html="`(${link.comments.length})`"
         ></span>
       </td>
@@ -225,7 +225,6 @@ export default {
     border-bottom: 1px solid #4f84;
   }
   .tdLeft{
-    width: 100px;
     max-width: unset;
     min-width: 105px;
   }
