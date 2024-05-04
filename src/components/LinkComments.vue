@@ -159,7 +159,7 @@ export default {
   },
   computed:{
     filteredComments(){
-      let ret = structuredClone(this.link.comments)
+      let ret = this.link.comments
       ret.sort((a,b) => a.id - b.id)
       return ret.filter((v, i) => i<this.numComments)
     },
