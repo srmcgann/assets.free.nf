@@ -444,7 +444,7 @@ export default {
     width: 134px;
     margin-bottom: 6px;
     left:50%;
-    transform:translate(-100%);
+    transform:translate(-155px);
     margin-left:10px;
     margin-right:10px;
   }
