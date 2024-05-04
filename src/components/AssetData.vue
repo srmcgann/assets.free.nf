@@ -138,10 +138,10 @@
       <td class="tdLeft">origin</td>
       <td class="tdRight" v-html="link.origin.split(':')[0]"></td>
     </tr>
-    <tr style="height: 28px;">
+    <tr style="height: 28px;" v-if="link.comments.length">
       <td class="tdLeft">
         comments<span
-          style="font-size:13px;"
+          style="font-size:10px;"
           v-html="`(${link.comments.length})`"
         ></span>
       </td>
@@ -149,7 +149,7 @@
       </td>
     </tr>
   </table>
-  <LinkComments :state="state" :link="link" />
+  <LinkComments :state="state" :link="link" v-if="link.comments.length"/>
 </template>
 
 <script>

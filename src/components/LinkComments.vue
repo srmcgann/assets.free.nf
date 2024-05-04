@@ -362,9 +362,10 @@ export default {
     background:#4f8d;
     position:absolute;
     margin-top: -2px;
-    width: 210px;
+    width: 197px;
     line-height: 12px;
     height: 23px;
+    margin-left: 13px;
   }
   .assetDataButton{
     background: #4f8d;
