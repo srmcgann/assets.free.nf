@@ -180,7 +180,8 @@ export default {
       this.state.deleteComment(comment)
     },
     header(comment, full){
-      return this.state.prettyDate({date: comment.date}, full)
+                                          // uncomment below to omit/replace time @ "edited"
+      return this.state.prettyDate({date: comment.date}) //, full) 
     },
     checked(comment){
       switch(this.mode){
