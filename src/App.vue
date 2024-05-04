@@ -626,7 +626,9 @@ export default {
         },
         body: JSON.stringify(sendData),
       }).then(res => res.json()).then(data=>{
-        if(!data[0]){
+        if(data[0]){
+          comment.edited = true
+        }else{
           alert('there was an error updating the comment... :(')
         }
       })

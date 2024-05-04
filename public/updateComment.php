@@ -18,7 +18,7 @@ error_reporting(0);
     $row = mysqli_fetch_assoc($res);
     if($row['enabled'] || $row['admin']){
       $userID = $row['id'];
-      $sql = "UPDATE imjurComments SET text = \"$commentText\" WHERE id = $commentID AND userID = $userID";
+      $sql = "UPDATE imjurComments SET edited = 1, text = \"$commentText\" WHERE id = $commentID AND userID = $userID";
       mysqli_query($link, $sql);
       $success = true;
     }
