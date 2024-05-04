@@ -173,6 +173,9 @@ export default {
     },
     incrementNumComments(){
       this.numComments= Math.min(this.link.comments.length, this.numComments+this.commentIncrVal)
+      this.$nextTick(() => {
+        this.$refs.commentList.scrollTo(0, 1e6)
+      })
     },
     closeComment(comment){
       this.state.editingComment = false
