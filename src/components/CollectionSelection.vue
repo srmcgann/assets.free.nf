@@ -29,7 +29,7 @@
         <label
           class="checkboxLabel collectionLabel"
         >
-          {{if(checked(collection)) supplemental(collection)}}
+          {{supplemental(collection)}}
           <input
             :checked="checked(collection)"
             type="checkbox"
@@ -84,6 +84,7 @@ export default {
   },
   methods: {
     supplemental(collection){
+      if(!this.checked(collection)) return ''
       let ct=0
       this.state.links.map(link=>{
         if(link.selected && collection.meta.slugs.filter(slug=>slug==link.slug).length) ct++
