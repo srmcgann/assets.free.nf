@@ -1,5 +1,5 @@
 <template>
-  items/pg
+  comments/asset
   <select
     ref="commentSel"
     @change="updateComSel()"
