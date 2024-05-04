@@ -126,6 +126,8 @@ CREATE TABLE IF NOT EXISTS `imjurUsers` (
   `dateJoined` datetime NOT NULL DEFAULT current_timestamp(),
   `dateSeen` datetime NOT NULL DEFAULT current_timestamp(),
   `name` varchar(64) NOT NULL,
+  `pageSel` int(11) DEFAULT 6,
+  `commentSel` int(11) DEFAULT 2,
   `avatar` mediumtext NOT NULL,
   `escaped_name` varchar(256) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT 0,

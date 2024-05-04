@@ -34,22 +34,26 @@ todo
   ✔ deleting asset also removes it from all connected collections
   ✔ sortable 'stats overview' page for users
   ✔ add items/page selection to user prefs
-  * uploading progress animations & color change @ 100%
+  ✔ uploading progress animations & color change @ 100%
+  * configurable default # of comments per asset
+  * load user info for all comments, as received
+  * users may download their entire catalog as a zip file
+  * single asset view / URL (same /uploads/... URL, minus the file suffix?)
   * URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default
     └-> ✔ collections
-    └-> *  asset management/tools
+    └-> ✔  asset management/tools
            └->  ✔ collections
-           └->  ✔ stats/overview (when made)
+           └->  * stats/overview (when made)
            └->  * comments (when made)
   * users, optional logins/profiles
     └-> ✔ login button
     └-> ✔ profile page
     └-> ✔ collections / share-ability
-    └-> * comments
+    └-> ✔ comments
     └-> * votes
         
-  * search
+  * search (title/description/user/comments[optional])
   * add sortability to collections list columns
   * "trending/popular" page
   * social media metadata

@@ -195,6 +195,7 @@ export default {
         doMouseDown: null,
         totalPages: 0,
         totalUserPages: 0,
+        numComments: 2,
         userInteraction: false,
         setLinksOwner: null,
         curPage: 0,

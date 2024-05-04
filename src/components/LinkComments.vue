@@ -1,13 +1,16 @@
 <template>
-  <div class="linkComments">
+  <div
+    class="linkComments"
+    :class="{'linkCommentsPreviewMode': state.showPreview}"
+  >
     <div class="comButNavLabel" v-if="link.comments.length">
       show
       <br>
       <button
         @click.stop.prevent="decrementNumComments()"
         class="expandInfoButton lessButton"
-        :disabled="numComments==0"
-        :class="{'disabledButton': numComments==0}"
+        :disabled="state.numComments==0"
+        :class="{'disabledButton': state.numComments==0}"
         title="show less-common/extra details about this asset"
       >
         less
@@ -16,8 +19,8 @@
       <button
         @click.stop.prevent="incrementNumComments()"
         class="expandInfoButton"
-        :disabled="numComments==link.comments.length"
-        :class="{'disabledButton': numComments>=link.comments.length}"
+        :disabled="state.numComments==link.comments.length"
+        :class="{'disabledButton': state.numComments>=link.comments.length}"
         title="show less-common/extra details about this asset"
       >
         more
@@ -37,13 +40,13 @@
       class="assetDataButton addCommentButton"
       title="view and edit your comments"
       style="padding: 2px;"
-      v-else-if="!state.showComposeComment"
+      v-else-if="!state.showComposeComment && !"
     >add comment</button><br>
   </div>
   <div
     ref="commentList"
     class="commentList"
-    v-if="link.comments.length && numComments"
+    v-if="link.comments.length && state.numComments"
   >
     <div
       v-for="comment in filteredComments"
@@ -130,15 +133,14 @@ export default {
   data(){
     return {
       showComment: false,
-      numComments: 2,
-      commentIncrVal: 2
+      commentIncrVal: 3
     }
   },
   computed:{
     filteredComments(){
       let ret = [] // reverse-sort comments
       this.link.comments.map((v, i) => {
-        if(i < this.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
+        if(i < this.state.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
       })
       return ret
     },
@@ -148,10 +150,10 @@ export default {
   },
   methods: {
     decrementNumComments(){
-      this.numComments = Math.max(0, this.numComments-this.commentIncrVal)
+      this.state.numComments= Math.max(0, this.state.numComments-this.commentIncrVal)
     },
     incrementNumComments(){
-      this.numComments = Math.min(this.link.comments.length, this.numComments+this.commentIncrVal)
+      this.state.numComments= Math.min(this.link.comments.length, this.state.numComments+this.commentIncrVal)
     },
     closeComment(comment){
       this.state.editingComment = false
@@ -408,7 +410,11 @@ export default {
     margin-bottom: 0;
     width: 46px;
   }
-  
+  .linkCommentsPreviewMode{
+    position: absolute!important;
+    margin-top: -24px!important;
+    right: calc(20% + 170px)!important;
+  }
   .bumpDown{
     margin-top:25px;
   }

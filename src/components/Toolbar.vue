@@ -64,6 +64,9 @@
         <div class="sub" @click.stop.prevent style="width: 175px;">
           <PageSel :state="state" />
         </div>
+        <div class="sub" @click.stop.prevent style="width: 175px;">
+          <CommentSel :state="state" />
+        </div>
         <div
           class="sub"
           style="z-index: 1700;width: 375px;height: 44px;"
@@ -134,6 +137,7 @@
 <script>
 import User from './User'
 import PageSel from './PageSel'
+import CommentSel from './CommentSel'
 import CollectionSelection from './CollectionSelection'
 
 export default {
@@ -142,6 +146,7 @@ export default {
   components: {
     User,
     PageSel,
+    CommentSel,
     CollectionSelection
   },
   data(){
