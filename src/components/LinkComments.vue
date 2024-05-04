@@ -141,7 +141,7 @@ export default {
     filteredComments(){
       let ret = structuredClone(this.link.comments)
       ret.sort((a,b) => a.id - b.id)
-      return ret
+      return ret.filter((v, i) => i<this.numComments)
     },
     colHeight(){
       return Math.min(200, this.link.comments.length*28+5) + 'px'
