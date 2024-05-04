@@ -50,6 +50,7 @@
       class="leftButton"
       ref = "leftButton"
       @click="state.prev()"
+      @mousemove="bumpNavButtonOpacity()"
       title="view previous asset [left arrow]"
     ></div>
     <div
@@ -57,6 +58,7 @@
       class="rightButton"
       ref = "rightButton"
       @click="state.next()"
+      @mousemove="bumpNavButtonOpacity()"
       title="view next asset [right arrow]"
     ></div>
   </div>
