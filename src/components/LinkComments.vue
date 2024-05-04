@@ -139,10 +139,8 @@ export default {
   },
   computed:{
     filteredComments(){
-      let ret = [] // reverse-sort comments
-      this.link.comments.map((v, i) => {
-        if(i < this.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
-      })
+      let ret = structuredClone(this.link.comments)
+      ret.sort((a,b) => a.id - b.id)
       return ret
     },
     colHeight(){
