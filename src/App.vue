@@ -1112,6 +1112,7 @@ export default {
         if(data[0]){
           switch(property){
             case 'pageSel': this.state.maxResultsPerPage = +value; break
+            case 'commentSel': this.state.numComments = +value; break
           }
           console.log(`successfull set user pref: ${property} to ${value}`)
         }else{
