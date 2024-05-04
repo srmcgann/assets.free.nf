@@ -92,6 +92,14 @@ export default {
       this.state.closePreview()
     }
   },
+  watch:{
+    'state.bumpADOpacity'(val){
+      if(val) {
+        this.bumpNavButtonOpacity
+        this.state.bumpADOpacity = 0
+      }
+    }
+  },
   mounted(){
     this.linkType = this.link.filetype.split('/')[0]
 
