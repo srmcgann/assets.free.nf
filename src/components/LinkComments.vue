@@ -123,9 +123,20 @@
       class="commentRow"
     >
       <button
+        class="expandInfoButton lessButton"
+        :disabled="numComments==0"
+        :class="{'disabledButton': numComments==0}"
+        style="width: 134px;margin-bottom: 6px; left:50%;transform:translate(-50%);"
+        title="show fewer comments"
+        @click.stop.prevent="decrementNumComments()"
+      >show less comments</button>
+      <button
         class="expandInfoButton"
+        :disabled="numComments==link.comments.length"
+        :class="{'disabledButton': numComments>=link.comments.length}"
+        style="width: 134px;margin-bottom: 6px; left:50%;transform:translate(-50%);"
         title="load more comments"
-        @click.stop.prevent="deleteComment(comment)"
+        @click.stop.prevent="incrementNumComments()"
       >load more comments</button>
     </div>
   </div>
