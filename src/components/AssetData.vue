@@ -138,7 +138,7 @@
       <td class="tdLeft">origin</td>
       <td class="tdRight" v-html="link.origin.split(':')[0]"></td>
     </tr>
-    <tr style="height: 28px;" v-if="link.comments.length">
+    <tr style="height: 28px;" v-if="link.comments.length || !state.showComposeComment">
       <td class="tdLeft">
         comments<span
           style="font-size:10px;"
