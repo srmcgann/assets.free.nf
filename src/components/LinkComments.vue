@@ -40,7 +40,7 @@
       class="assetDataButton addCommentButton"
       title="view and edit your comments"
       style="padding: 2px;"
-      v-else-if="!state.showComposeComment && !"
+      v-else-if="!state.showComposeComment"
     >add comment</button><br>
   </div>
   <div
