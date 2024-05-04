@@ -64,7 +64,7 @@
         <div class="sub" @click.stop.prevent style="width: 175px;">
           <PageSel :state="state" />
         </div>
-        <div class="sub" @click.stop.prevent style="width: 175px;">
+        <div class="sub" @click.stop.prevent style="width: 238px;">
           <CommentSel :state="state" />
         </div>
         <div

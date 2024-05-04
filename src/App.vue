@@ -561,6 +561,7 @@ export default {
             console.log('logged in.')
             this.state.loggedIn= true
             this.state.maxResultsPerPage = +data[4]
+            this.state.numComments = +data[5]
             this.state.loggedinUserID = +data[1]
             this.state.loggedInUser.avatar = data[2]
             this.state.username = this.state.regusername || this.state.loggedinUserName
@@ -1074,6 +1075,7 @@ export default {
           this.state.loggedinUserID = +data[2]
           //this.state.fetchUserData(this.state.loggedinUserID)
           this.state.maxResultsPerPage = +data[5]
+          this.state.numComments = +data[6]
           this.state.isAdmin = +data[4]
           this.state.passhash = data[1]
           this.setCookie()
