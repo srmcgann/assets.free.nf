@@ -149,7 +149,7 @@
       </td>
     </tr>
   </table>
-  <LinkComments :state="state" :link="link" v-if="link.comments.length || !this.state.showComposeComment"/>
+  <LinkComments :state="state" :link="link" v-if="link.comments.length || !state.showComposeComment"/>
 </template>
 
 <script>

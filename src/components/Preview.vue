@@ -95,7 +95,7 @@ export default {
   watch:{
     'state.bumpADOpacity'(val){
       if(val) {
-        this.bumpNavButtonOpacity
+        this.bumpNavButtonOpacity()
         this.state.bumpADOpacity = 0
       }
     }

@@ -325,6 +325,7 @@ export default {
     float: left;
     margin: 3px;
     font-size: 12px;
+    color: #ff0;
   }
   .avatar{
     margin-left: 0;
