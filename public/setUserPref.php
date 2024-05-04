@@ -13,7 +13,9 @@ error_reporting(0);
   $res = mysqli_query($link, $sql);
   $success = false;
   
-  if($property !== 'pageSel') die(['false']);
+  if($property !== 'pageSel' &&
+     $property !== 'commentSel'
+  ) die(json_encode(['false']));
   
   if(mysqli_num_rows($res)){
     $row = mysqli_fetch_assoc($res);
