@@ -1,5 +1,4 @@
 <template>
-  comments/asset
   <select
     ref="commentSel"
     @change="updateComSel()"
@@ -19,6 +18,7 @@
     <option value="30" style="background: #f404;"  >30</option>
     <option value="50" style="background: #f004;"  >50</option>
   </select>
+  comments/asset
 </template>
 
 <script>

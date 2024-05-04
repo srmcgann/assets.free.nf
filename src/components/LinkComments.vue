@@ -152,7 +152,7 @@ export default {
   data(){
     return {
       showComment: false,
-      commentIncrVal: 3,
+      commentIncrVal: 1,
       numComments: this.state.numComments
     }
   },

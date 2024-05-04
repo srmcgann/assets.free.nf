@@ -29,6 +29,7 @@
         <label
           class="checkboxLabel collectionLabel"
         >
+          {{if(checked(collection)) supplemental(collection)}}
           <input
             :checked="checked(collection)"
             type="checkbox"
@@ -40,7 +41,6 @@
             :style="`font-size:16px; margin-left:${checked(collection) ? '26px':'-10px'};`"
              v-html="state.shortText(collection.name, 28)"
           </span>
-          {{supplemental(collection)}}
         </label>
         <button
           v-if="mode!='multi' && checked(collection)"
