@@ -118,6 +118,16 @@
         title="view this item, in this comment"
       >👁</button> -->
     </div>
+    <div
+      v-if="link.comments.length > numComments"
+      class="commentRow"
+    >
+      <button
+        class="expandInfoButton"
+        title="load more comments"
+        @click.stop.prevent="deleteComment(comment)"
+      >load more comments</button>
+    </div>
   </div>
 </template>
 
@@ -179,7 +189,7 @@ export default {
     },
     header(comment, full){
                                           // uncomment below to omit/replace time @ "edited"
-      return this.state.prettyDate({date: comment.date}, false) //, full) 
+      return this.state.prettyDate({date: comment.date}, true) //, full) 
     },
     checked(comment){
       switch(this.mode){
