@@ -9,8 +9,8 @@
       <button
         @click.stop.prevent="decrementNumComments()"
         class="expandInfoButton lessButton"
-        :disabled="state.numComments==0"
-        :class="{'disabledButton': state.numComments==0}"
+        :disabled="numComments==0"
+        :class="{'disabledButton': numComments==0}"
         title="show less-common/extra details about this asset"
       >
         less
@@ -19,8 +19,8 @@
       <button
         @click.stop.prevent="incrementNumComments()"
         class="expandInfoButton"
-        :disabled="state.numComments==link.comments.length"
-        :class="{'disabledButton': state.numComments>=link.comments.length}"
+        :disabled="numComments==link.comments.length"
+        :class="{'disabledButton': numComments>=link.comments.length}"
         title="show less-common/extra details about this asset"
       >
         more
@@ -46,7 +46,7 @@
   <div
     ref="commentList"
     class="commentList"
-    v-if="link.comments.length && state.numComments"
+    v-if="link.comments.length && numComments"
   >
     <div
       v-for="comment in filteredComments"
@@ -133,14 +133,15 @@ export default {
   data(){
     return {
       showComment: false,
-      commentIncrVal: 3
+      commentIncrVal: 3,
+      numComments: this.state.numComments
     }
   },
   computed:{
     filteredComments(){
       let ret = [] // reverse-sort comments
       this.link.comments.map((v, i) => {
-        if(i < this.state.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
+        if(i < this.numComments) ret = [...ret, this.link.comments[this.link.comments.length-i-1]]
       })
       return ret
     },
@@ -150,10 +151,10 @@ export default {
   },
   methods: {
     decrementNumComments(){
-      this.state.numComments= Math.max(0, this.state.numComments-this.commentIncrVal)
+      this.numComments= Math.max(0, this.numComments-this.commentIncrVal)
     },
     incrementNumComments(){
-      this.state.numComments= Math.min(this.link.comments.length, this.state.numComments+this.commentIncrVal)
+      this.numComments= Math.min(this.link.comments.length, this.numComments+this.commentIncrVal)
     },
     closeComment(comment){
       this.state.editingComment = false
@@ -253,6 +254,9 @@ export default {
   mounted(){
   },
   watch:{
+    'state.numComments'(val){
+      this.numComments = val
+    },
     'state.click'(val){
       //if(val) this.showComment = false
     }
