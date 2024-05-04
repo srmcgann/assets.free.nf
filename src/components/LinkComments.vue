@@ -15,7 +15,7 @@
       >
         less
       </button>
-      
+
       <button
         @click.stop.prevent="incrementNumComments()"
         class="expandInfoButton"
@@ -123,18 +123,16 @@
       class="commentRow"
     >
       <button
-        class="expandInfoButton lessButton"
+        class="expandInfoButton lessButton wideLB"
         :disabled="numComments==0"
         :class="{'disabledButton': numComments==0}"
-        style="width: 134px;margin-bottom: 6px; left:50%;transform:translate(-50%);"
         title="show fewer comments"
         @click.stop.prevent="decrementNumComments()"
       >show less comments</button>
       <button
-        class="expandInfoButton"
+        class="expandInfoButton wideLB"
         :disabled="numComments==link.comments.length"
         :class="{'disabledButton': numComments>=link.comments.length}"
-        style="width: 134px;margin-bottom: 6px; left:50%;transform:translate(-50%);"
         title="load more comments"
         @click.stop.prevent="incrementNumComments()"
       >load more comments</button>
@@ -441,5 +439,13 @@ export default {
   }
   .bumpDown{
     margin-top:25px;
+  }
+  .wideLB{
+    width: 134px;
+    margin-bottom: 6px;
+    left:50%;
+    transform:translate(-100%);
+    margin-left:10px;
+    margin-right:10px;
   }
 </style>
