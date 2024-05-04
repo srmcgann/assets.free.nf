@@ -179,7 +179,7 @@ export default {
     },
     header(comment, full){
                                           // uncomment below to omit/replace time @ "edited"
-      return this.state.prettyDate({date: comment.date}) //, full) 
+      return this.state.prettyDate({date: comment.date}, false) //, full) 
     },
     checked(comment){
       switch(this.mode){
