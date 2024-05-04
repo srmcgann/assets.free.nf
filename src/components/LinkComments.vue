@@ -100,10 +100,11 @@
       <span
         class="commentText"
         v-html="comment.text"
-        v-if="!(+comment.editing)"
+        v-if="!comment.editing"
       ></span>
-      <textarea v-else
+      <textarea v-if="comment.editing"
         ref="commentEdit"
+        :key="'comment'+comment.id"
         class="editCommentInput"
         @keyup="state.updateComment(comment)"
         v-model="comment.text"
