@@ -29,13 +29,13 @@
         <label
           class="checkboxLabel collectionLabel"
         >
-          {{supplemental(collection)}}
           <input
             :checked="checked(collection)"
             type="checkbox"
             @change="updateSelection($event, collection)"
           >
           <span class="checkmark" style="margin-left: -30px;"></span>
+          <span style="display: inline-block" v-html="supplemental(collection)"></span>
           <span
             class="collectionName"
             :style="`font-size:16px; margin-left:${checked(collection) ? '26px':'-10px'};`"
@@ -199,13 +199,13 @@ export default {
     display: block;
   }
   .collectionName{
-    font-size:14px;
-    display:block;
+    font-size: 14px;
+    display: block;
     width: 261px;
     overflow: hidden;
     text-wrap: nowrap;
-    color:#4f8;
-    padding:0;
+    color: #4f8;
+    padding: 0;
     margin-left: -10px;
     padding-left: 10px;
   }
