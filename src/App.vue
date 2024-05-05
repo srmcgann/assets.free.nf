@@ -1099,12 +1099,16 @@ export default {
           this.state.isAdmin = +data[4]
           this.state.passhash = data[1]
           this.setCookie()
-          this.closePrompts()
           this.state.invalidLoginAttemp = false
           this.state.loggedInUser.avatar = data[3]
           this.setLinksOwner()
           this.fetchUserLinks(this.state.loggedinUserID)
           this.state.links = []
+          if(this.state.commentPending){
+            this.state.submitComment()
+          }else{
+            this.state.closePrompts()
+          }
         }else{
           console.log('not logged in.')
           this.state.loggedIn= false
@@ -1232,7 +1236,7 @@ export default {
          typeof this.state.composeCommentLink == null) return
          
       if(!this.state.loggedIn){
-        this.state.showRegister = true
+        this.state.showRegister = false
         this.state.showLoginPrompt = true
         this.state.commentPending = true
         return
