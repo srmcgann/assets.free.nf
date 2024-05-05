@@ -263,6 +263,19 @@ export default {
           }
           history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)          
         break
+        case 'item':
+          this.state.miscLinks.map((link, idx) => {
+            if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
+          })
+          this.state.previewPosition--
+          if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length - 1
+          if(this.state.previewPosition>this.state.miscLinks.length-1){
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
+          }else{
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+          }
+          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)          
+        break
       }
       
       this.$nextTick(()=>{
