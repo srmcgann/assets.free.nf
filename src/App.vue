@@ -1319,7 +1319,7 @@ export default {
             passhash: this.state.passhash,
             linkID: link.id,
             property,
-            value: value.trim(),
+            value: +((""+value).trim()),
           }
           fetch(`${this.URLbase}/` + 'setLinkProperty.php',{
             method: 'POST',
