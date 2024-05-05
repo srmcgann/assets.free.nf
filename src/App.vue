@@ -1491,7 +1491,7 @@ export default {
       }
     },
     logout(){
-      history.pushState(null,null,this.URLbase)
+      //history.pushState(null,null,this.URLbase)
       let cookies = document.cookie
       cookies.split(';').map(v=>{
         if(v.indexOf('autoplay')==-1){

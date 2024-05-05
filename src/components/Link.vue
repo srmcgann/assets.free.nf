@@ -37,8 +37,9 @@ todo
   ✔ uploading progress animations & color change @ 100%
   ✔ configurable default # of comments per asset
   ✔ load user info for all comments, as received
-  * single asset view / URL (same /uploads/... URL, minus the file suffix?)
-  * users may download their entire catalog as a zip file
+  ✔ single asset view / URL (same /uploads/... URL, minus the file suffix? [no! /item/ kthx])
+  * magnifying glass tool @ previews
+  * users may download their entire catalog as a zip file (may have to wait for proper hosting)
   * URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default
     └-> ✔ collections
