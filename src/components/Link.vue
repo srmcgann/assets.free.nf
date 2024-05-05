@@ -152,7 +152,17 @@ export default {
     getThumb(){
       let l
       try{
+        // choose 1
+        
+        // uncomment for 'views' to increment with every direct asset view,
+        // link displayed, and thumb created, even for owner
+        
+        this.img.src = this.linkType == 'audio' ? this.state.URLbase + '/' + 'musicNotes.svg' : this.state.URLbase + '/' + 'thumb.php?res=uploads/' + (this.link.slug + '.' + this.link.href.split('.')[1])
+        
+        // uncomment for 'views' to only increment at direct asset views, not /item/ shim views etc
+        /*
         this.img.src = this.linkType == 'audio' ? this.state.URLbase + '/' + 'musicNotes.svg' : this.state.URLbase + '/' + 'thumb.php?res=resources/' + (this.link.originalSlug + '.' + this.link.href.split('.')[1])
+        */
       } catch(error){
         console.log(error)
       }
