@@ -46,6 +46,7 @@
   <div
     ref="commentList"
     class="commentList"
+    @mousemove="state.bumpADOpacity++"
     v-if="link.comments.length && numComments"
   >
     <div

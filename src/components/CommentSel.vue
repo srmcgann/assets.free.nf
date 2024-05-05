@@ -6,6 +6,7 @@
     title="select how many comments you like to see by default, per asset, before clicking 'less' or 'more'"
     class="commentSelection"
   >
+    <option value="0"  style="background: #01f4;"  >0</option>
     <option value="1"  style="background: #04f4;"  >1</option>
     <option value="2"  style="background: #08c4;"  >2</option>
     <option value="3"  style="background: #0f84;"  >3</option>

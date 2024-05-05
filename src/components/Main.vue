@@ -39,7 +39,7 @@
       <div
         ref="dropTargetCaption"
         id="dropTargetCaption"
-        v-if="state.mode!='col' && !(state.userLinks.length || state.links.length || state.loadingAssets)"
+        v-if="state.mode != 'item' && state.mode!='col' && !(state.userLinks.length || state.links.length || state.loadingAssets)"
         style="cursor: pointer;"
         @click="this.loadFiles()"
       >
@@ -82,7 +82,7 @@
           v-if="state.userLinks.length"
         />
       </div>
-      <div v-if="state.mode=='col' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
+      <div v-if="state.mode=='col' || state.mode=='item' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
         <Link
           :state="state"
           :omitAssetData="false"

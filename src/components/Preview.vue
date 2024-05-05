@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="inputs fade" ref="inputs">
-    <div class="linkButtons">
+    <div @mousemove="state.bumpADOpacity++" class="linkButtons">
       <div
         class="visibilityButton"
         @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"

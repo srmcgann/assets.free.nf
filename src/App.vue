@@ -449,7 +449,7 @@ export default {
       open(`${this.URLbase}/col/${collection.slug}/view` , '_blank')
     },
     openLink(link){
-      open(`${this.URLbase}/` + link.href, '_blank')
+      open(`${this.URLbase}/item/` + link.slug, '_blank')
     },
     copyLink(val){
       let copyEl = document.createElement('div')
@@ -1170,6 +1170,26 @@ export default {
                 let sel = typeof vars[l+3] != 'undefined' ? vars[l+3] : ''
                 console.log(`loading collection (in getMode()) -> ${this.alphaToDec(vars[l+1])}`)
                 this.loadCollection(this.alphaToDec(vars[l+1]), show, sel)
+              } else {
+                if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
+                this.state.mode = 'default'
+                this.state.curPage = 0
+                this.fetchUserLinks(this.state.loggedinUserID)
+              }
+            break
+            case 'item':
+              if(typeof vars[l+1] != 'undefined'){
+                let show = false
+                if(typeof vars[l+2] != 'undefined'){
+                  switch(vars[l+2]){
+                    case 'view':
+                      show = true
+                    break
+                  }
+                }
+                console.log(`loading item (in getMode()) -> ${this.alphaToDec(vars[l+1])}`)
+                this.state.loadLinks([vars[l+1]], forCollection=false, collectionID=-1, sel="")
+                this.state.mode = 'item'
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
