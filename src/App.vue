@@ -1230,6 +1230,7 @@ export default {
     submitComment(){
       if(!this.state.newComment ||
          typeof this.state.composeCommentLink == null) return
+         
       if(!this.state.loggedIn){
         this.state.showRegister = true
         this.state.showLoginPrompt = true
@@ -1237,8 +1238,6 @@ export default {
         return
       }
 
-      this.state.commentPending = false
-      
       let linkID = this.state.composeCommentLink.id
       let comment = this.state.newComment
       let sendData = {

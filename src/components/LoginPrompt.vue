@@ -185,12 +185,15 @@ export default{
             this.state.loggedInUser.avatar = this.state.defaultAvatar
             this.state.passhash = data[1]
             this.state.setCookie()
-            this.state.closePrompts()
+            if(this.state.commentPending){
+              this.state.submitComment()
+            }else{
+              this.state.closePrompts()
+            }
             this.state.invalidLoginAttemp = false
             this.state.checkLogin()
             this.state.setLinksOwner()
             this.state.fetchUserLinks()
-            if(this.state.commentPending) this.state.submitComment()
           } else {
             this.showInvalid = true
           }
