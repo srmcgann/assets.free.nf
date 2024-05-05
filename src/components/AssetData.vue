@@ -66,7 +66,7 @@
         v-html="state.fileName(link)"
       ></td>
     </tr>
-    <tr v-if="link.description">
+    <tr v-if="link.description || (link.userID == state.loggedinUserID && link.expandedInfo)">
       <td
         class="tdLeft">description</td><td class="tdRight"
         v-if="state.loggedinUserID == link.userID"

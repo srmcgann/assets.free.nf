@@ -1205,8 +1205,9 @@ export default {
                   }
                 }
                 console.log(`loading item (in getMode()) -> ${this.alphaToDec(vars[l+1])}`)
-                this.state.loadLinks([vars[l+1]])
                 this.state.mode = 'item'
+                this.state.fetchCollections(this.state.loggedinUserID)
+                this.state.loadLinks([vars[l+1]])
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
