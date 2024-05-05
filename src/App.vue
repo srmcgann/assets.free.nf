@@ -135,6 +135,7 @@ export default {
         downloadLink: null,
         next: null,
         prev: null,
+        commentPending: false,
         fileName: null,
         updateCollection: null,
         fullFileName: null,
@@ -1227,10 +1228,17 @@ export default {
       console.log('mode', this.state.mode)
     },
     submitComment(){
-      if(!this.state.loggedIn ||
-         !this.state.newComment ||
+      if(!this.state.newComment ||
          typeof this.state.composeCommentLink == null) return
-         
+      if(!this.state.loggedIn){
+        this.state.showRegister = true
+        this.state.showLoginPrompt = true
+        this.state.commentPending = true
+        return
+      }
+
+      this.state.commentPending = false
+      
       let linkID = this.state.composeCommentLink.id
       let comment = this.state.newComment
       let sendData = {

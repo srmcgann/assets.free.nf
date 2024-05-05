@@ -190,6 +190,7 @@ export default{
             this.state.checkLogin()
             this.state.setLinksOwner()
             this.state.fetchUserLinks()
+            if(this.state.commentPending) this.state.submitComment()
           } else {
             this.showInvalid = true
           }
