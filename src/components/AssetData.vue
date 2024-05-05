@@ -204,7 +204,7 @@ export default {
     border-collapse: collapse;
     font-size: 14px;
     text-shadow: 2px 2px 2px #000;
-    background: #0003;
+    background: #000a;
     width: 100%;
   }
   .assetDataSlug{

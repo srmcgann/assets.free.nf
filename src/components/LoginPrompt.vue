@@ -249,7 +249,7 @@ export default{
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 10010;
+  z-index: 200000;
   top: 0;
   background: #102e;
   text-align: center;
