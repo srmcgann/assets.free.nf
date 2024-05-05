@@ -17,6 +17,9 @@ error_reporting(0);
   $success = false;
   $resourceDir = "resources";
 
+  // comment this line to make user stats globally private
+  $anon = true;
+
   $enabled = 0;
   if($passhash){
     $sql = "SELECT * FROM imjurUsers WHERE id = $userID AND passhash LIKE BINARY\"$passhash\"";
