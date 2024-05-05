@@ -975,6 +975,10 @@ export default {
           this.state.previewLink = link
           history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)
         break
+        case 'item':
+          this.state.previewLink = link
+          history.pushState(null,null,`${this.URLbase}/item/${link.slug}`)
+        break
       }
       this.state.showPreview = true
     },

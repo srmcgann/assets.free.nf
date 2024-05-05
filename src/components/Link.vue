@@ -35,10 +35,10 @@ todo
   ✔ sortable 'stats overview' page for users
   ✔ add items/page selection to user prefs
   ✔ uploading progress animations & color change @ 100%
-  * configurable default # of comments per asset
-  * load user info for all comments, as received
-  * users may download their entire catalog as a zip file
+  ✔ configurable default # of comments per asset
+  ✔ load user info for all comments, as received
   * single asset view / URL (same /uploads/... URL, minus the file suffix?)
+  * users may download their entire catalog as a zip file
   * URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default
     └-> ✔ collections
