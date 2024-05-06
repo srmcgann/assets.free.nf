@@ -7,7 +7,18 @@
       <div class="slideshow" ref="slideshow"></div>
     </div>
   </div>
-  <div class="inputs fade" ref="inputs">
+  
+  <label class="checkboxLabel">
+    <input type="checkbox" v-model="pinned" @input="togglePinned()">
+    <span class="checkmark" style="margin-left: -30px;"></span>
+    <span style="font-size:.75em;margin-top:5px;display:block;color:#4f88;padding:0;margin-left:-34px;">pin info 📌</span><br>
+  </label>
+  
+  <div
+    class="inputs"
+    ref="inputs"
+    :class="{'fade': !pinned}"
+  >
     <div @mousemove="state.bumpADOpacity++" class="linkButtons">
       <div
         class="visibilityButton"
@@ -74,12 +85,16 @@ export default {
   data(){
     return {
       asset: null,
-      linkType: ''
+      linkType: '',
+      pinned: false
     }
   },
   computed:{
   },
   methods: {
+    togglePinned(){
+      this.pinned = !this.pinned
+    },
     bumpNavButtonOpacity(){
       this.$refs.inputs.classList.remove('fade')
       this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'

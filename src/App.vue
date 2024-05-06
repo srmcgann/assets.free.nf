@@ -1212,7 +1212,7 @@ export default {
                 console.log(`loading item (in getMode()) -> ${this.alphaToDec(vars[l+1])}`)
                 this.state.mode = 'item'
                 this.state.fetchCollections(this.state.loggedinUserID)
-                this.state.loadLinks([vars[l+1]])
+                this.state.loadLinks([vars[l+1]], false, -1, vars[l+1])
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
@@ -1443,7 +1443,10 @@ export default {
                 this.state.showModal = true
               }
             } else {
-              this.state.showPreview = false
+              if(this.state.mode == 'item'){
+                this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)[0]
+                this.state.showPreview = true
+              }
             }
           }else{
             if(forCollection) {

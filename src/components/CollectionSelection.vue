@@ -38,7 +38,7 @@
           <span style="display: inline-block" v-html="supplemental(collection)"></span>
           <span
             class="collectionName"
-            :style="`font-size:16px; margin-left:${checked(collection) ? (mode!='multi'?'26px':'0'):'-10px'};`"
+            :style="`font-size:16px; margin-left:${checked(collection) ? (mode!='multi'?'32px':'0'):'-10px'};`"
              v-html="state.shortText(collection.name, 28)"
           </span>
         </label>
