@@ -82,10 +82,10 @@ export default {
     cursor: crosshair;
   }
   .magup{
-    background-image: (../assets/mag.png);
+    background-image: url(../assets/mag.png);
   }
   .magdown{
-    background-image: (../assets/unmag.png);
+    background-image: url(../assets/unmag.png);
   }
   .magLevel{
     border: 3px solid #40f8;
