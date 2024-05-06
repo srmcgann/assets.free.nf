@@ -39,7 +39,9 @@ export default {
     unmagnify(){
       this.magLevel = Math.max(0, this.magLevel-1)
     },
-    refresh(){
+    refresh(e){
+      this.mx = e.pageX
+      this.my = e.pageY
       this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
       this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
       this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*this.magLevel-this.element.clientWidth/2) +'px'
@@ -49,6 +51,10 @@ export default {
   mounted(){
     this.contents = this.element.cloneNode(true)
     this.contents.style.transform = `scale(${this.magLevel})`
+    this.element.addEventListener('mousemove', e => this.refresh(e))
+  },
+  beforeUnmount(){
+    this.element.removeEventListener('mousemove', e => this.refresh(e))
   }
 }
 </script>
@@ -69,10 +75,10 @@ export default {
     cursor: crosshair;
   }
   .magup{
-    background-image: (./assets/mag.png);
+    background-image: (../assets/mag.png);
   }
   .magdown{
-    background-image: (./assets/unmag.png);
+    background-image: (../assets/unmag.png);
   }
   .magLevel{
     border: 3px solid #40f8;
