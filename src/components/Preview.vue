@@ -11,7 +11,7 @@
   <label class="checkboxLabel" style="z-index: 100000; margin: 10px; margin-left: 40px;">
     <input type="checkbox" v-model="pinned" @input="togglePinned()">
     <span class="checkmark" style="margin-left: -30px;"></span>
-    <span style="font-size:.75em;margin-top:5px;display:block;color:#4f88;padding:0;margin-left:-34px;">pin info 📌</span><br>
+    <span style="font-size:.75em;margin-top:5px;display:block;color:#4f8;padding:0;margin-left:-34px;">pin info 📌</span><br>
   </label>
   
   <div
@@ -94,6 +94,9 @@ export default {
   methods: {
     togglePinned(){
       this.pinned = !this.pinned
+      this.$nextTick(()=>{
+        this.bumpNavButtonOpacity()
+      })
     },
     bumpNavButtonOpacity(){
       this.$refs.inputs.classList.remove('fade')
