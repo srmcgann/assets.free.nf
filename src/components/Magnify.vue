@@ -31,6 +31,7 @@ export default {
   methods: {
     magnify(){
       this.magLevel = Math.min(this.maxMagLevel, this.magLevel+1)
+      this.contents.style.transform = `scale(${this.magLevel+1})`
       if(this.magLevel > 0 && !this.appended) {
         this.appended = true
         this.$nextTick(() => {
@@ -40,6 +41,7 @@ export default {
     },
     unmagnify(){
       this.magLevel = Math.max(0, this.magLevel-1)
+      this.contents.style.transform = `scale(${this.magLevel})`
     },
     refresh(e){
       if(this.magLevel){
@@ -47,13 +49,14 @@ export default {
         this.my = e.pageY
         this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
         this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-        this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*this.magLevel-this.element.clientWidth/2) +'px'
-        this.contents.style.marginTop = (-this.my*this.magLevel+this.element.clientHeight/2*this.magLevel+38*this.magLevel*2) + 'px'
+        this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel+1)-document.body.clientWidth/2) +'px'
+        this.contents.style.marginTop = (-this.my*(this.magLevel+1)+document.body.clientHeight/2*(this.magLevel+1)+38*(this.magLevel+1)*2) + 'px'
       }
     }
   },
   mounted(){
     this.contents = this.element.cloneNode(true)
+    this.contents.className = 'contents'
     this.contents.style.transform = `scale(${this.magLevel})`
     this.element.addEventListener('mousemove', e => this.refresh(e))
   },
@@ -73,7 +76,7 @@ export default {
     border: 20px solid #fff2;
     width: 400px;
     height: 400px;
-    positioN: absolute;
+    position: fixed;
     overflow: clip;
     background: #000;
     cursor: crosshair;
@@ -186,7 +189,6 @@ export default {
     max-width: 500px;
   }
   .previewContainer{
-    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
