@@ -97,4 +97,100 @@ export default {
   .contents{
     pointer-events: none;
   }
+
+
+  .preview{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    font-size: 14px;
+  }
+  .slideshow{
+    margin: 100px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+  }
+  .leftButton, .rightButton{
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    transform: translate(0, -50%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    cursor: pointer;
+  }
+  @keyframes fadeOut{
+    0% {
+      opacity: 1;
+    }
+    66% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .fade{
+    animation: fadeOut 3s 1 linear;
+  }
+  .leftButton{
+    background-image: url(../assets/leftButton.png);
+    left: 10px;
+  }
+  .rightButton{
+    background-image: url(../assets/rightButton.png);
+    right: 10px;
+  }
+  .fullOpacity{
+    opacity: 1!important;
+  }
+  .inputs{
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20000;
+  }
+  .previewInner{
+    text-align: center;
+    padding: 25px;
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    color: #fff;
+    text-shadow: 2px 2px 2px #000;
+    background: #001b;
+  }
+  .linkButtons{
+    margin-top: 11px;
+    display: inline-block;
+    right: 16px;
+    position: absolute;
+    width: 44px;
+    z-index: 10;
+    top: 40px;
+  }
+  .assetData{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    background: #000a;
+    max-width: 500px;
+  }
+  .previewContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
 </style>

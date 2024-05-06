@@ -206,7 +206,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
   .preview{
     position: fixed;
