@@ -25,7 +25,8 @@ export default {
   data(){
     return {
       magLevel: 0,
-      contents: null
+      contents: null,
+      maxMagLevel: 8
     }
   },
   methods: {
@@ -40,6 +41,7 @@ export default {
       this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
       this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*this.magLevel-this.element.clientWidth/2) +'px'
       this.contents.style.marginTop = (-this.my*this.magLevel+this.element.clientHeight/2*this.magLevel+38*this.magLevel*2) + 'px'
+    }
   },
   mounted(){
     this.contents = this.element.cloneNode(true)

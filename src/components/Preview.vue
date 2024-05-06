@@ -1,85 +1,86 @@
 <template>
-  <button @click="close()" class="cancelButton" title="close this view">
-    close/cancel
-  </button>
-  <div class="preview" @mousemove="bumpNavButtonOpacity()" ref="preview">
-    <div class="previewInner">
-      <div class="slideshow" ref="slideshow"></div>
+  <div ref="previewContainer" class="previewContainer">
+    <button @click="close()" class="cancelButton" title="close this view">
+      close/cancel
+    </button>
+    <div class="preview" @mousemove="bumpNavButtonOpacity()" ref="preview">
+      <div class="previewInner">
+        <div class="slideshow" ref="slideshow"></div>
+      </div>
     </div>
-  </div>
-  
-  <label class="checkboxLabel" style="z-index: 100000; margin: 10px; margin-left: 40px;">
-    <input type="checkbox" v-model="pinned" @input="togglePinned()">
-    <span class="checkmark" style="margin-left: -30px;"></span>
-    <span style="font-size:.75em;margin-top:5px;display:block;color:#4f8;padding:0;margin-left:-34px;">pin info 📌</span><br>
-  </label>
-  
-  <div
-    class="inputs"
-    ref="inputs"
-    :class="{'fade': !pinned}"
-  >
-    <div @mousemove="state.bumpADOpacity++" class="linkButtons">
+    
+    <label class="checkboxLabel" style="z-index: 100000; margin: 10px; margin-left: 40px;">
+      <input type="checkbox" v-model="pinned" @input="togglePinned()">
+      <span class="checkmark" style="margin-left: -30px;"></span>
+      <span style="font-size:.75em;margin-top:5px;display:block;color:#4f8;padding:0;margin-left:-34px;">pin info 📌</span><br>
+    </label>
+    
+    <div
+      class="inputs"
+      ref="inputs"
+      :class="{'fade': !pinned}"
+    >
+      <div @mousemove="state.bumpADOpacity++" class="linkButtons">
+        <div
+          class="specialToolButton"
+          @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
+          :class="{'private': link.private, 'notPrivate': !link.private}"
+          :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
+          v-if="link.userID == state.loggedinUserID || state.admin"
+        ></div>
+        <div
+          class="copyLinkButton"
+          @click.prevent.stop="state.copyLink(link.href)"
+          title="copy link to clipboard"
+        ></div>
+        <a
+          :href="state.URLbase + '/' + link.href"
+          class="openButton"
+          @click.prevent.stop="state.openLink(link)"
+          title="open link in new tab"
+        ></a>
+        <div
+          class="downloadButton"
+          @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
+          title="download asset"
+        ></div>
+        <div
+          class="deleteSingleButton"
+          @click.prevent.stop="state.deleteSingle(link)"
+          title="delete this asset only"
+          v-if="link.userID == state.loggedinUserID || state.admin"
+        ></div>
+        
+        <Magnify
+          v-if="mounted"
+          :state="state"
+          :element="previewContainer"
+        />
+        
+      </div>
+      <AssetData
+        :state="state"
+        :link="link"
+        :omitAssetData="false"
+        @mousemove="bumpNavButtonOpacity()"
+      />
       <div
-        class="specialToolButton"
-        @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
-        :class="{'private': link.private, 'notPrivate': !link.private}"
-        :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
-        v-if="link.userID == state.loggedinUserID || state.admin"
+        v-if="state.multipleLinks()"
+        class="leftButton"
+        ref = "leftButton"
+        @click="state.prev()"
+        @mousemove="bumpNavButtonOpacity()"
+        title="view previous asset [left arrow]"
       ></div>
       <div
-        class="copyLinkButton"
-        @click.prevent.stop="state.copyLink(link.href)"
-        title="copy link to clipboard"
+        v-if="state.multipleLinks()"
+        class="rightButton"
+        ref = "rightButton"
+        @click="state.next()"
+        @mousemove="bumpNavButtonOpacity()"
+        title="view next asset [right arrow]"
       ></div>
-      <a
-        :href="state.URLbase + '/' + link.href"
-        class="openButton"
-        @click.prevent.stop="state.openLink(link)"
-        title="open link in new tab"
-      ></a>
-      <div
-        class="downloadButton"
-        @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
-        title="download asset"
-      ></div>
-      <div
-        class="deleteSingleButton"
-        @click.prevent.stop="state.deleteSingle(link)"
-        title="delete this asset only"
-        v-if="link.userID == state.loggedinUserID || state.admin"
-      ></div>
-      
-      <div
-        class="magnifyingGlass"
-        @click.prevent.stop="toggleMagnify()"
-        title="delete this asset only"
-        v-if="link.userID == state.loggedinUserID || state.admin"
-      ></div>
-      
     </div>
-    <AssetData
-      :state="state"
-      :link="link"
-      :omitAssetData="false"
-      @mousemove="bumpNavButtonOpacity()"
-    />
-    <div
-      v-if="state.multipleLinks()"
-      class="leftButton"
-      ref = "leftButton"
-      @click="state.prev()"
-      @mousemove="bumpNavButtonOpacity()"
-      title="view previous asset [left arrow]"
-    ></div>
-    <div
-      v-if="state.multipleLinks()"
-      class="rightButton"
-      ref = "rightButton"
-      @click="state.next()"
-      @mousemove="bumpNavButtonOpacity()"
-      title="view next asset [right arrow]"
-    ></div>
   </div>
 </template>
 
@@ -89,16 +90,23 @@ import Magnify from './Magnify'
 
 export default {
   name: 'Preview',
-  components: { AssetData },
+  components: {
+    AssetData,
+    Magnify
+  },
   props: [ 'state', 'link' ],
   data(){
     return {
       asset: null,
       linkType: '',
+      mounted: false,
       pinned: false,
     }
   },
   computed:{
+    previewContainer(){
+      return this.$refs.previewContainer
+    }
   },
   methods: {
     togglePinned(){
@@ -190,6 +198,7 @@ export default {
       this.$refs.slideshow.appendChild(this.asset)
       this.asset.src = this.state.URLbase + '/' + this.link.href
     }
+    this.mounted = true
   },
   beforeUnmount(){
     if(this.linkType == 'video' || this.linkType == 'audio') this.asset.paused = true
@@ -284,5 +293,13 @@ export default {
     transform: translate(-50%);
     background: #000a;
     max-width: 500px;
+  }
+  .previewContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
   }
 </style>
