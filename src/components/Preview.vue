@@ -1,26 +1,44 @@
 <template>
+  <label
+    @mouseover="pauseMag=true"
+    @mouseout="pauseMag=false"
+    class="checkboxLabel"
+    style="z-index: 100000; margin: 10px; margin-left: 40px;"
+  >
+    <input type="checkbox" v-model="pinned" @input="togglePinned()">
+    <span class="checkmark" style="margin-left: -30px;"></span>
+    <span style="margin-top:-2px;width:300px;margin-left:-34px;">📌</span>
+  </label>
+  <button
+    @click="close()"
+    @mouseover="pauseMag=true"
+    @mouseout="pauseMag=false"
+    class="cancelButton"
+    title="close this view"
+   >
+    close/cancel
+  </button>
   <div ref="previewContainer" class="previewContainer">
-    <button @click="close()" class="cancelButton" title="close this view">
-      close/cancel
-    </button>
-    <div class="preview" @mousemove="bumpNavButtonOpacity()" ref="preview">
+    <div
+      class="preview"
+      @mousemove="bumpNavButtonOpacity()"
+      ref="preview"
+    >
       <div class="previewInner">
         <div class="slideshow" ref="slideshow"></div>
       </div>
     </div>
-    
-    <label class="checkboxLabel" style="z-index: 100000; margin: 10px; margin-left: 40px;">
-      <input type="checkbox" v-model="pinned" @input="togglePinned()">
-      <span class="checkmark" style="margin-left: -30px;"></span>
-      <span style="margin-top:-2px;width:300px;margin-left:-34px;">📌</span>
-    </label>
-    
     <div
       class="inputs"
       ref="inputs"
       :class="{'fade': !pinned}"
     >
-      <div @mousemove="state.bumpADOpacity++" class="linkButtons">
+      <div
+        @mouseover="pauseMag=true"
+        @mouseout="pauseMag=false"
+        @mousemove="state.bumpADOpacity++"
+        class="linkButtons"
+      >
         <div
           class="specialToolButton"
           @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
@@ -54,6 +72,7 @@
         <Magnify
           v-if="mounted"
           :state="state"
+          :pause="pauseMag"
           :element="previewContainer"
         />
         
@@ -101,9 +120,13 @@ export default {
       linkType: '',
       mounted: false,
       pinned: false,
+      pauseMag: false
     }
   },
   computed:{
+    pauseMag(){
+      
+    },
     previewContainer(){
       return this.$refs.previewContainer
     }
