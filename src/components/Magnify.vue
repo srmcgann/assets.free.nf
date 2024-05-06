@@ -17,7 +17,7 @@
 
 export default {
   name: 'Magnify',
-  props: [ 'state', 'element' ],
+  props: [ 'state', 'element'],
   components: {
   },
   data(){
@@ -50,8 +50,9 @@ export default {
         this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
         this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
         this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel+1)-this.element.clientWidth/2) +'px'
-        this.contents.style.marginTop = (-this.my*(this.magLevel+1)+this.element.clientHeight/2*(this.magLevel+1)) + 'px'
+        this.contents.style.marginTop = (-this.my*(this.magLevel+1)+this.element.clientHeight/2*(this.magLevel+1) - 400) + 'px'
       }
+      
     }
   },
   mounted(){

@@ -70,9 +70,8 @@
         ></div>
         
         <Magnify
-          v-if="mounted"
+          v-if="mounted && !pauseMag"
           :state="state"
-          :pause="pauseMag"
           :element="previewContainer"
         />
         
