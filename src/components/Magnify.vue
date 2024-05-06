@@ -20,7 +20,6 @@ export default {
   name: 'Magnify',
   props: [ 'state', 'element' ],
   components: {
-    Pages
   },
   data(){
     return {
