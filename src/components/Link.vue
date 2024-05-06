@@ -38,7 +38,7 @@ todo
   ✔ configurable default # of comments per asset
   ✔ load user info for all comments, as received
   ✔ single asset view / URL (same /uploads/... URL, minus the file suffix? [no! /item/ kthx])
-  * "pinning/unpinning" asset data & tools @ preview [no-fade option]
+  ✔ "pinning/unpinning" asset data & tools @ preview [no-fade option]
   * magnifying glass tool @ previews
   * users may download their entire catalog as a zip file (may have to wait for proper hosting)
   * URLs for all "screens", including collections, with back-button functionality
@@ -89,7 +89,7 @@ todo
     <!--#{{link.ct+1}}-->
     <div class="linkButtons" @mousedown.stop.prevent @click.stop.prevent>
       <div
-        class="visibilityButton"
+        class="specialToolButton"
         @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
         :class="{'private': link.private, 'notPrivate': !link.private}"
         :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
@@ -287,7 +287,7 @@ export default {
     text-align: right;
     right: 10px;
   }
-  .visibilityButton{
+  .specialToolButton{
     width: 64px;
     height: 45px;
     background-size: 49px 49px;

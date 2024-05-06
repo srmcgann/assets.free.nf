@@ -21,7 +21,7 @@
   >
     <div @mousemove="state.bumpADOpacity++" class="linkButtons">
       <div
-        class="visibilityButton"
+        class="specialToolButton"
         @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
         :class="{'private': link.private, 'notPrivate': !link.private}"
         :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
@@ -49,6 +49,14 @@
         title="delete this asset only"
         v-if="link.userID == state.loggedinUserID || state.admin"
       ></div>
+      
+      <div
+        class="magnifyingGlass"
+        @click.prevent.stop="toggleMagnify()"
+        title="delete this asset only"
+        v-if="link.userID == state.loggedinUserID || state.admin"
+      ></div>
+      
     </div>
     <AssetData
       :state="state"
@@ -77,6 +85,7 @@
 
 <script>
 import AssetData from './AssetData'
+import Magnify from './Magnify'
 
 export default {
   name: 'Preview',
@@ -86,7 +95,7 @@ export default {
     return {
       asset: null,
       linkType: '',
-      pinned: false
+      pinned: false,
     }
   },
   computed:{

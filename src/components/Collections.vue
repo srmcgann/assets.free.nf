@@ -51,7 +51,7 @@
           <td>
             <div class="linkButtons">
               <div
-                class="visibilityButton"
+                class="specialToolButton"
                 @click.prevent.stop="state.setCollectionProperty(collection, 'private', collection.meta.private?0:1)"
                 :class="{'private': collection.meta.private, 'notPrivate': !collection.meta.private}"
                 :title="`toggle visibility. (currently: ${collection.meta.private?'NOT':''} featured in public galleries)`"

@@ -30,7 +30,7 @@
         <div class="sub" style="z-index: 1700;width: 375px;height: 69px;" @click="console.log('this menu item')">
           <span style="margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
           <button
-            class="toolbarButtons visibilityButton"
+            class="toolbarButtons specialToolButton"
             style="min-width: 50px;min-height: 50px;"
             :disabled="!someSelected"
             @click.prevent.stop="state.setLinkPropertySelected('private', 1)"
@@ -41,7 +41,7 @@
             :title="`set visibility to HIDDEN (from public galleries), for all selected`"
           ></button>
           <button
-            class="toolbarButtons visibilityButton"
+            class="toolbarButtons specialToolButton"
             style="min-width: 50px;min-height: 50px;"
             :disabled="!someSelected"
             @click.prevent.stop="state.setLinkPropertySelected('private', 0)"

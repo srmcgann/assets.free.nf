@@ -31,7 +31,7 @@
         <br>
         set visibility<br>
         <div
-          class="visibilityButton"
+          class="specialToolButton"
           @click.prevent.stop="setProperty('private', private?0:1)"
           :class="{'private': private, 'notPrivate': !private}"
           :title="`toggle visibility. (currently: ${private?'NOT':''} featured in public galleries)`"
@@ -127,7 +127,7 @@ export default {
     margin: 5px;
     width: calc(100% - 60px);
   }
-  .visibilityButton{
+  .specialToolButton{
     width: 120px;
     height: 120px;
     background-size: 120px 120px;
