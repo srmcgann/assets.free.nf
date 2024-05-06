@@ -82,7 +82,7 @@ export default {
     cursor: crosshair;
   }
   .magup, .magdown{
-    background-width: 32px
+    background-size: 32px;
   }
   .magup{
     background-image: url(../assets/mag.png);
