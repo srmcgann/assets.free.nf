@@ -25,7 +25,7 @@ export default {
       magLevel: 0,
       contents: null,
       maxMagLevel: 8,
-      appended, false
+      appended: false
     }
   },
   methods: {
