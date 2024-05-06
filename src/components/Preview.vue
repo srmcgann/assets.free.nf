@@ -123,9 +123,6 @@ export default {
     }
   },
   computed:{
-    pauseMag(){
-      
-    },
     previewContainer(){
       return this.$refs.previewContainer
     }
