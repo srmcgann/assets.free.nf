@@ -2,15 +2,14 @@
   <div class="magnify">
     <div
       @click.stop.prevent="magnify()"
-      class="magup"
+      class="magup specialToolButton"
     ></div>
     <div class="magLevel" v-html="magLevel"></div>
     <div
       @click.stop.prevent="unmagnify()"
-      class="magdown"
+      class="magdown specialToolButton"
     ></div>
-    <div v-if="magLevel" class="magnifyingGlass" ref="magnifyingGlass">
-    </div>
+    <div v-if="magLevel" class="magnifyingGlass" ref="magnifyingGlass"></div>
   </div>
 </template>
 
@@ -31,6 +30,11 @@ export default {
   methods: {
     magnify(){
       this.magLevel = Math.min(this.maxMagLevel, this.magLevel+1)
+      if(this.magLevel == 1) {
+        this.$nextTick(() => {
+          this.$refs.magnifyingGlass.appendChild(this.contents)
+        })
+      }
     },
     unmagnify(){
       this.magLevel = Math.max(0, this.magLevel-1)
@@ -45,7 +49,6 @@ export default {
   mounted(){
     this.contents = this.element.cloneNode(true)
     this.contents.style.transform = `scale(${this.magLevel})`
-    this.$refs.magnifyingGlass.appendChild(this.contents)
   }
 }
 </script>
@@ -66,10 +69,10 @@ export default {
     cursor: crosshair;
   }
   .magup{
-    background-image: ('./assets/mag.png');
+    background-image: (./assets/mag.png);
   }
   .magdown{
-    background-image: ('./assets/unmag.png');
+    background-image: (./assets/unmag.png);
   }
   .magLevel{
     border: 3px solid #40f8;
@@ -78,6 +81,8 @@ export default {
     color: #fff;
     font-size: 20px;
     border-radius: 10px;
+    line-height: 9px;
+    height: 20px;
   }
   .contents{
     pointer-events: none;
