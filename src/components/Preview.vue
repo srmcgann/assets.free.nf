@@ -8,7 +8,7 @@
     </div>
   </div>
   
-  <label class="checkboxLabel">
+  <label class="checkboxLabel" style="z-index: 100000; margin: 10px; margin-left: 40px;">
     <input type="checkbox" v-model="pinned" @input="togglePinned()">
     <span class="checkmark" style="margin-left: -30px;"></span>
     <span style="font-size:.75em;margin-top:5px;display:block;color:#4f88;padding:0;margin-left:-34px;">pin info 📌</span><br>
@@ -99,7 +99,7 @@ export default {
       this.$refs.inputs.classList.remove('fade')
       this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
       this.$refs.inputs.classList.add('fade')
-      if(this.state.blockFade) {
+      if(this.state.blockFade || this.pinned) {
         this.$refs.inputs.classList.add('fullOpacity')
       }else{
         this.$refs.inputs.classList.remove('fullOpacity')
