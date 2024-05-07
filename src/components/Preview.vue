@@ -18,6 +18,11 @@
    >
     close/cancel
   </button>
+  <Magnify
+    v-if="mounted"
+    :state="state" :pause="pauseMag"
+    :element="previewContainer"
+  />
   <div ref="previewContainer" class="previewContainer">
     <div
       class="preview"
@@ -68,13 +73,6 @@
           title="delete this asset only"
           v-if="link.userID == state.loggedinUserID || state.admin"
         ></div>
-        
-        <Magnify
-          v-if="mounted"
-          :state="state" :pause="pauseMag"
-          :element="previewContainer"
-        />
-        
       </div>
       <AssetData
         :state="state"
