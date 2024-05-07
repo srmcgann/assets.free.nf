@@ -32,7 +32,7 @@ export default {
     magnify(){
       this.magLevel = Math.min(this.maxMagLevel, this.magLevel+1)
       this.contents.style.transform = `scale(${this.magLevel})`
-      if(this.magLevel > 0 && !this.appended) {
+      if(this.magLevel == 1) {
         this.appended = true
         this.$nextTick(() => {
           this.$refs.magnifyingGlass.appendChild(this.contents)
@@ -44,7 +44,9 @@ export default {
       this.contents.style.transform = `scale(${this.magLevel})`
     },
     refresh(e){
-      if(typeof this.$refs.magnifyingGlass != 'undefined'){
+      if(
+        typeof this.$refs.magnifyingGlass != 'undefined' &&
+        typeof this.$refs.magnifyingGlass != 'null'){
         this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
         if(this.magLevel){
           this.mx = e.pageX
@@ -52,7 +54,7 @@ export default {
           let bounding = this.element.getBoundingClientRect()
           this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
           this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-          this.contents.style.marginLeft = ((this.element.clientWidth/2+(-this.mx-this.element.clientWidth/(1+this.magLevel)) + bounding.left)*this.magLevel + 200) + 'px'
+          this.contents.style.marginLeft = ((this.element.clientWidth/2+(-this.mx-this.element.clientWidth/(1+this.magLevel)) + bounding.left)*this.magLevel + 200 + 220 * (this.magLevel - 1) + 'px'
           this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2) + bounding.top) * this.magLevel + 200) + 'px'
         }
       }
