@@ -2283,7 +2283,7 @@ select:focus{
   left: 0;
   height: 25px;
   width: 25px;
-  border: 1px solid #2468;
+  border: 1px solid #48ff;
   background-color: #000;
   border-radius: 5px;
 }
