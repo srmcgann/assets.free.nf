@@ -42,7 +42,7 @@ export default {
     refresh(){
       if(
         typeof this.$refs.magnifyingGlass != 'undefined' &&
-        typeof this.$refs.magnifyingGlass != 'null'){
+        this.$refs.magnifyingGlass !== null){
         this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
         if(this.state.magLevel){
           this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
