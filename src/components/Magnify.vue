@@ -44,7 +44,8 @@ export default {
       this.contents.style.transform = `scale(${this.magLevel})`
     },
     refresh(e){
-      if(this.magLevel && !pause){
+      this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
+      if(this.magLevel){
         this.mx = e.pageX
         this.my = e.pageY
         this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
