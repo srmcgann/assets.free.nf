@@ -51,13 +51,14 @@ export default {
         this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
         this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
         this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel)-this.element.clientWidth/2) +'px'
-        this.contents.style.marginTop = (-this.my*(this.magLevel)+this.element.clientHeight/2*(this.magLevel)+38*(this.magLevel)*2) + 'px'
+        this.contents.style.marginTop = (-this.my*(this.magLevel)+this.element.clientHeight/2*(this.magLevel)) + 'px'
       }
       
     }
   },
   mounted(){
     this.contents = this.element.cloneNode(true)
+    this.contents.style.width = this.element.clientWidth + 'px'
     this.contents.className = 'contents'
     this.contents.style.transform = `scale(${this.magLevel})`
     window.addEventListener('mousemove', e => this.refresh(e))
@@ -102,8 +103,10 @@ export default {
     line-height: 9px;
     height: 20px;
   }
+  
   .contents{
     pointer-events: none;
+    display: inline-block;
   }
 
 
