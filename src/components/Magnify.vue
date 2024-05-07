@@ -4,12 +4,12 @@
       @click.stop.prevent="magnify()"
       class="magup specialToolButton"
     ></div>
-    <div class="magLevel" v-html="magLevel"></div>
+    <div class="magLevel" v-html="state.magLevel"></div>
     <div
       @click.stop.prevent="unmagnify()"
       class="magdown specialToolButton"
     ></div>
-    <div v-if="magLevel" class="magnifyingGlass" ref="magnifyingGlass"></div>
+    <div v-if="state.magLevel" class="magnifyingGlass" ref="magnifyingGlass"></div>
   </div>
 </template>
 
