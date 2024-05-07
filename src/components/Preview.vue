@@ -20,6 +20,8 @@
   </button>
   <Magnify
     v-if="mounted"
+    @mouseover="pauseMag=true"
+    @mouseout="pauseMag=false"
     :state="state" :pause="pauseMag"
     :element="previewContainer"
   />
@@ -84,6 +86,8 @@
         v-if="state.multipleLinks()"
         class="leftButton"
         ref = "leftButton"
+        @mouseover="pauseMag=true"
+        @mouseout="pauseMag=false"
         @click="state.prev()"
         @mousemove="bumpNavButtonOpacity()"
         title="view previous asset [left arrow]"
@@ -92,6 +96,8 @@
         v-if="state.multipleLinks()"
         class="rightButton"
         ref = "rightButton"
+        @mouseover="pauseMag=true"
+        @mouseout="pauseMag=false"
         @click="state.next()"
         @mousemove="bumpNavButtonOpacity()"
         title="view next asset [right arrow]"

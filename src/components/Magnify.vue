@@ -73,6 +73,9 @@ export default {
 <style scoped>
   .magnify{
     position: absolute;
+    right: 10px;
+    bottom: 0px;
+    z-index: 100;
   }
   .magnifyingGlass{
     pointer-events: none;
@@ -101,7 +104,7 @@ export default {
     color: #fff;
     font-size: 20px;
     border-radius: 10px;
-    line-height: 9px;
+    line-height: 11px;
     height: 20px;
   }
   
