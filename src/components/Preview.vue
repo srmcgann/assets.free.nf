@@ -24,6 +24,7 @@
     @mouseout="pauseMag=false"
     :state="state" :pause="pauseMag"
     :element="previewContainer"
+    style='border: 1px solid #0f0;'
   />
   <div ref="previewContainer" class="previewContainer">
     <div
@@ -243,7 +244,6 @@ export default {
     margin: 100px;
     height: 100%;
     width: 100%;
-    border: 1px solid red;
   }
   .leftButton, .rightButton{
     width: 100px;
