@@ -54,7 +54,7 @@ export default {
           let bounding = this.element.getBoundingClientRect()
           this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
           this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-          this.contents.style.marginLeft = ((this.element.clientWidth/2+(-this.mx-this.element.clientWidth/(1+this.magLevel)) + bounding.left)*this.magLevel + 200 + 210 * (this.magLevel - 1)) + 'px'
+          this.contents.style.marginLeft = ((this.element.clientWidth/2+(-this.mx-this.element.clientWidth/(1+this.magLevel)) + bounding.left)*this.magLevel + 200 + 100 * (this.magLevel - 1)) + 'px'
           this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2) + bounding.top) * this.magLevel + 200) + 'px'
         }
       }
