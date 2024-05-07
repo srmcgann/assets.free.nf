@@ -50,8 +50,8 @@ export default {
         this.my = e.pageY
         this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
         this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-        this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel)-this.element.clientWidth/2+200*this.magLevel) +'px'
-        this.contents.style.marginTop = (-this.my*(this.magLevel)+this.element.clientHeight/2*(this.magLevel)-200*this.magLevel) + 'px'
+        this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel)-this.element.clientWidth/2+150*this.magLevel) +'px'
+        this.contents.style.marginTop = (-this.my*(this.magLevel)+this.element.clientHeight/2*(this.magLevel)-210*this.magLevel) + 'px'
       }
       
     }
