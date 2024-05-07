@@ -24,9 +24,12 @@
     @mouseout="pauseMag=false"
     :state="state" :pause="pauseMag"
     :element="previewContainer"
-    style='border: 1px solid #0f0;'
   />
-  <div ref="previewContainer" class="previewContainer">
+  <div
+    ref="previewContainer"
+    class="previewContainer"
+    style="border: 1px solid #0f0;"
+  >
     <div
       class="preview"
       @mousemove="bumpNavButtonOpacity()"
