@@ -76,6 +76,7 @@ export default {
     right: 10px;
     bottom: 0px;
     z-index: 100;
+    opacity: .75;
   }
   .magnifyingGlass{
     pointer-events: none;
@@ -98,13 +99,14 @@ export default {
     background-image: url(../assets/unmag.png);
   }
   .magLevel{
+    text-align: center;
     border: 3px solid #40f8;
     background: #000c;
     padding: 5px;
     color: #fff;
     font-size: 20px;
     border-radius: 10px;
-    line-height: 11px;
+    line-height: 8.5px;
     height: 20px;
   }
   
@@ -152,15 +154,17 @@ export default {
     }
   }
   .fade{
-    animation: fadeOut 3s 1 linear;
+    /* animation: fadeOut 3s 1 linear; */
   }
   .leftButton{
     background-image: url(../assets/leftButton.png);
     left: 10px;
+    display: none;
   }
   .rightButton{
     background-image: url(../assets/rightButton.png);
     right: 10px;
+    display: none;
   }
   .fullOpacity{
     opacity: 1!important;
@@ -191,6 +195,7 @@ export default {
     width: 44px;
     z-index: 10;
     top: 40px;
+    display: none;
   }
   .assetData{
     position: absolute;
