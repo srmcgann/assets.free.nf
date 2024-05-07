@@ -29,7 +29,6 @@
   <div
     ref="previewContainer"
     class="previewContainer"
-    style="border: 1px solid #0f0;"
   >
     <div
       class="preview"
