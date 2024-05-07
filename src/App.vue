@@ -95,7 +95,8 @@ export default {
         updateComment: null,
         getAvatar: null,
         showLoading: false,
-        
+        magLevel: 0,
+        maxMagLevel: 10,
         showPreview: false,
         bumpADOpacity: false,
         rootDomain: location.hostname,

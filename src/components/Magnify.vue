@@ -22,17 +22,15 @@ export default {
   },
   data(){
     return {
-      magLevel: 0,
       contents: null,
-      maxMagLevel: 10,
       appended: false,
     }
   },
   methods: {
     magnify(){
-      this.magLevel = Math.min(this.maxMagLevel, this.magLevel+1)
-      this.contents.style.transform = `scale(${this.magLevel})`
-      if(this.magLevel == 1) {
+      this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
+      this.contents.style.transform = `scale(${this.state.magLevel+1})`
+      if(this.state.magLevel == 1) {
         this.appended = true
         this.$nextTick(() => {
           this.$refs.magnifyingGlass.appendChild(this.contents)
@@ -40,21 +38,21 @@ export default {
       }
     },
     unmagnify(){
-      this.magLevel = Math.max(0, this.magLevel-1)
-      this.contents.style.transform = `scale(${this.magLevel})`
+      this.state.magLevel = Math.max(0, this.state.magLevel-1)
+      this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
     refresh(e){
       if(
         typeof this.$refs.magnifyingGlass != 'undefined' &&
         typeof this.$refs.magnifyingGlass != 'null'){
         this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
-        if(this.magLevel){
+        if(this.state.magLevel){
           this.mx = e.pageX
           this.my = e.pageY
           this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
           this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.mx + this.element.clientWidth/2) * this.magLevel + 200 + 397*(this.magLevel-1) + (100*(this.magLevel-1)) + 'px'
-          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2)) * this.magLevel + 200) + 'px'
+          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.mx + this.element.clientWidth/2) * (this.state.magLevel+1_ + 200 + 397*((this.state.magLevel+1)-1) + (100*(this.state.magLevel-1)) + 'px'
+          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
         }
       }
     }
@@ -63,7 +61,7 @@ export default {
     this.contents = this.element.cloneNode(true)
     this.contents.style.width = this.element.clientWidth + 'px'
     this.contents.className = 'contents'
-    this.contents.style.transform = `scale(${this.magLevel})`
+    this.contents.style.transform = `scale(${this.state.magLevel+1})`
     window.addEventListener('mousemove', e => this.refresh(e))
   },
   beforeUnmount(){
@@ -78,7 +76,7 @@ export default {
     right: 10px;
     bottom: 0px;
     z-index: 100;
-    opacity: .75;
+    opacity: 1;
   }
   .magnifyingGlass{
     pointer-events: none;
