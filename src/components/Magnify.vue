@@ -44,16 +44,17 @@ export default {
       this.contents.style.transform = `scale(${this.magLevel})`
     },
     refresh(e){
-      this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
-      if(this.magLevel){
-        this.mx = e.pageX
-        this.my = e.pageY
-        this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
-        this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-        this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel)-this.element.clientWidth/2+(148/2)*(this.magLevel*2)) +'px'
-        this.contents.style.marginTop = (-this.my*(this.magLevel)+this.element.clientHeight/2*(this.magLevel)-(210/2)*(this.magLevel*2)) + 'px'
+      if(typeof this.$refs.magnifyingGlass != 'undefined'){
+        this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
+        if(this.magLevel){
+          this.mx = e.pageX
+          this.my = e.pageY
+          this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
+          this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
+          this.contents.style.marginLeft = ((-this.mx+document.body.clientWidth/2+38)*(this.magLevel)-this.element.clientWidth/2+(148/2)*(this.magLevel*2)) +'px'
+          this.contents.style.marginTop = (-this.my*(this.magLevel)+this.element.clientHeight/2*(this.magLevel)-(210/2)*(this.magLevel*2)) + 'px'
+        }
       }
-      
     }
   },
   mounted(){
@@ -76,7 +77,7 @@ export default {
   .magnifyingGlass{
     pointer-events: none;
     border-radius: 50%;
-    border: 20px solid #fff2;
+    border: none;
     width: 400px;
     height: 400px;
     position: fixed;
