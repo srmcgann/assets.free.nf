@@ -311,6 +311,8 @@ export default {
     z-index: 50;
     max-height: 340px;
     max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .commentLabel:hover{
     background: #0f44;
