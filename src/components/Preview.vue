@@ -3,7 +3,7 @@
     @mouseover="pauseMag=true"
     @mouseout="pauseMag=false"
     class="checkboxLabel"
-    title="pinning prevents info etc. from fading out..."
+    title="pinning prevents info from fading out..."
     style="z-index: 100000; margin: 10px; margin-left: 40px;"
   >
     <input type="checkbox" v-model="pinned" @input="togglePinned()">

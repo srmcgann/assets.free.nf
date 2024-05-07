@@ -51,11 +51,10 @@ export default {
         if(this.magLevel){
           this.mx = e.pageX
           this.my = e.pageY
-          let bounding = this.element.getBoundingClientRect()
           this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
           this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-          this.contents.style.marginLeft = ((this.element.clientWidth/2+(-this.mx-this.element.clientWidth/2) + bounding.left) * this.magLevel + 200) + 'px'
-          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2) + bounding.top) * this.magLevel + 200) + 'px'
+          this.contents.style.marginLeft = ((this.element.clientWidth/2+(-this.mx-this.element.clientWidth/2)+10) * this.magLevel + 400) + 'px'
+          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2)) * this.magLevel + 200) + 'px'
         }
       }
     }
