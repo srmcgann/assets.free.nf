@@ -310,6 +310,7 @@ export default {
     border-radius: 10px;
     z-index: 50;
     max-height: 340px;
+    max-width: 700px;
   }
   .commentLabel:hover{
     background: #0f44;
