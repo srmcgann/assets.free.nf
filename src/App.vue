@@ -92,6 +92,8 @@ export default {
         multipleLinks: null,
         deleteComment: null,
         pinned: false,
+        mx: 0,
+        my: 0,
         updateComment: null,
         getAvatar: null,
         showLoading: false,

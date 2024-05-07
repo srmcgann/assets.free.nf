@@ -23,7 +23,6 @@ export default {
   data(){
     return {
       contents: null,
-      appended: false,
     }
   },
   methods: {
@@ -31,7 +30,6 @@ export default {
       this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
       if(this.state.magLevel == 1) {
-        this.appended = true
         this.$nextTick(() => {
           this.$refs.magnifyingGlass.appendChild(this.contents)
         })
@@ -41,18 +39,16 @@ export default {
       this.state.magLevel = Math.max(0, this.state.magLevel-1)
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
-    refresh(e){
+    refresh(){
       if(
         typeof this.$refs.magnifyingGlass != 'undefined' &&
         typeof this.$refs.magnifyingGlass != 'null'){
         this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
         if(this.state.magLevel){
-          this.mx = e.pageX
-          this.my = e.pageY
-          this.$refs.magnifyingGlass.style.left = this.mx-200 + 'px'
-          this.$refs.magnifyingGlass.style.top = this.my-200 + 'px'
-          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.mx + this.element.clientWidth/2) * (this.state.magLevel+1) + 200 + 397*((this.state.magLevel+1)-1) + (100*((this.state.magLevel+1)-1)) + 'px'
-          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
+          this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
+          this.$refs.magnifyingGlass.style.top = this.state.my-200 + 'px'
+          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.state.mx + this.element.clientWidth/2) * (this.state.magLevel+1) + 200 + 397*((this.state.magLevel+1)-1) + (100*((this.state.magLevel+1)-1)) + 'px'
+          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
         }
       }
     }
@@ -62,7 +58,12 @@ export default {
     this.contents.style.width = this.element.clientWidth + 'px'
     this.contents.className = 'contents'
     this.contents.style.transform = `scale(${this.state.magLevel+1})`
-    window.addEventListener('mousemove', e => this.refresh(e))
+    window.addEventListener('mousemove', e => {
+      this.state.mx = e.pageX
+      this.state.my = e.pageY
+      this.refresh()
+    })
+    if(this.state.magLevel) this.refresh()
   },
   beforeUnmount(){
     window.removeEventListener('mousemove', e => this.refresh(e))
