@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     magnify(){
-      this.magLevel = Math.min(this.maxMagLevel, this.magLevel)
+      this.magLevel = Math.min(this.maxMagLevel, this.magLevel+1)
       this.contents.style.transform = `scale(${this.magLevel})`
       if(this.magLevel > 0 && !this.appended) {
         this.appended = true
