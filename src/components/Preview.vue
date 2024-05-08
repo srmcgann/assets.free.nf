@@ -235,7 +235,7 @@ export default {
     this.mounted = true
   },
   beforeUnmount(){
-    if(this.linkType == 'video' || this.linkType == 'audio') this.asset.paused = true
+    if(typeof this.asset?.paused == 'boolean') this.asset.paused = true
     this.asset.src = ''
   }
 }
