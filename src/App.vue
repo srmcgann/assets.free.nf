@@ -797,10 +797,6 @@ export default {
                 originalDate: data[2][i].originalDate,
                 origin: data[2][i].origin,
                 comments: data[2][i].comments.map(v=>{
-                  v.text=v.text.split(' ').map(q=>{
-                    if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-                    return q
-                  }).join(' ')
                   v.editing = false
                   v.edited = !!(+v.edited)
                   this.state.fetchUserInfo(v.userID)
@@ -1270,10 +1266,6 @@ export default {
         if(data[0]){
           this.state.links.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
-              v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-                return q
-              }).join(' ')
               v.editing = false
               v.edited = !!(+v.edited)
               return v
@@ -1281,10 +1273,6 @@ export default {
           })
           this.state.userLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
-              v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-                return q
-              }).join(' ')
               v.editing = false
               v.edited = !!(+v.edited)
               return v
@@ -1292,10 +1280,6 @@ export default {
           })
           this.state.miscLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
-              v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-                return q
-              }).join(' ')
               v.editing = false
               v.edited = !!(+v.edited)
               return v
@@ -1303,10 +1287,6 @@ export default {
           })
           this.state.cacheLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
-              v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-                return q
-              }).join(' ')
               v.editing = false
               v.edited = !!(+v.edited)
               return v
@@ -1444,10 +1424,6 @@ export default {
                 slug: data[2][i].slug,
                 hash: data[2][i].hash,
                 comments: data[2][i].comments.map(v=>{
-                  v.text=v.text.split(' ').map(q=>{
-                    if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-                    return q
-                  }).join(' ')
                   v.editing = false
                   v.edited = !!(+v.edited)
                   this.state.fetchUserInfo(v.userID)
