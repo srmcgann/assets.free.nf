@@ -133,7 +133,7 @@ export default {
   },
   computed:{
     previewContainer(){
-      let el = document.querySelectorAll('previewAsset')
+      let el = document.querySelectorAll('.previewAsset')
       if(el.length) return el[0]
       return this.$refs.previewContainer
     }
