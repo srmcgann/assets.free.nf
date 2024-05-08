@@ -77,7 +77,7 @@ export default {
       }
     },
     refresh(){
-      if(typeof this.$refs?.magnifyingGlass != 'undefined' &&
+      if(this.$refs?.magnifyingGlass != null &&
          !this.$refs.magnifyingGlass.contains(this.contents)) {
         this.$nextTick(()=>this.reset())
       }else{
