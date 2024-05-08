@@ -100,7 +100,7 @@ export default {
     window.addEventListener('mousemove', e => {
       this.state.mx = e.pageX
       this.state.my = e.pageY
-      this.refresh()
+      if(this.state.magLevel) this.refresh()
     })
     if(this.state.magLevel){
       this.$nextTick(()=>{
