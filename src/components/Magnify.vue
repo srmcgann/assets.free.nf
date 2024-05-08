@@ -51,33 +51,35 @@ export default {
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
     reset(){
-      if(this.$refs.magnifyingGlass.contains(this.contents)){
-        this.$refs.magnifyingGlass.removeChild(this.contents)
-        this.contents = this.element.cloneNode(true)
-        this.contents.style.width = this.element.clientWidth + 'px'
-        this.contents.className = 'contents'
-        this.contents.style.transform = `scale(${this.state.magLevel+1})`
-      }
-      this.$nextTick(() => {
-        this.$refs.magnifyingGlass.appendChild(this.contents)
-
-        if(this.state.previewLink.filetype.split('/')[0] == 'video'){
-          console.log('video link detected')
-          let tel = document.querySelectorAll('.previewAsset')
-          if(tel.length>1) {
-            console.log('playing asset')
-            tel=tel[1]
-            tel.muted = true
-            tel.loop = true
-            tel.play()
-          }
+      if(typeof this.$refs?.magnifyingGlass !== 'undefined'){
+        if(this.$refs.magnifyingGlass.contains(this.contents)){
+          this.$refs.magnifyingGlass.removeChild(this.contents)
+          this.contents = this.element.cloneNode(true)
+          this.contents.style.width = this.element.clientWidth + 'px'
+          this.contents.className = 'contents'
+          this.contents.style.transform = `scale(${this.state.magLevel+1})`
         }
+        this.$nextTick(() => {
+          this.$refs.magnifyingGlass.appendChild(this.contents)
 
-        this.refresh()
-        setTimeout(()=>{
-          this.reset()
-        }, 2000)
-      })
+          if(this.state.previewLink.filetype.split('/')[0] == 'video'){
+            console.log('video link detected')
+            let tel = document.querySelectorAll('.previewAsset')
+            if(tel.length>1) {
+              console.log('playing asset')
+              tel=tel[0]
+              tel.muted = true
+              tel.loop = true
+              tel.play()
+            }
+          }
+
+          this.refresh()
+          setTimeout(()=>{
+            this.reset()
+          }, 2000)
+        })
+      }
     },
     refresh(){
       if(!this.$refs.magnifyingGlass.contains(this.contents)) {

@@ -57,10 +57,10 @@
         <div
           @click="state.getUserStats(comment.userID)"
           class="avatar"
-          :title="`this comment was posted by ${state.userInfo[comment.userID].name}`"
+          :title="`this comment was posted by ${state.	[comment.userID]?.name}`"
           :style="`background-image: url(${avatar(comment)})`"
         ></div>
-        {{state.shortText(this.state.userInfo[comment.userID].name, 18)}}
+        {{state.shortText(this.state.userInfo[comment.userID]?.name, 18)}}
       </div>
       
       <div class="commentHeader">
@@ -192,10 +192,10 @@ export default {
       })
     },
     avatar(comment){
-      if(this.state.userInfo[comment.userID].avatar.indexOf('avatarDefault.png') != -1){
+      if(this.state.userInfo[comment.userID]?.avatar.indexOf('avatarDefault.png') != -1){
         return this.state.URLbase + '/avatarDefault.png'
       }else{
-        return this.state.userInfo[comment.userID].avatar
+        return this.state.userInfo[comment.userID]?.avatar
       }
     },
     deleteComment(comment){
