@@ -9,6 +9,10 @@
       @click.stop.prevent="unmagnify()"
       class="magdown specialToolButton"
     ></div>
+    <div
+      @click.stop.prevent="cancelMagnify()"
+      class="nomag specialToolButton"
+    ></div>
     <div v-if="state.magLevel" class="magnifyingGlass" ref="magnifyingGlass"></div>
   </div>
 </template>
@@ -26,6 +30,11 @@ export default {
     }
   },
   methods: {
+    cancelMagnify(){
+      do{
+        this.unmagnify()
+      }while(this.state.magLevel)
+    },
     magnify(){
       this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
@@ -102,6 +111,9 @@ export default {
   }
   .magdown{
     background-image: url(../assets/unmag.png);
+  }
+  .nomag{
+    background-image: url(../assets/nomag.png);
   }
   .magLevel{
     text-align: center;
