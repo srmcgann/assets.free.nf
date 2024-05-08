@@ -23,6 +23,7 @@
     v-if="mounted"
     @mouseover="pauseMag=true"
     @mouseout="pauseMag=false"
+    :class="{'fade': !state.pinned && !state.magLevel}"
     :state="state" :pause="pauseMag"
     :element="previewContainer"
   />
