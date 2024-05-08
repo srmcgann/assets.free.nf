@@ -146,7 +146,7 @@ export default {
       })
     },
     bumpNavButtonOpacity(){
-      if(this.state.magLevel) return
+      if(!this.state.pinned && this.state.magLevel) return
       this.$refs.inputs.classList.remove('fade')
       this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
       this.$refs.inputs.classList.add('fade')
