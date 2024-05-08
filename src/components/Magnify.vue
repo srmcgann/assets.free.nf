@@ -4,16 +4,16 @@
       class="magLevel"
       v-html="state.magLevel"
       title="current magnification"
-    ></div>
-    <div
-      @click.stop.prevent="magnify()"
-      class="magup specialToolButton"
-      title="increase magnification"
-    ></div>
+    ></div><br>
     <div
       @click.stop.prevent="unmagnify()"
       class="magdown specialToolButton"
       title="decrease magnification"
+    ></div><br>
+    <div
+      @click.stop.prevent="magnify()"
+      class="magup specialToolButton"
+      title="increase magnification"
     ></div><br>
     <div
       @click.stop.prevent="cancelMagnify()"
