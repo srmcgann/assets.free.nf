@@ -98,6 +98,7 @@
       @mouseout="pauseMag=false"
       @click="state.prev()"
       @mousemove="bumpNavButtonOpacity()"
+      @mouseover="bumpNavButtonOpacity(true)"
       title="view previous asset [left arrow]"
     ></div>
     <div
@@ -108,6 +109,7 @@
       @mouseout="pauseMag=false"
       @click="state.next()"
       @mousemove="bumpNavButtonOpacity()"
+      @mouseover="bumpNavButtonOpacity(true)"
       title="view next asset [right arrow]"
     ></div>
   </div>
@@ -146,8 +148,8 @@ export default {
         this.bumpNavButtonOpacity()
       })
     },
-    bumpNavButtonOpacity(){
-      if(!this.state.pinned && this.state.magLevel) return
+    bumpNavButtonOpacity(force=false){
+      if(!force && !this.state.pinned && this.state.magLevel) return
       this.$refs.inputs.classList.remove('fade')
       this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
       this.$refs.inputs.classList.add('fade')
