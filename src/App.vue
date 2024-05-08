@@ -798,7 +798,7 @@ export default {
                 origin: data[2][i].origin,
                 comments: data[2][i].comments.map(v=>{
                   v.text=v.text.split(' ').map(q=>{
-                    if(q.indexOf('://')!=-1) q = `<a href=${q} target="_blank">${q}</a>`
+                    if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
                     return q
                   }).join(' ')
                   v.editing = false
@@ -1271,7 +1271,7 @@ export default {
           this.state.links.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href=${q} target="_blank">${q}</a>`
+                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
                 return q
               }).join(' ')
               v.editing = false
@@ -1282,7 +1282,7 @@ export default {
           this.state.userLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href=${q} target="_blank">${q}</a>`
+                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
                 return q
               }).join(' ')
               v.editing = false
@@ -1293,7 +1293,7 @@ export default {
           this.state.miscLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href=${q} target="_blank">${q}</a>`
+                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
                 return q
               }).join(' ')
               v.editing = false
@@ -1304,7 +1304,7 @@ export default {
           this.state.cacheLinks.map(link => {
             if(+link.id == +linkID) link.comments = data[1].map(v=>{
               v.text=v.text.split(' ').map(q=>{
-                if(q.indexOf('://')!=-1) q = `<a href=${q} target="_blank">${q}</a>`
+                if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
                 return q
               }).join(' ')
               v.editing = false
@@ -1445,7 +1445,7 @@ export default {
                 hash: data[2][i].hash,
                 comments: data[2][i].comments.map(v=>{
                   v.text=v.text.split(' ').map(q=>{
-                    if(q.indexOf('://')!=-1) q = `<a href=${q} target="_blank">${q}</a>`
+                    if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
                     return q
                   }).join(' ')
                   v.editing = false
