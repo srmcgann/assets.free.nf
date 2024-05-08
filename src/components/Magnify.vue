@@ -75,15 +75,12 @@ export default {
           }
 
           this.refresh()
-          setTimeout(()=>{
-            this.reset()
-          }, 2000)
         })
       }
     },
     refresh(){
       if(!this.$refs.magnifyingGlass.contains(this.contents)) {
-        this.reset()
+        this.$nextTick(()=>this.reset())
       }else{
         if(
           typeof this.$refs.magnifyingGlass != 'undefined' &&
@@ -132,7 +129,8 @@ export default {
   .magnifyingGlass{
     pointer-events: none;
     border-radius: 50%;
-    border: 8px solid #fff1;
+    border: 2px solid #8883;
+    box-shadow: 0 0 40px 40px #fff4;
     box-sizing: unset;
     width: 400px;
     height: 400px;
