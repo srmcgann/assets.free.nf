@@ -77,7 +77,7 @@ export default {
           if(this.state.magLevel){
             this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
             this.$refs.magnifyingGlass.style.top = this.state.my-200 + 'px'
-            this.contents.style.marginLeft = (-document.body.clientWidth/2 - this.state.mx + document.body.clientWidth/2) * (this.state.magLevel+1) + 200 + 400*((this.state.magLevel+1)-1) + 50 + 'px'
+            this.contents.style.marginLeft = (-document.body.clientWidth/2 - this.state.mx + document.body.clientWidth/2) * (this.state.magLevel+1) + 200 + 398*((this.state.magLevel+1)-1) + 50 + 'px'
             this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
           }
         }
