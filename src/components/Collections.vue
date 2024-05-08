@@ -32,7 +32,7 @@
           <td v-html="collection.name"></td>
           <td v-html="collection.slug"></td>
           <td v-html="collection.meta.views"></td>
-          <td v-html="collection.meta.description"></td>
+          <td v-html="state.linkify(collection.meta.description)"></td>
           <td v-html="state.age(collection.meta)"></td>
           <td v-html="state.prettyDate(collection.meta)"></td>
           <td>

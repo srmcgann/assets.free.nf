@@ -13,12 +13,12 @@
     <div
       @click.stop.prevent="unmagnify()"
       class="magdown specialToolButton"
-      title="decrease magnification"
+      title="decrease magnification [-]"
     ></div><br>
     <div
       @click.stop.prevent="cancelMagnify()"
       class="nomag specialToolButton"
-      title="cancel magnification"
+      title="cancel magnification [0]"
     ></div>
     <div v-if="state.magLevel" class="magnifyingGlass" ref="magnifyingGlass"></div>
   </div>

@@ -86,7 +86,7 @@
       <td
         v-else
         class="tdRight"
-        v-html="link.description"
+        v-html="state.linkify(link.description)"
       ></td>
     </tr>
 
