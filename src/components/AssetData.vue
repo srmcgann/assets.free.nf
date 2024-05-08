@@ -86,7 +86,7 @@
       <td
         v-else
         class="tdRight"
-        v-html="state.shortText(link.description, 16)"
+        v-html="link.description"
       ></td>
     </tr>
 
