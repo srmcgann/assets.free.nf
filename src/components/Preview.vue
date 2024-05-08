@@ -27,88 +27,88 @@
     :element="previewContainer"
   />
   <div
-    ref="previewContainer"
-    class="previewContainer"
+    class="preview"
+    @mousemove="bumpNavButtonOpacity()"
+    ref="preview"
   >
     <div
-      class="preview"
-      @mousemove="bumpNavButtonOpacity()"
-      ref="preview"
+      ref="previewContainer"
+      class="previewContainer"
     >
       <div class="previewInner">
         <div class="slideshow" ref="slideshow"></div>
       </div>
     </div>
+  </div>
+  <div
+    class="inputs"
+    ref="inputs"
+    :class="{'fade': !state.pinned}"
+  >
     <div
-      class="inputs"
-      ref="inputs"
-      :class="{'fade': !state.pinned}"
+      @mouseover="pauseMag=true"
+      @mouseout="pauseMag=false"
+      @mousemove="state.bumpADOpacity++"
+      class="linkButtons"
     >
       <div
-        @mouseover="pauseMag=true"
-        @mouseout="pauseMag=false"
-        @mousemove="state.bumpADOpacity++"
-        class="linkButtons"
-      >
-        <div
-          class="specialToolButton"
-          @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
-          :class="{'private': link.private, 'notPrivate': !link.private}"
-          :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
-          v-if="link.userID == state.loggedinUserID || state.admin"
-        ></div>
-        <div
-          class="copyLinkButton"
-          @click.prevent.stop="state.copyLink(link.href)"
-          title="copy link to clipboard"
-        ></div>
-        <a
-          :href="state.URLbase + '/' + link.href"
-          class="openButton"
-          @click.prevent.stop="state.openLink(link)"
-          title="open link in new tab"
-        ></a>
-        <div
-          class="downloadButton"
-          @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
-          title="download asset"
-        ></div>
-        <div
-          class="deleteSingleButton"
-          @click.prevent.stop="state.deleteSingle(link)"
-          title="delete this asset only"
-          v-if="link.userID == state.loggedinUserID || state.admin"
-        ></div>
-      </div>
-      <AssetData
-        :state="state"
-        :link="link"
-        :omitAssetData="false"
-        @mouseover="pauseMag=true"
-        @mouseout="pauseMag=false"
-        @mousemove="bumpNavButtonOpacity()"
-      />
-      <div
-        v-if="state.multipleLinks()"
-        class="leftButton"
-        ref = "leftButton"
-        @mouseover="pauseMag=true"
-        @mouseout="pauseMag=false"
-        @click="state.prev()"
-        @mousemove="bumpNavButtonOpacity()"
-        title="view previous asset [left arrow]"
+        class="specialToolButton"
+        @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
+        :class="{'private': link.private, 'notPrivate': !link.private}"
+        :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
+        v-if="link.userID == state.loggedinUserID || state.admin"
       ></div>
       <div
-        v-if="state.multipleLinks()"
-        class="rightButton"
-        ref = "rightButton"
-        @mouseover="pauseMag=true"
-        @mouseout="pauseMag=false"
-        @click="state.next()"
-        @mousemove="bumpNavButtonOpacity()"
-        title="view next asset [right arrow]"
+        class="copyLinkButton"
+        @click.prevent.stop="state.copyLink(link.href)"
+        title="copy link to clipboard"
+      ></div>
+      <a
+        :href="state.URLbase + '/' + link.href"
+        class="openButton"
+        @click.prevent.stop="state.openLink(link)"
+        title="open link in new tab"
+      ></a>
+      <div
+        class="downloadButton"
+        @click.prevent.stop="state.downloadLink(link, state.fullFileName(link))"
+        title="download asset"
+      ></div>
+      <div
+        class="deleteSingleButton"
+        @click.prevent.stop="state.deleteSingle(link)"
+        title="delete this asset only"
+        v-if="link.userID == state.loggedinUserID || state.admin"
       ></div>
     </div>
+    <AssetData
+      :state="state"
+      :link="link"
+      :omitAssetData="false"
+      @mouseover="pauseMag=true"
+      @mouseout="pauseMag=false"
+      @mousemove="bumpNavButtonOpacity()"
+    />
+    <div
+      v-if="state.multipleLinks()"
+      class="leftButton"
+      ref = "leftButton"
+      @mouseover="pauseMag=true"
+      @mouseout="pauseMag=false"
+      @click="state.prev()"
+      @mousemove="bumpNavButtonOpacity()"
+      title="view previous asset [left arrow]"
+    ></div>
+    <div
+      v-if="state.multipleLinks()"
+      class="rightButton"
+      ref = "rightButton"
+      @mouseover="pauseMag=true"
+      @mouseout="pauseMag=false"
+      @click="state.next()"
+      @mousemove="bumpNavButtonOpacity()"
+      title="view next asset [right arrow]"
+    ></div>
   </div>
 </template>
 
