@@ -50,21 +50,35 @@ export default {
       this.state.magLevel = Math.max(0, this.state.magLevel-1)
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
+    reset(){
+      if(this.$refs.magnifyingGlass.contains(this.contents)){
+        this.contents = this.element.cloneNode(true)
+        this.contents.style.width = this.element.clientWidth + 'px'
+        this.contents.className = 'contents'
+        this.contents.style.transform = `scale(${this.state.magLevel+1})`
+        this.$refs.magnifyingGlass.removeChild(this.contents)
+      }
+      this.$nextTick(() => {
+        this.$refs.magnifyingGlass.appendChild(this.contents)
+        setTimeout(()=>{
+          this.reset()
+        }, 1000)
+      })
+    },
     refresh(){
       if(!this.$refs.magnifyingGlass.contains(this.contents)) {
-        this.$nextTick(() => {
-          this.$refs.magnifyingGlass.appendChild(this.contents)
-        })
-      }
-      if(
-        typeof this.$refs.magnifyingGlass != 'undefined' &&
-        this.$refs.magnifyingGlass !== null){
-        this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
-        if(this.state.magLevel){
-          this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
-          this.$refs.magnifyingGlass.style.top = this.state.my-200 + 'px'
-          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.state.mx + this.element.clientWidth/2) * (this.state.magLevel+1) + 200 + 397*((this.state.magLevel+1)-1) + (100*((this.state.magLevel+1)-1)) + 'px'
-          this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
+        this.reset()
+      }else{
+        if(
+          typeof this.$refs.magnifyingGlass != 'undefined' &&
+          this.$refs.magnifyingGlass !== null){
+          this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
+          if(this.state.magLevel){
+            this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
+            this.$refs.magnifyingGlass.style.top = this.state.my-200 + 'px'
+            this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.state.mx + this.element.clientWidth/2) * (this.state.magLevel+1) + 200 + 397*((this.state.magLevel+1)-1) + (100*((this.state.magLevel+1)-1)) + 'px'
+            this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
+          }
         }
       }
     }
@@ -73,7 +87,7 @@ export default {
     if(this.state.previewLink.filetype.split('/')[0] == 'video'){
       let tel = document.querySelectorAll('.previewAsset')
       if(tel.length>1) {
-        tel=tel[1]
+        tel=tel[0]
         tel.muted = true
         tel.loop = true
         tel.play()
@@ -111,7 +125,7 @@ export default {
   .magnifyingGlass{
     pointer-events: none;
     border-radius: 50%;
-    border: none;
+    border: 4px solid #0f82;
     width: 400px;
     height: 400px;
     position: fixed;
