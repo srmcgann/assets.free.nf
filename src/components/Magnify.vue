@@ -52,11 +52,11 @@ export default {
     },
     reset(){
       if(this.$refs.magnifyingGlass.contains(this.contents)){
+        this.$refs.magnifyingGlass.removeChild(this.contents)
         this.contents = this.element.cloneNode(true)
         this.contents.style.width = this.element.clientWidth + 'px'
         this.contents.className = 'contents'
         this.contents.style.transform = `scale(${this.state.magLevel+1})`
-        this.$refs.magnifyingGlass.removeChild(this.contents)
       }
       this.$nextTick(() => {
         this.$refs.magnifyingGlass.appendChild(this.contents)
