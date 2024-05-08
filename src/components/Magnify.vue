@@ -1,17 +1,24 @@
 <template>
   <div class="magnify">
     <div
+      class="magLevel"
+      v-html="state.magLevel"
+      title="current magnification"
+    ></div>
+    <div
       @click.stop.prevent="magnify()"
       class="magup specialToolButton"
+      title="increase magnification"
     ></div>
-    <div class="magLevel" v-html="state.magLevel"></div>
     <div
       @click.stop.prevent="unmagnify()"
       class="magdown specialToolButton"
+      title="decrease magnification"
     ></div><br>
     <div
       @click.stop.prevent="cancelMagnify()"
       class="nomag specialToolButton"
+      title="cancel magnification"
     ></div>
     <div v-if="state.magLevel" class="magnifyingGlass" ref="magnifyingGlass"></div>
   </div>
@@ -63,6 +70,15 @@ export default {
     }
   },
   mounted(){
+    if(this.state.previewLink.filetype.split('/')[0] == 'video'){
+      let tel = document.querySelectorAll('.previewAsset')
+      if(tel.length>1) {
+        tel=tel[1]
+        tel.muted = true
+        tel.loop = true
+        tel.play()
+      }
+    }
     this.contents = this.element.cloneNode(true)
     this.contents.style.width = this.element.clientWidth + 'px'
     this.contents.className = 'contents'

@@ -171,6 +171,7 @@ export default {
 
     if(this.linkType == 'image' || this.linkType == 'audio'){
       this.asset = document.createElement('div')
+      this.asset.className = 'previewAsset'
       this.asset.style.top = '50%'
       this.asset.style.left = '50%'
       this.asset.style.width = '100%'
@@ -194,6 +195,7 @@ export default {
     }
     if(this.linkType == 'audio'){
       this.asset = document.createElement('audio')
+      this.asset.className = 'previewAsset'
       this.asset.controls = true
       this.asset.style.position = 'absolute'
       this.asset.style.left = '50%'
@@ -209,6 +211,7 @@ export default {
     }
     if(this.linkType == 'video'){
       this.asset = document.createElement('video')
+      this.asset.className = 'previewAsset'
       this.asset.controls = true
       this.asset.style.position = 'absolute'
       this.asset.style.left = '50%'
