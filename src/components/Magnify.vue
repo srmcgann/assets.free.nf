@@ -8,7 +8,7 @@
     <div
       @click.stop.prevent="magnify()"
       class="magup specialToolButton"
-      title="increase magnification"
+      title="increase magnification [+]"
     ></div><br>
     <div
       @click.stop.prevent="unmagnify()"
@@ -44,11 +44,9 @@ export default {
     },
     magnify(){
       this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
-      this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
     unmagnify(){
       this.state.magLevel = Math.max(0, this.state.magLevel-1)
-      this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
     reset(){
       if(typeof this.$refs?.magnifyingGlass !== 'undefined'){
@@ -114,6 +112,16 @@ export default {
   },
   beforeUnmount(){
     window.removeEventListener('mousemove', e => this.refresh(e))
+  },
+  watch:{
+    'state.magLevel'(val){
+      if(val){
+        this.contents.style.transform = `scale(${this.state.magLevel+1})`
+      }else{
+        this.state.magLevel = 2
+        this.$nextTick(()=>this.cancelMagnify())
+      }
+    }
   }
 }
 </script>
