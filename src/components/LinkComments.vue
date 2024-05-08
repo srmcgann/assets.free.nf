@@ -100,7 +100,7 @@
 
       <span
         class="commentText"
-        v-html="linkify(comment.text)"
+        v-html="state.linkify(comment.text)"
         v-if="!comment.editing"
       ></span>
       <textarea v-if="comment.editing"
@@ -169,12 +169,6 @@ export default {
     }
   },
   methods: {
-    linkify(comment){
-      return comment.text.split(' ').map(q=>{
-        if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
-        return q
-      }).join(' ')
-    },
     decrementNumComments(){
       this.numComments= Math.max(0, this.numComments-this.commentIncrVal)
     },

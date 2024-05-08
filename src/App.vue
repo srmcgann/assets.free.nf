@@ -88,6 +88,7 @@ export default {
         showEditCollection: null,
         editCollection: [],
         fetchUserInfoMemo: [],
+        linkify: null,
         editingComment: false,
         multipleLinks: null,
         deleteComment: null,
@@ -1493,6 +1494,12 @@ export default {
         }
       }
     },
+    linkify(text){
+      return text.split(' ').map(q=>{
+        if(q.indexOf('://')!=-1) q = `<a href="${q}" target="_blank">${q}</a>`
+        return q
+      }).join(' ')
+    },
     showEditCollection(collection){
       console.log('collection', collection)
       this.state.editCollection = [collection]
@@ -1889,6 +1896,7 @@ export default {
     this.state.addLink = this.addLink
     this.state.URLbase = this.URLbase
     this.state.preview = this.preview
+    this.state.linkify = this.linkify
     this.state.fileName = this.fileName
     this.state.copyLink = this.copyLink
     this.state.openLink = this.openLink
