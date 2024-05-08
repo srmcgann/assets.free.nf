@@ -77,7 +77,8 @@ export default {
       }
     },
     refresh(){
-      if(!this.$refs?.magnifyingGlass.contains(this.contents)) {
+      if(typeof this.$refs?.magnifyingGlass != 'undefined' &&
+         !this.$refs.magnifyingGlass.contains(this.contents)) {
         this.$nextTick(()=>this.reset())
       }else{
         if(

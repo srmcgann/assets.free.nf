@@ -1740,14 +1740,7 @@ export default {
              this.state.miscLinks.length * 1e6
     },
     showAdminButton(){
-      return this.state.loggedIn && 
-             this.state.isAdmin && 
-             !this.state.showModal &&
-             !this.state.showComposeComment &&
-             !this.state.showEditCollection &&
-             !this.state.showPreview &&
-             !this.state.showLogin &&
-             !this.state.showCollections
+      return this.state.loggedIn && !this.popupVisible
     },
     URLbase(){
       let ret = window.location.origin
