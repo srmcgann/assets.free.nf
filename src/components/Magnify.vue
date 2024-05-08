@@ -45,17 +45,17 @@ export default {
     magnify(){
       this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
-      if(this.state.magLevel == 1) {
-        this.$nextTick(() => {
-          this.$refs.magnifyingGlass.appendChild(this.contents)
-        })
-      }
     },
     unmagnify(){
       this.state.magLevel = Math.max(0, this.state.magLevel-1)
       this.contents.style.transform = `scale(${this.state.magLevel+1})`
     },
     refresh(){
+      if(!this.$refs.magnifyingGlass.contains(this.contents)) {
+        this.$nextTick(() => {
+          this.$refs.magnifyingGlass.appendChild(this.contents)
+        })
+      }
       if(
         typeof this.$refs.magnifyingGlass != 'undefined' &&
         this.$refs.magnifyingGlass !== null){
@@ -63,7 +63,7 @@ export default {
         if(this.state.magLevel){
           this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
           this.$refs.magnifyingGlass.style.top = this.state.my-200 + 'px'
-          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.state.mx + this.element.clientWidth/2) * (this.state.magLevel+1) + 200 + 397*((this.state.magLevel+1)-1) + (100*((this.state.magLevel+1)-1)) + 'px'
+          this.contents.style.marginLeft = (-this.element.clientWidth/2 - this.state.mx + this.element.clientWidth/2) * (this.state.magLevel+1) + 200 + 397*((this.state.magLevel+1)-1) + (200*((this.state.magLevel+1)-1)) + 'px'
           this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
         }
       }
