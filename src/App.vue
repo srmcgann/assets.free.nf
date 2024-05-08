@@ -1819,6 +1819,18 @@ export default {
         e.stopPropagation()
       }
       switch(e.keyCode){
+        case 109:  // minus [10-key]
+          if(this.state.showPreview) this.state.magLevel = Math.max(0, this.state.magLevel-1)
+        break
+        case 107:  // plus  [10-key]
+          if(this.state.showPreview) this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
+        break
+        case 189:  // minus
+          if(this.state.showPreview) this.state.magLevel = Math.max(0, this.state.magLevel-1)
+        break
+        case 187:  // plus
+          if(this.state.showPreview) this.state.magLevel = Math.min(this.state.maxMagLevel, this.state.magLevel+1)
+        break
         case 116:
           window.location.reload()
         break
