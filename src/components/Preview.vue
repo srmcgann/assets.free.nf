@@ -27,13 +27,13 @@
     :element="previewContainer"
   />
   <div
-    class="preview"
-    @mousemove="bumpNavButtonOpacity()"
-    ref="preview"
+    ref="previewContainer"
+    class="previewContainer"
   >
     <div
-      ref="previewContainer"
-      class="previewContainer"
+      class="preview"
+      @mousemove="bumpNavButtonOpacity()"
+      ref="preview"
     >
       <div class="previewInner">
         <div class="slideshow" ref="slideshow"></div>

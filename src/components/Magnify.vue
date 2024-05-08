@@ -105,7 +105,7 @@ export default {
     position: absolute;
     right: 10px;
     bottom: 0px;
-    z-index: 100;
+    z-index: 10000;
     opacity: 1;
   }
   .magnifyingGlass{
