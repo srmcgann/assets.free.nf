@@ -77,7 +77,7 @@ export default {
       }
     },
     refresh(){
-      if(!this.$refs.magnifyingGlass.contains(this.contents)) {
+      if(!this.$refs?.magnifyingGlass.contains(this.contents)) {
         this.$nextTick(()=>this.reset())
       }else{
         if(
@@ -107,6 +107,9 @@ export default {
     if(this.state.magLevel){
       this.$nextTick(()=>{
         this.refresh()
+        this.$nextTick(()=>{
+          this.refresh()
+        })
       })
     }
   },
