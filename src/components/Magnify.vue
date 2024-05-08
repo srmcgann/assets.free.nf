@@ -111,7 +111,11 @@ export default {
     }
   },
   beforeUnmount(){
-    window.removeEventListener('mousemove', e => this.refresh(e))
+    window.removeEventListener('mousemove', e => {
+      this.state.mx = e.pageX
+      this.state.my = e.pageY
+      if(this.state.magLevel) this.refresh()
+    })
   },
   watch:{
     'state.keys[48]'(val){
@@ -127,6 +131,7 @@ export default {
     'state.magLevel'(val){
       if(val){
         this.contents.style.transform = `scale(${this.state.magLevel+1})`
+        this.refresh()
       }
     }
   }
