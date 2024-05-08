@@ -94,22 +94,20 @@
       v-if="state.multipleLinks()"
       class="leftButton"
       ref = "leftButton"
-      @mouseover="pauseMag=true"
+      @mouseover="pauseMag=true;bumpNavButtonOpacity(true)"
       @mouseout="pauseMag=false"
       @click="state.prev()"
       @mousemove="bumpNavButtonOpacity()"
-      @mouseover="bumpNavButtonOpacity(true)"
       title="view previous asset [left arrow]"
     ></div>
     <div
       v-if="state.multipleLinks()"
       class="rightButton"
       ref = "rightButton"
-      @mouseover="pauseMag=true"
+      @mouseover="pauseMag=true;bumpNavButtonOpacity(true)"
       @mouseout="pauseMag=false"
       @click="state.next()"
       @mousemove="bumpNavButtonOpacity()"
-      @mouseover="bumpNavButtonOpacity(true)"
       title="view next asset [right arrow]"
     ></div>
   </div>
