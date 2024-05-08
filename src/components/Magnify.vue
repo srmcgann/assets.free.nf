@@ -60,10 +60,23 @@ export default {
       }
       this.$nextTick(() => {
         this.$refs.magnifyingGlass.appendChild(this.contents)
+
+        if(this.state.previewLink.filetype.split('/')[0] == 'video'){
+          console.log('video link detected')
+          let tel = document.querySelectorAll('.previewAsset')
+          if(tel.length>1) {
+            console.log('playing asset')
+            tel=tel[1]
+            tel.muted = true
+            tel.loop = true
+            tel.play()
+          }
+        }
+
         this.refresh()
         setTimeout(()=>{
           this.reset()
-        }, 1000)
+        }, 2000)
       })
     },
     refresh(){
@@ -85,15 +98,6 @@ export default {
     }
   },
   mounted(){
-    if(this.state.previewLink.filetype.split('/')[0] == 'video'){
-      let tel = document.querySelectorAll('.previewAsset')
-      if(tel.length>1) {
-        tel=tel[0]
-        tel.muted = true
-        tel.loop = true
-        tel.play()
-      }
-    }
     this.contents = this.element.cloneNode(true)
     this.contents.style.width = this.element.clientWidth + 'px'
     this.contents.className = 'contents'
