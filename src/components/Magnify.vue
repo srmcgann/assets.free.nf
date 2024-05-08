@@ -63,7 +63,11 @@ export default {
       this.state.my = e.pageY
       this.refresh()
     })
-    if(this.state.magLevel) this.refresh()
+    if(this.state.magLevel){
+      this.$nextTick(()=>{
+        this.refresh()
+      })
+    }
   },
   beforeUnmount(){
     window.removeEventListener('mousemove', e => this.refresh(e))

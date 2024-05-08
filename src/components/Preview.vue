@@ -7,8 +7,8 @@
     style="z-index: 100000; margin: 10px; margin-left: 40px;"
   >
     <input type="checkbox" v-model="state.pinned" @input="togglePinned()">
-    <span class="checkmark" style="margin-left: -60px;position: absolute;width:50px;padding-left:23px;margin-top:-6px;"></span>
-    <span style="margin-top:-2px;width:300px;margin-left:-34px;">📌</span>
+    <span class="checkmark" style="margin-left:-36px;width:25px;margin-top:-6px;"></span>
+    <span style="margin-top:-11px;width:40px;margin-left:-56px;width:40px;">📌</span>
   </label>
   <button
     @click="close()"
