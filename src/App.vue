@@ -1328,13 +1328,22 @@ export default {
       }else{
         console.log('continuing with setLinkProperty', link, property, value)
         if(link[property] != value || force){
+          switch(property){
+            case 'name':
+            break;
+            case 'description':
+            break;
+            default:
+              value = +((""+value).trim())
+            break
+          }
           link[property] = value
           let sendData = {
             userName: this.state.loggedinUserName,
             passhash: this.state.passhash,
             linkID: link.id,
             property,
-            value: +((""+value).trim()),
+            value: value,
           }
           fetch(`${this.URLbase}/` + 'setLinkProperty.php',{
             method: 'POST',
