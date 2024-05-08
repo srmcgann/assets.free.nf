@@ -60,6 +60,7 @@ export default {
       }
       this.$nextTick(() => {
         this.$refs.magnifyingGlass.appendChild(this.contents)
+        this.refresh()
         setTimeout(()=>{
           this.reset()
         }, 1000)
