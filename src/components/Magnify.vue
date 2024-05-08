@@ -8,7 +8,7 @@
     <div
       @click.stop.prevent="unmagnify()"
       class="magdown specialToolButton"
-    ></div>
+    ></div><br>
     <div
       @click.stop.prevent="cancelMagnify()"
       class="nomag specialToolButton"
@@ -103,7 +103,7 @@ export default {
     background: #000;
     cursor: crosshair;
   }
-  .magup, .magdown{
+  .magup, .magdown, .nomag{
     background-size: 32px;
   }
   .magup{

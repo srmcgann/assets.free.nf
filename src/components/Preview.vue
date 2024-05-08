@@ -8,7 +8,7 @@
   >
     <input type="checkbox" v-model="state.pinned" @input="togglePinned()">
     <span class="checkmark" style="margin-left:-36px;width:25px;margin-top:-6px;"></span>
-    <span style="margin-top:-11px;width:40px;margin-left:-56px;width:40px;">📌</span>
+    <span style="margin-top:-11px;width:40px;margin-left:-56px;width:40px;position: absolute;padding-left: 10px">📌</span>
   </label>
   <button
     @click="close()"
@@ -84,6 +84,8 @@
         :state="state"
         :link="link"
         :omitAssetData="false"
+        @mouseover="pauseMag=true"
+        @mouseout="pauseMag=false"
         @mousemove="bumpNavButtonOpacity()"
       />
       <div
@@ -142,6 +144,7 @@ export default {
       })
     },
     bumpNavButtonOpacity(){
+      if(this.state.magLevel) return
       this.$refs.inputs.classList.remove('fade')
       this.$refs.inputs.style.height = this.$refs.inputs.clientHeight + 'px'
       this.$refs.inputs.classList.add('fade')
