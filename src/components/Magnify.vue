@@ -6,14 +6,14 @@
       title="current magnification"
     ></div><br>
     <div
-      @click.stop.prevent="unmagnify()"
-      class="magdown specialToolButton"
-      title="decrease magnification"
-    ></div><br>
-    <div
       @click.stop.prevent="magnify()"
       class="magup specialToolButton"
       title="increase magnification"
+    ></div><br>
+    <div
+      @click.stop.prevent="unmagnify()"
+      class="magdown specialToolButton"
+      title="decrease magnification"
     ></div><br>
     <div
       @click.stop.prevent="cancelMagnify()"
@@ -137,10 +137,14 @@ export default {
     background: #000c;
     padding: 5px;
     color: #fff;
-    font-size: 20px;
-    border-radius: 10px;
-    line-height: 8.5px;
-    height: 20px;
+    font-size: 32px;
+    border-radius: 50%;
+    line-height: 26px;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 6px;
+    margin-top: -26px;
   }
   
   .contents{
