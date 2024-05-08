@@ -114,12 +114,19 @@ export default {
     window.removeEventListener('mousemove', e => this.refresh(e))
   },
   watch:{
+    'state.keys[48]'(val){
+      if(val){
+        this.cancelMagnify()
+      }
+    },
+    'state.keys[96]'(val){
+      if(val){
+        this.cancelMagnify()
+      }
+    },
     'state.magLevel'(val){
       if(val){
         this.contents.style.transform = `scale(${this.state.magLevel+1})`
-      }else{
-        this.state.magLevel = 2
-        this.$nextTick(()=>this.cancelMagnify())
       }
     }
   }

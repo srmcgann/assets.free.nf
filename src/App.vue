@@ -1819,12 +1819,6 @@ export default {
         e.stopPropagation()
       }
       switch(e.keyCode){
-        case 48:
-          this.state.magLevel = 0
-        break
-        case 96:
-          this.state.magLevel = 0
-        break
         case 109:  // minus [10-key]
           if(this.state.showPreview) this.state.magLevel = Math.max(0, this.state.magLevel-1)
         break
