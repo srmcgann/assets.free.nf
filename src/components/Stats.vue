@@ -242,11 +242,11 @@ export default {
       return src.sort((a, b) => (new Date((this.sortDir?b:a).date)) - (new Date((this.sortDir?a:b).date)))
     },
     assets(){
-      return this.state.userStats[this.state.loggedinUserID].length
+      return this.state.userStats[this.state.userStatsID].length
     },
     footprint(){
       let ret = 0
-      this.state.userStats[this.state.loggedinUserID].map(v=>{
+      this.state.userStats[this.state.userStatsID].map(v=>{
         ret += v.size
       })
       return this.state.size(ret)
