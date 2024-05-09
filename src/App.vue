@@ -96,6 +96,7 @@ export default {
         mx: 0,
         my: 0,
         updateComment: null,
+        userStatsID: null,
         getAvatar: null,
         showLoading: false,
         magLevel: 0,
@@ -345,6 +346,7 @@ export default {
               return v
             })
             this.state.showStats = true
+            this.state.userStatsID = userID
           }
         })
       }

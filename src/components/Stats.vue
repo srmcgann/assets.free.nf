@@ -144,7 +144,7 @@ export default {
     return {
       sortDir: true,
       sortMode: 'views',
-      array: JSON.parse(JSON.stringify(this.state.userStats[this.state.loggedinUserID]))
+      array: JSON.parse(JSON.stringify(this.state.userStats[this.state.userStatsID]))
     }
   },
   methods: {
