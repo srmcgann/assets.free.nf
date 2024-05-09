@@ -10,7 +10,7 @@ error_reporting(0);
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
 
   $page = mysqli_real_escape_string($link, $data->{'page'});
-  $overrideMaxResults = mysqli_real_escape_string($link, $data->{'maxResultsPerPage'});
+  $overrideMaxResults = 1e3; //mysqli_real_escape_string($link, $data->{'maxResultsPerPage'});
   if($overrideMaxResults) $maxResultsPerPage = $overrideMaxResults;
   $start = $maxResultsPerPage * $page;
 
