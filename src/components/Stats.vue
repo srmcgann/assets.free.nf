@@ -9,13 +9,12 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      overview of<br>
       <div
         class="avatar"
         :title="`user: ${state.userInfo[state.userStatsID]?.name}`"
         :style="`background-image: url(${state.avatar({userID: state.userStatsID})})`"
       ></div>
-      <br><b>{{state.userInfo[state.userStatsID].name}}'s</b> assets<br>
+      <br><b>{{state.userInfo[state.userStatsID].name}}'s</b> stats<br>
       <table class="statsTable">
         <tr>
           <td
@@ -324,5 +323,6 @@ export default {
   .avatar{
     width: 160px;
     height: 90px;
+    display: inline-block;
   }
 </style>
