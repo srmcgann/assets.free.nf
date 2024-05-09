@@ -5,12 +5,10 @@ error_reporting(0);
   require_once('db.php');
   require_once('functions.php');
   
-  $userID = mysqli_real_escape_string($link, $preval);
-  
   $userID = '';
+  $preval = $data->{'userID'};
   $passhash = '';
   $data = json_decode(file_get_contents('php://input'));
-  $preval = $data->{'userID'};
   if($preval !== null && $preval){
     $userID = mysqli_real_escape_string($link, $preval);
     $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
