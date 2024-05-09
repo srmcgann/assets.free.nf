@@ -520,6 +520,7 @@ export default {
       this.state.showRegister = false
       this.state.showPreview = false
       this.state.showCollections = false
+      this.state.showStats = false
       this.state.showCollectionTemplate = false
       this.state.editCollection = []
     },

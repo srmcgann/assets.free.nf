@@ -158,7 +158,7 @@ export default {
       }
     },
     close(){
-      this.state.closePreview()
+      this.state.closePrompts()
     }
   },
   watch:{
