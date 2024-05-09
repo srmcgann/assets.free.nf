@@ -88,7 +88,10 @@
             title="finish editing your comment - changes are recorded in real time"
             @click.stop.prevent="closeComment(comment)"
           >close edit</button>
-
+        </div>
+        <div
+          v-if="+link.userID == +state.loggedinUserID || state.admin"
+        >
           <button
             class="commentButton"
             style="background:#f04"
