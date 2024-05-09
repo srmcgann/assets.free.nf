@@ -4,6 +4,9 @@
 error_reporting(0);
   require_once('db.php');
   require_once('functions.php');
+  
+  $userID = mysqli_real_escape_string($link, $preval);
+  
   $userID = '';
   $passhash = '';
   $data = json_decode(file_get_contents('php://input'));
@@ -24,16 +27,21 @@ error_reporting(0);
   if($passhash){
     $sql = "SELECT * FROM imjurUsers WHERE id = $userID AND passhash LIKE BINARY\"$passhash\"";
     $res = mysqli_query($link, $sql);
-    $row = mysqli_fetch_assoc($res);
-    $admin = $row['admin'];
-    $enabled = $row['enabled'];
+    if(mysqli_num_rows($res){
+      $row = mysqli_fetch_assoc($res);
+      $admin = $row['admin'];
+      $enabled = $row['enabled'];
+    }else{
+      $anon = true;
+    }
   }else{
     $anon = true;
   }
 
-  if(!$anon && !$enabled) $userID = false;
+  //if(!$anon && !$enabled) $userID = false;
 
-  if($userID){
+  //if($userID){
+
     $success = true;
     $sql = "SELECT * FROM imjurUploads WHERE userID = $userID AND ($enabled OR NOT private)";
     $res = mysqli_query($link, $sql);
@@ -62,7 +70,8 @@ error_reporting(0);
       $assets[] = $obj;
     }
     echo json_encode([$success, $assets]);
-  }else{
-    echo json_encode([$success]);
-  }
+    
+  //}else{
+  //  echo json_encode([$success]);
+  //}
 ?>
