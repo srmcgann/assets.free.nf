@@ -131,6 +131,7 @@ export default {
         },
         loggedinUserName: '',
         copyLink: null,
+        avatar: null,
         getUserStats: null,
         viewCollection: null,
         deleteSingle: null,
@@ -1526,6 +1527,13 @@ export default {
         this.updateCollection(obj)
       }
     },
+    avatar(link){
+      if(this.state.userInfo[link.userID]?.avatar.indexOf('avatarDefault.png') != -1){
+        return this.state.URLbase + '/avatarDefault.png'
+      }else{
+        return this.state.userInfo[link.userID]?.avatar
+      }
+    },
     logout(){
       //history.pushState(null,null,this.URLbase)
       let cookies = document.cookie
@@ -1901,6 +1909,7 @@ export default {
     this.state.next = this.next
     this.state.views = this.views
     this.state.login = this.login
+    this.state.avatar = this.avatar
     this.state.logout = this.logout
     this.state.addLink = this.addLink
     this.state.URLbase = this.URLbase

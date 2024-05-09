@@ -19,7 +19,7 @@
             @click="state.getUserStats(link.userID)"
             class="avatar"
             :title="`this asset belongs to ${state.userInfo[link.userID]?.name}`"
-            :style="`background-image: url(${avatar})`"
+            :style="`background-image: url(${state.avatar(link)})`"
           ></div>
         </div>
         <div style="display: inline-block; float: left;color: #fff;text-shadow: 0 0 3px #40f;margin: 10px;font-size: 16px;">
@@ -173,13 +173,6 @@ export default {
     }
   },
   computed:{
-    avatar(){
-      if(this.state.userInfo[this.link.userID]?.avatar.indexOf('avatarDefault.png') != -1){
-        return this.state.URLbase + '/avatarDefault.png'
-      }else{
-        return this.state.userInfo[this.link.userID]?.avatar
-      }
-    }
   },
   methods: {
     onfocus(){
