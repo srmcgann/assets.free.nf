@@ -39,15 +39,15 @@ todo
   ✔ load user info for all comments, as received
   ✔ single asset view / URL (same /uploads/... URL, minus the file suffix? [no! /item/ kthx])
   ✔ "pinning/unpinning" asset data & tools @ preview [no-fade option]
-  * linkfy comments & descriptions
-  * magnifying glass tool @ previews
+  ✔ linkfy comments & descriptions
+  ✔ magnifying glass tool @ previews
   * users may download their entire catalog as a zip file (may have to wait for proper hosting)
   * URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default
     └-> ✔ collections
     └-> ✔  asset management/tools
            └->  ✔ collections
-           └->  * stats/overview (when made)
+           └->  ✔ stats/overview (when made)
            └->  * comments (when made)
   * users, optional logins/profiles
     └-> ✔ login button

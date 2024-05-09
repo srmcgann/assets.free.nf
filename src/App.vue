@@ -741,6 +741,7 @@ export default {
       })
     },
     fetchCollections(userID){
+      if(!this.state.loggedIn) return
       this.state.loadingCollections = true
       let sendData = {
         userID,
@@ -2066,8 +2067,9 @@ button{
   width: calc(100% - 60px);
 }
 a{
-  text-decoration: none;
-  color: #08f;
+  color: #0ff;
+  font-weight: 900;
+  text-decoration: underline;
 }
 .cancelButton{
   background: #822;
@@ -2081,7 +2083,7 @@ a{
   border-radius: 10px;
   padding: 5px;
   position: absolute;
-  z-index: 100000;
+  z-index: 1000000;
   right: 35px;
   top: 14px;
   min-width: 120px;
