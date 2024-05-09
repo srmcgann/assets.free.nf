@@ -13,7 +13,7 @@
       <div
         class="avatar"
         :title="`user: ${state.userInfo[state.userStatsID]?.name}`"
-        :style="`background-image: url(${state.avatar({userID: state.userStatsID})`"
+        :style="`background-image: url(${state.avatar({userID: state.userStatsID})})`"
       ></div>
       <br><b>{{state.userInfo[state.userStatsID].name}}'s</b> assets<br>
       <table class="statsTable">
