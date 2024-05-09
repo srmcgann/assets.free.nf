@@ -39,7 +39,7 @@
       <div
         ref="dropTargetCaption"
         id="dropTargetCaption"
-        v-if="state.mode != 'item' && state.mode!='col' && !(state.userLinks.length || state.links.length || state.loadingAssets)"
+        v-if="state.mode != 'user' && state.mode != 'item' && state.mode!='col' && !(state.userLinks.length || state.links.length || state.loadingAssets)"
         style="cursor: pointer;"
         @click="this.loadFiles()"
       >
@@ -62,7 +62,7 @@
         this website is a work-in-progress.<br>
         your files will likely be deleted anyway :D</div>
       </div>
-      <div v-if="state.mode=='default' && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
+      <div v-if="(state.mode=='default' || state.mode=='user') && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
         <Link
           :state="state"
           :omitAssetData="false"
@@ -81,6 +81,12 @@
           :key="link.id"
           v-if="state.userLinks.length"
         />
+      </div>
+      <div v-if="state.mode=='user' && !state.userLinks.length && !state.loadingAssets">
+        <br><br><br><br>
+        this user has no public items at this time
+        <br><br><br>
+        <span style="font-size: 2em;">4 0 4</span>
       </div>
       <div v-if="state.mode=='col' || state.mode=='item' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
         <Link
