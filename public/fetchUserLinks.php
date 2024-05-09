@@ -8,14 +8,16 @@ error_reporting(E_ALL);
   $userID = mysqli_real_escape_string($link, $data->{'userID'});
   $passhash = mysqli_real_escape_string($link, $data->{'userID'});
 
-  $enabled = false;
+  $enabled = 0;
 
   if($passhash){
     $sql = "SELECT * FROM imjurUsers WHERE id = $userID AND passhash LIKE BINARY\"$passhash\"";
     $res = mysqli_query($link, $sql);
-    $row = mysqli_fetch_assoc($res);
-    $admin = $row['admin'];
-    $enabled = $admin || $row['enabled'];
+    if(mysqli_num_rows($res)){
+      $row = mysqli_fetch_assoc($res);
+      $admin = $row['admin'];
+      $enabled = ($admin || $row['enabled']) ? 1 : 0;
+    }
   }
 
   $page = mysqli_real_escape_string($link, $data->{'page'});
