@@ -367,8 +367,10 @@ export default {
     firstPage(){
       let search = this.state.search.string ? ('/1/' + (this.state.search.string)) : ''
       switch(this.state.mode){
-        case 'u':
-          window.location.href = this.URLbase + '/u/' + this.state.user.name + search
+        case 'user':
+          this.state.curPage = 0
+          this.state.fetchUserLinks(this.state.userID)
+          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/' + (this.state.curPage + 1))
         break
         case 'default':
           //window.location.href = this.URLbase + search
@@ -384,8 +386,14 @@ export default {
     jumpToPage(pageNo){
       let search = this.state.search.string ? ('/' + (this.state.search.string)) : ''
       switch(this.state.mode){
-        case 'u':
-        window.location.href = this.URLbase + '/u/' + this.user.name + '/' + pageNo + search
+        case 'user':
+          this.state.curPage = Math.max(0, Math.min(this.state.totalPages-1, pageNo))
+          this.state.fetchUserLinks(this.state.userID)
+          if(this.state.curPage){
+            history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/' + (this.state.curPage + 1))
+          }else{
+            history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/1'
+          }
         break
         case 'default':
           this.state.curPage = Math.max(0, Math.min(this.state.totalPages-1, pageNo))
@@ -404,8 +412,11 @@ export default {
     lastPage(){
       let search = this.state.search.string ? ('/' + (this.state.search.string)) : ''
       switch(this.state.mode){
-        case 'u':
-          window.location.href = this.URLbase + '/u/' + this.state.user.name + '/' + this.state.totalUserPages + search
+        case 'user':
+          this.state.curPage = this.state.totalPages - 1
+          this.state.fetchUserLinks(this.state.userID)
+          console.log('curPage', this.state.curPage)
+          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/' + (this.state.curPage + 1))
         break
         case 'default':
           //window.location.href = this.URLbase + '/' + this.state.totalPages + search
@@ -422,8 +433,10 @@ export default {
     advancePage(){
       let search = this.state.search.string ? ('/' + (this.state.search.string)) : ''
       switch(this.state.mode){
-        case 'u':
-          window.location.href = this.URLbase + '/u/' + this.state.user.name + '/' + (this.state.curUserPage + 2) + search
+        case 'user':
+          if(this.state.curPage < this.state.totalPages-1) this.state.curPage++
+          this.state.fetchUserLinks(this.state.userID)
+          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/' + (this.state.curPage + 1))
         break
         case 'default':
           //window.location.href = this.URLbase + '/' + (this.state.curPage + 2) + search
@@ -439,8 +452,14 @@ export default {
     regressPage(){
       let search = this.state.search.string ? ('/' + (this.state.search.string)) : ''
       switch(this.state.mode){
-        case 'u':
-          window.location.href = this.URLbase + '/u/' + this.state.user.name + '/' + this.state.curUserPage + search
+        case 'user':
+          if(this.state.curPage) this.state.curPage--
+          this.state.fetchUserLinks(this.state.userID)
+          if(this.state.curPage){
+            history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/' + (this.state.curPage + 1))
+          }else{
+            history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + '/1'
+          }
         break
         case 'default':
           //window.location.href = this.URLbase + '/' + this.state.curPage + search
@@ -771,6 +790,7 @@ export default {
       if(this.state.loggedinUserName) {
         let sendData = {
           userID,
+          passhash: this.state.passhash,
           page: this.state.curPage,
           maxResultsPerPage: this.state.maxResultsPerPage
         }
@@ -1217,6 +1237,18 @@ export default {
             break
             case 'item':
               if(typeof vars[l+1] != 'undefined'){
+                this.state.mode = 'item'
+                this.state.fetchCollections(this.state.loggedinUserID)
+                this.state.loadLinks([vars[l+1]], false, -1, vars[l+1])
+              } else {
+                if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
+                this.state.mode = 'default'
+                this.state.curPage = 0
+                this.fetchUserLinks(this.state.loggedinUserID)
+              }
+            break
+            case 'user':
+              if(typeof vars[l+1] != 'undefined'){
                 let show = false
                 if(typeof vars[l+2] != 'undefined'){
                   switch(vars[l+2]){
@@ -1225,10 +1257,12 @@ export default {
                     break
                   }
                 }
-                console.log(`loading item (in getMode()) -> ${this.alphaToDec(vars[l+1])}`)
-                this.state.mode = 'item'
-                this.state.fetchCollections(this.state.loggedinUserID)
-                this.state.loadLinks([vars[l+1]], false, -1, vars[l+1])
+                this.state.mode = 'user'
+                this.state.userID = +vars[l+1]
+                if(typeof vars[l+3] != undefined){
+                  this.state.curPage = (+vars[l+3])-1
+                }
+                this.state.fetchUserLinks(this.state.userID)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'

@@ -6,6 +6,17 @@ error_reporting(E_ALL);
   require_once('functions.php');
   $data = json_decode(file_get_contents('php://input'));
   $userID = mysqli_real_escape_string($link, $data->{'userID'});
+  $passhash = mysqli_real_escape_string($link, $data->{'userID'});
+
+  $enabled = false;
+
+  if($passhash){
+    $sql = "SELECT * FROM imjurUsers WHERE id = $userID AND passhash LIKE BINARY\"$passhash\"";
+    $res = mysqli_query($link, $sql);
+    $row = mysqli_fetch_assoc($res);
+    $admin = $row['admin'];
+    $enabled = $admin || $row['enabled'];
+  }
 
   $page = mysqli_real_escape_string($link, $data->{'page'});
   $overrideMaxResults = mysqli_real_escape_string($link, $data->{'maxResultsPerPage'});
@@ -17,7 +28,7 @@ error_reporting(E_ALL);
   $totalRecords = mysqli_num_rows($res);
   $totalPages = floor(($totalRecords-1) / $maxResultsPerPage) + 1;
 
-  $sql = "SELECT * FROM imjurUploads WHERE userID = $userID ORDER BY date DESC LIMIT $start, $maxResultsPerPage";
+  $sql = "SELECT * FROM imjurUploads WHERE ($enabled OR NOT private) AND userID = $userID ORDER BY date DESC LIMIT $start, $maxResultsPerPage";
   $res = mysqli_query($link, $sql);
   
   $uploadDir = 'uploads';
