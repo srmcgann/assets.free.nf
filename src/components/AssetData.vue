@@ -231,4 +231,9 @@ export default {
     max-width: unset;
     min-width: 105px;
   }
+  .tdRight a{
+    color: #0ff;
+    font-weight: 900;
+    text-decoration: underline;
+  }
 </style>

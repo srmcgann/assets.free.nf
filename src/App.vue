@@ -871,12 +871,18 @@ export default {
       this.state.userLinks.map(v=>{
         v.selected = true
       })
+      this.state.miscLinks.map(v=>{
+        v.selected = true
+      })
     },
     deSelectAll(){
       this.state.links.map(v=>{
         v.selected = false
       })
       this.state.userLinks.map(v=>{
+        v.selected = false
+      })
+      this.state.miscLinks.map(v=>{
         v.selected = false
       })
     },

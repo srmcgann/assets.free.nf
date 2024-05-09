@@ -456,7 +456,7 @@ export default {
     margin-left:10px;
     margin-right:10px;
   }
-  a{
+  .commentText a{
     color: #0ff;
     font-weight: 900;
     text-decoration: underline;
