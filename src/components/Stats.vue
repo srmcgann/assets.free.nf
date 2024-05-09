@@ -9,7 +9,13 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      overview of<br><b>{{state.userInfo[state.userStatsID].name}}'s</b> assets<br>
+      overview of<br>
+      <div
+        class="avatar"
+        :title="`user: ${state.userInfo[state.statsUserID]?.name}`"
+        :style="`background-image: url(${state.userInfo[state.statsUserID]?.avatar})`"
+      ></div>
+      <br><b>{{state.userInfo[state.userStatsID].name}}'s</b> assets<br>
       <table class="statsTable">
         <tr>
           <td
