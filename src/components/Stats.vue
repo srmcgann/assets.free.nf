@@ -12,8 +12,8 @@
       overview of<br>
       <div
         class="avatar"
-        :title="`user: ${state.userInfo[state.statsUserID]?.name}`"
-        :style="`background-image: url(${state.userInfo[state.statsUserID]?.avatar})`"
+        :title="`user: ${state.userInfo[state.userStatsID]?.name}`"
+        :style="`background-image: url(${state.userInfo[state.userStatsID]?.avatar})`"
       ></div>
       <br><b>{{state.userInfo[state.userStatsID].name}}'s</b> assets<br>
       <table class="statsTable">
