@@ -1022,6 +1022,10 @@ export default {
           this.state.previewLink = link
           history.pushState(null,null,`${this.URLbase}/item/${link.slug}`)
         break
+        case 'user':
+          this.state.previewLink = link
+          //history.pushState(null,null,`${this.URLbase}/user/${state.userID}/${link.slug}`)
+        break
       }
       this.state.showPreview = true
     },
@@ -1265,8 +1269,8 @@ export default {
                 }
                 this.state.mode = 'user'
                 this.state.userID = +vars[l+1]
-                if(typeof vars[l+3] != 'undefined'){
-                  this.state.curPage = (+vars[l+3])-1
+                if(typeof vars[l+2] != 'undefined'){
+                  this.state.curPage = (+vars[l+2])-1
                 }else{
                   this.state.curPage = 0
                 }
