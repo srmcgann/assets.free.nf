@@ -23,7 +23,12 @@
           ></div>
         </div>
         <div style="display: inline-block; float: left;color: #fff;text-shadow: 0 0 3px #40f;margin: 10px;font-size: 16px;">
-          {{state.shortText(state.userInfo[link.userID]?.name, 16)}}
+          <button
+            class="commentButton"
+            @click="openUserPage(link.userID)"
+            v-html="state.shortText(state.userInfo[link.userID]?.name, 16)"
+            :title="`view ${state.shortText(state.userInfo[link.userID]?.name, 16)}'s assets`"
+          ></button>
         </div>
       </td>
     </tr>
@@ -182,6 +187,12 @@ export default {
     onblur(){
       console.log('re-enabling fade')
       this.state.blockFade = false
+    },
+    openUserPage(userID){
+      let lnk = document.createElement('a')
+      lnk.target = '_blank'
+      lnk.href = `${state.URLbase}/user/${userID}`
+      lnk.click()
     }
   },
   mounted(){

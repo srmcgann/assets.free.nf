@@ -66,6 +66,7 @@
       <div class="commentHeader">
         <div
           v-if="+comment.userID == +state.loggedinUserID"
+          style="display: inline-block;"
         >
           <span class="headerText" v-html="header(comment, !comment.edited)"></span>
           <span

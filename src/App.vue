@@ -2216,6 +2216,16 @@ a{
   text-align: center;
   line-height: 0;
 }
+.commentButton{
+  padding:0;
+  min-width: 60px;
+  line-height: 14px;
+  font-size: 13px;
+  padding-top: 1px;
+  margin: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
 .copyButton{
   display: inline-block;
   width: 30px;
