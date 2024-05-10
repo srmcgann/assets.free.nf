@@ -614,13 +614,13 @@ export default {
             switch(this.state.mode){
               case 'default':
                 this.state.fetchUserInfo(this.state.loggedinUserID)
+                this.state.loadingAssets = false
               break
               case 'user':
               break
             }
           }else{
             console.log('not logged in.')
-            this.state.loadingAssets = false
             this.state.loggedIn= false
             this.state.loggedinUserName = ''
             this.state.loggedinUserID = ''
