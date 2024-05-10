@@ -22,7 +22,7 @@
             :style="`background-image: url(${state.avatar(link)})`"
           ></div>
         </div>
-        <div style="display: inline-block; float: left;color: #fff;text-shadow: 0 0 3px #40f;margin: 10px;font-size: 16px;">
+        <div style="display: inline-block; float: left;color: #fff;text-shadow: 0 0 3px #40f;margin: 10px;font-size: 16px; text-align: center; width:135px;">
           <button
             class="commentButton"
             @click="state.openUserPage(link.userID)"
@@ -130,7 +130,7 @@
       <td class="tdLeft">size</td>
       <td class="tdRight" v-html="state.size(link.size)"></td>
     </tr>
-    <tr v-if="!omitAssetData && link.userID == state.loggedinUserID || state.admin">
+    <tr v-if="!omitAssetData">
       <td class="tdLeft">collections</td><td class="tdRight">
         <CollectionSelection :state="state" :links="link" :mode="default" :someSelected="true"/>
       </td>

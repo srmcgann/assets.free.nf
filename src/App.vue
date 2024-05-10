@@ -852,7 +852,7 @@ export default {
             
             this.state.totalPages = +data[3]
             if(this.state.curPage+1 > this.state.totalPages) this.lastPage()
-            this.fetchCollections(userID)
+            if(state.mode == 'default') this.fetchCollections(userID)
             this.state.showLoading = false
           }
         })
@@ -1704,7 +1704,7 @@ export default {
       let originalSuffix = (l = link.origin.split(': ')[1].split('.'))[l.length-1]
       if(link.name.indexOf(`.${originalSuffix}`) === -1) return link.name + `.${originalSuffix}`
       return link.name
-    },    
+    },
     checkLogin(){
       let l = (document.cookie).split(';').filter(v=>v.split('=')[0].trim()==='loggedinuser')
       if(l.length){
