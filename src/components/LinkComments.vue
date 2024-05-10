@@ -160,7 +160,7 @@ export default {
     return {
       showComment: false,
       commentIncrVal: 1,
-      numComments: this.state.numComments
+      numComments: Math.min(this.link.comments, this.state.numComments)
     }
   },
   computed:{
