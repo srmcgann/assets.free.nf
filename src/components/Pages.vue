@@ -51,6 +51,43 @@ export default {
   methods: {
   },
   computed: {
+    totalPages(){
+      switch(this.state.mode){
+        case 'u': return +this.state.totalUserPages; break
+        case 'default': return +this.state.totalPages; break
+        case 'track': return +this.state.totalPages; break
+      }
+    },
+    curPage(){
+      switch(this.state.mode){
+        case 'u': return +this.state.curUserPage; break
+        case 'default': return +this.state.curPage; break
+        case 'track': return +this.state.curPage; break
+      }
+    },
+    pagenumber(){
+      let num
+      if(0){//this.state.search.string){
+        num = 'Page ' + (this.state.curPage+1) + ' of ' + this.state.totalPages
+      }else{
+        switch(this.state.mode){
+          case 'u':
+            num = 'Page ' + (this.state.curUserPage+1) + ' of ' + this.state.totalUserPages
+          break
+          case 'default':
+            num = 'Page ' + (this.state.curPage+1) + ' of ' + this.state.totalPages
+          break
+          case 'track':
+            num = 'Page ' + (this.state.curPage+1) + ' of ' + this.state.totalPages
+          break
+        }
+      }
+      return num
+    },
+    origin(){
+      let ret = window.location.origin
+      return ret
+    }
   },
   mounted(){
     if(this.curPage > this.totalPages) this.state.jumpToPage(this.totalPages)

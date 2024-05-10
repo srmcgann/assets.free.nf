@@ -1721,7 +1721,7 @@ export default {
   watch: {
     'state.maxResultsPerPage'(val){
       console.log('watcher detected new maxResluts val: ' + val)
-     this.state.fetchUserLinks(this.state.loggedinUserID)
+     this.state.fetchUserLinks(this.state.mode == 'user' ? this.state.userID : this.state.loggedinUserID)
     },
     'state.choice'(val){
       val = JSON.parse(unescape(val))
