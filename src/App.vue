@@ -852,7 +852,7 @@ export default {
             
             this.state.totalPages = +data[3]
             if(this.state.curPage+1 > this.state.totalPages) this.lastPage()
-            if(state.mode == 'default') this.fetchCollections(userID)
+            this.state.fetchCollections(this.state.loggedinUserID)
             this.state.showLoading = false
           }
         })

@@ -92,6 +92,7 @@
         </div>
         <div
           v-if="+link.userID == +state.loggedinUserID || state.admin"
+          style="display: inline-block;"
         >
           <button
             class="commentButton"
