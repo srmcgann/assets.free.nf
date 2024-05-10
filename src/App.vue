@@ -102,6 +102,7 @@ export default {
         magLevel: 0,
         maxMagLevel: 10,
         showPreview: false,
+        openUserPage: null,
         bumpADOpacity: false,
         rootDomain: location.hostname,
         modalContent: '',
@@ -1192,6 +1193,12 @@ export default {
         }
       })
     },
+    openUserPage(userID){
+      let lnk = document.createElement('a')
+      lnk.target = '_blank'
+      lnk.href = `${this.state.URLbase}/user/${userID}`
+      lnk.click()
+    },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
       if(vars.length && vars[0] == 'assets') vars.shift()
@@ -1993,6 +2000,7 @@ export default {
     this.state.downloadLink = this.downloadLink
     this.state.closePreview = this.closePreview
     this.state.getUserStats = this.getUserStats
+    this.state.openUserPage = this.openUserPage
     this.state.submitComment = this.submitComment
     this.state.multipleLinks = this.multipleLinks
     this.state.deleteComment = this.deleteComment

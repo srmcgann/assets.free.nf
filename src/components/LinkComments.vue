@@ -373,16 +373,6 @@ export default {
     margin-left: 109px;
     margin-top: -24px;
   }
-  .commentButton{
-    padding:0;
-    min-width: 60px;
-    line-height: 14px;
-    font-size: 13px;
-    padding-top: 1px;
-    margin: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
-  }
   .editCommentInput:focus{
     outline: none;
   }

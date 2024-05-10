@@ -9,12 +9,19 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
+      &lt;&lt;&lt; STATS &gt;&gt;&gt;
       <div
         class="avatar"
         :title="`user: ${state.userInfo[state.userStatsID]?.name}`"
         :style="`background-image: url(${state.avatar({userID: state.userStatsID})})`"
       ></div>
-      <br><b>{{state.userInfo[state.userStatsID].name}}'s</b> stats<br>
+      <br>
+      <button
+        class="commentButton"
+        @click="state.openUserPage(link.userID)"
+        v-html="state.shortText(state.userInfo[state.userStatsID]?.name, 16)"
+        :title="`view ${state.shortText(state.userInfo[state.userStatsID]?.name, 16)}'s assets`"
+      ></button>
       <table class="statsTable">
         <tr>
           <td
