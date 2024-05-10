@@ -91,7 +91,7 @@
           >close edit</button>
         </div>
         <div
-          v-if="+link.userID == +state.loggedinUserID || state.admin"
+          v-if="+link.userID == +state.loggedinUserID || comment.userID == +state.loggedinUserID || state.admin"
           style="display: inline-block;"
         >
           <button
