@@ -53,16 +53,18 @@ export default {
   computed: {
     totalPages(){
       switch(this.state.mode){
-        case 'u': return +this.state.totalUserPages; break
+        //case 'u': return +this.state.totalUserPages; break
+        case 'user': return +this.state.totalPages; break
         case 'default': return +this.state.totalPages; break
-        case 'track': return +this.state.totalPages; break
+        //case 'track': return +this.state.totalPages; break
       }
     },
     curPage(){
       switch(this.state.mode){
-        case 'u': return +this.state.curUserPage; break
+        //case 'u': return +this.state.curUserPage; break
+        case 'user': return +this.state.curPage; break
         case 'default': return +this.state.curPage; break
-        case 'track': return +this.state.curPage; break
+        //case 'track': return +this.state.curPage; break
       }
     },
     pagenumber(){
@@ -71,22 +73,16 @@ export default {
         num = 'Page ' + (this.state.curPage+1) + ' of ' + this.state.totalPages
       }else{
         switch(this.state.mode){
-          case 'u':
-            num = 'Page ' + (this.state.curUserPage+1) + ' of ' + this.state.totalUserPages
-          break
-          case 'default':
+          case 'user':
+            //num = 'Page ' + (this.state.curUserPage+1) + ' of ' + this.state.totalUserPages
             num = 'Page ' + (this.state.curPage+1) + ' of ' + this.state.totalPages
           break
-          case 'track':
+          case 'default':
             num = 'Page ' + (this.state.curPage+1) + ' of ' + this.state.totalPages
           break
         }
       }
       return num
-    },
-    origin(){
-      let ret = window.location.origin
-      return ret
     }
   },
   mounted(){
