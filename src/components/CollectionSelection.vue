@@ -16,6 +16,7 @@
       class="assetDataButton"
       style="background: #4f8d"
       title="view and edit your collections"
+      :style="state.collections.length ? '' : 'width: 100%'"
       v-html="state.collections.length ? 'manage' : 'create a collection'"
     ></button><br>
     <div

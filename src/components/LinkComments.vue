@@ -33,6 +33,7 @@
       class="assetDataButton noCommentsButton"
       title="view and edit your comments"
       v-if="!link.comments.length"
+      style="margin-left: 8px;"
     >be first to comment</button>
     <button
       @mousedown.stop.prevent
