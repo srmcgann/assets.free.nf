@@ -4,6 +4,7 @@
       <span style="font-size: .75em;">welcome,&nbsp;&nbsp;&nbsp;</span><br>
       <button
         class="commentButton"
+        style="font-size:16px; line-height:18px;"
         @click="state.openUserPage(state.loggedinUserID)"
         v-html="state.shortText(state.userInfo[state.loggedinUserID]?.name, 16)"
         :title="`view ${state.shortText(state.userInfo[state.loggedinUserID]?.name, 16)}'s assets`"
@@ -14,7 +15,6 @@
         @click="login()"
         class="loginButton"
         title="sign in"
-        style="font-size:16px; line-height:18px;"
       >
         login
       </button>

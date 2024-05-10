@@ -572,6 +572,7 @@ export default {
         this.state.showModal = false
         this.state.modalContent = ''
       }
+      this.state.showLoading = false
     },
     getAvatar(id){
       //if(typeof this.state.userInfo[id] == 'undefined' || !this.state.userInfo[id].avatar){
