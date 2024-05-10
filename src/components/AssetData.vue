@@ -191,7 +191,7 @@ export default {
     openUserPage(userID){
       let lnk = document.createElement('a')
       lnk.target = '_blank'
-      lnk.href = `${state.URLbase}/user/${userID}`
+      lnk.href = `${this.state.URLbase}/user/${userID}`
       lnk.click()
     }
   },
