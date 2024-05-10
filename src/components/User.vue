@@ -2,7 +2,12 @@
   <div class="user" :class="{'loggedInWidth':state.loggedIn, 'notLoggedInWidth': !state.loggedIn}">
     <div class="username" v-if="state.loggedIn">
       <span style="font-size: .75em;">welcome,&nbsp;&nbsp;&nbsp;</span><br>
-      {{state.username}}
+      <button
+        class="commentButton"
+        @click="state.openUserPage(state.loggedinUserID)"
+        v-html="state.shortText(state.userInfo[state.loggedinUserID]?.name, 16)"
+        :title="`view ${state.shortText(state.userInfo[state.loggedinUserID]?.name, 16)}'s assets`"
+      ></button>
     </div>
     <div v-if="!state.loggedIn" style="display: inline-block;">
       <button
