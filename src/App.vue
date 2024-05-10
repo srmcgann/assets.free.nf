@@ -611,7 +611,13 @@ export default {
             this.state.loginPromptVisible = false
             this.state.invalidLoginAttemp = false
             if(+data[3]) this.state.isAdmin = true
-            this.state.fetchUserInfo(this.state.loggedinUserID)
+            switch(this.state.mode){
+              case 'default':
+                this.state.fetchUserInfo(this.state.loggedinUserID)
+              break
+              case 'user':
+              break
+            }
           }else{
             console.log('not logged in.')
             this.state.loadingAssets = false
@@ -622,7 +628,7 @@ export default {
             this.state.isAdmin = false
             this.state.invalidLoginAttempt = true
           }
-          this.getMode()
+          if(!this.state.mode) this.getMode()
         })
       }
     },
@@ -1699,12 +1705,13 @@ export default {
           let l3 = (document.cookie).split(';').filter(v=>v.split('=')[0].trim()==='loggedinuserID')
           if(l3.length){
             this.state.loggedinUserID = +l3[0].split('=')[1]
+            this.getMode()
             this.checkEnabled()
           }
         }
       } else {
         this.state.loadingAssets = false
-        this.getMode() 
+        this.getMode()
       }
       //this.checkShowControlsPref()
       //this.checkAutoplayPref()

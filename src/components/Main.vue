@@ -82,11 +82,14 @@
           v-if="state.userLinks.length"
         />
       </div>
-      <div v-if="state.mode=='user' && !state.userLinks.length && !state.loadingAssets">
+      <div
+        v-if="state.mode=='user' && !state.userLinks.length && !state.loadingAssets"
+        style="text-align: center;"
+      >
         <br><br><br><br>
-        this user has no public items at this time
-        <br><br><br>
         <span style="font-size: 2em;">4 0 4</span>
+        <br><br><br><br><br>
+        this user has no<br>public items at this time
       </div>
       <div v-if="state.mode=='col' || state.mode=='item' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
         <Link
