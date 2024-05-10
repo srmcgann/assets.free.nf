@@ -14,6 +14,7 @@
         @click="login()"
         class="loginButton"
         title="sign in"
+        style="font-size:16px; line-height:18px;"
       >
         login
       </button>
