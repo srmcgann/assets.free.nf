@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 
 
 --
--- Table structure for table `featuredItems`
+-- Table structure for table `imjurFeaturedItems`
 --
 
-CREATE TABLE IF NOT EXISTS `featuredItems` (
+CREATE TABLE IF NOT EXISTS `imjurFeaturedItems` (
   `id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `meta` mediumtext NOT NULL
@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS `featuredItems` (
 --
 
 --
--- Indexes for table `featuredItems`
+-- Indexes for table `imjurFeaturedItems`
 --
-ALTER TABLE `featuredItems`
+ALTER TABLE `imjurFeaturedItems`
   ADD UNIQUE KEY `id` (`id`);
 
 --
@@ -48,9 +48,9 @@ ALTER TABLE `featuredItems`
 --
 
 --
--- AUTO_INCREMENT for table `featuredItems`
+-- AUTO_INCREMENT for table `imjurFeaturedItems`
 --
-ALTER TABLE `featuredItems`
+ALTER TABLE `imjurFeaturedItems`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
   
   
