@@ -22,13 +22,45 @@ SET time_zone = "+00:00";
 -- Database: `if0_35882111_imjur`
 --
 
+
+--
+-- Table structure for table `featuredItems`
+--
+
+CREATE TABLE IF NOT EXISTS `featuredItems` (
+  `id` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `meta` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `featuredItems`
+--
+ALTER TABLE `featuredItems`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `featuredItems`
+--
+ALTER TABLE `featuredItems`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  
+  
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `imjurCollections`
 --
 
-CREATE TABLE `imjurCollections` (
+CREATE TABLE IF NOT EXISTS `imjurCollections` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `name` varchar(1024) NOT NULL,
