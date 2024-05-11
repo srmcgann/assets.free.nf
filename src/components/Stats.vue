@@ -9,7 +9,7 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      &lt;&lt;&lt; STATS &gt;&gt;&gt;
+      &lt;&lt;&lt; STATS &gt;&gt;&gt;<br><br>
       <div
         class="avatar"
         :title="`user: ${state.userInfo[state.userStatsID]?.name}`"

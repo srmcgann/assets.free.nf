@@ -536,6 +536,7 @@ export default {
       }
       this.state.showLoginPrompt = false
       this.state.userSettingsVisible = false
+      this.state.showAdmin = false
       this.state.showModal = false
       this.state.showRegister = false
       this.state.showPreview = false
