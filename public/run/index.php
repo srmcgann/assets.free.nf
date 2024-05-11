@@ -133,7 +133,7 @@
         }
         output.innerHTML = ''
         await serverList.map(async function (server){
-          await fetch(`https://${server}/run/runScript.php`, {
+          await fetch(`//${server}/run/runScript.php`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
