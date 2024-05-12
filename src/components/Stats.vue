@@ -18,10 +18,12 @@
       <br>
       <button
         class="commentButton"
-        @click="state.openUserPage(link.userID)"
+        @click="state.openUserPage(state.userStatsID)"
+        style="padding: 5px;color:#000;font-size:20px;background:#ff0;"
         v-html="state.shortText(state.userInfo[state.userStatsID]?.name, 16)"
         :title="`view ${state.shortText(state.userInfo[state.userStatsID]?.name, 16)}'s assets`"
       ></button>
+      <hr>
       <table class="statsTable">
         <tr>
           <td
@@ -57,7 +59,8 @@
           ></td>
         </tr>
       </table>
-      <br><br>
+      <hr>
+      <br>
       <table class="statsTable">
         <tr>
           <th>asset</th>
@@ -326,6 +329,9 @@ export default {
     padding: 5px;
     text-align: center;
     font-size: 1.2em;
+  }
+  hr{
+    border: 1px solid #0f0;
   }
   .avatar{
     width: 160px;
