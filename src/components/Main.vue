@@ -36,71 +36,80 @@
       @click=""
       ref="dropTarget"
     >
-      <div
-        ref="dropTargetCaption"
-        id="dropTargetCaption"
-        v-if="state.mode != 'user' && state.mode != 'item' && state.mode!='col' && !(state.userLinks.length || state.links.length || state.loadingAssets)"
-        style="cursor: pointer;"
-        @click="this.loadFiles()"
-      >
-        throw sum filez [click/drop]<br><br>
-        accepted : <font style="color: #ff0;">gif<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;web[p/m]<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;png<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jp[e]g<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mp4/mkv<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mp3/ogg/wav<br><br></font>
-        max size : <font style="color: #ff0;">25MB<br></font>
-        <span style="font-size: .7em;">(per file)</span><br><br>
-        max files: <font style="color: #ff0;">15<br></font>
-        <span style="font-size: .7em;">(at a time)</span><br><br><br>
-        <div style="font-size: .6em;">
-        WARRANTY: <font style="color: #ff0;">none<br><br></font>
-        <span style="color: #f00;font-size: 1.2em;">
-          <b>all anonymous uploads will<br>be deleted after 24 hours!</b>
-        </span><br>
-        this website is a work-in-progress.<br>
-        your files will likely be deleted anyway :D</div>
+      <div class="featuredItems">
+        <div
+          v-for="item in state.featuredItems"
+          v-html="item.slug"
+          class="featuredItem"
+        ></div>
       </div>
-      <div v-if="(state.mode=='default' || state.mode=='user') && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
-        <Link
-          :state="state"
-          :omitAssetData="false"
-          v-for="link in state.links"
-          :link="link"
-          :linkMode="'link'"
-          :key="link.id"
-          v-if="state.links.length"
-        />
-        <Link
-          :state="state"
-          :omitAssetData="false"
-          v-for="link in state.userLinks"
-          :link="link"
-          :linkMode="'userLink'"
-          :key="link.id"
-          v-if="state.userLinks.length"
-        />
-      </div>
-      <div
-        v-if="state.mode=='user' && !state.userLinks.length && !state.loadingAssets"
-        style="text-align: center;"
-      >
-        <br><br><br><br>
-        <span style="font-size: 2em;">4 0 4</span>
-        <br><br><br><br><br>
-        this user has no<br>public items at this time
-      </div>
-      <div v-if="state.mode=='col' || state.mode=='item' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
-        <Link
-          :state="state"
-          :omitAssetData="false"
-          v-for="link in filteredLinks"
-          :link="link"
-          :linkMode="'userLink'"
-          :key="link.id"
-          v-if="state.miscLinks.length"
-        />
+      <div class="dropTargetInner">
+        <div
+          ref="dropTargetCaption"
+          id="dropTargetCaption"
+          v-if="state.mode == 'trending' || !(state.userLinks.length || state.links.length || state.loadingAssets)"
+          style="cursor: pointer;"
+          @click="this.loadFiles()"
+        >
+          throw sum filez [click/drop]<br><br>
+          accepted : <font style="color: #ff0;">gif<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;web[p/m]<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;png<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jp[e]g<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mp4/mkv<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mp3/ogg/wav<br><br></font>
+          max size : <font style="color: #ff0;">25MB<br></font>
+          <span style="font-size: .7em;">(per file)</span><br><br>
+          max files: <font style="color: #ff0;">15<br></font>
+          <span style="font-size: .7em;">(at a time)</span><br><br><br>
+          <div style="font-size: .6em;">
+          WARRANTY: <font style="color: #ff0;">none<br><br></font>
+          <span style="color: #f00;font-size: 1.2em;">
+            <b>all anonymous uploads will<br>be deleted after 24 hours!</b>
+          </span><br>
+          this website is a work-in-progress.<br>
+          your files will likely be deleted anyway :D</div>
+        </div>
+        <div v-if="(state.mode=='default' || state.mode=='user') && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
+          <Link
+            :state="state"
+            :omitAssetData="false"
+            v-for="link in state.links"
+            :link="link"
+            :linkMode="'link'"
+            :key="link.id"
+            v-if="state.links.length"
+          />
+          <Link
+            :state="state"
+            :omitAssetData="false"
+            v-for="link in state.userLinks"
+            :link="link"
+            :linkMode="'userLink'"
+            :key="link.id"
+            v-if="state.userLinks.length"
+          />
+        </div>
+        <div
+          v-if="state.mode=='user' && !state.userLinks.length && !state.loadingAssets"
+          style="text-align: center;"
+        >
+          <br><br><br><br>
+          <span style="font-size: 2em;">4 0 4</span>
+          <br><br><br><br><br>
+          this user has no<br>public items at this time
+        </div>
+        <div v-if="state.mode=='col' || state.mode=='item' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
+          <Link
+            :state="state"
+            :omitAssetData="false"
+            v-for="link in filteredLinks"
+            :link="link"
+            :linkMode="'userLink'"
+            :key="link.id"
+            v-if="state.miscLinks.length"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -346,12 +355,13 @@ export default {
     background-position: center center;
     background-size: 100% 100%;
     border-radius: 10px;
-    /*background-image: url(../assets/loading.gif);*/
-    /*border: 1px solid #4088;*/
-    /*background-color: #0468;*/
     width: 100%;
+    min-width: 705px;
     min-height: calc(100% - 10px);
     box-sizing: border-box;
+  }
+  .dropTargetInner{
+    width: 400px;
   }
   .links{
     margin: 0;
@@ -430,6 +440,9 @@ export default {
     border: 1px solid #84f3;
     height: 100%;
   }
+  .featuredItem{
+    display: inline-block;
+  }
   .progressText{
     position: relative;
     font-size: 17px;
@@ -438,6 +451,10 @@ export default {
     transform: translate(50%, -85%);
     text-shadow: 1px 1px 2px #000;
     display: inline-block;
+  }
+  
+  .featuredItems{
+    width: 300px;
   }
 </style>
 

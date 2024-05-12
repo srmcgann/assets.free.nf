@@ -135,6 +135,7 @@ export default {
         loggedinUserName: '',
         copyLink: null,
         avatar: null,
+        loadFeaturedItems: null,
         getUserStats: null,
         viewCollection: null,
         deleteSingle: null,
@@ -2044,6 +2045,7 @@ export default {
     this.state.updateCollection = this.updateCollection
     this.state.deleteCollection = this.deleteCollection
     this.state.createCollection = this.createCollection
+    this.state.loadFeaturedItems = this.loadFeaturedItems
     this.state.showEditCollection = this.showEditCollection
     this.state.setCollectionProperty = this.setCollectionProperty
     this.state.setLinkPropertySelected = this.setLinkPropertySelected

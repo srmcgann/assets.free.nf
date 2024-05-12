@@ -27,19 +27,19 @@
             deselect all
           </button>
         </div>
-        <div class="sub" style="z-index: 1700;width: 375px;height: 69px;">
+        <div class="sub" style="z-index: 1700;width: 375px;height: 42px;">
           <span style="float: left;margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
           <button
             @click.prevent.stop="state.expandAll()"
             class="expandInfoButton"
-            style="width: 75px; margin:6px;"
+            style="width: 100px; margin:6px;font-size: 14px;"
           >
             more info
           </button>
           <button
             @click.prevent.stop="state.unExpandAll()"
             class="expandInfoButton"
-            style="width: 75px; margin:6px;"
+            style="width: 100px; margin:6px;font-size: 14px;"
           >
             less info
           </button>
@@ -148,6 +148,10 @@
       placeholder="or, upload from a URL... it might work!"
     >
     <button @click="uploadByURL()" class="goButton" title="download asset by URL [enter]">go</button>
+    <button
+      @click="state.mode='trending'">
+      trending
+    </button>
   </div>
 </template>
 
