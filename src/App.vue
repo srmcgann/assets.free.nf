@@ -96,6 +96,8 @@ export default {
         mx: 0,
         my: 0,
         updateComment: null,
+        expandAll: null,
+        unExpandAll: null,
         userStatsID: null,
         getAvatar: null,
         showLoading: false,
@@ -1195,6 +1197,18 @@ export default {
         }
       })
     },
+    expandAll(){
+      this.state.links.map(link=>{if(typeof link.selected) link.expandInfo = true})
+      this.state.userLinks.map(link=>{if(typeof link.selected) link.expandInfo = true})
+      this.state.miscLinks.map(link=>{if(typeof link.selected) link.expandInfo = true})
+      this.state.cacheLinks.map(link=>{if(typeof link.selected) link.expandInfo = true})
+    },
+    unExpandAll(){
+      this.state.links.map(link=>{if(typeof link.selected) link.expandInfo = false})
+      this.state.userLinks.map(link=>{if(typeof link.selected) link.expandInfo = false})
+      this.state.miscLinks.map(link=>{if(typeof link.selected) link.expandInfo = false})
+      this.state.cacheLinks.map(link=>{if(typeof link.selected) link.expandInfo = false})
+    },
     openUserPage(userID){
       let lnk = document.createElement('a')
       lnk.target = '_blank'
@@ -1989,6 +2003,7 @@ export default {
     this.state.getPages = this.getPages
     this.state.loadLinks = this.loadLinks
     this.state.firstSeen = this.firstSeen
+    this.state.expandAll = this.expandAll
     this.state.firstPage = this.firstPage
     this.state.getAvatar = this.getAvatar
     this.state.selectAll = this.selectAll
@@ -1999,6 +2014,7 @@ export default {
     this.state.checkLogin = this.checkLogin
     this.state.closeModal = this.closeModal
     this.state.prettyDate = this.prettyDate
+    this.state.unExpandAll = this.unExpandAll
     this.state.advancePage = this.advancePage
     this.state.regressPage = this.regressPage
     this.state.deSelectAll = this.deSelectAll
