@@ -32,14 +32,14 @@
           <button
             @click.prevent.stop="state.expandAll()"
             class="expandInfoButton"
-            style="width: 75px margin:6px;"
+            style="width: 75px; margin:6px;"
           >
             more info
           </button>
           <button
             @click.prevent.stop="state.unExpandAll()"
             class="expandInfoButton"
-            style="width: 75px margin:6px;"
+            style="width: 75px; margin:6px;"
           >
             less info
           </button>
