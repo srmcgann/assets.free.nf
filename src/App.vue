@@ -666,6 +666,21 @@ export default {
         }
       }
     },
+    loadFeaturedItems(){
+      fetch(`${this.URLbase}/` + 'loadFeaturedItems.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data=>{
+        if(data[0]){
+          state.featuredItems = data[1]
+        }else{
+          alert('there was an error loading featured items')
+        }
+      })
+    },
     updateComment(comment){
       let sendData = {
         userName: this.state.username,
@@ -1238,7 +1253,7 @@ export default {
             }else{
               history.pushState(null,null,this.URLbase + '/' + this.state.curPage ? (this.state.curPage + 1) : '')
               if(!this.state.curPage || this.state.curPage < 0 || this.state.curPage > 1e6) this.state.curPage = 0
-              this.fetchUserLinks(this.state.loggedinUserID)
+              if(this.state.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
               console.log('flow ',2)
             }
           }else{
@@ -2049,6 +2064,8 @@ export default {
     this.state.showEditCollection = this.showEditCollection
     this.state.setCollectionProperty = this.setCollectionProperty
     this.state.setLinkPropertySelected = this.setLinkPropertySelected
+    
+    this.state.loadFeaturedItems()
     this.checkLogin()
   }
 }
@@ -2113,9 +2130,6 @@ button{
   border: 2px solid #0008;
   border-radius: 6px;
   background: #ff0;
-  padding: 4px;
-  padding-left: 10px;
-  padding-right: 10px;
   font-weight: 900;
   min-width: 116px;
   cursor: pointer;
