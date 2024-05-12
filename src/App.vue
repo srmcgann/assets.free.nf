@@ -1198,16 +1198,16 @@ export default {
       })
     },
     expandAll(){
-      this.state.links.map(link=>{if(typeof link.selected) link.expandInfo = true})
-      this.state.userLinks.map(link=>{if(typeof link.selected) link.expandInfo = true})
-      this.state.miscLinks.map(link=>{if(typeof link.selected) link.expandInfo = true})
-      this.state.cacheLinks.map(link=>{if(typeof link.selected) link.expandInfo = true})
+      this.state.links.map(link=>{if(typeof link.selected) link.expandedInfo = true})
+      this.state.userLinks.map(link=>{if(typeof link.selected) link.expandedInfo = true})
+      this.state.miscLinks.map(link=>{if(typeof link.selected) link.expandedInfo = true})
+      this.state.cacheLinks.map(link=>{if(typeof link.selected) link.expandedInfo = true})
     },
     unExpandAll(){
-      this.state.links.map(link=>{if(typeof link.selected) link.expandInfo = false})
-      this.state.userLinks.map(link=>{if(typeof link.selected) link.expandInfo = false})
-      this.state.miscLinks.map(link=>{if(typeof link.selected) link.expandInfo = false})
-      this.state.cacheLinks.map(link=>{if(typeof link.selected) link.expandInfo = false})
+      this.state.links.map(link=>{if(typeof link.selected) link.expandedInfo = false})
+      this.state.userLinks.map(link=>{if(typeof link.selected) link.expandedInfo = false})
+      this.state.miscLinks.map(link=>{if(typeof link.selected) link.expandedInfo = false})
+      this.state.cacheLinks.map(link=>{if(typeof link.selected) link.expandedInfo = false})
     },
     openUserPage(userID){
       let lnk = document.createElement('a')

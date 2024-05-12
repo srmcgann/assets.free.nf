@@ -27,23 +27,24 @@
             deselect all
           </button>
         </div>
-        to complete...
         <div class="sub" style="z-index: 1700;width: 375px;height: 69px;">
-          <span style="margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
+          <span style="float: left;margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
           <button
             @click.prevent.stop="state.expandAll()"
             class="expandInfoButton"
+            style="width: 75px margin:6px;"
           >
             more info
           </button>
           <button
             @click.prevent.stop="state.unExpandAll()"
             class="expandInfoButton"
+            style="width: 75px margin:6px;"
           >
             less info
           </button>
         </div>
-        <div class="sub" style="z-index: 1700;width: 375px;height: 69px;" @click="console.log('this menu item')">
+        <div class="sub" style="z-index: 1700;width: 375px;height: 69px;">
           <span style="margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
           <button
             class="toolbarButtons specialToolButton"
