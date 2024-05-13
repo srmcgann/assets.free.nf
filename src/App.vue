@@ -677,7 +677,7 @@ export default {
         body: JSON.stringify(sendData),
       }).then(res => res.json()).then(data=>{
         if(data[0]){
-          state.featuredItems = data[1]
+          this.state.featuredItems = data[1]
         }else{
           alert('there was an error loading featured items')
         }
