@@ -667,6 +667,8 @@ export default {
       }
     },
     loadFeaturedItems(){
+      let sendData = {
+      }
       fetch(`${this.URLbase}/` + 'loadFeaturedItems.php',{
         method: 'POST',
         headers: {
