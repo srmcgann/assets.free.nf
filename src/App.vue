@@ -1128,7 +1128,7 @@ export default {
           return this.state.miscLinks.length > 1
         break
         case 'default':
-          return this.state.userLinks.length > 1
+          return this.state.userLinks.length > 1 || this.state.miscLinks.length > 1
         break
       }
       //return (this.state.mode == 'col' && this.state.miscLinks.length > 1) ||
