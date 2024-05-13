@@ -678,7 +678,7 @@ export default {
       }).then(res => res.json()).then(data=>{
         if(data[0]){
           console.log('loaded featured items: ', data[1])
-          this.state.featuredItems = data[1]
+          this.state.featuredItems = data[1].map(v=>v.slug)
           this.state.loadLinks(this.state.featuredItems)
         }else{
           alert('there was an error loading featured items')
