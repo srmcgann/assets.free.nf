@@ -8,6 +8,7 @@
   for($i=0; $i<mysqli_num_rows($res); ++$i){
     $row = mysqli_fetch_assoc($res);
     $ret[] = $row['meta'];
+    $success = true;
   }
   echo json_encode([$success, $ret]);
 ?>
