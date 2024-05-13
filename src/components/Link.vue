@@ -42,6 +42,7 @@ todo
   ✔ linkfy comments & descriptions
   ✔ magnifying glass tool @ previews
   ✔ URL/mode for 'user' (added to 'default', 'col', 'item')
+  * featured items, & tool for browsing user content by admins, to add to featured items
   * users may download their entire catalog as a zip file (may have to wait for proper hosting)
   * URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default

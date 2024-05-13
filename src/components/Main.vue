@@ -48,7 +48,7 @@
       </div>
       <div
         class="dropTargetInner"
-        :style="showFeatured ? 'width:400px' : ''"
+        :style="showFeatured ? 'width:400px' : 'width: 100%'"
       >
         <div
           ref="dropTargetCaption"
@@ -378,7 +378,6 @@ export default {
     box-sizing: border-box;
   }
   .dropTargetInner{
-    width: 400px;
   }
   .links{
     margin: 0;
