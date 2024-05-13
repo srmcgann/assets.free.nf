@@ -10,5 +10,5 @@
     $ret[] = $row['meta'];
     $success = true;
   }
-  echo json_encode([$success, $ret]);
+  echo json_encode([$success, json_decode($ret[0])]);
 ?>
