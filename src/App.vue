@@ -678,6 +678,7 @@ export default {
       }).then(res => res.json()).then(data=>{
         if(data[0]){
           this.state.featuredItems = JSON.parse(data[1])
+          this.state.loadLinks(this.state.featuredItems)
         }else{
           alert('there was an error loading featured items')
         }

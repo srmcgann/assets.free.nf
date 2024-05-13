@@ -41,11 +41,13 @@
         v-if="showFeatured"
         class="featuredItems"
       >
-        <div
-          v-for="item in state.featuredItems"
-          v-html="item.slug"
-          class="featuredItem"
-        ></div>
+        <Link
+          :state="state"
+          :omitAssetData="false"
+          v-for="link in state.miscLinks"
+          :link="link"
+          :key="link.id"
+        />
       </div>
       <div
         class="dropTargetInner"
@@ -88,7 +90,6 @@
             :omitAssetData="false"
             v-for="link in state.links"
             :link="link"
-            :linkMode="'link'"
             :key="link.id"
             v-if="state.links.length"
           />
@@ -97,7 +98,6 @@
             :omitAssetData="false"
             v-for="link in state.userLinks"
             :link="link"
-            :linkMode="'userLink'"
             :key="link.id"
             v-if="state.userLinks.length"
           />
@@ -117,7 +117,6 @@
             :omitAssetData="false"
             v-for="link in filteredLinks"
             :link="link"
-            :linkMode="'userLink'"
             :key="link.id"
             v-if="state.miscLinks.length"
           />
@@ -380,6 +379,8 @@ export default {
   }
   .dropTargetInner{
     float: left;
+    position: fixed;
+    margin-left: 320px;
   }
   .links{
     margin: 0;
@@ -475,6 +476,9 @@ export default {
   }
   .featuredItems{
     width: 300px;
+    float: left;
+    position: relative;
+    z-index: 100;
   }
 </style>
 
