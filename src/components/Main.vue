@@ -51,7 +51,7 @@
       </div>
       <div
         class="dropTargetInner"
-        :style="showFeatured ? 'width:400px' : 'width: 100%; margin-left:0;'"
+        :style="showFeatured ? 'width:400px;position: fixed;' : 'width: 100%; margin-left:0;position: static;'"
       >
         <div
           ref="dropTargetCaption"

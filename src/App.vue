@@ -254,15 +254,32 @@ export default {
       this.state.previewPosition -= 1
       
       switch(this.state.mode){
-        case 'default':
-          if(this.state.previewPosition<0) this.state.previewPosition = this.state.userLinks.length + this.state.links.length - 1
-          if(this.state.previewPosition>this.state.links.length-1){
-            this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
+        case 'trending':
+          if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length + this.state.miscLinks.length - 1
+          if(this.state.previewPosition>this.state.miscLinks.length-1){
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
           }else{
-            this.state.previewLink = this.state.links[this.state.previewPosition]
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
         break
-        default:
+        case 'default':
+          if(this.state.loggedIn){
+            if(this.state.previewPosition<0) this.state.previewPosition = this.state.userLinks.length + this.state.links.length - 1
+            if(this.state.previewPosition>this.state.links.length-1){
+              this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
+            }else{
+              this.state.previewLink = this.state.links[this.state.previewPosition]
+            }
+          }else{
+            if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length + this.state.miscLinks.length - 1
+            if(this.state.previewPosition>this.state.miscLinks.length-1){
+              this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
+            }else{
+              this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+            }
+          }
+        break
+        case 'col':
           this.state.miscLinks.map((link, idx) => {
             if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
           })
@@ -286,15 +303,32 @@ export default {
       this.state.showPreview = false
       this.state.previewPosition++
       switch(this.state.mode){
-        case 'default':
-          this.state.previewPosition %= this.state.userLinks.length + this.state.links.length
-          if(this.state.previewPosition>this.state.links.length-1){
-            this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
+        case 'trending':
+          this.state.previewPosition %= this.state.userLinks.length + this.state.miscLinks.length
+          if(this.state.previewPosition>this.state.miscLinks.length-1){
+            this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.miscLinks.length]
           }else{
-            this.state.previewLink = this.state.links[this.state.previewPosition]
+            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
         break
-        default:
+        case 'default':
+          if(this.state.loggedIn){
+            this.state.previewPosition %= this.state.userLinks.length + this.state.links.length
+            if(this.state.previewPosition>this.state.links.length-1){
+              this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.links.length]
+            }else{
+              this.state.previewLink = this.state.links[this.state.previewPosition]
+            }
+          }else{
+            this.state.previewPosition %= this.state.userLinks.length + this.state.miscLinks.length
+            if(this.state.previewPosition>this.state.miscLinks.length-1){
+              this.state.previewLink = this.state.userLinks[this.state.previewPosition - this.state.miscLinks.length]
+            }else{
+              this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
+            }
+          }
+        break
+        case 'col':
           this.state.miscLinks.map((link, idx) => {
             if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
           })
