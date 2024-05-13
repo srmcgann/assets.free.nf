@@ -51,7 +51,7 @@
       </div>
       <div
         class="dropTargetInner"
-        :style="showFeatured ? 'width:400px' : 'width: 100%'"
+        :style="showFeatured ? 'width:400px' : 'width: 100%; margin-left:0;'"
       >
         <div
           ref="dropTargetCaption"
@@ -380,7 +380,7 @@ export default {
   .dropTargetInner{
     float: left;
     position: fixed;
-    margin-left: 320px;
+    margin-left: 400px;
   }
   .links{
     margin: 0;
