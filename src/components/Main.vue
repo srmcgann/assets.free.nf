@@ -35,6 +35,7 @@
       @drop.prevent="dropFiles($event)"
       @click=""
       ref="dropTarget"
+      :style="showFeatured? 'width: 700px;' : ''"
     >
       <div
         v-if="showFeatured"
@@ -378,6 +379,7 @@ export default {
     box-sizing: border-box;
   }
   .dropTargetInner{
+    float: left;
   }
   .links{
     margin: 0;
@@ -393,10 +395,10 @@ export default {
   #dropTargetCaption{
     display: inline-block;
     width: 400px;
-    position: fixed;
+    /*position: fixed;*/
     left: 50%;
     top: calc(50% - 64px);
-    transform: translate(-50%, -50%);
+    /*transform: translate(-50%, -50%);*/
     padding: 38px;
     border-radius: 32%;
     height: 320px;
@@ -456,9 +458,6 @@ export default {
     border: 1px solid #84f3;
     height: 100%;
   }
-  .featuredItem{
-    display: inline-block;
-  }
   .progressText{
     position: relative;
     font-size: 17px;
@@ -468,7 +467,12 @@ export default {
     text-shadow: 1px 1px 2px #000;
     display: inline-block;
   }
-  
+  .featuredItem{
+    display: block;
+    border: 1px solid green;
+    text-align: right;
+    position:relative;
+  }
   .featuredItems{
     width: 300px;
   }
