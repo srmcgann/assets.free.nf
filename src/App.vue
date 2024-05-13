@@ -1124,6 +1124,9 @@ export default {
         case 'col':
           return this.state.miscLinks.length > 1
         break
+        case 'trending':
+          return this.state.miscLinks.length > 1
+        break
         case 'default':
           return this.state.userLinks.length > 1
         break
