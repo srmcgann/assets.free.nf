@@ -7,7 +7,7 @@
   $success = false;
   for($i=0; $i<mysqli_num_rows($res); ++$i){
     $row = mysqli_fetch_assoc($res);
-    $res[] = $row['meta'];
+    $ret[] = $row['meta'];
   }
   echo json_encode([$success, $ret]);
 ?>

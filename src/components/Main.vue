@@ -36,19 +36,26 @@
       @click=""
       ref="dropTarget"
     >
-      <div class="featuredItems">
+      <div
+        v-if="showFeatured"
+        class="featuredItems"
+      >
         <div
           v-for="item in state.featuredItems"
           v-html="item.slug"
           class="featuredItem"
         ></div>
       </div>
-      <div class="dropTargetInner">
+      <div
+        class="dropTargetInner"
+        :style="showFeatured ? 'width:400px' : ''"
+      >
         <div
           ref="dropTargetCaption"
           id="dropTargetCaption"
-          v-if="state.mode == 'trending' || !(state.userLinks.length || state.links.length || state.loadingAssets)"
+          v-if="showFeatured"
           style="cursor: pointer;"
+          :style="state.mode=='trending'"
           @click="this.loadFiles()"
         >
           throw sum filez [click/drop]<br><br>
@@ -70,7 +77,11 @@
           this website is a work-in-progress.<br>
           your files will likely be deleted anyway :D</div>
         </div>
-        <div v-if="(state.mode=='default' || state.mode=='user') && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)" class="links">
+        <div
+          v-if="(state.mode=='default' || state.mode=='user') && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)"
+          class="links"
+          
+        >
           <Link
             :state="state"
             :omitAssetData="false"
@@ -136,6 +147,12 @@ export default {
     }
   },
   computed:{
+    showFeatured(){
+      return this.state.mode == 'trending' ||
+             !(this.state.userLinks.length ||
+             this.state.links.length ||
+             this.state.loadingAssets)
+    },
     filteredLinks(){
       return this.state.miscLinks.filter(v=>v)
     }
