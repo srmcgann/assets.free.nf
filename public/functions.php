@@ -29,8 +29,8 @@
     switch($prop){
       case 'updated':
         function sf($a, $b){
-          if($a['updated'] == $b['updated']) return 0;
-          return date($a['updated']) < date($b['updated']) ? -1 : 1;
+          if($a->{'updated'} == $b->{'updated'}) return 0;
+          return date($a->{'updated'}) < date($b->{'updated'}) ? -1 : 1;
         }
       break;
       default:
