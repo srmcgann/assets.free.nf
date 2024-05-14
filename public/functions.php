@@ -25,18 +25,25 @@
   }
   //
   
-  function sortFunc($a, $b, $prop){
-    if($a == $b) return 0;
+  function sortFunc(&$ar, $prop){
     switch($prop){
       case 'updated':
-        return date($a[$prop]) < date($b[$prop]) ? -1 : 1;
-        break;
+        function sf($a, $b){
+          if($a['updated'] == $b['updated']) return 0;
+          return date($a['updated']) < date($b['updated']) ? -1 : 1;
+        }
+      break;
       default:
-        return $a[$prop] < $b[$prop] ? -1 : 1;
-        break;
+        function sf($a, $b){
+          global $prop;
+          if($a[$prop] == $b[$prop]) return 0;
+          return $a[$prop] < $b[$prop] ? -1 : 1;
+        }
+      break;
     }
+    uasort($ar, 'sf');
   }
-
+  
   function getServerTZOffset () {
     $tz = date_default_timezone_get();
     $t = new DateTimeZone("$tz");

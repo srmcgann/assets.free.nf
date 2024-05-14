@@ -15,7 +15,7 @@
   }
   if(sizeof($ret)){
     $ret = json_decode($ret[0]);
-    uasort($ret, 'sortFunc', 'updated');
+    sortFunc($ret, 'updated');
   }
   echo json_encode([$success, $ret]);
 ?>
