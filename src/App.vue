@@ -1750,7 +1750,7 @@ export default {
       this.state.links.push(obj)
     },
     age(link){
-      let tseconds = (((new Date()) - (new Date(link.date)))/1000|0) + 3600 * (((new Date).getTimezoneOffset()/60) - (location.origin.toLowerCase().indexOf('000webhostapp') === -1 ? 4: 0))
+      let tseconds = (((new Date()) - (new Date(link.date)))/1000|0) + 3600 * (((new Date).getTimezoneOffset()/60) - (location.origin.toLowerCase().indexOf('mywebcommunity.org') === -1 && location.origin.toLowerCase().indexOf('mygameonline.org') === -1 && location.origin.toLowerCase().indexOf('000webhostapp') === -1 ? 4: 0))
       let years = (tseconds/31536000)|0
       let days = (((tseconds/31536000)-years) * 31536000) / 86400 | 0
       let hours = (((((tseconds/31536000)-years) * 31536000) / 86400) - days) * 86400 / 3600 | 0
