@@ -26,6 +26,7 @@
           <tr>
             <th>slug</th>
             <th>preview</th>
+            <th>trending</th>
             <th>size</th>
             <th>date</th>
             <th>type</th>
@@ -36,6 +37,14 @@
             </td>
             <td v-if="!state.showAssetPreview[idx]">
               <button @click="state.showAssetPreview[idx]=true">show</button>
+            </td>
+            <td>
+              <button
+                @click="state.toggleTrending(state.adminData.slugs[idx])"
+                :style="`background: ${state.isTrending(state.adminData.slugs[idx]) ? '#f04':'#0f4'}`"
+                v-html="state.isTrending(state.adminData.slugs[idx]) ? 'remove' : 'add'"
+              >
+              </button>
             </td>
             <td v-else-if="state.adminData.filetypes[idx].indexOf('audio')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
             <td v-else-if="state.adminData.filetypes[idx].indexOf('image')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + state.adminData.hrefs[idx]});`" class="avatar"></div></a></td>

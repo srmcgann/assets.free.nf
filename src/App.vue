@@ -139,6 +139,8 @@ export default {
         getUserStats: null,
         viewCollection: null,
         deleteSingle: null,
+        toggleTrending: null,
+        isTrending: null,
         syncCache: null,
         deleteCollection: null,
         createCollection: null,
@@ -724,6 +726,35 @@ export default {
           comment.edited = true
         }else{
           alert('there was an error updating the comment... :(')
+        }
+      })
+    },
+    toggleTrending(slug){
+      let sendData = {
+        userName: this.state.username,
+        passhash: this.state.passhash,
+        slug,
+      }
+      fetch(`${this.URLbase}/` + 'toggleTrending.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      }).then(res => res.json()).then(data=>{
+        if(data[0]){
+          if(data[1]){
+            console.log(`removed: ${slug} from featured items`)
+          }else{
+            console.log(`added: ${slug} to featured items`)
+          }
+          if(this.state.featuredItems.filter(v=>v==slug).length){
+            this.state.featuredItems = this.state.featuredItems.filter(v=>v!=slug)
+          }else{
+            this.state.featuredItems = [slug, ...this.state.featuredItems]
+          }
+        }else{
+          alert(`there was an error toggling trending for slug: ${slug}... :(`)
         }
       })
     },
@@ -1492,6 +1523,9 @@ export default {
         }
       }
     },
+    isTrending(slug){
+      return this.state.featuredItems.indexOf(slug) !== -1
+    },
     loadLinks(slugs, forCollection=false, collectionID=-1, sel=""){
     
       slugs = slugs.filter(v=>v)
@@ -2055,6 +2089,7 @@ export default {
     this.state.setCookie = this.setCookie
     this.state.syncCache = this.syncCache
     this.state.jumpToPage = this.jumpToPage
+    this.state.isTrending = this.isTrending
     this.state.checkLogin = this.checkLogin
     this.state.closeModal = this.closeModal
     this.state.prettyDate = this.prettyDate
@@ -2078,6 +2113,7 @@ export default {
     this.state.setLinksOwner = this.setLinksOwner
     this.state.fetchUserInfo = this.fetchUserInfo
     this.state.fetchUserLinks = this.fetchUserLinks
+    this.state.toggleTrending = this.toggleTrending
     this.state.viewCollection = this.viewCollection
     this.state.deleteSelected = this.deleteSelected
     this.state.loadCollection = this.loadCollection
