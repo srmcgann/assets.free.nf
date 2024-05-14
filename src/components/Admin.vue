@@ -38,6 +38,9 @@
             <td v-if="!state.showAssetPreview[idx]">
               <button @click="state.showAssetPreview[idx]=true">show</button>
             </td>
+            <td v-else-if="state.adminData.filetypes[idx].indexOf('audio')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
+            <td v-else-if="state.adminData.filetypes[idx].indexOf('image')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + state.adminData.hrefs[idx]});`" class="avatar"></div></a></td>
+            <td v-else-if="state.adminData.filetypes[idx].indexOf('video')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><video autoplay loop muted :src="state.adminData.hrefs[idx]" class="avatar"></video></a></td>
             <td>
               <button
                 @click="state.toggleTrending(state.adminData.slugs[idx])"
@@ -46,9 +49,6 @@
               >
               </button>
             </td>
-            <td v-else-if="state.adminData.filetypes[idx].indexOf('audio')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
-            <td v-else-if="state.adminData.filetypes[idx].indexOf('image')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + state.adminData.hrefs[idx]});`" class="avatar"></div></a></td>
-            <td v-else-if="state.adminData.filetypes[idx].indexOf('video')!=-1" class="td"><a :href="state.URLbase + '/' + state.adminData.hrefs[idx]" target="_blank"><video autoplay loop muted :src="state.adminData.hrefs[idx]" class="avatar"></video></a></td>
             <td class="td">
               <div class="actualAsset" v-html="state.size(state.adminData.fileSizes[idx])"></div>
             </td>
