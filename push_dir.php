@@ -8,7 +8,7 @@
       'ftp_user' => 'if0_36394634',
       'ftp_pass' => '49DhSvcug8B',
       'remote_dir' => '/htdocs',
-      'local_dir' => '/home/scottmcgann4/assets.free.nf/dist_public',
+      'local_dir' => '/home/whitehotrobot/assets.free.nf/dist_public',
     ],
   ];
 
