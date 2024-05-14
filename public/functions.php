@@ -30,10 +30,10 @@
     switch($prop){
       case 'updated':
         return date($a[$prop]) < date($b[$prop]) ? -1 : 1;
-        break
+        break;
       default:
         return $a[$prop] < $b[$prop] ? -1 : 1;
-        break
+        break;
   }
 
   function getServerTZOffset () {
