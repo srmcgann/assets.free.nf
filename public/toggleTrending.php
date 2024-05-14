@@ -36,7 +36,10 @@
       }
     }
     if(!$mode){
-      $newMeta[] = ["slug" => $slug, "admin" => $userID];
+      $newMeta[] = ["slug"    => $slug,
+                    "admin"   => $userID,
+                    "updated" => date("Y-m-d H:i:s", strtotime("now")),
+                    ];
     }
     $sql = "DELETE FROM imjurFeaturedItems";
     mysqli_query($link, $sql);

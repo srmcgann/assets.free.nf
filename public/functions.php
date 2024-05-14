@@ -25,6 +25,17 @@
   }
   //
   
+  function sortFunc($a, $b, $prop){
+    if($a == $b) return 0;
+    switch($prop){
+      case 'updated':
+        return date($a[$prop]) < date($b[$prop]) ? -1 : 1;
+        break
+      default:
+        return $a[$prop] < $b[$prop] ? -1 : 1;
+        break
+  }
+
   function getServerTZOffset () {
     $tz = date_default_timezone_get();
     $t = new DateTimeZone("$tz");

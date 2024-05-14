@@ -34,7 +34,6 @@ error_reporting(0);
         $slugs[] = $slug;
         $fs =  filesize($file);
         $footprint += $fs;
-        $fileDates[] = filemtime($file);
         $fileSizes[] = $fs;
         $ft = mime_content_type($file);
         $filetypes[] = $ft;
@@ -45,9 +44,11 @@ error_reporting(0);
         if(!mysqli_num_rows($res)){
           $orphans[] = $slug;
           $hrefs[] = '';
+          $fileDates[] = filemtime($file);
         }else{
           $row = mysqli_fetch_assoc($res);
           $hrefs[] = $file;
+          $fileDates[] = $row['date'];
         }
       }
     }
