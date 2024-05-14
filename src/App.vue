@@ -91,6 +91,7 @@ export default {
         linkify: null,
         editingComment: false,
         multipleLinks: null,
+        featuredItems: [],
         deleteComment: null,
         pinned: false,
         mx: 0,
