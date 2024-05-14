@@ -81,7 +81,7 @@
             <td v-if="!state.showAvatarPreview[idx]">
               <button @click="state.showAvatarPreview[idx]=true">show</button>
             </td>
-            <td v-else class="td"><div :style="`background-image: url(${state.avatar(user.id)});`" class="avatar"></div></td>
+            <td v-else class="td"><div :style="`background-image: url(${state.avatar({userID: user.id})});`" class="avatar"></div></td>
             <td class="td"><div class="actualAsset" v-html="user.admin"></div></td>
             <td class="td"><div class="actualAsset" v-html="user.enabled"></div></td>
             <td class="td"><div class="actualAsset" v-html="user.slugs.length"></div></td>
