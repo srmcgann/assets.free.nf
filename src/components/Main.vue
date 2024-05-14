@@ -45,6 +45,7 @@
           :state="state"
           :omitAssetData="false"
           v-for="link in state.miscLinks"
+          v-if="link?.userID"
           :link="link"
           :key="link.id"
         />
