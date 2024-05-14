@@ -10,5 +10,6 @@
     $ret[] = $row['meta'];
     $success = true;
   }
-  echo json_encode([$success, json_decode($ret[0])]);
+  if(sizeof($ret)) $ret = json_decode($ret[0]);
+  echo json_encode([$success, $ret]);
 ?>
