@@ -1104,6 +1104,11 @@ export default {
           this.state.previewLink = link
           //history.pushState(null,null,`${this.URLbase}/user/${state.userID}/${link.slug}`)
         break
+        case 'trending':
+          this.state.previewPosition = link.ct
+          this.state.previewPosition += link.linkType == 'userLink' ? this.state.miscLinks.length : 0
+          this.state.previewLink = link
+        break
       }
       this.state.showPreview = true
     },
