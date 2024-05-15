@@ -237,7 +237,7 @@ export default {
   },
   beforeUnmount(){
     if(typeof this.asset?.paused == 'boolean') this.asset?.paused = true
-    this.asset?.src = ''
+    if(typeof this.asset?.src != 'undefined') this.asset.src = ''
   }
 }
 </script>
