@@ -841,7 +841,7 @@ export default {
           }
         }else{
           if(show){
-            this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>that's a 404 good buddy!</div>`
+            this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>this collection has no items!</div>`
             this.state.showModal = true
           }
         }
