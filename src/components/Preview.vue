@@ -65,7 +65,7 @@
         title="copy link to clipboard"
       ></div>
       <a
-        :href="state.URLbase + '/' + link.href"
+        :href="state.URLbase + '/' + link?.href"
         class="openButton"
         @click.prevent.stop="state.openLink(link)"
         title="open link in new tab"

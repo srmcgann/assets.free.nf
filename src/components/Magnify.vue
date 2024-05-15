@@ -86,10 +86,10 @@ export default {
           this.$refs.magnifyingGlass !== null){
           this.$refs.magnifyingGlass.style.display = this.pause ? 'none' : 'block'
           if(this.state.magLevel){
-            this.$refs.magnifyingGlass.style.left = this.state.mx-200 + 'px'
-            this.$refs.magnifyingGlass.style.top = this.state.my-200 + 'px'
-            this.contents.style.marginLeft = (-document.body.clientWidth/2 - this.state.mx + document.body.clientWidth/2) * (this.state.magLevel+1) + 220 + 400*((this.state.magLevel+1)-1) + 'px'
-            this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 200) + 'px'
+            this.$refs.magnifyingGlass.style.left = this.state.mx-400 + 'px'
+            this.$refs.magnifyingGlass.style.top = this.state.my-400 + 'px'
+            this.contents.style.marginLeft = (-document.body.clientWidth/2 - this.state.mx + document.body.clientWidth/2) * (this.state.magLevel+1) + 440 + 800*((this.state.magLevel+1)-1) + 'px'
+            this.contents.style.marginTop = ((this.element.clientHeight/2+(-this.state.my-this.element.clientHeight/2)) * (this.state.magLevel+1) + 400) + 'px'
           }
         }
       }
@@ -156,8 +156,8 @@ export default {
     border: 2px solid #8883;
     box-shadow: 0 0 40px 40px #fff4;
     box-sizing: unset;
-    width: 400px;
-    height: 400px;
+    width: 800px;
+    height: 800px;
     position: fixed;
     overflow: clip;
     background: #000;
@@ -190,13 +190,10 @@ export default {
     right: 6px;
     margin-top: -26px;
   }
-  
   .contents{
     pointer-events: none;
     display: inline-block;
   }
-
-
   .preview{
     position: fixed;
     top: 0;
