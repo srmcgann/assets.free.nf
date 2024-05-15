@@ -573,6 +573,7 @@ export default {
       this.state.editCollection = []
     },
     getAdminData(){
+      this.state.showLoading = true
       let sendData = {
         userName: this.state.loggedinUserName, passhash: this.state.passhash,
       }
@@ -585,7 +586,8 @@ export default {
       })
       .then(res => res.json())
       .then(data => {
-      console.log('getAdminData.php, data; ', data)
+        this.state.showLoading = false
+        console.log('getAdminData.php, data; ', data)
         if(data[0]){
           this.state.adminData = JSON.parse(data[1])
           this.state.showAssetPreview = Array(this.state.adminData.slugs.length).fill(false)
