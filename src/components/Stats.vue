@@ -9,9 +9,10 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      &lt;&lt;&lt; STATS &gt;&gt;&gt;<br>
+      &lt;&lt;&lt; STATS &gt;&gt;&gt;<br><br>
       <div
         class="avatar"
+        style="width:320px; height: 180px;"
         :title="`user: ${state.userInfo[state.userStatsID]?.name}`"
         :style="`background-image: url(${state.avatar({userID: state.userStatsID})})`"
       ></div>
@@ -69,42 +70,42 @@
             <button
               :class="{'sortCol': sortMode=='views'}"
               @click="setSortMode('views')"
-              v-html="`views<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`views<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='sizes'}"
               @click="setSortMode('sizes')"
-              v-html="`size<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`size<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='dates'}"
               @click="setSortMode('dates')"
-              v-html="`date<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`date<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='types'}"
               @click="setSortMode('types')"
-              v-html="`type<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`type<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='upvotes'}"
               @click="setSortMode('upvotes')"
-              v-html="`upvotes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`upvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='downvotes'}"
               @click="setSortMode('downvotes')"
-              v-html="`downvotes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`downvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
@@ -112,7 +113,7 @@
               :class="{'sortCol': sortMode=='avgvotes'}"
               style="min-width: 120px;"
               @click="setSortMode('avgvotes')"
-              v-html="`avg votes<br>[${sortDir ? '&#8679;' : '&#8681;'}]`"
+              v-html="`avg votes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
         </tr>
@@ -334,8 +335,8 @@ export default {
     border: 1px solid #0f0;
   }
   .avatar{
-    width: 320px;
-    height: 180px;
+    width: 160px;
+    height: 90px;
     display: inline-block;
   }
 </style>
