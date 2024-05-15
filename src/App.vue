@@ -1388,10 +1388,29 @@ export default {
                     break
                   }
                 }
-                this.state.mode = 'user'
                 this.state.userID = +vars[l+1]
                 if(typeof vars[l+2] != 'undefined'){
-                  this.state.curPage = (+vars[l+2])-1
+                  if(this.state.isNumber(vars[l+2]){
+                    this.state.curPage = (+vars[l+2])-1
+                  }else{
+                    switch(vars[l+2]){
+                      case 'stats':
+                      this.$nextTick(()=>{
+                        this.state.getUserStats(+vars[l+1])
+                      })
+                      break
+                      case 'settings':
+                      this.$nextTick(()=>{
+                        this.state.showUserSettings()
+                      })
+                      break
+                      case 'collections':
+                      this.$nextTick(()=>{
+                        this.state.showCollections = true
+                      })
+                      break
+                    }
+                  }
                 }else{
                   this.state.curPage = 0
                 }
