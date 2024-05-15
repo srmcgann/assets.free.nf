@@ -642,12 +642,28 @@ export default {
             this.state.invalidLoginAttemp = false
             if(+data[3]) this.state.isAdmin = true
             switch(this.state.mode){
-              case 'default':
+              case 'trending':
                 this.state.fetchUserInfo(this.state.loggedinUserID)
                 this.state.loadingAssets = false
               break
               case 'user':
+                this.state.fetchUserInfo(this.state.loggedinUserID)
+                this.state.loadingAssets = false
               break
+              case 'col':
+                this.state.fetchUserInfo(this.state.loggedinUserID)
+                this.state.loadingAssets = false
+              break
+              case 'item':
+                this.state.fetchUserInfo(this.state.loggedinUserID)
+                this.state.loadingAssets = false
+              break
+              case 'default':
+                this.state.fetchUserInfo(this.state.loggedinUserID)
+                this.state.loadingAssets = false
+              break
+              //case 'user':
+              //break
             }
           }else{
             console.log('not logged in.')
@@ -1351,7 +1367,6 @@ export default {
             break
             case 'item':
               if(typeof vars[l+1] != 'undefined'){
-                this.state.mode = 'item'
                 this.state.fetchCollections(this.state.loggedinUserID)
                 this.state.loadLinks([vars[l+1]], false, -1, vars[l+1])
               } else {
@@ -1383,6 +1398,7 @@ export default {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
                 this.state.mode = 'default'
                 this.state.curPage = 0
+                //this.state.loadFeaturedItems()
                 this.fetchUserLinks(this.state.loggedinUserID)
               }
             break
@@ -1394,6 +1410,7 @@ export default {
         this.state.curPage = 0
         if(this.state.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
         this.state.mode = 'default'
+        this.state.loadFeaturedItems()
       }
       console.log('mode', this.state.mode)
     },
@@ -1623,7 +1640,9 @@ export default {
             } else {
               if(this.state.mode == 'item'){
                 this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)[0]
-                this.state.showPreview = true
+                this.$nextTick(()=>{
+                  this.state.showPreview = true
+                })
               }
             }
           }else{
@@ -1642,6 +1661,7 @@ export default {
         })
       }else{
         if(forCollection) {
+          console.log('detected: for collection (is it? -loadLinks.php)')
           if(this.state.previewPosition<this.state.previewCollection.meta.slugs.length){
             if(sel){
               this.state.previewLink = this.state.miscLinks.filter(link=>link.slug==sel)[0]
@@ -1993,6 +2013,15 @@ export default {
       })
     }
     
+    window.onmousewheel = e => {
+      if(this.state.showPreview){
+        if(e.wheelDeltaY){
+          this.state.magLevel += e.wheelDelta > 0 ? .1 : -.1
+          this.state.magLevel =  Math.max(0, Math.min(this.state.maxMagLevel, this.state.magLevel))
+        }
+      }
+    }
+    
     this.state.onkeydown = window.onkeydown = e => {
       if(this.state.editingComment) return
       this.state.keys[e.keyCode] = true
@@ -2135,7 +2164,6 @@ export default {
     this.state.setCollectionProperty = this.setCollectionProperty
     this.state.setLinkPropertySelected = this.setLinkPropertySelected
     
-    this.state.loadFeaturedItems()
     this.checkLogin()
   }
 }
