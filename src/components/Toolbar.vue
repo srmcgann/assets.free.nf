@@ -149,9 +149,10 @@
     >
     <button @click="uploadByURL()" class="goButton" title="download asset by URL [enter]">go</button>
     <button
-      @click="state.mode='trending'">
+      @click="state.mode='trending'"
       v-if="state.loggedIn"
       style="margin: 5px; position: absolute; margin-top: 7px;"
+    >
       trending
     </button>
   </div>

@@ -1396,7 +1396,7 @@ export default {
                 this.state.fetchUserLinks(this.state.userID)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
-                this.state.mode = 'trending'
+                this.state.mode = 'default'
                 this.state.curPage = 0
                 this.fetchUserLinks(this.state.loggedinUserID)
               }
@@ -1408,7 +1408,7 @@ export default {
         console.log('flow ',3)
         this.state.curPage = 0
         if(this.state.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
-        this.state.mode = 'trending'
+        this.state.mode = 'default'
         this.state.loadFeaturedItems()
       }
       console.log('mode', this.state.mode)
@@ -2007,6 +2007,7 @@ export default {
       e.stopPropagation()
       this.state.keys[e.keyCode] = false
       this.state.keys[18] = false
+      this.state.keys[17] = false
       this.state.click = true
       this.$nextTick(() => {
         this.state.click = false
