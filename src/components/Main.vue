@@ -81,7 +81,7 @@
           your files will likely be deleted anyway :D</div>
         </div>
         <div
-          v-if="(state.mode=='default' || state.mode=='user') && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)"
+          v-if="(state.mode=='default' || state.mode=='user') && !state.showStats && !state.showPreview && !state.showAdmin && (state.links.length || state.userLinks.length)"
           class="links"
           
         >
