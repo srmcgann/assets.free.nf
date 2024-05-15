@@ -2016,7 +2016,7 @@ export default {
     window.onmousewheel = e => {
       if(this.state.showPreview){
         if(e.wheelDeltaY){
-          this.state.magLevel += e.wheelDelta > 0 ? .1 : -.1
+          this.state.magLevel += e.wheelDelta > 0 ? .25 : -.25
           this.state.magLevel =  Math.max(0, Math.min(this.state.maxMagLevel, this.state.magLevel))
         }
       }
