@@ -172,6 +172,7 @@ export default {
 <style scoped>
 .loadingAnimation{
   display: block;
+  max-width: calc(100% - 50px));
   border-bottom: 4px solid #40f8;
 }
 canvas{
