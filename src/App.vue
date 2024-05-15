@@ -1390,7 +1390,7 @@ export default {
                 }
                 this.state.userID = +vars[l+1]
                 if(typeof vars[l+2] != 'undefined'){
-                  if(this.state.isNumber(vars[l+2]){
+                  if(this.state.isNumber(vars[l+2])){
                     this.state.curPage = (+vars[l+2])-1
                   }else{
                     switch(vars[l+2]){
