@@ -1396,9 +1396,8 @@ export default {
                 this.state.fetchUserLinks(this.state.userID)
               } else {
                 if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
-                this.state.mode = 'default'
+                this.state.mode = 'trending'
                 this.state.curPage = 0
-                //this.state.loadFeaturedItems()
                 this.fetchUserLinks(this.state.loggedinUserID)
               }
             break
@@ -1409,10 +1408,11 @@ export default {
         console.log('flow ',3)
         this.state.curPage = 0
         if(this.state.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
-        this.state.mode = 'default'
+        this.state.mode = 'trending'
         this.state.loadFeaturedItems()
       }
       console.log('mode', this.state.mode)
+      if(this.state.mode != 'item') this.state.loadFeaturedItems()
     },
     submitComment(){
       if(!this.state.newComment ||
