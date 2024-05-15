@@ -79,7 +79,7 @@
           </button>
         </div>
         <div class="sub" @click.stop.prevent style="width: 175px;">
-          <PageSel :state="state" />
+          <PageSel :state="state" v-if="state.loggedIn"/>
         </div>
         <div class="sub" @click.stop.prevent style="width: 238px;">
           <CommentSel :state="state" />
@@ -150,6 +150,8 @@
     <button @click="uploadByURL()" class="goButton" title="download asset by URL [enter]">go</button>
     <button
       @click="state.mode='trending'">
+      v-if="state.loggedIn"
+      style="margin: 5px; position: absolute; margin-top: 7px;"
       trending
     </button>
   </div>

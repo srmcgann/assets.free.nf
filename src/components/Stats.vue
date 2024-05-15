@@ -9,7 +9,7 @@
   </button>
   <div class="stats" ref="stats" tabindex="1000">
     <div class="modalInner" style="overflow: auto;">
-      &lt;&lt;&lt; STATS &gt;&gt;&gt;<br><br>
+      &lt;&lt;&lt; STATS &gt;&gt;&gt;<br>
       <div
         class="avatar"
         :title="`user: ${state.userInfo[state.userStatsID]?.name}`"
@@ -334,8 +334,8 @@ export default {
     border: 1px solid #0f0;
   }
   .avatar{
-    width: 160px;
-    height: 90px;
+    width: 320px;
+    height: 180px;
     display: inline-block;
   }
 </style>
