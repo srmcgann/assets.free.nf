@@ -57,7 +57,7 @@
         @click.prevent.stop="state.setLinkProperty(link, 'private', link.private?0:1)"
         :class="{'private': link.private, 'notPrivate': !link.private}"
         :title="`toggle visibility. (currently: ${link.private?'NOT':''} featured in public galleries)`"
-        v-if="state.loggedIn && link.userID == state.loggedinUserID || state.admin"
+        v-if="(state.loggedIn && link.userID == state.loggedinUserID) || state.admin"
       ></div>
       <div
         class="copyLinkButton"
@@ -79,7 +79,7 @@
         class="deleteSingleButton"
         @click.prevent.stop="state.deleteSingle(link)"
         title="delete this asset only"
-        v-if="state.loggedIn && link.userID == state.loggedinUserID || state.admin"
+        v-if="(state.loggedIn && link.userID == state.loggedinUserID) || state.admin"
       ></div>
     </div>
     <AssetData
@@ -236,7 +236,7 @@ export default {
     this.mounted = true
   },
   beforeUnmount(){
-    if(typeof this.asset?.paused == 'boolean') this.asset?.paused = true
+    if(typeof this.asset?.paused == 'boolean') this.asset.paused = true
     if(typeof this.asset?.src != 'undefined') this.asset.src = ''
   }
 }
