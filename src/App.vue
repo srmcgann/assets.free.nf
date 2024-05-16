@@ -578,7 +578,7 @@ export default {
         break
         case 'col':
           let colSlug = this.state.previewCollection.slug
-          history.pushState(null,null,this.URLbase + '/col/' + colSlug')
+          history.pushState(null,null,this.URLbase + '/col/' + colSlug)
         break
         case 'default':
           history.pushState(null,null,this.URLbase + `/${this.state.curPage}`)
