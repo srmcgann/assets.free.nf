@@ -88,6 +88,7 @@ export default {
         showEditCollection: null,
         editCollection: [],
         fetchUserInfoMemo: [],
+        adminDeleteAsset: null,
         linkify: null,
         editingComment: false,
         multipleLinks: null,
@@ -1323,18 +1324,49 @@ export default {
       this.state.cacheLinks.map(link=>{if(link.selected) link.expandedInfo = false})
     },
     openUserPage(userID){
-      /*
-      let lnk = document.createElement('a')
-      lnk.target = '_blank'
-      lnk.href = `${this.state.URLbase}/user/${userID}`
-      lnk.click()
-      */
       this.state.closePrompts()
       this.state.mode = 'user'
       this.state.curPage = 0
       this.state.fetchUserLinks(userID)
       history.pushState(null,null,this.URLbase + `/user/${userID}/${this.state.curPage+1}`)
     },
+    adminDeleteAsset(slug)=>{
+      if(confirm(">>> DANGER! <<<\n\nTHIS ADMIN ACTION WILL DESTROY THE ASSET,\n ALL DERIVATIVES, ASSOCIATED COMMENTS,\n VOTES, AND REMOVE IT FROM ALL COLLECTIONS.... FOREVER\n\ntype \"yes\" to continue").toLowerCase() === 'yes'){
+        let sendData = {
+          userID: this.state.loggedinUserID,
+          passhash: this.state.passhash,
+          slug
+        }
+        console.log(sendData)
+        fetch(`${this.URLbase}/` + 'adminDelete.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sendData),
+        }).then(res => res.json()).then(data => {
+          console.log(data)
+          if(data[0]){
+            let tgtIdx
+            this.state.adminData.map((v, i) => {
+              if(state.adminData.slugs[i] == slug) tgtIdx = i)
+            })
+
+            this.state.adminData.fileSizes     = this.state.adminData.fileSizes.filter((v, i)=>i!=tgtIdx)
+            this.state.adminData.hrefs         = this.state.adminData.hrefs.filter((v, i)=>i!=tgtIdx)
+            this.state.adminData.slugs         = this.state.adminData.slugs.filter((v, i)=>i!=tgtIdx)
+            this.state.adminData.originalSlugs = this.state.adminData.originalSlugs.filter((v, i)=>i!=tgtIdx)
+            this.state.adminData.filetypes     = this.state.adminData.filetypes.filter((v, i)=>i!=tgtIdx)
+            this.state.adminData.fileDates     = this.state.adminData.fileDates.filter((v, i)=>i!=tgtIdx)
+            this.state.adminData.suffixes      = this.state.adminData.suffixes.filter((v, i)=>i!=tgtIdx)
+
+            console.log(`successfull deleted assset`)
+          }else{
+            console.log('there was an error deleting the asset')
+          }
+        })
+      }
+    }
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
       if(vars.length && vars[0] == 'assets') vars.shift()
@@ -2200,6 +2232,7 @@ export default {
     this.state.showUserSettings = this.showUserSettings
     this.state.fetchCollections = this.fetchCollections
     this.state.updateCollection = this.updateCollection
+    this.state.adminDeleteAsset = this.adminDeleteAsset
     this.state.deleteCollection = this.deleteCollection
     this.state.createCollection = this.createCollection
     this.state.loadFeaturedItems = this.loadFeaturedItems
