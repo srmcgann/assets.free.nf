@@ -1309,10 +1309,15 @@ export default {
       this.state.cacheLinks.map(link=>{if(link.selected) link.expandedInfo = false})
     },
     openUserPage(userID){
+      /*
       let lnk = document.createElement('a')
       lnk.target = '_blank'
       lnk.href = `${this.state.URLbase}/user/${userID}`
       lnk.click()
+      */
+      this.state.closePrompts()
+      this.state.mode = 'user'
+      this.state.curPage = 0
     },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
