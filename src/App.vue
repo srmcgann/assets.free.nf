@@ -295,19 +295,6 @@ export default {
           }
           history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)          
         break
-        case 'user':
-          this.state.miscLinks.map((link, idx) => {
-            if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
-          })
-          this.state.previewPosition--
-          if(this.state.previewPosition<0) this.state.previewPosition = this.state.miscLinks.length - 1
-          if(this.state.previewPosition>this.state.miscLinks.length-1){
-            this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
-          }else{
-            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
-          }
-          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)          
-        break
       }
       
       this.$nextTick(()=>{
@@ -345,18 +332,6 @@ export default {
           }
         break
         case 'col':
-          this.state.miscLinks.map((link, idx) => {
-            if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
-          })
-          this.state.previewPosition++
-          if(this.state.previewPosition>this.state.miscLinks.length-1){
-            this.state.previewLink = this.state.miscLinks[this.state.previewPosition - this.state.miscLinks.length]
-          }else{
-            this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
-          }
-          history.pushState(null,null,`${this.URLbase}/col/${this.state.previewCollection.slug}/view/${this.state.previewLink.slug}`)
-        break
-        case 'user':
           this.state.miscLinks.map((link, idx) => {
             if(this.state.previewLink.slug == link.slug) this.state.previewPosition = idx
           })
@@ -1356,6 +1331,7 @@ export default {
       this.state.closePrompts()
       this.state.mode = 'user'
       this.state.curPage = 0
+      this.state.fetchUserLinks(userID)
       history.pushState(null,null,this.URLbase + `/user/${userID}/${this.state.curPage+1}`)
     },
     getMode(){
