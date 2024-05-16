@@ -30,7 +30,7 @@ error_reporting(0);
       $res = mysqli_query($link, $sql);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
         $row = mysqli_fetch_assoc($res);
-        $uid = $row[id]
+        $uid = $row[id];
         $sql = "DELETE FROM imjurComments WHERE uploadID = $uid";
         mysqli_query($link, $sql);
         $sql = "DELETE FROM imjurVotes WHERE uploadID = $uid";
