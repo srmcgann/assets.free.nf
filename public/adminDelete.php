@@ -27,6 +27,9 @@ error_reporting(E_ALL);
       $filetype = $row['filetype'];
       $sql = "SELECT * FROM imjurUploads WHERE originalSlug LIKE BINARY \"$originalSlug\"";
       $res = mysqli_query($link, $sql);
+      $filename = "$resourceDir/$originalSlug" . getSuffix($filetype);
+      
+      unlink($filename);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
         $row = mysqli_fetch_assoc($res);
         $uid = $row['id'];
@@ -72,8 +75,6 @@ error_reporting(E_ALL);
         }
       }
       
-      $filename = "$resourceDir/$originalSlug" . getSuffix($filetype);
-      unlink($filename);
       $success = true;
     }
   }
