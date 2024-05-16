@@ -265,7 +265,7 @@ export default {
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
         break
-        case 'default':
+        case 'user': case 'default':
           if(this.state.loggedIn){
             if(this.state.previewPosition<0) this.state.previewPosition = this.state.userLinks.length + this.state.links.length - 1
             if(this.state.previewPosition>this.state.links.length-1){
@@ -314,7 +314,7 @@ export default {
             this.state.previewLink = this.state.miscLinks[this.state.previewPosition]
           }
         break
-        case 'default':
+        case 'user': case 'default':
           if(this.state.loggedIn){
             this.state.previewPosition %= this.state.userLinks.length + this.state.links.length
             if(this.state.previewPosition>this.state.links.length-1){
