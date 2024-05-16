@@ -19,7 +19,7 @@ error_reporting(0);
   }
   if(mysqli_num_rows($res)){
     
-    $sql = "SELECT originalSlug FROM imjurUploads WHERE slug LIKE BINARY \"slug\"";
+    $sql = "SELECT originalSlug FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
       $row = mysqli_fetch_assoc($res);
@@ -76,7 +76,6 @@ error_reporting(0);
       unlink($filename);
       $success = true;
     }
-  }else{
-    echo json_encode([$success, $sql]);
   }
+  echo json_encode([$success, $sql]);
 ?>
