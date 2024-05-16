@@ -1330,7 +1330,7 @@ export default {
       this.state.fetchUserLinks(userID)
       history.pushState(null,null,this.URLbase + `/user/${userID}/${this.state.curPage+1}`)
     },
-    adminDeleteAsset(slug)=>{
+    adminDeleteAsset(slug){
       if(confirm(">>> DANGER! <<<\n\nTHIS ADMIN ACTION WILL DESTROY THE ASSET,\n ALL DERIVATIVES, ASSOCIATED COMMENTS,\n VOTES, AND REMOVE IT FROM ALL COLLECTIONS.... FOREVER\n\ntype \"yes\" to continue").toLowerCase() === 'yes'){
         let sendData = {
           userID: this.state.loggedinUserID,
@@ -1366,7 +1366,7 @@ export default {
           }
         })
       }
-    }
+    },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
       if(vars.length && vars[0] == 'assets') vars.shift()
