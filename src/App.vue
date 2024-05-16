@@ -1219,6 +1219,9 @@ export default {
         case 'default':
           return this.state.userLinks.length > 1 || this.state.miscLinks.length > 1
         break
+        case 'user':
+          return this.state.userLinks.length > 1 || this.state.miscLinks.length > 1
+        break
       }
       //return (this.state.mode == 'col' && this.state.miscLinks.length > 1) ||
       //       (this.state.userLinks.length > 1 || this.state.links.length > 1) ||
