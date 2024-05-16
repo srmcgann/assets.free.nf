@@ -63,13 +63,14 @@ error_reporting(E_ALL);
           $row2 = mysqli_fetch_assoc($res2);
           $meta = $row2['meta'];
           $meta = json_decode($meta);
-          $cid = $row2['id'];
-          $slugs = $meta->{'slugs'};
-          $newSlugs = [];
-          forEach($slugs as $slug_){
-            if($slug != $slug_) $newSlugs[] = $slug;
+          $newItems = [];
+          forEach($meta as $item){
+            $slug = $item['slugs'];
+            if($slug != $slug_){
+              $newItems[] = $item;
+            }
           }
-          $meta->{'slugs'} = $newSlugs;
+          $meta = $newItems;
           $meta = mysqli_real_escape_string($link, json_encode($meta));
           $sql = "UPDATE imjurFeaturedItems SET meta = \"$meta\" WHERE id = $cid";
           mysqli_query($link, $sql);
