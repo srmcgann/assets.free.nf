@@ -76,22 +76,27 @@
             [edited]
           </span><br>
         </div>
-        <button
-          class="commentButton"
-          style="background:#4f8"
-          title="edit comment text"
-          v-if="!comment.editing"
-          @click.stop.prevent="editComment(comment)"
-        >edit</button>
-        <button
-          v-else
-          class="commentButton"
-          style="background:#4f8"
-          title="finish editing your comment - changes are recorded in real time"
-          @click.stop.prevent="closeComment(comment)"
-        >close edit</button>
         <div
-          v-if="+link.userID == +state.loggedinUserID || comment.userID == +state.loggedinUserID || state.admin"
+          v-if="comment.userID == state.loggedinUserID"
+          style="display: inline-block"
+        >
+          <button
+            class="commentButton"
+            style="background:#4f8"
+            title="edit comment text"
+            v-if="!comment.editing"
+            @click.stop.prevent="editComment(comment)"
+          >edit</button>
+          <button
+            v-else
+            class="commentButton"
+            style="background:#4f8"
+            title="finish editing your comment - changes are recorded in real time"
+            @click.stop.prevent="closeComment(comment)"
+          >close edit</button>
+        </div>
+        <div
+          v-if="+link.userID == +state.loggedinUserID || +comment.userID == +state.loggedinUserID || state.admin"
           style="display: inline-block;"
         >
           <button
