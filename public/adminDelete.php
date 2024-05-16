@@ -26,7 +26,7 @@ error_reporting(0);
       $originalSlug = $row['originalSlug'];
       $filetype = $row['filetype'];
       $originalID = alphaToDec($originalSlug);
-      $sql = "SELECT * FROM imjurUploads WHERE originalSlugs LIKE BINARY \"$originalSlug\"";
+      $sql = "SELECT * FROM imjurUploads WHERE originalSlug LIKE BINARY \"$originalSlug\"";
       $res = mysqli_query($link, $sql);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
         $row = mysqli_fetch_assoc($res);
