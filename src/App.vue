@@ -1331,7 +1331,7 @@ export default {
       history.pushState(null,null,this.URLbase + `/user/${userID}/${this.state.curPage+1}`)
     },
     adminDeleteAsset(slug){
-      if(confirm(">>> DANGER! <<<\n\nTHIS ADMIN ACTION WILL DESTROY THE ASSET,\n ALL DERIVATIVES, ASSOCIATED COMMENTS,\n VOTES, AND REMOVE IT FROM ALL COLLECTIONS.... FOREVER\n\ntype \"yes\" to continue").toLowerCase() === 'yes'){
+      if(prompt(">>> DANGER! <<<\n\nTHIS ADMIN ACTION WILL DESTROY THE ASSET,\n ALL DERIVATIVES, ASSOCIATED COMMENTS,\n VOTES, AND REMOVE IT FROM ALL COLLECTIONS.... FOREVER\n\ntype \"yes\" to continue").toLowerCase() === 'yes'){
         let sendData = {
           userID: this.state.loggedinUserID,
           passhash: this.state.passhash,
