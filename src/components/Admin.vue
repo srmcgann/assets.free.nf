@@ -60,12 +60,11 @@
               <div class="actualAsset" v-html="state.adminData.filetypes[idx]"></div>
             </td>
             <td class="td">
-              <button
+              <div
                 @click="state.adminDeleteAsset(state.adminData.slugs[idx])"
-                :style="`background: #601; color: #f88;`"
-              >
-                delete
-              </button>
+                class="deleteSingleButton"
+                title="nuke this asset and all its relations"
+              ></div>
             </td>
           </tr>
         </table>
