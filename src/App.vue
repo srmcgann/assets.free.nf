@@ -375,6 +375,7 @@ export default {
               return v
             })
             this.state.showStats = true
+            history.pushState(null,null,this.URLbase + '/user/' + userID + '/stats')
             this.state.userStatsID = userID
           }
         })
@@ -571,6 +572,18 @@ export default {
       this.state.showStats = false
       this.state.showCollectionTemplate = false
       this.state.editCollection = []
+      switch(this.state.mode){
+        case 'user':
+          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + `/${this.state.curPage}`)
+        break
+        case 'col':
+          let colSlug = this.state.previewCollection.slug
+          history.pushState(null,null,this.URLbase + '/col/' + colSlug')
+        break
+        case 'default':
+          history.pushState(null,null,this.URLbase + `/${this.state.curPage}`)
+        break
+      }
     },
     getAdminData(){
       this.state.showLoading = true
