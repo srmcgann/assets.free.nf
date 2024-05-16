@@ -1331,6 +1331,7 @@ export default {
       this.state.closePrompts()
       this.state.mode = 'user'
       this.state.curPage = 0
+      history.pushState(null,null,this.URLbase + `/user/${userID}/`)
     },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
