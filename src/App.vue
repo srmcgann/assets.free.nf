@@ -574,14 +574,14 @@ export default {
       this.state.editCollection = []
       switch(this.state.mode){
         case 'user':
-          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + `/${this.state.curPage}`)
+          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + `/${this.state.curPage+1}`)
         break
         case 'col':
           let colSlug = this.state.previewCollection.slug
           history.pushState(null,null,this.URLbase + '/col/' + colSlug)
         break
         case 'default':
-          history.pushState(null,null,this.URLbase + `/${this.state.curPage}`)
+          history.pushState(null,null,this.URLbase + `/${this.state.curPage+1}`)
         break
       }
     },
@@ -1331,7 +1331,7 @@ export default {
       this.state.closePrompts()
       this.state.mode = 'user'
       this.state.curPage = 0
-      history.pushState(null,null,this.URLbase + `/user/${userID}/`)
+      history.pushState(null,null,this.URLbase + `/user/${userID}/${this.state.curPage+1}`)
     },
     getMode(){
       let vars = window.location.pathname.split('/').filter(v=>v && ''+v != 'NaN')
