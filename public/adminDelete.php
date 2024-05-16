@@ -53,6 +53,23 @@ error_reporting(0);
           $sql = "UPDATE imjurCollections SET meta = \"$meta\" WHERE id = $cid";
           mysqli_query($link, $sql);
         }
+
+        $sql = "SELECT * FROM imjurFeaturedItems";
+        $res2 = mysqli_query($link, $sql);
+        for($j = 0; $j<mysqli_num_rows($res2); ++$j){
+          $row2 = mysqli_fetch_assoc($res2);
+          $meta = $row2['meta'];
+          $cid = $row2['id'];
+          $slugs = $meta->{'slugs'};
+          $newSlugs = [];
+          forEach($slugs as $slug_){
+            if($slug != $slug_) $newSlugs[] = $slug;
+          }
+          $meta->{'slugs'} = $newSlugs;
+          $meta = mysqli_real_escape_string($link, json_encode($meta));
+          $sql = "UPDATE imjurFeaturedItems SET meta = \"$meta\" WHERE id = $cid";
+          mysqli_query($link, $sql);
+        }
       }
       
       $filename = "$resourceDir/$originalSlug" . getSuffix($filetype);
