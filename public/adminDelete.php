@@ -42,10 +42,11 @@ error_reporting(E_ALL);
           $row2 = mysqli_fetch_assoc($res2);
           $meta = $row2['meta'];
           $cid = $row2['id'];
+          $meta = json_decode($meta);
           $slugs = $meta->{'slugs'};
           $newSlugs = [];
           forEach($slugs as $slug_){
-            if($slug != $slug_) $newSlugs[] = $slug;
+            if($slug != $slug_) $newSlugs[] = $slug_;
           }
           $meta->{'slugs'} = $newSlugs;
           $meta = mysqli_real_escape_string($link, json_encode($meta));
