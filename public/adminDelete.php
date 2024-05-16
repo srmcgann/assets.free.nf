@@ -19,13 +19,12 @@ error_reporting(E_ALL);
   }
   if(mysqli_num_rows($res)){
     
-    $sql = "SELECT originalSlug FROM imjurUploads WHERE slug LIKE BINARY \"$slug\"";
+    $sql = "SELECT * FROM imjurUploads WHERE originalSlug LIKE BINARY \"$slug\"";
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
       $row = mysqli_fetch_assoc($res);
       $originalSlug = $row['originalSlug'];
       $filetype = $row['filetype'];
-      $originalID = alphaToDec($originalSlug);
       $sql = "SELECT * FROM imjurUploads WHERE originalSlug LIKE BINARY \"$originalSlug\"";
       $res = mysqli_query($link, $sql);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
