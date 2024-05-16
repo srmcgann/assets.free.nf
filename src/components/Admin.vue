@@ -30,6 +30,7 @@
             <th>size</th>
             <th>date</th>
             <th>type</th>
+            <th>delete</th>
           </tr>
           <tr v-for="idx in sortedBySizes">
             <td class="td">
@@ -57,6 +58,14 @@
             </td>
             <td class="td">
               <div class="actualAsset" v-html="state.adminData.filetypes[idx]"></div>
+            </td>
+            <td class="td">
+              <button
+                @click="state.adminDeleteAsset(state.adminData.slugs[idx])"
+                :style="`background: #601; color: #f88;`"
+              >
+                delete
+              </button>
             </td>
           </tr>
         </table>
@@ -204,5 +213,8 @@ th{
   background-color: #000;
   border-radius: 5px;
   display: inline-block;
+}
+button{
+  min-width: 80px;
 }
 </style>
