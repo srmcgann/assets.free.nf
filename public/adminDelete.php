@@ -27,7 +27,7 @@ error_reporting(E_ALL);
       $filetype = $row['filetype'];
       $sql = "SELECT * FROM imjurUploads WHERE originalSlug LIKE BINARY \"$originalSlug\"";
       $res = mysqli_query($link, $sql);
-      $filename = "$resourceDir/$originalSlug" . getSuffix($filetype);
+      $filename = "$resourceDir/$originalSlug." . getSuffix($filetype);
       
       unlink($filename);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
@@ -62,6 +62,7 @@ error_reporting(E_ALL);
         for($j = 0; $j<mysqli_num_rows($res2); ++$j){
           $row2 = mysqli_fetch_assoc($res2);
           $meta = $row2['meta'];
+          $meta = json_decode($meta);
           $cid = $row2['id'];
           $slugs = $meta->{'slugs'};
           $newSlugs = [];
