@@ -27,9 +27,68 @@
             <th>slug</th>
             <th>preview</th>
             <th>trending</th>
+
+            <!--
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='views'}"
+                @click="setSortMode('views')"
+                v-html="`views<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+            -->
+            
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='sizes'}"
+                @click="setSortMode('sizes')"
+                v-html="`size<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='dates'}"
+                @click="setSortMode('dates')"
+                v-html="`date<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='types'}"
+                @click="setSortMode('types')"
+                v-html="`type<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+            
+            <!--
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='upvotes'}"
+                @click="setSortMode('upvotes')"
+                v-html="`upvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='downvotes'}"
+                @click="setSortMode('downvotes')"
+                v-html="`downvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='avgvotes'}"
+                style="min-width: 120px;"
+                @click="setSortMode('avgvotes')"
+                v-html="`avg votes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
+
+
             <th>size</th>
             <th>date</th>
             <th>type</th>
+            -->
             <th>delete</th>
           </tr>
           <tr v-for="idx in sortedBySizes">
@@ -118,7 +177,128 @@ export default {
   },
   data(){
     return {
+      sortDir: true,
+      sortMode: 'views',
+      array: JSON.parse(JSON.stringify(this.state.adminData))
     }
+  },
+  methods: {
+    close(){
+      this.state.showAdmin = false
+    },
+    toggleShowAdmin(){
+      this.state.showAdmin = !this.state.showAdmin
+      if(this.state.showAdmin) this.launch()
+    },
+    launch(){
+      this.state.getAdminData()
+    },
+    setSortMode(mode){
+      switch(mode){
+        case 'views':
+          if(this.sortMode == 'views'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'views'
+          }
+        break
+        case 'sizes':
+          if(this.sortMode == 'sizes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'sizes'
+          }
+        break
+        case 'dates':
+          if(this.sortMode == 'dates'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'dates'
+          }
+        break
+        case 'types':
+          if(this.sortMode == 'types'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'types'
+          }
+        break
+        case 'upvotes':
+          if(this.sortMode == 'upvotes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'upvotes'
+          }
+        break
+        case 'downvotes':
+          if(this.sortMode == 'downvotes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'downvotes'
+          }
+        break
+        case 'avgvotes':
+          if(this.sortMode == 'avgvotes'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'avgvotes'
+          }
+        break
+      }
+    }
+  },
+  computed: {
+    ttlViews(){
+      let ttl = 0
+      this.array.map(v=>{
+        ttl+=+v.views
+      })
+      return ttl
+    },
+    sortedByViews(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).views - (this.sortDir?a:b).views)
+    },
+    sortedByUpVotes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).upvotes - (this.sortDir?a:b).upvotes)
+    },
+    sortedByDownVotes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).downvotes - (this.sortDir?a:b).downvotes)
+    },
+    sortedByAvgVotes(){
+      let src = this.array
+      return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).downvotes) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).downvotes))
+    },
+    sortedBySizes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).size - (this.sortDir?a:b).size)
+    },
+    sortedByTypes(){
+      let src = this.array
+      return src.sort((a, b) => (this.sortDir?b:a).filetype - (this.sortDir?a:b).filetype)
+    },
+    sortedByDates(){
+      let src = this.array
+      return src.sort((a, b) => (new Date((this.sortDir?b:a).date)) - (new Date((this.sortDir?a:b).date)))
+    },
+    sortedArray(){
+      switch(this.sortMode){
+        case 'views'     : return this.sortedByViews; break
+        case 'upvotes'   : return this.sortedByUpVotes; break
+        case 'downvotes' : return this.sortedByDownVotes; break
+        case 'avgvotes'  : return this.sortedByAvgViews; break
+        case 'sizes'     : return this.sortedBySizes; break
+        case 'types'     : return this.sortedByTypes; break
+        case 'dates'     : return this.sortedByDates; break
+      }
+    }
+  },
+
+
+
+
   },
   computed: {
     sortedBySizes(){
@@ -131,15 +311,6 @@ export default {
       }else{
         return []
       }
-    }
-  },
-  methods: {
-    toggleShowAdmin(){
-      this.state.showAdmin = !this.state.showAdmin
-      if(this.state.showAdmin) this.launch()
-    },
-    launch(){
-      this.state.getAdminData()
     }
   },
   mounted(){
