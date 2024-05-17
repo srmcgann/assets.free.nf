@@ -23,7 +23,7 @@ error_reporting(E_ALL);
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
       $row = mysqli_fetch_assoc($res);
-      $hash = $row['originalSlug'];
+      $hash = $row['hash'];
       $filetype = $row['filetype'];
       $sql = "SELECT * FROM imjurUploads WHERE hash LIKE BINARY \"$hash\"";
       $res = mysqli_query($link, $sql);
