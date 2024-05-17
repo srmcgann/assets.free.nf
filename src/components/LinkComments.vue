@@ -96,7 +96,7 @@
           >close edit</button>
         </div>
         <div
-          v-if="+link.userID == +state.loggedinUserID || +comment.userID == +state.loggedinUserID || state.admin"
+          v-if="deleteable(comment)"
           style="display: inline-block;"
         >
           <button
@@ -179,6 +179,9 @@ export default {
     }
   },
   methods: {
+    deleteable(comment){
+      return +this.link.userID == +this.state.loggedinUserID || +comment.userID == +this.state.loggedinUserID || this.state.admin
+    },
     decrementNumComments(){
       this.numComments= Math.max(0, this.numComments-this.commentIncrVal)
     },
