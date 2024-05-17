@@ -1352,6 +1352,11 @@ export default {
               if(this.state.adminData.slugs[i] == slug) tgtIdx = i
             })
 
+            this.state.links = this.state.links.filter(link=>link.slug !== slug)
+            this.state.userLinks = this.state.userLinks.filter(link=>link.slug !== slug)
+            this.state.miscLinks = this.state.miscLinks.filter(link=>link.slug !== slug)
+            this.state.cacheLinks = this.state.cacheLinks.filter(link=>link.slug !== slug)
+
             this.state.adminData.fileSizes     = this.state.adminData.fileSizes.filter((v, i)=>i!=tgtIdx)
             this.state.adminData.hrefs         = this.state.adminData.hrefs.filter((v, i)=>i!=tgtIdx)
             this.state.adminData.slugs         = this.state.adminData.slugs.filter((v, i)=>i!=tgtIdx)
