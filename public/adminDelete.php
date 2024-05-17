@@ -23,11 +23,11 @@ error_reporting(E_ALL);
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
       $row = mysqli_fetch_assoc($res);
-      $originalSlug = $row['originalSlug'];
+      $hash = $row['originalSlug'];
       $filetype = $row['filetype'];
-      $sql = "SELECT * FROM imjurUploads WHERE originalSlug LIKE BINARY \"$originalSlug\"";
+      $sql = "SELECT * FROM imjurUploads WHERE hash LIKE BINARY \"$hash\"";
       $res = mysqli_query($link, $sql);
-      $filename = "$resourceDir/$originalSlug." . getSuffix($filetype);
+      $filename = "$resourceDir/$slug." . getSuffix($filetype);
       
       unlink($filename);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
