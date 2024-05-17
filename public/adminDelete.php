@@ -65,7 +65,7 @@ error_reporting(E_ALL);
           $meta = json_decode($meta);
           $newItems = [];
           forEach($meta as $item){
-            $slug = $item->{'slugs'};
+            $slug_ = $item->{'slug'};
             if($slug != $slug_){
               $newItems[] = $item;
             }
