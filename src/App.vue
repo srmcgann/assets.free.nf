@@ -1348,7 +1348,7 @@ export default {
           console.log(data)
           if(data[0]){
             let tgtIdx
-            this.state.adminData.map((v, i) => {
+            this.state.adminData.slugs.map((v, i) => {
               if(state.adminData.slugs[i] == slug) tgtIdx = i
             })
 
