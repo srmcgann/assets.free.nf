@@ -1349,7 +1349,7 @@ export default {
           if(data[0]){
             let tgtIdx
             this.state.adminData.slugs.map((v, i) => {
-              if(state.adminData.slugs[i] == slug) tgtIdx = i
+              if(this.state.adminData.slugs[i] == slug) tgtIdx = i
             })
 
             this.state.adminData.fileSizes     = this.state.adminData.fileSizes.filter((v, i)=>i!=tgtIdx)
