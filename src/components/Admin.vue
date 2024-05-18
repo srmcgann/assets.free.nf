@@ -93,7 +93,7 @@
             
             <th>delete</th>
           </tr>
-          <tr v-for="idx in sortedBySizes">
+          <tr v-for="idx in sortedArray">
             <td class="td">
               <div class="actualAsset" v-html="state.adminData.slugs[idx]"></div>
             </td>
@@ -381,5 +381,7 @@ th{
 }
 button{
   min-width: 80px;
+  margin: 5px;
+  line-height: 16px;
 }
 </style>
