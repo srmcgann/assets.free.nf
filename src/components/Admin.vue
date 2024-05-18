@@ -26,7 +26,13 @@
           <tr>
             <th>slug</th>
             <th>preview</th>
-            <th>trending</th>
+            <th>
+              <button
+                :class="{'sortCol': sortMode=='trending'}"
+                @click="setSortMode('trending')"
+                v-html="`size<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              ></button>
+            </th>
 
             <!--
             <th>
@@ -229,6 +235,13 @@ export default {
             this.sortMode = 'types'
           }
         break
+        case 'trending':
+          if(this.sortMode == 'trending'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'trending'
+          }
+        break
         case 'upvotes':
           if(this.sortMode == 'upvotes'){
             this.sortDir = !this.sortDir
@@ -272,6 +285,17 @@ export default {
         return []
       }
     },
+    sortedByTrending(){
+      if(this.state.adminData){
+        let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
+          return {idx, trending: state.isTrending(this.state.adminData.slugs[idx])}
+        })
+        ids.sort((a,b)=>(this.sortDir?b:a).trending-(this.sortDir?a:b).trending)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
     sortedByUpVotes(){
     },
     sortedByDownVotes(){
@@ -294,7 +318,11 @@ export default {
         let ids = Array(this.state.adminData.filetypes.length).fill().map((v, idx) => {
           return {idx, type: this.state.adminData.filetypes[idx]}
         })
-        ids.sort((a,b)=>(this.sortDir?b:a).type-(this.sortDir?a:b).type)
+        ids.sort((a,b)=>{
+          if((this.sortDir?b:a).type == (this.sortDir?a:b).type) return 0
+          if((this.sortDir?b:a).type < (this.sortDir?a:b).type) return -1
+          if((this.sortDir?b:a).type > (this.sortDir?a:b).type) return 1
+        }
         return ids.map(v=>v.idx)
       }else{
         return []
