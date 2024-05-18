@@ -261,36 +261,29 @@ export default {
       })
       return ttl
     },
-    
     sortedByViews(){
       if(this.state.adminData){
         let ids = Array(this.state.adminData.fileViews.length).fill().map((v, idx) => {
           return {idx, views: this.state.adminData.fileViews[idx]}
         })
-        ids.sort((a,b)=>b.views-a.views)
+        ids.sort((a,b)=>(this.sortDir?b:a).views-(this.sortDir?a:b).views)
         return ids.map(v=>v.idx)
       }else{
         return []
       }
     },
     sortedByUpVotes(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => (this.sortDir?b:a).upvotes - (this.sortDir?a:b).upvotes)
     },
     sortedByDownVotes(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => (this.sortDir?b:a).downvotes - (this.sortDir?a:b).downvotes)
     },
     sortedByAvgVotes(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).downvotes) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).downvotes))
     },
     sortedBySizes(){
       if(this.state.adminData){
         let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
           return {idx, size: this.state.adminData.fileSizes[idx]}
         })
-        ids.sort((a,b)=>b.size-a.size)
+        ids.sort((a,b)=>(this.sortDir?b:a).size-(this.sortDir?a:b).size)
         return ids.map(v=>v.idx)
       }else{
         return []
@@ -301,15 +294,22 @@ export default {
         let ids = Array(this.state.adminData.filetypes.length).fill().map((v, idx) => {
           return {idx, type: this.state.adminData.filetypes[idx]}
         })
-        ids.sort((a,b)=>b.type-a.type)
+        ids.sort((a,b)=>(this.sortDir?b:a).type-(this.sortDir?a:b).type)
         return ids.map(v=>v.idx)
       }else{
         return []
       }
     },
     sortedByDates(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => (new Date((this.sortDir?b:a).fileDates)) - (new Date((this.sortDir?a:b).fileDates)))
+      if(this.state.adminData){
+        let ids = Array(this.state.adminData.fileDates.length).fill().map((v, idx) => {
+          return {idx, date: (new Date((this.state.adminData.fileDates[idx])))}
+        })
+        ids.sort((a,b)=>(this.sortDir?b:a).date-(this.sortDir?a:b).date)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
     },
     sortedArray(){
       switch(this.sortMode){
@@ -322,17 +322,6 @@ export default {
         case 'dates'     : return this.sortedByDates; break
       }
     },
-    sortedBySizes(){
-      if(this.state.adminData){
-        let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
-          return {idx, size: this.state.adminData.fileSizes[idx]}
-        })
-        ids.sort((a,b)=>b.size-a.size)
-        return ids.map(v=>v.idx)
-      }else{
-        return []
-      }
-    }
   },
   mounted(){
   }
