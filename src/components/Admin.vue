@@ -89,6 +89,8 @@
             <th>date</th>
             <th>type</th>
             -->
+            
+            
             <th>delete</th>
           </tr>
           <tr v-for="idx in sortedBySizes">
@@ -293,14 +295,7 @@ export default {
         case 'types'     : return this.sortedByTypes; break
         case 'dates'     : return this.sortedByDates; break
       }
-    }
-  },
-
-
-
-
-  },
-  computed: {
+    },
     sortedBySizes(){
       if(this.state.adminData){
         let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
