@@ -164,7 +164,7 @@
   <button
     v-if="!state.showPreview && !state.showModal"
     class="adminButton"
-    @click="toggleShowAdmin"
+    @click="toggleShowAdmin()"
     v-html="state.showAdmin ? 'exit admin view' : 'show admin view'"
   >
   </button>
@@ -190,6 +190,7 @@ export default {
     },
     toggleShowAdmin(){
       if(!this.state.showAdmin){
+        this.showLoading = true
         this.launch()
       }else{
         this.state.showAdmin = false
