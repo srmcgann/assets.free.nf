@@ -262,31 +262,31 @@ export default {
       return ttl
     },
     sortedByViews(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => (this.sortDir?b:a).views - (this.sortDir?a:b).views)
     },
     sortedByUpVotes(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => (this.sortDir?b:a).upvotes - (this.sortDir?a:b).upvotes)
     },
     sortedByDownVotes(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => (this.sortDir?b:a).downvotes - (this.sortDir?a:b).downvotes)
     },
     sortedByAvgVotes(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).downvotes) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).downvotes))
     },
     sortedBySizes(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => (this.sortDir?b:a).fileSizes - (this.sortDir?a:b).fileSizes)
     },
     sortedByTypes(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => (this.sortDir?b:a).filetypes - (this.sortDir?a:b).filetypes)
     },
     sortedByDates(){
-      let src = this.array
+      let src = this.array == null ? [] : this.array
       return src.sort((a, b) => (new Date((this.sortDir?b:a).fileDates)) - (new Date((this.sortDir?a:b).fileDates)))
     },
     sortedArray(){
