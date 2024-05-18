@@ -262,18 +262,6 @@ export default {
       return ttl
     },
     
-    
-    $fileSlugs     = [];
-    $fileSizes     = [];
-    $suffixes      = [];
-    $filetypes     = [];
-    $fileDates     = [];
-    $hrefs         = [];
-    $users         = [];
-    $orphans       = [];
-    $footprint     = 0;
-
-    
     sortedByViews(){
       if(this.state.adminData){
         let ids = Array(this.state.adminData.fileViews.length).fill().map((v, idx) => {
