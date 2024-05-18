@@ -189,7 +189,11 @@ export default {
       this.state.showAdmin = false
     },
     toggleShowAdmin(){
-      if(this.state.showAdmin) this.launch()
+      if(!this.state.showAdmin){
+        this.launch()
+      }else{
+        this.state.showAdmin = false
+      }
     },
     launch(){
       this.state.getAdminData()
