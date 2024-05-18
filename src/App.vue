@@ -604,6 +604,8 @@ export default {
         console.log('getAdminData.php, data; ', data)
         if(data[0]){
           this.state.adminData = JSON.parse(data[1])
+          this.showLoading = false
+          this.state.showAdmin = true
           this.state.showAssetPreview = Array(this.state.adminData.slugs.length).fill(false)
           this.state.showAvatarPreview= Array(this.state.adminData.users.length).fill(false)
         }
