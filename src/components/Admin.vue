@@ -275,15 +275,15 @@ export default {
     },
     sortedBySizes(){
       let src = this.array
-      return src.sort((a, b) => (this.sortDir?b:a).size - (this.sortDir?a:b).size)
+      return src.sort((a, b) => (this.sortDir?b:a).fileSizes - (this.sortDir?a:b).fileSizes)
     },
     sortedByTypes(){
       let src = this.array
-      return src.sort((a, b) => (this.sortDir?b:a).filetype - (this.sortDir?a:b).filetype)
+      return src.sort((a, b) => (this.sortDir?b:a).filetypes - (this.sortDir?a:b).filetypes)
     },
     sortedByDates(){
       let src = this.array
-      return src.sort((a, b) => (new Date((this.sortDir?b:a).date)) - (new Date((this.sortDir?a:b).date)))
+      return src.sort((a, b) => (new Date((this.sortDir?b:a).fileDates)) - (new Date((this.sortDir?a:b).fileDates)))
     },
     sortedArray(){
       switch(this.sortMode){
