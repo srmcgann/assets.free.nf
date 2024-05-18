@@ -180,7 +180,7 @@ export default {
   data(){
     return {
       sortDir: true,
-      sortMode: 'views',
+      sortMode: 'sizes',
       array: JSON.parse(JSON.stringify(this.state.adminData))
     }
   },
