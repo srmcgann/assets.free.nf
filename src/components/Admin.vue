@@ -261,9 +261,29 @@ export default {
       })
       return ttl
     },
+    
+    
+    $fileSlugs     = [];
+    $fileSizes     = [];
+    $suffixes      = [];
+    $filetypes     = [];
+    $fileDates     = [];
+    $hrefs         = [];
+    $users         = [];
+    $orphans       = [];
+    $footprint     = 0;
+
+    
     sortedByViews(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => (this.sortDir?b:a).views - (this.sortDir?a:b).views)
+      if(this.state.adminData){
+        let ids = Array(this.state.adminData.fileViews.length).fill().map((v, idx) => {
+          return {idx, views: this.state.adminData.fileViews[idx]}
+        })
+        ids.sort((a,b)=>b.views-a.views)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
     },
     sortedByUpVotes(){
       let src = this.array == null ? [] : this.array
@@ -278,12 +298,26 @@ export default {
       return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).downvotes) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).downvotes))
     },
     sortedBySizes(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => (this.sortDir?b:a).fileSizes - (this.sortDir?a:b).fileSizes)
+      if(this.state.adminData){
+        let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
+          return {idx, size: this.state.adminData.fileSizes[idx]}
+        })
+        ids.sort((a,b)=>b.size-a.size)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
     },
     sortedByTypes(){
-      let src = this.array == null ? [] : this.array
-      return src.sort((a, b) => (this.sortDir?b:a).filetypes - (this.sortDir?a:b).filetypes)
+      if(this.state.adminData){
+        let ids = Array(this.state.adminData.filetypes.length).fill().map((v, idx) => {
+          return {idx, type: this.state.adminData.filetypes[idx]}
+        })
+        ids.sort((a,b)=>b.type-a.type)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
     },
     sortedByDates(){
       let src = this.array == null ? [] : this.array
