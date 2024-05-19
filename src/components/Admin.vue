@@ -95,8 +95,8 @@
             <th>date</th>
             <th>type</th>
             -->
-            
-            
+
+
             <th>delete</th>
           </tr>
           <tr v-for="idx in sortedArray">
@@ -287,7 +287,7 @@ export default {
     },
     sortedByTrending(){
       if(this.state.adminData){
-        let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
+        let ids = Array(this.state.adminData.slugs.length).fill().map((v, idx) => {
           return {idx, trending: this.state.isTrending(this.state.adminData.slugs[idx])}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).trending-(this.sortDir?a:b).trending)
@@ -345,6 +345,7 @@ export default {
         case 'upvotes'   : return this.sortedByUpVotes; break
         case 'downvotes' : return this.sortedByDownVotes; break
         case 'avgvotes'  : return this.sortedByAvgViews; break
+        case 'trending'  : return this.sortedByTrending; break
         case 'sizes'     : return this.sortedBySizes; break
         case 'types'     : return this.sortedByTypes; break
         case 'dates'     : return this.sortedByDates; break
