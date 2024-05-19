@@ -288,7 +288,7 @@ export default {
     sortedByTrending(){
       if(this.state.adminData){
         let ids = Array(this.state.adminData.fileSizes.length).fill().map((v, idx) => {
-          return {idx, trending: state.isTrending(this.state.adminData.slugs[idx])}
+          return {idx, trending: this.state.isTrending(this.state.adminData.slugs[idx])}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).trending-(this.sortDir?a:b).trending)
         return ids.map(v=>v.idx)
