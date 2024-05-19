@@ -320,8 +320,8 @@ export default {
         })
         ids.sort((a,b)=>{
           if((this.sortDir?b:a).type == (this.sortDir?a:b).type) return 0
-          if((this.sortDir?b:a).type < (this.sortDir?a:b).type) return -1
-          if((this.sortDir?b:a).type > (this.sortDir?a:b).type) return 1
+          if((this.sortDir?b:a).type  < (this.sortDir?a:b).type) return -1
+          if((this.sortDir?b:a).type  > (this.sortDir?a:b).type) return 1
         }
         return ids.map(v=>v.idx)
       }else{
@@ -331,9 +331,9 @@ export default {
     sortedByDates(){
       if(this.state.adminData){
         let ids = Array(this.state.adminData.fileDates.length).fill().map((v, idx) => {
-          return {idx, date: (new Date((this.state.adminData.fileDates[idx])))}
+          return {idx, date: (new Date(this.state.adminData.fileDates[idx]))}
         })
-        ids.sort((a,b)=>(this.sortDir?b:a).date-(this.sortDir?a:b).date)
+        ids.sort((a,b) => (this.sortDir?b:a).date-(this.sortDir?a:b).date)
         return ids.map(v=>v.idx)
       }else{
         return []
