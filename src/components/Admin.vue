@@ -290,8 +290,8 @@ export default {
         let ids = Array(this.state.adminData.slugs.length).fill().map((v, idx) => {
           return {idx, trending: this.state.isTrending(this.state.adminData.slugs[idx])}
         })
-        ids.sort((a,b)=>(this.sortDir?b:a).trending-(this.sortDir?a:b).trending)
-        return ids.map(v=>v.idx)
+        ids.sort((a,b) => (this.sortDir?b:a).trending-(this.sortDir?a:b).trending)
+        return ids.map(v => v.idx)
       }else{
         return []
       }
@@ -322,7 +322,7 @@ export default {
           if((this.sortDir?b:a).type == (this.sortDir?a:b).type) return 0
           if((this.sortDir?b:a).type  < (this.sortDir?a:b).type) return -1
           if((this.sortDir?b:a).type  > (this.sortDir?a:b).type) return 1
-        }
+        })
         return ids.map(v=>v.idx)
       }else{
         return []
