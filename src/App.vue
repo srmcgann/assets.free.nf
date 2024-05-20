@@ -573,6 +573,7 @@ export default {
       this.state.showStats = false
       this.state.showCollectionTemplate = false
       this.state.editCollection = []
+      console.log('state.mode: ', this.state.mode)
       switch(this.state.mode){
         case 'user':
           history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + `/${this.state.curPage+1}`)
