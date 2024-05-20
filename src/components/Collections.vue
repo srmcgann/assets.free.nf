@@ -272,7 +272,7 @@ export default {
           if((this.sortDir?b:a).slug  < (this.sortDir?a:b).slug) return -1
           if((this.sortDir?b:a).slug  > (this.sortDir?a:b).slug) return 1
         })
-        return ids.map(v=>this.state.collections[idx].idx)
+        return ids.map(v=>v.idx)
       }else{
         return []
       }
