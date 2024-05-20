@@ -883,7 +883,7 @@ export default {
         }
       })
     },
-    fetchCollections(userID){
+    fetchCollections(userID, forMgmt=false){
       if(!this.state.loggedIn) return
       this.state.loadingCollections = true
       let sendData = {
@@ -903,8 +903,8 @@ export default {
         if(!!(+data[0])){
           this.state.collections = data[1]
           this.state.showCollectionTemplate = false
-          this.state.showCollections = true
           this.showLoading = false
+          if(forMgmt) this.state.showCollections = true
         }
       })
     },
@@ -1791,7 +1791,7 @@ export default {
     manageCollections(){
       this.state.closePrompts()
       this.showLoading = true
-      this.state.fetchCollections(this.state.loggedinUserID)
+      this.state.fetchCollections(this.state.loggedinUserID, true)
     },
     avatar(link){
       if(this.state.userInfo[link.userID]?.avatar.indexOf('avatarDefault.png') != -1){
