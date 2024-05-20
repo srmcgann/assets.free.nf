@@ -213,7 +213,7 @@ export default {
     sortedByItems(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, items: v.slugs.length}
+          return {idx, items: this.state.collections[idx].slugs.length}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).items-(this.sortDir?a:b).items)
         return ids.map(v=>v.idx)
@@ -224,7 +224,7 @@ export default {
     sortedByViews(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, views: v.views}
+          return {idx, views: this.state.collections[idx].views}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).views-(this.sortDir?a:b).views)
         return ids.map(v=>v.idx)
@@ -235,7 +235,7 @@ export default {
     sortedByCreated(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, created: this.state.prettyDate(v.meta)}
+          return {idx, created: this.state.prettyDate(this.state.collections[idx].meta)}
         })
         ids.sort((a,b)=>{
           if((this.sortDir?b:a).created == (this.sortDir?a:b).created) return 0
@@ -250,7 +250,7 @@ export default {
     sortedByName(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, name: v.name}
+          return {idx, name: this.state.collections[idx].name}
         })
         ids.sort((a,b)=>{
           if((this.sortDir?b:a).name == (this.sortDir?a:b).name) return 0
@@ -265,14 +265,14 @@ export default {
     sortedBySlug(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, slug: v.slug}
+          return {idx, slug: this.state.collections[idx].slug}
         })
         ids.sort((a,b)=>{
           if((this.sortDir?b:a).slug == (this.sortDir?a:b).slug) return 0
           if((this.sortDir?b:a).slug  < (this.sortDir?a:b).slug) return -1
           if((this.sortDir?b:a).slug  > (this.sortDir?a:b).slug) return 1
         })
-        return ids.map(v=>v.idx)
+        return ids.map(v=>this.state.collections[idx].idx)
       }else{
         return []
       }
@@ -280,7 +280,7 @@ export default {
     sortedByDescription(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, description: v.description}
+          return {idx, description: this.state.collections[idx].description}
         })
         ids.sort((a,b) => {
           if((this.sortDir?b:a).description == (this.sortDir?a:b).description) return 0
