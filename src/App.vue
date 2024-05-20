@@ -576,7 +576,7 @@ export default {
       console.log('state.mode: ', this.state.mode)
       switch(this.state.mode){
         case 'user':
-          history.pushState(null,null,this.URLbase + '/user/' + (this.state.userID ? this.state.userID : this.state.loggedinUserID)+ `/${this.state.curPage+1}`)
+          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID+ `/${this.state.curPage+1}`)
         break
         case 'col':
           let colSlug = this.state.previewCollection.slug
@@ -1328,6 +1328,7 @@ export default {
       this.state.cacheLinks.map(link=>{if(link.selected) link.expandedInfo = false})
     },
     openUserPage(userID){
+      this.state.userID = +userID
       this.state.closePrompts()
       this.state.mode = 'user'
       this.state.curPage = 0
@@ -1486,7 +1487,7 @@ export default {
             break
           }
         }
-      } else{
+      }else{
         if(location.href !== this.URLbase + '/1') history.pushState(null,null,this.URLbase + '/1')
         console.log('flow ',3)
         this.state.curPage = 0
