@@ -71,14 +71,14 @@
           <th>collection<br>tools</th>
         </tr>
         <tr v-for="idx in sortedArray">
-          <td v-html="state.collection[idx].name"></td>
-          <td v-html="state.collection[idx].slug"></td>
-          <td v-html="state.collection[idx].meta.views"></td>
-          <td v-html="state.linkify(state.collection[idx].meta.description)"></td>
-          <td v-html="state.age(state.collection[idx].meta)"></td>
-          <td v-html="state.prettyDate(state.collection[idx].meta)"></td>
+          <td v-html="state.collections[idx].name"></td>
+          <td v-html="state.collections[idx].slug"></td>
+          <td v-html="state.collections[idx].meta.views"></td>
+          <td v-html="state.linkify(state.collections[idx].meta.description)"></td>
+          <td v-html="state.age(state.collections[idx].meta)"></td>
+          <td v-html="state.prettyDate(state.collections[idx].meta)"></td>
           <td>
-            <font style="font-size:1em;">{{state.collection[idx].meta.slugs.length}} items</font><br>
+            <font style="font-size:1em;">{{state.collections[idx].meta.slugs.length}} items</font><br>
             <button
               @click="view(collection)"
               class="viewCollectionButton"
@@ -94,17 +94,17 @@
             <div class="linkButtons">
               <div
                 class="specialToolButton"
-                @click.prevent.stop="state.setCollectionProperty(collection, 'private', state.collection[idx].meta.private?0:1)"
-                :class="{'private': state.collection[idx].meta.private, 'notPrivate': !state.collection[idx].meta.private}"
-                :title="`toggle visibility. (currently: ${state.collection[idx].meta.private?'NOT':''} featured in public galleries)`"
+                @click.prevent.stop="state.setCollectionProperty(collection, 'private', state.collections[idx].meta.private?0:1)"
+                :class="{'private': state.collections[idx].meta.private, 'notPrivate': !state.collections[idx].meta.private}"
+                :title="`toggle visibility. (currently: ${state.collections[idx].meta.private?'NOT':''} featured in public galleries)`"
               ></div>
               <div
                 class="copyLinkButton"
-                @click.prevent.stop="state.copyLink('col/' + state.collection[idx].slug + '/view')"
+                @click.prevent.stop="state.copyLink('col/' + state.collections[idx].slug + '/view')"
                 title="copy link to clipboard"
               ></div>
               <a
-                :href="state.URLbase + '/col/' + state.collection[idx].slug + '/view'"
+                :href="state.URLbase + '/col/' + state.collections[idx].slug + '/view'"
                 class="openButton"
                 @click.prevent.stop="state.openCollection(collection)"
                 title="open link in new tab"
