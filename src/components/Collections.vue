@@ -19,13 +19,55 @@
       </button>
       <table class="collectionsTable" v-if="state.collections.length">
         <tr>
-          <th>name</th>
-          <th>slug</th>
-          <th>views</th>
-          <th>description</th>
-          <th>age</th>
-          <th>created</th>
-          <th>items</th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='name'}"
+              @click="setSortMode('name')"
+              v-html="`name<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='slug'}"
+              @click="setSortMode('slug')"
+              v-html="`slug<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='views'}"
+              @click="setSortMode('views')"
+              v-html="`views<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='description'}"
+              @click="setSortMode('description')"
+              v-html="`description<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='age'}"
+              @click="setSortMode('age')"
+              v-html="`age<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='created'}"
+              @click="setSortMode('created')"
+              v-html="`created<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='items'}"
+              @click="setSortMode('items')"
+              v-html="`items<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
           <th>collection<br>tools</th>
         </tr>
         <tr v-for="collection in state.collections">
@@ -99,7 +141,59 @@ export default {
     close(){
       this.state.closePrompts()
     },
-    view(collection){
+    setSortMode(mode){
+      switch(mode){
+        case 'name':
+          if(this.sortMode == 'name'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'name'
+          }
+        break
+        case 'slug':
+          if(this.sortMode == 'slug'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'slug'
+          }
+        break
+        case 'views':
+          if(this.sortMode == 'views'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'views'
+          }
+        break
+        case 'description':
+          if(this.sortMode == 'description'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'description'
+          }
+        break
+        case 'age':
+          if(this.sortMode == 'age'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'age'
+          }
+        break
+        case 'created':
+          if(this.sortMode == 'created'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'created'
+          }
+        break
+        case 'items':
+          if(this.sortMode == 'items'){
+            this.sortDir = !this.sortDir
+          } else {
+            this.sortMode = 'items'
+          }
+        break
+      },
+      view(collection){
       this.close()
       this.$nextTick(()=>{
         this.state.previewPosition = 0
@@ -107,6 +201,101 @@ export default {
       })
     }
   },
+  computed:{
+    sortedByItems(){
+      if(this.state.collections){
+        let ids = Array(this.state.collections.length).fill().map((v, idx) => {
+          return {idx, items: v.slugs.length}
+        })
+        ids.sort((a,b)=>(this.sortDir?b:a).items-(this.sortDir?a:b).items)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
+    sortedByViews(){
+      if(this.state.collections){
+        let ids = Array(this.state.collections.length).fill().map((v, idx) => {
+          return {idx, views: v.views}
+        })
+        ids.sort((a,b)=>(this.sortDir?b:a).views-(this.sortDir?a:b).views)
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
+    sortedByCreated(){
+      if(this.state.collections){
+        let ids = Array(this.state.collections.length).fill().map((v, idx) => {
+          return {idx, created: this.state.prettyDate(v.meta)}
+        })
+        ids.sort((a,b)=>{
+          if((this.sortDir?b:a).created == (this.sortDir?a:b).created) return 0
+          if((this.sortDir?b:a).created  < (this.sortDir?a:b).created) return -1
+          if((this.sortDir?b:a).created  > (this.sortDir?a:b).created) return 1
+        })
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
+    sortedByName(){
+      if(this.state.collections){
+        let ids = Array(this.state.collections.length).fill().map((v, idx) => {
+          return {idx, name: v.name}
+        })
+        ids.sort((a,b)=>{
+          if((this.sortDir?b:a).name == (this.sortDir?a:b).name) return 0
+          if((this.sortDir?b:a).name  < (this.sortDir?a:b).name) return -1
+          if((this.sortDir?b:a).name  > (this.sortDir?a:b).name) return 1
+        })
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
+    sortedBySlug(){
+      if(this.state.collections){
+        let ids = Array(this.state.collections.length).fill().map((v, idx) => {
+          return {idx, slug: v.slug}
+        })
+        ids.sort((a,b)=>{
+          if((this.sortDir?b:a).slug == (this.sortDir?a:b).slug) return 0
+          if((this.sortDir?b:a).slug  < (this.sortDir?a:b).slug) return -1
+          if((this.sortDir?b:a).slug  > (this.sortDir?a:b).slug) return 1
+        })
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
+    sortedByDescription(){
+      if(this.state.collections){
+        let ids = Array(this.state.collections.length).fill().map((v, idx) => {
+          return {idx, description: v.description}
+        })
+        ids.sort((a,b)=>{
+          if((this.sortDir?b:a).description == (this.sortDir?a:b).description) return 0
+          if((this.sortDir?b:a).description  < (this.sortDir?a:b).description) return -1
+          if((this.sortDir?b:a).description  > (this.sortDir?a:b).description) return 1
+        })
+        return ids.map(v=>v.idx)
+      }else{
+        return []
+      }
+    },
+    sortedArray(){
+      switch(this.sortMode){
+        case 'name'          : return this.sortedByNames; break
+        case 'slug'          : return this.sortedBySlug; break
+        case 'views'         : return this.sortedByViews; break
+        case 'description'   : return this.sortedByDescription; break
+        case 'downvotes'     : return this.sortedByDownVotes; break
+        case 'avgvotes'      : return this.sortedByAvgViews; break
+        case 'trending'      : return this.sortedByTrending; break
+        case 'dates'         : return this.sortedByDates; break
+      }
+    },
   mounted(){
     this.$refs.collections.focus()
     this.state.fetchCollections(this.state.loggedinUserID)
