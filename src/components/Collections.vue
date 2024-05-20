@@ -362,5 +362,8 @@ export default {
     border-radius: 5px;
     margin: 6px;
   }
-  
+  button{
+    min-width: unset;
+    font-size: 14px;
+  }
 </style>
