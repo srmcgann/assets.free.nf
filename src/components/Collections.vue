@@ -294,7 +294,8 @@ export default {
         case 'created'       : return this.sortedByCreated; break
         case 'items'         : return this.sortedByItems; break
       }
-    },
+    }
+  },
   mounted(){
     this.$refs.collections.focus()
     this.state.fetchCollections(this.state.loggedinUserID)
