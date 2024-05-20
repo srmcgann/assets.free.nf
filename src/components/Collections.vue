@@ -305,8 +305,6 @@ export default {
     }
   },
   mounted(){
-    this.$refs.collections.focus()
-    this.state.fetchCollections(this.state.loggedinUserID)
   }
 }
 </script>
