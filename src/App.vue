@@ -912,6 +912,7 @@ export default {
           page: this.state.curPage,
           maxResultsPerPage: this.state.maxResultsPerPage
         }
+        console.log('fetchUserLinks.php sendData: ', sendData)
         fetch(`${this.URLbase}/` + 'fetchUserLinks.php',{
           method: 'POST',
           headers: {
