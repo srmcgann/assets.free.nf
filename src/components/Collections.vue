@@ -290,10 +290,9 @@ export default {
         case 'slug'          : return this.sortedBySlug; break
         case 'views'         : return this.sortedByViews; break
         case 'description'   : return this.sortedByDescription; break
-        case 'downvotes'     : return this.sortedByDownVotes; break
-        case 'avgvotes'      : return this.sortedByAvgViews; break
-        case 'trending'      : return this.sortedByTrending; break
-        case 'dates'         : return this.sortedByDates; break
+        case 'age'           : return this.sortedByAge; break
+        case 'created'       : return this.sortedByCreated; break
+        case 'items'         : return this.sortedByItems; break
       }
     },
   mounted(){
