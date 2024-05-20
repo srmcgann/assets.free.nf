@@ -576,7 +576,7 @@ export default {
       console.log('state.mode: ', this.state.mode)
       switch(this.state.mode){
         case 'user':
-          history.pushState(null,null,this.URLbase + '/user/' + this.state.userID + `/${this.state.curPage+1}`)
+          history.pushState(null,null,this.URLbase + '/user/' + (this.state.userID ? this.state.userID : this.state.loggedinUserID)+ `/${this.state.curPage+1}`)
         break
         case 'col':
           let colSlug = this.state.previewCollection.slug
