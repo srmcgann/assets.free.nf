@@ -192,8 +192,9 @@ export default {
             this.sortMode = 'items'
           }
         break
-      },
-      view(collection){
+      }
+    },
+    view(collection){
       this.close()
       this.$nextTick(()=>{
         this.state.previewPosition = 0
@@ -201,7 +202,7 @@ export default {
       })
     }
   },
-  computed:{
+  computed: {
     sortedByItems(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
@@ -274,7 +275,7 @@ export default {
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
           return {idx, description: v.description}
         })
-        ids.sort((a,b)=>{
+        ids.sort((a,b) => {
           if((this.sortDir?b:a).description == (this.sortDir?a:b).description) return 0
           if((this.sortDir?b:a).description  < (this.sortDir?a:b).description) return -1
           if((this.sortDir?b:a).description  > (this.sortDir?a:b).description) return 1
