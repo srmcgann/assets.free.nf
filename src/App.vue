@@ -138,6 +138,7 @@ export default {
         copyLink: null,
         avatar: null,
         loadFeaturedItems: null,
+        manageCollections: null,
         getUserStats: null,
         viewCollection: null,
         deleteSingle: null,
@@ -902,6 +903,8 @@ export default {
         if(!!(+data[0])){
           this.state.collections = data[1]
           this.state.showCollectionTemplate = false
+          this.state.showCollections = true
+          this.showLoading = false
         }
       })
     },
@@ -1785,6 +1788,11 @@ export default {
         this.updateCollection(obj)
       }
     },
+    manageCollections(){
+      this.state.closePrompts()
+      this.showLoading = true
+      this.state.fetchCollections(this.state.loggedinUserID)
+    },
     avatar(link){
       if(this.state.userInfo[link.userID]?.avatar.indexOf('avatarDefault.png') != -1){
         return this.state.URLbase + '/avatarDefault.png'
@@ -2245,6 +2253,7 @@ export default {
     this.state.adminDeleteAsset = this.adminDeleteAsset
     this.state.deleteCollection = this.deleteCollection
     this.state.createCollection = this.createCollection
+    this.state.manageCollections = this.manageCollections
     this.state.loadFeaturedItems = this.loadFeaturedItems
     this.state.showEditCollection = this.showEditCollection
     this.state.setCollectionProperty = this.setCollectionProperty
