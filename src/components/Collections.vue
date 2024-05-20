@@ -137,6 +137,13 @@ export default {
   components:{
     CollectionTemplate,
   },
+  data(){
+    return {
+      sortDir: true,
+      sortMode: 'age',
+      array: JSON.parse(JSON.stringify(this.state.collections))
+    }
+  },
   methods: {
     close(){
       this.state.closePrompts()
