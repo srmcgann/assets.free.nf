@@ -1152,6 +1152,7 @@ export default {
       this.state.showPreview = true
     },
     deleteCollection(collection){
+      console.log('deleteCollection: ', collection)
       let prmpt = prompt(`\n\nARE YOU SURE YOU WANT TO DELETE THIS COLLECTION?\n\n   it contains ${collection.meta.slugs.length} items\n\nThe items if any, will not be deleted... only the collection\n\n>>> THIS ACTION CANNOT BE UNDONE! <<<\n\n  type 'yes' to continue"`)
       if(prmpt && prmpt.toLowerCase().indexOf('yes') != -1){
         let sendData = {
