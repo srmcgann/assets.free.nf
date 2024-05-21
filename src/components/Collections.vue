@@ -139,7 +139,7 @@ export default {
   },
   data(){
     return {
-      sortDir: true,
+      sortDir: false,
       sortMode: 'age',
       array: JSON.parse(JSON.stringify(this.state.collections, true))
     }
@@ -236,7 +236,6 @@ export default {
       console.log('computed: sortedByAge')
       if(this.array){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          console.log('collection date: ', this.state.collections[idx].meta.date)
           return {idx, age: (new Date(this.state.collections[idx].meta.date)).getTime()}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).age-(this.sortDir?a:b).age)
@@ -248,13 +247,9 @@ export default {
     sortedByCreated(){
       if(this.array){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, created: this.state.prettyDate(this.state.collections[idx].meta)}
+          return {idx, created: (new Date(this.state.collections[idx].meta.date)).getTime()}
         })
-        ids.sort((a,b)=>{
-          if((this.sortDir?b:a).created == (this.sortDir?a:b).created) return 0
-          if((this.sortDir?b:a).created  < (this.sortDir?a:b).created) return -1
-          if((this.sortDir?b:a).created  > (this.sortDir?a:b).created) return 1
-        })
+        ids.sort((a,b)=>(this.sortDir?b:a).created-(this.sortDir?a:b).created)
         return ids.map(v=>v.idx)
       }else{
         return []
