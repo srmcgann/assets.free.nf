@@ -141,7 +141,7 @@ export default {
     return {
       sortDir: true,
       sortMode: 'age',
-      array: structuredClone(this.state.collections, true)
+      array: JSON.parse(JSON.stringify(this.state.collections, true))
     }
   },
   methods: {
@@ -316,7 +316,7 @@ export default {
     }
   },
   mounted(){
-    this.array = structuredClone(this.state.collections, true)
+    this.array = JSON.parse(JSON.stringify(this.state.collections))
   }
 }
 </script>
