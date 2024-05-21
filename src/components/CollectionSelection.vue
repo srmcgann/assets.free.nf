@@ -12,7 +12,7 @@
     </button>
     <button
       @mousedown.stop.prevent
-      @click.stop.prevent="manageCollections()"
+      @click.stop.prevent="state.manageCollections()"
       class="assetDataButton"
       style="background: #4f8d"
       title="view and edit your collections"
@@ -108,10 +108,6 @@ export default {
           return !!collection.meta.slugs.filter(v=>v==this.links.slug).length
         break
       }
-    },
-    manageCollections(){
-      this.state.closePrompts()
-      this.state.showCollections = true
     },
     toggleShowCollection(){
       this.state.doMouseDown()

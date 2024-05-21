@@ -43,7 +43,7 @@ todo
   ✔ magnifying glass tool @ previews
   ✔ URL/mode for 'user' (added to 'default', 'col', 'item')
   ✔ featured items, & tool for browsing user content by admins, to add to featured items
-  * make columns in admin view sortable
+  ✔ make columns in admin view sortable
   * add sortability to collections list columns
   * users may download their entire catalog as a zip file (may have to wait for proper hosting)
   * URLs for all "screens", including collections, with back-button functionality
