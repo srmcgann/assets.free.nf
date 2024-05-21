@@ -213,7 +213,7 @@ export default {
     sortedByItems(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, items: this.state.collections[idx].slugs.length}
+          return {idx, items: this.state.collections[idx].meta.slugs.length}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).items-(this.sortDir?a:b).items)
         return ids.map(v=>v.idx)
@@ -224,7 +224,7 @@ export default {
     sortedByViews(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, views: this.state.collections[idx].views}
+          return {idx, views: this.state.collections[idx].meta.views}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).views-(this.sortDir?a:b).views)
         return ids.map(v=>v.idx)
@@ -280,7 +280,7 @@ export default {
     sortedByDescription(){
       if(this.state.collections){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, description: this.state.collections[idx].description}
+          return {idx, description: this.state.collections[idx].meta.description}
         })
         ids.sort((a,b) => {
           if((this.sortDir?b:a).description == (this.sortDir?a:b).description) return 0
