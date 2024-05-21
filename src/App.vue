@@ -877,7 +877,7 @@ export default {
           }
         }else{
           if(show){
-            this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>this collection has no items!</div>`
+            this.state.modalContent = `<div style="width: 500px; padding: 50px; background: #400b; position:absolute; text-align: center;font-size: 24px; color: white; top: 50%; left: 50%; transform: translate(-50%, -50%);">oh snap.<br><br>this collection has no items, or this asset is private!</div>`
             this.state.showModal = true
           }
         }
@@ -1033,6 +1033,50 @@ export default {
       this.state.miscLinks.map(v=>{
         v.selected = false
       })
+    },
+    downloadFullZip(){
+      if(!this.state.loggedIn) return
+      let el = document.createElement('iframe')
+      el.style.opacity=.01
+      el.style.position='absolute'
+      document.body.appendChild(el)
+      el.src = `${state.URLbase}/downloadFullZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}`
+    },
+    downloadZip(){
+      if(!this.state.loggedIn) return
+      let count = 0
+      let confirmed = false
+      let linksToProcess = []
+      let userLinksToProcess = []
+      let miscLinksToProcess = []
+      let slugs = []
+      this.state.links.map((v, i) => {
+        if(v.selected){
+          count++
+          linksToProcess = [...linksToProcess, v.id]
+          slugs = [...slugs, v.slug]
+        }
+      })
+      this.state.userLinks.map((v, i) => {
+        if(v.selected){
+          count++
+          userLinksToProcess = [...userLinksToProcess, v.id]
+          slugs = [...slugs, v.slug]
+        }
+      })
+      this.state.miscLinks.map((v, i) => {
+        if(v.selected){
+          count++
+          miscLinksToProcess = [...miscLinksToProcess, v.id]
+          slugs = [...slugs, v.slug]
+        }
+      })
+
+      let el = document.createElement('iframe')
+      el.style.opacity=.01
+      el.style.position='absolute'
+      document.body.appendChild(el)
+      el.src = `${state.URLbase}/downloadFullZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}&slugs=[${slugs.join(',')}]`
     },
     deleteSelected(){
       let count = 0
