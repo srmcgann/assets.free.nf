@@ -111,7 +111,7 @@
           <br><br><br><br><br>
           this user has no<br>public items at this time
         </div>
-        <div v-if="state.mode=='col' || state.mode=='item' && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
+        <div v-if="!showFeatured && (state.mode=='col' || state.mode=='item') && !state.showPreview && !state.showAdmin && state.miscLinks.length" class="links">
           <Link
             :state="state"
             :omitAssetData="false"
