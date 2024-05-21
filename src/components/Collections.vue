@@ -80,12 +80,12 @@
           <td>
             <font style="font-size:1em;">{{state.collections[idx].meta.slugs.length}} items</font><br>
             <button
-              @click="view(collection)"
+              @click="view(state.collections[idx])"
               class="viewCollectionButton"
               title="view this collection"
             >view</button><br>
             <button
-              @click="state.showEditCollection(collection)"
+              @click="state.showEditCollection(state.collections[idx])"
               class="editCollectionButton"
               title="edit this collection"
             >edit</button>
@@ -94,7 +94,7 @@
             <div class="linkButtons">
               <div
                 class="specialToolButton"
-                @click.prevent.stop="state.setCollectionProperty(collection, 'private', state.collections[idx].meta.private?0:1)"
+                @click.prevent.stop="state.setCollectionProperty(state.collections[idx], 'private', state.collections[idx].meta.private?0:1)"
                 :class="{'private': state.collections[idx].meta.private, 'notPrivate': !state.collections[idx].meta.private}"
                 :title="`toggle visibility. (currently: ${state.collections[idx].meta.private?'NOT':''} featured in public galleries)`"
               ></div>
@@ -106,7 +106,7 @@
               <a
                 :href="state.URLbase + '/col/' + state.collections[idx].slug + '/view'"
                 class="openButton"
-                @click.prevent.stop="state.openCollection(collection)"
+                @click.prevent.stop="state.openCollection(state.collections[idx])"
                 title="open link in new tab"
               ></a>
               <!-- <div
@@ -116,7 +116,7 @@
               ></div> -->
               <div
                 class="deleteSingleButton"
-                @click.prevent.stop="state.deleteCollection(collection)"
+                @click.prevent.stop="state.deleteCollection(state.collections[idx])"
                 title="delete this collection"
               ></div>
             </div>
