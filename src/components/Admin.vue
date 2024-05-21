@@ -30,7 +30,7 @@
               <button
                 :class="{'sortCol': sortMode=='trending'}"
                 @click="setSortMode('trending')"
-                v-html="`size<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+                v-html="`trending<br>${sortDir ? '&#8679;' : '&#8681;'}`"
               ></button>
             </th>
 
