@@ -233,9 +233,11 @@ export default {
       }
     },
     sortedByAge(){
+      console.log('computed: sortedByAge')
       if(this.array){
         let ids = Array(this.state.collections.length).fill().map((v, idx) => {
-          return {idx, age: this.state.collections[idx].meta.date}
+          console.log('collection date: ', this.state.collections[idx].meta.date)
+          return {idx, age: (new Date(this.state.collections[idx].meta.date)).getTime()}
         })
         ids.sort((a,b)=>(this.sortDir?b:a).age-(this.sortDir?a:b).age)
         return ids.map(v=>v.idx)
