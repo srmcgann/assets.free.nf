@@ -7,11 +7,10 @@
   //$data = json_decode(file_get_contents('php://input'));
   //$userName = mysqli_real_escape_string($link, $data->{'userName'});
   //$passhash = mysqli_real_escape_string($link, $data->{'passhash'});
-  $userName = mysqli_real_escape_string($link, $_GET['userName']);
-  $passhash = mysqli_real_escape_string($link, $_GET['passhash']);
-  $slugs = $slugs = $data->{'slugs'};
-  
-  $success = false;
+  $userName    = mysqli_real_escape_string($link, $_GET['userName']);
+  $passhash    = mysqli_real_escape_string($link, $_GET['passhash']);
+  $slugs       = json_decode($_GET['slugs']);
+  $success     = false;
   $resourceDir = './resources';
   if($userName && $passhash){
     $sql = "SELECT * FROM imjurUsers WHERE name LIKE \"$userName\" AND passhash LIKE BINARY \"$passhash\";";
@@ -40,8 +39,8 @@
           $ct++;
         }
       }
+      $zip->close();
       if($ct){
-        $zip->close();
         $date = date("Y_M_d H_i_s");
         $zipfileName = "asset catalogue [$userName - $date].zip";
         header('Content-Type: application/zip');
