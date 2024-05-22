@@ -40,14 +40,13 @@ error_reporting(E_ALL);
     $row      = mysqli_fetch_assoc($res);
     $slug     = $row['slug'];
     $uploadID = $row['id'];
+    $votes = 0;
     if($enabled){
       $sql = "SELECT * FROM imjurVotes WHERE userID = $userID AND uploadID = $uploadID";
       $res2 = mysqli_query($link, $sql);
       if(mysqli_num_rows($res2)){
         $row2 = mysqli_fetch_assoc($res2);
         $votes = $row2['value'];
-      }else{
-        $votes = 0;
       }
     }
     $m = [
