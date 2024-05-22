@@ -32,6 +32,7 @@
         $name     = $row['name'];
         $suffix   = getSuffix($filetype);
         $asset    = "$resourceDir/$oslug.$suffix";
+        $fileName = "$name.$suffix";
         $zip->addFile($asset, $fileName);
       }
       $zip->close();
