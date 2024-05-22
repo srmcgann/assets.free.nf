@@ -29,7 +29,7 @@ export default {
       for(let j=0;j<this.numv;j++){
         let el = document.querySelector(`#vel_${this.link.slug}_${j+1}`)
         el.style.color='#40f'
-        el.style.textShadow = '5px 5px 5px #000'
+        el.style.textShadow = '3px 3px 5px #000'
         if(j<this.votes) el.style.color='red'
       }
     },
@@ -67,7 +67,6 @@ export default {
     box-sizing: border-box;
   }
   .votes{
-    text-shadow: 2px 2px #000;
     border-radius: 100px;
     text-align: center;
     width: calc(100% - 10px);
@@ -75,7 +74,7 @@ export default {
     background: #2088;
     display: inline-block;
     vertical-align: top;
-    font-size: 200%;
+    font-size: 150%;
     margin-top:10px;
     line-height: 90%;
     margin-bottom: 10px;
@@ -90,7 +89,7 @@ export default {
     text-align: center;
     display: inline-block;
     width: 9.5%;
-    text-shadow: 5px 5px 5px #000;
+    text-shadow: 3px 3px 5px #000;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */        
    -moz-user-select: none; /* Firefox */
