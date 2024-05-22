@@ -729,6 +729,7 @@ export default {
       }
     },
     loadFeaturedItems(){
+      if(this.state.mode == 'col') return
       let sendData = {
       }
       fetch(`${this.URLbase}/` + 'loadFeaturedItems.php',{
