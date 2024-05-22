@@ -44,16 +44,17 @@ todo
   ✔ URL/mode for 'user' (added to 'default', 'col', 'item')
   ✔ featured items, & tool for browsing user content by admins, to add to featured items
   ✔ make columns in admin view sortable
-  * [bug] "private" collections are not visible (by link, e.g.) to owner
-  * add sortability to collections list columns
-  * users may download their entire catalog as a zip file (may have to wait for proper hosting)
-  * URLs for all "screens", including collections, with back-button functionality
+  ✔ "trending/popular" page
+  ✔ add sortability to collections list columns
+  ✔ download entire catalog as a zip file
+  ✔ download selected as a zip file
+  ✔ URLs for all "screens", including collections, with back-button functionality
     └-> ✔ default
     └-> ✔ collections
     └-> ✔  asset management/tools
            └->  ✔ collections
            └->  ✔ stats/overview (when made)
-           └->  * comments (when made)
+           └->  ✔ comments (when made)
   * users, optional logins/profiles
     └-> ✔ login button
     └-> ✔ profile page
@@ -62,7 +63,6 @@ todo
     └-> * votes
         
   * search (title/description/user/comments[optional])
-  * "trending/popular" page
   * social media metadata
   * load/resource balancing
   * admin data -> add 'owner' & 'number of owners' for disk assets
