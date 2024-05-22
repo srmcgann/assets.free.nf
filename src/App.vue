@@ -88,6 +88,8 @@ export default {
         showEditCollection: null,
         editCollection: [],
         fetchUserInfoMemo: [],
+        downloadZip: null,
+        downloadFullZip: null,
         adminDeleteAsset: null,
         linkify: null,
         editingComment: false,
@@ -2258,6 +2260,7 @@ export default {
     this.state.fileName = this.fileName
     this.state.copyLink = this.copyLink
     this.state.openLink = this.openLink
+    this.state.downloadZip = this.downloadZip
     this.state.register = this.register
     this.state.lastPage = this.lastPage
     this.state.isNumber = this.isNumber
@@ -2301,6 +2304,7 @@ export default {
     this.state.deleteSelected = this.deleteSelected
     this.state.loadCollection = this.loadCollection
     this.state.openCollection = this.openCollection
+    this.state.downloadFullZip = this.downloadFullZip
     this.state.setLinkProperty = this.setLinkProperty
     this.state.showUserSettings = this.showUserSettings
     this.state.fetchCollections = this.fetchCollections
