@@ -42,7 +42,7 @@ export default {
       this.clearVel()
       let vel = document.querySelector(`#vel_${this.link.slug}_${idx+1}`)
       vel.style.textShadow = '0 0 20px #fff'
-      for(let j=0;j<=idx;j++){
+      for(let j=0;j<idx;j++){
         document.querySelector(`#vel_${this.link.slug}_${j+1}`).style.color='#0f8'
       }
     }
@@ -83,7 +83,7 @@ export default {
     position: relative;
     transform: translate(-50%);
     color: #40f;
-    box-shadow: 0 0 10px 10px #0f44;
+    box-shadow: 0 0 20px 0px #0f8;
     max-width: 350px;
   }
   .vel{
