@@ -37,9 +37,19 @@ error_reporting(E_ALL);
   $links = [];
   $meta = [];
   for($i=0; $i<mysqli_num_rows($res); ++$i){
-    $row = mysqli_fetch_assoc($res);
-    $slug = $row['slug'];
+    $row      = mysqli_fetch_assoc($res);
+    $slug     = $row['slug'];
     $uploadID = $row['id'];
+    if($enabled){
+      $sql = "SELECT * FROM imjurVotes WHERE userID = $userID AND uploadID = $uploadID";
+      $res2 = mysqli_query($link, $sql);
+      if(mysqli_num_rows($res2)){
+        $row2 = mysqli_fetch_assoc($res2);
+        $votes = $row2['value'];
+      }else{
+        $votes = 0;
+      }
+    }
     $m = [
       'id'             => $uploadID,
       'slug'           => $slug,
@@ -50,6 +60,7 @@ error_reporting(E_ALL);
       'date'           => $row['date'],
       'userID'         => $row['userID'],
       'origin'         => $row['origin'],
+      'votes'          => $votes,
       'upvotes'        => $row['upvotes'],
       'private'        => $row['private'],
       'downvotes'      => $row['downvotes'],

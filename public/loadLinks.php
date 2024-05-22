@@ -8,6 +8,19 @@ error_reporting(0);
   $slugs = $data->{'slugs'};
   $forCollection = $data->{'forCollection'};
   $collectionID = mysqli_real_escape_string($link, $data->{'collectionID'});
+  $userName = mysqli_real_escape_string($link, $data->{'userName'});
+  $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
+  
+  $loggedIn = false;
+  if($userName && $passhash){
+    $sql = "SELECT * FROM imjurUsers WHERE name LIKE \"$userName\" AND passhash LIKE BINARY \"$passhash\";";
+    $res = mysqli_query($link, $sql);
+  }
+  if(mysqli_num_rows($res)){
+    $loggedIn = true;
+    $row = mysqli_fetch_assoc($res);
+    $loggedinUserID = $row['id'];
+  }
 
   $sql = "SELECT * FROM imjurUploads WHERE slug LIKE BINARY";
   $ct = sizeof($slugs);
@@ -23,10 +36,22 @@ error_reporting(0);
   $links = [];
   $meta = [];
   for($i=0; $i<mysqli_num_rows($res); ++$i){
-    $row = mysqli_fetch_assoc($res);
-    $slug = $row['slug'];
+    $row      = mysqli_fetch_assoc($res);
+    $slug     = $row['slug'];
+    $uploadID = $row['id'];
+    if($loggedIn){
+      $sql = "SELECT * FROM imjurVotes WHERE userID = $loggedinUserID AND uploadID = $uploadID";
+      $res2 = mysqli_query($link, $sql);
+      if(mysqli_num_rows($res2)){
+        $row2 = mysqli_fetch_assoc($res2);
+        $votes = $row2['value'];
+      }else{
+        $votes = 0;
+      }
+    }
+    
     $m = [
-      'id'           => $row['id'],
+      'id'           => $uploadID,
       'slug'         => $slug,
       'hash'         => $row['hash'],
       'size'         => json_decode($row['meta'])->{'file size'},
@@ -35,6 +60,7 @@ error_reporting(0);
       'date'         => $row['date'],
       'userID'       => $row['userID'],
       'origin'       => $row['origin'],
+      'votes'        => $votes,
       'upvotes'      => $row['upvotes'],
       'private'      => $row['private'],
       'downvotes'    => $row['downvotes'],
