@@ -36,12 +36,13 @@ export default {
     click(idx){
       this.votes = this.votes == idx ? 0 : idx
       this.clearVel()
+      this.state.setVote(this.link.slug, this.this.votes)
     },
     mouseover(idx){
       this.clearVel()
       let vel = document.querySelector(`#vel_${this.link.slug}_${idx+1}`)
       vel.style.textShadow = '0 0 20px #fff'
-      for(let j=0;j<=idx;j++){
+      for(let j=0;j<idx;j++){
         document.querySelector(`#vel_${this.link.slug}_${j+1}`).style.color='#0f8'
       }
     }
@@ -52,6 +53,7 @@ export default {
     }
   },
   mounted(){
+    this.votes = this.link.votes
     Array(this.numv).fill().map((v, i) => {
       let vel = document.querySelector(`#vel_${this.link.slug}_${i+1}`)
       if(i<this.votes) vel.style.color='red'
@@ -66,11 +68,11 @@ export default {
   }
   .votes{
     text-shadow: 2px 2px #000;
-    border-radius: 10px;
+    border-radius: 100px;
     text-align: center;
     width: calc(100% - 10px);
     height: 55px;
-    background: #208;
+    background: #2088;
     display: inline-block;
     vertical-align: top;
     font-size: 150%;
@@ -81,7 +83,7 @@ export default {
     position: relative;
     transform: translate(-50%);
     color: #40f;
-    box-shadow: 0 0 10px 5px #04f;
+    box-shadow: 0 0 10px 10px #0f44;
     max-width: 350px;
   }
   .vel{
