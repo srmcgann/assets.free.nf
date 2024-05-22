@@ -24,7 +24,7 @@
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
       $f = tempnam(sys_get_temp_dir(), 'zip');
-      //register_shutdown_function('unlink', $f);
+      register_shutdown_function('unlink', $f);
       $zip = new ZipArchive();
       $zip->open($f, ZipArchive::OVERWRITE);
       for($i=0; $i<mysqli_num_rows($res); ++$i){
@@ -47,6 +47,7 @@
         header('Content-Type: application/zip');
         header('Content-Length: ' . filesize($f));
         header('Content-Disposition: attachment; filename="'.$zipfileName.'"');
+        readfile($f);
       }
     }
   }
