@@ -26,11 +26,12 @@ export default {
   },
   methods: {
     clearVel(){
+      console.log('refs: ', this.$refs)
       for(let j=0;j<this.numv;j++){
         let el = this.$refs[`vel_${j}`]
         el.style.color='#40f'
         el.style.textShadow = '5px 5px 5px #000'
-        if(j<votes) el.style.color='red'
+        if(j<this.votes) el.style.color='red'
       }
     },
     click(idx){
