@@ -19,7 +19,7 @@
   if(mysqli_num_rows($res)){
     $ct = 0;
     $row = mysqli_fetch_assoc($res);
-    $userID = $row['userID'];
+    $userID = $row['id'];
     $sql = "SELECT * FROM imjurUploads WHERE userID = $userID";
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
