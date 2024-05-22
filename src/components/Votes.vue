@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     clearVel(){
-      for(let j=0;j<=this.numv;j++){
+      for(let j=0;j<this.numv;j++){
         let el = document.querySelector(`#vel_${this.link.slug}_${j+1}`)
         el.style.color='#40f'
         el.style.textShadow = '5px 5px 5px #000'
