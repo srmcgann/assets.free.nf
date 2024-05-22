@@ -26,8 +26,8 @@ export default {
   },
   methods: {
     clearVel(){
-      for(let j=0;j<this.numv;j++){
-        let el = document.querySelector(`#vel_${this.link.slug}_${j}`)
+      for(let j=0;j<=this.numv;j++){
+        let el = document.querySelector(`#vel_${this.link.slug}_${j+1}`)
         el.style.color='#40f'
         el.style.textShadow = '5px 5px 5px #000'
         if(j<this.votes) el.style.color='red'
@@ -40,10 +40,10 @@ export default {
     },
     mouseover(idx){
       this.clearVel()
-      let vel = document.querySelector(`#vel_${this.link.slug}_${idx}`)
+      let vel = document.querySelector(`#vel_${this.link.slug}_${idx+1}`)
       vel.style.textShadow = '0 0 20px #fff'
-      for(let j=0;j<idx;j++){
-        document.querySelector(`#vel_${this.link.slug}_${j}`).style.color='#0f8'
+      for(let j=0;j<=idx;j++){
+        document.querySelector(`#vel_${this.link.slug}_${j+1}`).style.color='#0f8'
       }
     }
   },
@@ -55,7 +55,7 @@ export default {
   mounted(){
     this.votes = this.link.votes
     Array(this.numv).fill().map((v, i) => {
-      let vel = document.querySelector(`#vel_${this.link.slug}_${i}`)
+      let vel = document.querySelector(`#vel_${this.link.slug}_${i+1}`)
       if(i<this.votes) vel.style.color='red'
     })
   }
