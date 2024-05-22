@@ -4,7 +4,7 @@
       v-for="idx in numv"
       :ref="`vel_${idx}`"
       class="vel"
-      v-html="❤"
+      v-html="'❤'"
       @click="click(idx)"
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
