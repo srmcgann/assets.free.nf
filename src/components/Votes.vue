@@ -56,6 +56,11 @@ export default {
       }
     }
   },
+  watch:{
+    'link.votes'(val){
+      this.votes = val
+    }
+  },
   computed:{
     vt(){
       return `your vote: ${this.votes}`
