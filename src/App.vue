@@ -91,6 +91,7 @@ export default {
         downloadZip: null,
         downloadFullZip: null,
         adminDeleteAsset: null,
+        setVote: null,
         linkify: null,
         editingComment: false,
         multipleLinks: null,
@@ -1305,6 +1306,28 @@ export default {
       document.cookie = 'autoplay=' + this.state.autoplay + '; expires=' + (new Date((Date.now()+3153600000000))).toUTCString() + '; path=/; domain=' + this.state.rootDomain
       document.cookie = 'showControls=' + this.state.showControls + '; expires=' + (new Date((Date.now()+3153600000000))).toUTCString() + '; path=/; domain=' + this.state.rootDomain
     },
+    setVote(slug, val){
+      let sendData = {
+        userName: this.state.username,
+        passhash: this.state.passhash,
+        slug, val
+      }
+      fetch(`${this.URLbase}/` + 'setVote.php',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data[0]){
+          console.log(`successfully set vote for slug ${slug} to ${val}`)
+        }else{
+          console.log(`there was a problem setting the vote for slug ${slug} to ${val}`)
+        }
+      })
+    },
     login(){
       let sendData = {userName: this.state.username, password: this.state.password}
       fetch(`${this.URLbase}/` + 'login.php',{
@@ -1731,7 +1754,13 @@ export default {
       tgtSlugs = tgtSlugs.filter(slug => !cullSlgs.filter(slug_=> slug_==slug).length)
 
       if(tgtSlugs.length){
-        let sendData = { slugs: tgtSlugs, forCollection, collectionID }
+        let sendData = {
+          slugs: tgtSlugs,
+          forCollection,
+          collectionID,
+          userName: this.state.userName,
+          passhash: this.state.passhash
+        }
         fetch(`${this.URLbase}/` + 'loadLinks.php', {
           method: 'POST',
           headers: {
@@ -1750,6 +1779,7 @@ export default {
                 href: v,
                 userID: +data[2][i].userID,
                 id: +data[2][i].id,
+                votes: +data[2][i].votes,
                 name: decodeURIComponent(data[2][i].name),
                 description: decodeURIComponent(data[2][i].description),
                 slug: data[2][i].slug,
@@ -2261,11 +2291,11 @@ export default {
     this.state.addLink = this.addLink
     this.state.URLbase = this.URLbase
     this.state.preview = this.preview
+    this.state.setVote = this.setVote
     this.state.linkify = this.linkify
     this.state.fileName = this.fileName
     this.state.copyLink = this.copyLink
     this.state.openLink = this.openLink
-    this.state.downloadZip = this.downloadZip
     this.state.register = this.register
     this.state.lastPage = this.lastPage
     this.state.isNumber = this.isNumber
@@ -2289,6 +2319,7 @@ export default {
     this.state.regressPage = this.regressPage
     this.state.deSelectAll = this.deSelectAll
     this.state.setUserPref = this.setUserPref
+    this.state.downloadZip = this.downloadZip
     this.state.deleteSingle = this.deleteSingle
     this.state.getAdminData = this.getAdminData
     this.state.closePrompts = this.closePrompts
