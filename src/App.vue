@@ -1047,7 +1047,7 @@ export default {
       el.style.opacity=.01
       el.style.position='absolute'
       document.body.appendChild(el)
-      el.src = `${this.state.URLbase}/downloadFullZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}`
+      el.src = `${this.state.URLbase}/getFullZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}`
     },
     downloadZip(){
       if(!this.state.loggedIn) return
@@ -1088,7 +1088,7 @@ export default {
       el.style.opacity=.01
       el.style.position='absolute'
       document.body.appendChild(el)
-      el.src = `${this.state.URLbase}/downloadZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}&slugs=[${slugs.join(',')}]`
+      el.src = `${this.state.URLbase}/getZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}&slugs=[${slugs.join(',')}]`
     },
     deleteSelected(){
       let count = 0
