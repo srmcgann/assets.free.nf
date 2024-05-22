@@ -36,7 +36,7 @@ export default {
       }
     },
     click(idx){
-      this.votes = this.votes == idx+1 ? 0 : idx+1
+      this.votes = this.votes == idx ? 0 : idx
       this.clearVel()
     },
     mouseover(idx){
@@ -68,16 +68,20 @@ export default {
   }
   .votes{
     text-shadow: 2px 2px #000;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
-    width: 100%;
+    width: calc(100% - 50px);
     height: 65px;
     background: #208;
     display: inline-block;
     vertical-align: top;
     font-size: 200%;
     line-height: 95%;
-    border: 2px solid #40f;
+    margin-bottom: 10px;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%);
+    box-shadow: 0 0 10px 5px #04f;
   }
   .vel{
     text-align: center;
@@ -96,7 +100,7 @@ export default {
     line-height: 20px;
     height: 26px;
     font-size: 18px;
-    text-align: left;
+    text-align: center;
     padding-left: 4%;
   }
 </style>
