@@ -1,5 +1,6 @@
 <template>
   <div class="votes">
+    <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in numv"
       :ref="`vel_${idx}`"
@@ -9,7 +10,6 @@
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
     ></span>
-    <div class="votingTitle" v-html="vt"></div>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     clearVel(){
-      for(let j=0;j<numv;j++){
+      for(let j=0;j<this.numv;j++){
         let el = this.$refs[`vel_${j}`]
         el.style.color='#40f'
         el.style.textShadow = '5px 5px 5px #000'
@@ -67,17 +67,13 @@ export default {
   .votes{
     text-shadow: 2px 2px #000;
     border-radius: 20px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
     width: 100%;
-    height: 105px;
+    height: 65px;
     background: #208;
     display: inline-block;
     vertical-align: top;
-    font-size: 575%;
+    font-size: 200%;
     line-height: 95%;
     border: 2px solid #40f;
   }
