@@ -3,8 +3,7 @@
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in numv"
-      :ref="`vel_${idx}`"
-      :key="`vel_${idx}`"
+      :id="link.slug+'_'+idx"
       class="vel"
       v-html="'❤'"
       @click="click(idx)"
@@ -28,7 +27,7 @@ export default {
   methods: {
     clearVel(){
       for(let j=0;j<this.numv;j++){
-        let el = this.$refs[`vel_${j+1}`]
+        let el = document.getElementByID(`${this.link.slug}_${j+1}`)
         el.style.color='#40f'
         el.style.textShadow = '5px 5px 5px #000'
         if(j<this.votes) el.style.color='red'
@@ -40,10 +39,10 @@ export default {
     },
     mouseover(idx){
       this.clearVel()
-      let vel = this.$refs[`vel_${idx+1}`]
+      let vel = document.getElementByID(`${this.link.slug}_${idx+1}`)
       vel.style.textShadow = '0 0 20px #fff'
       for(let j=0;j<=idx;j++){
-        this.$refs[`vel_${j+1}`].style.color='#0f8'
+        document.getElementByID(`${this.link.slug}_${j+1}`).style.color='#0f8'
       }
     }
   },
@@ -54,7 +53,7 @@ export default {
   },
   mounted(){
     Array(this.numv).fill().map((v, i) => {
-      let vel = this.$refs[`vel_${i+1}`]
+      let vel = document.getElementByID(`${this.link.slug}_${i+1}`)
       if(i<this.votes) vel.style.color='red'
     })
   }
