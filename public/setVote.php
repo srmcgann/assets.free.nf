@@ -8,7 +8,7 @@
   $userName = mysqli_real_escape_string($link, $data->{'userName'});
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
   $slug     = mysqli_real_escape_string($link, $data->{'slug'});
-  $vakye    = mysqli_real_escape_string($link, $data->{'val'});
+  $value    = mysqli_real_escape_string($link, $data->{'val'});
   
   $success  = false;
   if($userName && $passhash){
