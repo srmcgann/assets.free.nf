@@ -30,9 +30,10 @@
       for($i=0; $i<mysqli_num_rows($res); ++$i){
         $row = mysqli_fetch_assoc($res);
         $filetype = $row['filetype'];
-        $oslug    = $row['originalSlug'];
-        if(array_search($oslug, $slugs) !== false){
+        $slug_    = $row['slug'];
+        if(array_search($slug_, $slugs) !== false){
           $name     = $row['name'];
+          $oslug    = $row['originalSlug'];
           $suffix   = getSuffix($filetype);
           $asset    = "$resourceDir/$oslug.$suffix";
           $fileName = "$name.$suffix";

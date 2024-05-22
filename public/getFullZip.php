@@ -41,8 +41,6 @@
       header('Content-Type: application/zip');
       header('Content-Length: ' . filesize($f));
       header('Content-Disposition: attachment; filename="'.$zipfileName.'"');
-      //ob_end_clean();
-      //flush();
       readfile($f);
     }
   }
