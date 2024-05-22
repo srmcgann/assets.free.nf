@@ -40,7 +40,7 @@ export default {
     },
     mouseover(idx){
       this.clearVel()
-      let vel = document.querySelector(`#vel_${this.link.slug}_${idx+1}`)
+      let vel = document.querySelector(`#vel_${this.link.slug}_${idx}`)
       vel.style.textShadow = '0 0 20px #fff'
       for(let j=0;j<idx;j++){
         document.querySelector(`#vel_${this.link.slug}_${j+1}`).style.color='#0f8'
