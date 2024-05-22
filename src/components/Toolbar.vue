@@ -226,9 +226,7 @@ export default {
   },
   methods: {
     loadFeatured(){
-      this.state.miscLinks = []
       this.state.loadFeaturedItems()
-      this.state.mode='trending'
     },
     viewCollection(collection){
       this.state.previewPosition = 0

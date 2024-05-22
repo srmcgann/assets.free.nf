@@ -729,9 +729,8 @@ export default {
       }
     },
     loadFeaturedItems(){
-      if(this.state.mode == 'col') return
-      let sendData = {
-      }
+      this.state.mode = 'trending'
+      let sendData = {}
       fetch(`${this.URLbase}/` + 'loadFeaturedItems.php',{
         method: 'POST',
         headers: {
@@ -741,6 +740,7 @@ export default {
       }).then(res => res.json()).then(data=>{
         if(data[0]){
           console.log('loaded featured items: ', data[1])
+          this.state.miscLinks = []
           this.state.featuredItems = data[1].map(v=>v.slug)
           this.state.loadLinks(this.state.featuredItems)
         }else{
@@ -1554,11 +1554,14 @@ export default {
         console.log('flow ',3)
         this.state.curPage = 0
         if(this.state.loggedIn) this.fetchUserLinks(this.state.loggedinUserID)
-        this.state.mode = 'default'
-        this.state.loadFeaturedItems()
+        if(this.state.loggedIn){
+          this.state.mode = 'default'
+        }else{
+          this.state.loadFeaturedItems()
+        }
       }
       console.log('mode', this.state.mode)
-      if(this.state.mode != 'item') this.state.loadFeaturedItems()
+      //if(this.state.mode != 'item') this.state.loadFeaturedItems()
     },
     submitComment(){
       if(!this.state.newComment ||
