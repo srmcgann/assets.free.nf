@@ -3,7 +3,7 @@
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in numv"
-      :id="link.slug+'_'+idx"
+      :id="'vel_'+link.slug+'_'+idx"
       class="vel"
       v-html="'❤'"
       @click="click(idx)"
