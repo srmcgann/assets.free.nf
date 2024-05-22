@@ -4,6 +4,7 @@
     <span
       v-for="idx in numv"
       :ref="`vel_${idx}`"
+      :key="`vel_${idx}`"
       class="vel"
       v-html="'❤'"
       @click="click(idx)"
@@ -21,7 +22,7 @@ export default {
   data(){
     return {
       numv: 6,
-      votes: 0
+      votes: 0,
     }
   },
   methods: {
