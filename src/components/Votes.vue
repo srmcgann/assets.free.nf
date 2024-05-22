@@ -27,9 +27,8 @@ export default {
   },
   methods: {
     clearVel(){
-      console.log('refs: ', this.$refs)
       for(let j=0;j<this.numv;j++){
-        let el = this.$refs[`vel_${j}`]
+        let el = this.$refs[`vel_${j+1}`]
         el.style.color='#40f'
         el.style.textShadow = '5px 5px 5px #000'
         if(j<this.votes) el.style.color='red'
@@ -41,10 +40,10 @@ export default {
     },
     mouseover(idx){
       this.clearVel()
-      let vel = this.$refs[`vel_${idx}`]
+      let vel = this.$refs[`vel_${idx+1}`]
       vel.style.textShadow = '0 0 20px #fff'
       for(let j=0;j<=idx;j++){
-        this.$refs[`vel_${j}`].style.color='#0f8'
+        this.$refs[`vel_${j+1}`].style.color='#0f8'
       }
     }
   },
@@ -55,7 +54,7 @@ export default {
   },
   mounted(){
     Array(this.numv).fill().map((v, i) => {
-      let vel = this.$refs[`vel_${i}`]
+      let vel = this.$refs[`vel_${i+1}`]
       if(i<this.votes) vel.style.color='red'
     })
   }
@@ -71,12 +70,13 @@ export default {
     border-radius: 10px;
     text-align: center;
     width: calc(100% - 50px);
-    height: 65px;
+    height: 55px;
     background: #208;
     display: inline-block;
     vertical-align: top;
-    font-size: 200%;
-    line-height: 95%;
+    font-size: 150%;
+    margin-top:10px;
+    line-height: 90%;
     margin-bottom: 10px;
     left: 50%;
     position: relative;
