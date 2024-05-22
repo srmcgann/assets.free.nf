@@ -185,7 +185,9 @@ export default{
             this.state.loggedInUser.avatar = this.state.defaultAvatar
             this.state.passhash = data[1]
             this.state.setCookie()
-            if(this.state.commentPending){
+            if(this.state.votePending){
+              this.state.setVote()
+            }else if(this.state.commentPending){
               this.state.submitComment()
             }else{
               this.state.closePrompts()
@@ -197,6 +199,10 @@ export default{
           } else {
             this.showInvalid = true
           }
+          this.state.votePending = false
+          this.state.pendingVoteSlug = null
+          this.state.pendingVoteValue = null
+          this.state.commentPending = false
         })
       } else {
         console.log('failed validation. no reg submitted')

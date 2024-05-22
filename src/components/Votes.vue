@@ -34,9 +34,18 @@ export default {
       }
     },
     click(idx){
-      this.votes = this.votes == idx ? 0 : idx
-      this.clearVel()
-      this.state.setVote(this.link.slug, this.votes)
+      if(!this.state.loggedIn){
+        this.state.showRegister = false
+        this.state.showLoginPrompt = true
+        this.state.pendingVoteSlug = this.link.slug
+        this.state.pendingVoteValue = this.votes        
+        this.state.votePending = true
+        return
+      }else{
+        this.votes = this.votes == idx ? 0 : idx
+        this.clearVel()
+        this.state.setVote(this.link.slug, this.votes)
+      }
     },
     mouseover(idx){
       this.clearVel()
