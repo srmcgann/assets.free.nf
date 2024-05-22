@@ -44,6 +44,25 @@
             less info
           </button>
         </div>
+        <div class="sub" style="z-index: 1700;width: 375px;height: 42px;">
+          <span style="float: left;margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
+          <button
+            @click.prevent.stop="state.downloadZip()"
+            class="expandInfoButton"
+            style="width: 100px; margin:6px;font-size: 14px;"
+          >
+            download as zip
+          </button>
+        </div>
+        <div class="sub" style="z-index: 1700;width: 375px;height: 42px;">
+          <button
+            @click.prevent.stop="state.downloadFullZip()"
+            class="expandInfoButton"
+            style="width: 100px; margin:6px;font-size: 14px;"
+          >
+            download ENTIRE CATALOGUE as zip
+          </button>
+        </div>
         <div class="sub" style="z-index: 1700;width: 375px;height: 69px;">
           <span style="margin-left: 5px; font-size:.8em;">[w/selected&rarr;]</span>
           <button
