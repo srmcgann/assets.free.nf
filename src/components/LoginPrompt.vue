@@ -195,7 +195,7 @@ export default{
             this.state.invalidLoginAttemp = false
             this.state.checkLogin()
             this.state.setLinksOwner()
-            this.state.fetchUserLinks()
+            this.state.fetchUserLinks(this.state.loggedinUserID)
           } else {
             this.showInvalid = true
           }
