@@ -36,7 +36,7 @@ export default {
     click(idx){
       this.votes = this.votes == idx ? 0 : idx
       this.clearVel()
-      this.state.setVote(this.link.slug, this.this.votes)
+      this.state.setVote(this.link.slug, this.votes)
     },
     mouseover(idx){
       this.clearVel()
