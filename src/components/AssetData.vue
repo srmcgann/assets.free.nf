@@ -1,4 +1,5 @@
 <template>
+  <Votes :state="state" :link="link" />
   <table class="assetData" @mousemove="state.bumpADOpacity++">
     <tr v-if="state.showPreview"><td class="tdLeft">views</td><td class="tdRight" v-html="state.views(link)"></td></tr>
     <tr>
@@ -163,15 +164,17 @@
 </template>
 
 <script>
-import CollectionSelection from './CollectionSelection.vue'
-import LinkComments from './LinkComments.vue'
+import CollectionSelection from './CollectionSelection'
+import LinkComments from './LinkComments'
+import Votes from './Votes'
 
 export default {
   name: 'AssetData',
   props: [ 'state', 'link', 'omitAssetData' ],
   components: {
     CollectionSelection,
-    LinkComments
+    LinkComments,
+    Votes
   },
   data(){
     return {
