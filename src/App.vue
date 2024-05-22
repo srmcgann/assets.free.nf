@@ -1037,6 +1037,11 @@ export default {
     downloadFullZip(){
       if(!this.state.loggedIn) return
       let el = document.createElement('iframe')
+      el.addEventListener('load', () => {
+        setTimeout(() => {
+          el.remove()
+        }, 10000)
+      })
       el.style.opacity=.01
       el.style.position='absolute'
       document.body.appendChild(el)
@@ -1073,10 +1078,15 @@ export default {
       })
 
       let el = document.createElement('iframe')
+      el.addEventListener('load', () => {
+        setTimeout(() => {
+          el.remove()
+        }, 10000)
+      })
       el.style.opacity=.01
       el.style.position='absolute'
       document.body.appendChild(el)
-      el.src = `${state.URLbase}/downloadFullZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}&slugs=[${slugs.join(',')}]`
+      el.src = `${state.URLbase}/downloadZip.php?userName=${this.state.loggedinUserName}&passhash=${this.state.passhash}&slugs=[${slugs.join(',')}]`
     },
     deleteSelected(){
       let count = 0
