@@ -90,6 +90,9 @@ export default {
         fetchUserInfoMemo: [],
         downloadZip: null,
         downloadFullZip: null,
+        votePending: false,
+        pendingVoteSlug: null,
+        pendingVoteValue: null,
         adminDeleteAsset: null,
         setVote: null,
         linkify: null,
@@ -1308,6 +1311,11 @@ export default {
       document.cookie = 'showControls=' + this.state.showControls + '; expires=' + (new Date((Date.now()+3153600000000))).toUTCString() + '; path=/; domain=' + this.state.rootDomain
     },
     setVote(slug, val){
+      if(this.state.votePending){
+        slug = this.state.pendingVoteSlug
+        val = this.state.pendingVoteValue
+        this.state.votePending = false
+      }
       let sendData = {
         userName: this.state.username,
         passhash: this.state.passhash,
@@ -1323,6 +1331,18 @@ export default {
       .then(res => res.json())
       .then(data => {
         if(data[0]){
+          this.state.links.map(link=>{
+            if(link.slug == slug) link.votes = val
+          })
+          this.state.userLinks.map(link=>{
+            if(link.slug == slug) link.votes = val
+          })
+          this.state.miscLinks.map(link=>{
+            if(link.slug == slug) link.votes = val
+          })
+          this.state.cacheLinks.map(link=>{
+            if(link.slug == slug) link.votes = val
+          })
           console.log(`successfully set vote for slug ${slug} to ${val}`)
         }else{
           console.log(`there was a problem setting the vote for slug ${slug} to ${val}`)
