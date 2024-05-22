@@ -20,7 +20,7 @@ export default {
   props: [ 'state', 'link' ],
   data(){
     return {
-      numv: 6,
+      numv: 10,
       votes: 0,
     }
   },
@@ -75,7 +75,7 @@ export default {
     background: #2088;
     display: inline-block;
     vertical-align: top;
-    font-size: 150%;
+    font-size: 200%;
     margin-top:10px;
     line-height: 90%;
     margin-bottom: 10px;
@@ -83,13 +83,13 @@ export default {
     position: relative;
     transform: translate(-50%);
     color: #40f;
-    box-shadow: 0 0 20px 0px #0f8;
+    box-shadow: 0 0 20px 0px #80f;
     max-width: 350px;
   }
   .vel{
     text-align: center;
     display: inline-block;
-    width: 16%;
+    width: 9.5%;
     text-shadow: 5px 5px 5px #000;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */        
