@@ -49,7 +49,7 @@
           <button
             @click.prevent.stop="state.downloadZip()"
             class="expandInfoButton"
-            style="width: 100px; margin:6px;font-size: 14px;"
+            style="width: unset; margin:6px;font-size: 14px; padding-left: 5px; padding-right: 5px;"
           >
             download as zip
           </button>
@@ -58,7 +58,7 @@
           <button
             @click.prevent.stop="state.downloadFullZip()"
             class="expandInfoButton"
-            style="width: 100px; margin:6px;font-size: 14px;"
+            style="width: unset; margin:6px;margin-top:-1px;font-size: 14px;padding-left:5px;padding-right:5px;"
           >
             download ENTIRE CATALOGUE as zip
           </button>
