@@ -6,7 +6,7 @@ error_reporting(E_ALL);
   require_once('functions.php');
   $data = json_decode(file_get_contents('php://input'));
   $userID = mysqli_real_escape_string($link, $data->{'userID'});
-  $passhash = mysqli_real_escape_string($link, $data->{'userID'});
+  $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
 
   $enabled = 0;
 
