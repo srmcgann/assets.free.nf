@@ -168,7 +168,7 @@
     >
     <button @click="uploadByURL()" class="goButton" title="download asset by URL [enter]">go</button>
     <button
-      @click="state.mode='trending'"
+      @click="loadFeatured()"
       v-if="state.loggedIn"
       style="margin: 5px; position: absolute; margin-top: 7px;"
     >
@@ -225,6 +225,11 @@ export default {
     }
   },
   methods: {
+    loadFeatured(){
+      this.state.miscLinks = []
+      this.state.loadFeaturedItems()
+      state.mode='trending'
+    },
     viewCollection(collection){
       this.state.previewPosition = 0
       this.state.viewCollection(collection, 0)
