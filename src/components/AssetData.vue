@@ -99,10 +99,9 @@
     <tr>
       <td class="tdLeft">popularity</td>
       <td v-if="!!(+link.votesCast)" class="tdRight">
-        <div
-          class="popInner"
-          :style="popStyle"
-        ></div>
+        <div class="pop">
+          <div class="popInner" :style="popStyle(link)"></div>
+        </div>
       </td>
       <td v-else class="tdRight">
         no votes yet!
