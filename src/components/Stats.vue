@@ -270,7 +270,7 @@ export default {
       switch(this.sortMode){
         case 'views'      : return this.sortedByViews; break
         case 'upvotes'    : return this.sortedByUpVotes; break
-        case 'votesCast'  : return this.sortedByvotesCast; break
+        case 'votesCast'  : return this.sortedByVotesCast; break
         case 'popularity' : return this.sortedByPopularity; break
         case 'sizes'      : return this.sortedBySizes; break
         case 'types'      : return this.sortedByTypes; break
