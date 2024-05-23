@@ -87,7 +87,7 @@ export default {
     background: #2088;
     display: inline-block;
     vertical-align: top;
-    font-size: 250%;
+    font-size: 200%;
     margin-top:10px;
     line-height: 50%;
     margin-bottom: 10px;
@@ -99,9 +99,8 @@ export default {
     width: 350px;
   }
   .vel{
-    text-align: center;
     display: inline-block;
-    width: 9.5%;
+    width: 34px;
     text-shadow: 3px 3px 5px #000;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */        
