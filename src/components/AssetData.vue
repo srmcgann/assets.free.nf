@@ -193,7 +193,7 @@ export default {
   methods: {
     popStyle(link){
       let perc = this.state.voteRatingPerc(link)
-      return `width:${perc}%; background: hsla(${200*perc}, 99%, 50%, 1);`
+      return `width:${perc*100}%; background: hsla(${200*perc}, 99%, 50%, 1);`
     },
     onfocus(){
       console.log('blocking fade')
