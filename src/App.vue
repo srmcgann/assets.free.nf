@@ -135,6 +135,8 @@ export default {
         setUserPref: null,
         starImgs: [],
         starsLoaded: false,
+        voteRating: null,
+        numv: 10,
         submitComment: null,
         defaultAvatar: 'avatarDefault.png',
         loggedInUser: {
@@ -1216,6 +1218,11 @@ export default {
         break
       }
       this.state.showPreview = true
+    },
+    voteRating(link){
+      let upvotes = link.upvotes
+      let votesCast = link.votesCast
+      return `${(upvotes / votesCast / state.numv * 100)}% [${upvotes/state.numv}/${votesCast}]`
     },
     deleteCollection(collection){
       console.log('deleteCollection: ', collection)
@@ -2343,6 +2350,7 @@ export default {
     this.state.checkLogin = this.checkLogin
     this.state.closeModal = this.closeModal
     this.state.prettyDate = this.prettyDate
+    this.state.voteRating = this.voteRating
     this.state.unExpandAll = this.unExpandAll
     this.state.advancePage = this.advancePage
     this.state.regressPage = this.regressPage
