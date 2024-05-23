@@ -1972,7 +1972,7 @@ export default {
         slug,
         origin,
         votes:0,
-        upvotes: ,
+        upvotes: 0,
         votesCast: 0,
         selected,
         userID,
