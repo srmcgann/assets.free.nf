@@ -921,6 +921,7 @@ export default {
           userID,
           passhash: this.state.passhash,
           page: this.state.curPage,
+          loggedinUserID: this.state.loggedinUserID,
           maxResultsPerPage: this.state.maxResultsPerPage
         }
         console.log('fetchUserLinks.php sendData: ', sendData)
@@ -1779,7 +1780,7 @@ export default {
           slugs: tgtSlugs,
           forCollection,
           collectionID,
-          userName: this.state.userName,
+          userName: this.state.loggedinUserName,
           passhash: this.state.passhash
         }
         fetch(`${this.URLbase}/` + 'loadLinks.php', {
