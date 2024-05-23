@@ -4,13 +4,14 @@
   error_reporting(E_ALL);
   require_once('db.php');
   require_once('functions.php');
-  $data = json_decode(file_get_contents('php://input'));
-  $userName = mysqli_real_escape_string($link, $data->{'userName'});
-  $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
-  $slug     = mysqli_real_escape_string($link, $data->{'slug'});
-  $value    = mysqli_real_escape_string($link, $data->{'val'});
-  
-  $success  = false;
+  $data      = json_decode(file_get_contents('php://input'));
+  $userName  = mysqli_real_escape_string($link, $data->{'userName'});
+  $passhash  = mysqli_real_escape_string($link, $data->{'passhash'});
+  $slug      = mysqli_real_escape_string($link, $data->{'slug'});
+  $value     = mysqli_real_escape_string($link, $data->{'val'});
+  $total     = 0;
+  $ct        = 0;
+  $success   = false;
   if($userName && $passhash){
     $sql = "SELECT * FROM imjurUsers WHERE name LIKE \"$userName\" AND passhash LIKE BINARY \"$passhash\";";
     $res = mysqli_query($link, $sql);
@@ -32,8 +33,6 @@
     
     $sql = "SELECT * FROM imjurVotes WHERE uploadID = \"$uploadID\"";
     $res = mysqli_query($link, $sql);
-    $total = 0;
-    $ct = 0;
     for($i=0; $i<mysqli_num_rows($res); ++$i){
       $row = mysqli_fetch_assoc($res);
       $value = $row['value'];
@@ -44,6 +43,6 @@
     mysqli_query($link, $sql);
     $success = true;
   }
-  echo json_encode([$success]);
+  echo json_encode([$success, $total, $ct]);
 
 ?>
