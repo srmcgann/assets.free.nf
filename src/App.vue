@@ -1342,16 +1342,32 @@ export default {
       .then(data => {
         if(data[0]){
           this.state.links.map(link=>{
-            if(link.slug == slug) link.votes = val
+            if(link.slug == slug) {
+              link.votes = val
+              link.upvotes = +data[1]
+              link.votesCast = +data[2]
+            }
           })
           this.state.userLinks.map(link=>{
-            if(link.slug == slug) link.votes = val
+            if(link.slug == slug) {
+              link.votes = val
+              link.upvotes = +data[1]
+              link.votesCast = +data[2]
+            }
           })
           this.state.miscLinks.map(link=>{
-            if(link.slug == slug) link.votes = val
+            if(link.slug == slug) {
+              link.votes = val
+              link.upvotes = +data[1]
+              link.votesCast = +data[2]
+            }
           })
           this.state.cacheLinks.map(link=>{
-            if(link.slug == slug) link.votes = val
+            if(link.slug == slug) {
+              link.votes = val
+              link.upvotes = +data[1]
+              link.votesCast = +data[2]
+            }
           })
           console.log(`successfully set vote for slug ${slug} to ${val}`)
         }else{
