@@ -1,5 +1,5 @@
 <template>
-  <div class="votes">
+  <div class="votes" :height="!!(+link.votesCast) ? '' : 'height:55px;'">
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in state.numv"
@@ -10,7 +10,7 @@
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
     ></span>
-    <table>
+    <table v-if="!!(+link.votesCast)">
       <tr>
         <td class="tdLeft">popularity</td>
         <td v-if="!!(+link.votesCast)" class="tdRight">
@@ -22,7 +22,7 @@
           no votes yet!
         </td>
       </tr>
-      <tr v-if="!!(+link.votesCast)">
+      <tr>
         <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
       </tr>
     </table>
@@ -42,7 +42,7 @@ export default {
   methods: {
     popStyle(link){
       let perc = this.state.voteRatingPerc(link)
-      return `width:${perc*100}%; background: hsla(${200*perc}, 99%, 50%, 1);`
+      return `width:${perc*100}%; background: hsla(${150*perc}, 99%, 50%, 1);`
     },
     clearVel(){
       for(let j=0;j<this.state.numv;j++){
@@ -100,7 +100,7 @@ export default {
     box-sizing: border-box;
   }
   .votes{
-    border-radius: 50px;
+    border-radius: 40px;
     text-align: left;
     width: calc(100% - 10px);
     height: 100px;
