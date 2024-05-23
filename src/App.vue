@@ -1228,7 +1228,7 @@ export default {
     voteRatingPerc(link){
       let upvotes = link.upvotes
       let votesCast = link.votesCast
-      return upvotes / votesCast / this.state.numv * 100
+      return upvotes / votesCast / this.state.numv
     },
     deleteCollection(collection){
       console.log('deleteCollection: ', collection)
