@@ -75,6 +75,27 @@
           </th>
           <th>
             <button
+              :class="{'sortCol': sortMode=='upvotes'}"
+              @click="setSortMode('upvotes')"
+              v-html="`upvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='votesCast'}"
+              @click="setSortMode('votesCast')"
+              v-html="`votesCast<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
+              :class="{'sortCol': sortMode=='popularity'}"
+              @click="setSortMode('popularity')"
+              v-html="`pop<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+            ></button>
+          </th>
+          <th>
+            <button
               :class="{'sortCol': sortMode=='sizes'}"
               @click="setSortMode('sizes')"
               v-html="`size<br>${sortDir ? '&#8679;' : '&#8681;'}`"
@@ -94,28 +115,6 @@
               v-html="`type<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
-          <th>
-            <button
-              :class="{'sortCol': sortMode=='upvotes'}"
-              @click="setSortMode('upvotes')"
-              v-html="`upvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
-            ></button>
-          </th>
-          <th>
-            <button
-              :class="{'sortCol': sortMode=='votesCast'}"
-              @click="setSortMode('votesCast')"
-              v-html="`votesCast<br>${sortDir ? '&#8679;' : '&#8681;'}`"
-            ></button>
-          </th>
-          <th>
-            <button
-              :class="{'sortCol': sortMode=='popularity'}"
-              style="min-width: 120px;"
-              @click="setSortMode('popularity')"
-              v-html="`pop<br>${sortDir ? '&#8679;' : '&#8681;'}`"
-            ></button>
-          </th>
         </tr>
         <tr v-for="link in sortedArray">
           <td class="tdRight">
@@ -128,6 +127,15 @@
           <td v-else-if="link.filetype.indexOf('image')!=-1" class="tdRight"><a :href="state.URLbase + '/' + link.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + link.href});`" class="avatar"></div></a></td>
           <td v-else-if="link.filetype.indexOf('video')!=-1" class="tdRight"><a :href="state.URLbase + '/' + link.href" target="_blank"><video autoplay loop muted :src="state.URLbase + '/' + link.href" class="avatar"></video></a></td>
           <td class="tdRight" v-html="link.views"></td>
+          <td class="tdRight">
+            <div class="actualAsset" v-html="link.upvotes"></div>
+          </td>
+          <td class="tdRight">
+            <div class="actualAsset" v-html="link.votesCast"></div>
+          </td>
+          <td class="tdRight">
+            <div class="actualAsset" v-html="`${state.voteRatingPerc(link)*100}%`"></div>
+          </td>
           <td class="tdRight" style="min-width: 100px;">
             <div class="actualAsset" v-html="state.size(link.size)"></div>
           </td>
@@ -136,15 +144,6 @@
           </td>
           <td class="tdRight">
             <div class="actualAsset" v-html="link.filetype"></div>
-          </td>
-          <td class="tdRight">
-            <div class="actualAsset" v-html="link.upvotes"></div>
-          </td>
-          <td class="tdRight">
-            <div class="actualAsset" v-html="link.votesCast"></div>
-          </td>
-          <td class="tdRight">
-            <div class="actualAsset" v-html="`${state.voteRatingPerc(link)}%`"></div>
           </td>
         </tr>
       </table>
@@ -237,11 +236,11 @@ export default {
       let src = this.array
       return src.sort((a, b) => (this.sortDir?b:a).upvotes - (this.sortDir?a:b).upvotes)
     },
-    sortedByDownVotes(){
+    sortedByVotesCast(){
       let src = this.array
       return src.sort((a, b) => (this.sortDir?b:a).votesCast - (this.sortDir?a:b).votesCast)
     },
-    sortedByAvgVotes(){
+    sortedByPopularity(){
       let src = this.array
       return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).votesCast) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).votesCast))
     },
@@ -269,13 +268,13 @@ export default {
     },
     sortedArray(){
       switch(this.sortMode){
-        case 'views'     : return this.sortedByViews; break
-        case 'upvotes'   : return this.sortedByUpVotes; break
-        case 'votesCast' : return this.sortedByDownVotes; break
-        case 'popularity'  : return this.sortedByAvgViews; break
-        case 'sizes'     : return this.sortedBySizes; break
-        case 'types'     : return this.sortedByTypes; break
-        case 'dates'     : return this.sortedByDates; break
+        case 'views'      : return this.sortedByViews; break
+        case 'upvotes'    : return this.sortedByUpVotes; break
+        case 'votesCast'  : return this.sortedByvotesCast; break
+        case 'popularity' : return this.sortedByPopularity; break
+        case 'sizes'      : return this.sortedBySizes; break
+        case 'types'      : return this.sortedByTypes; break
+        case 'dates'      : return this.sortedByDates; break
       }
     }
   },
