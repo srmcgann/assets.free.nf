@@ -1,5 +1,5 @@
 <template>
-  <div class="votes" :style="!!(+link.votesCast) ? '' : 'height:60px;'">
+  <div class="votes" :style="vc ? '' : 'height:60px;'">
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in state.numv"
@@ -10,10 +10,10 @@
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
     ></span>
-    <table v-if="!!(+link.votesCast)">
+    <table v-if="vc">
       <tr>
         <td class="tdLeft">popularity</td>
-        <td v-if="!!(+link.votesCast)" class="tdRight">
+        <td v-if="vc" class="tdRight">
           <div class="pop">
             <div class="popInner" :style="popStyle(link)"></div>
           </div>
@@ -81,8 +81,11 @@ export default {
     }
   },
   computed:{
+    vc(){
+      return !!(+links.votes) && !!(+link.votesCast)
+    },
     vt(){
-      return this.link.votesCast ? `your vote: ${this.votes}/${this.state.numv}` : 'rate this asset'
+      return !!(+this.link.votesCast) ? `your vote: ${this.votes}/${this.state.numv}` : 'rate this asset'
     }
   },
   mounted(){
