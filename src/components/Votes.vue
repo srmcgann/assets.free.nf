@@ -22,7 +22,7 @@
           no votes yet!
         </td>
       </tr>
-      <tr v-if="link.expandedInfo && !!(+link.votesCast)">
+      <tr v-if="!!(+link.votesCast)">
         <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
       </tr>
     </table>
@@ -100,10 +100,10 @@ export default {
     box-sizing: border-box;
   }
   .votes{
-    border-radius: 100px;
+    border-radius: 50px;
     text-align: left;
     width: calc(100% - 10px);
-    height: 155px;
+    height: 100px;
     background: #2088;
     display: inline-block;
     vertical-align: top;
@@ -139,7 +139,20 @@ export default {
   }
   .tdLeft{
     max-width: unset;
-    min-width: 105px;
+    min-width: 90px;
+  }
+  table{
+    width: 100%;
+    margin-top: 8px;
+  }
+  .tdRight, .tdLeft{
+    border: none;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .tdRight{
+    min-width: 225px;
+    padding-right: 10px;
   }
   .tdRight a{
     color: #0ff;
@@ -150,6 +163,7 @@ export default {
     width: 100%;
     border: 1px solid #456;
     height: 16px;
+    background: #000;
   }
   .popInner{
     height: 100%;
