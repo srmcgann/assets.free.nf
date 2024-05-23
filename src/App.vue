@@ -136,6 +136,7 @@ export default {
         starImgs: [],
         starsLoaded: false,
         voteRating: null,
+        voteRatingPerc: null,
         numv: 10,
         submitComment: null,
         defaultAvatar: 'avatarDefault.png',
@@ -1223,6 +1224,11 @@ export default {
       let upvotes = link.upvotes
       let votesCast = link.votesCast
       return `${Math.round(upvotes / votesCast / this.state.numv * 100)/1}% [${Math.round(upvotes/this.state.numv*100)/100}/${votesCast} votes]`
+    },
+    voteRatingPerc(link){
+      let upvotes = link.upvotes
+      let votesCast = link.votesCast
+      return upvotes / votesCast / this.state.numv * 100
     },
     deleteCollection(collection){
       console.log('deleteCollection: ', collection)
@@ -2387,6 +2393,7 @@ export default {
     this.state.updateComment = this.updateComment
     this.state.setLinksOwner = this.setLinksOwner
     this.state.fetchUserInfo = this.fetchUserInfo
+    this.state.voteRatingPerc = this.voteRatingPerc
     this.state.fetchUserLinks = this.fetchUserLinks
     this.state.toggleTrending = this.toggleTrending
     this.state.viewCollection = this.viewCollection
