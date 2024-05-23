@@ -45,7 +45,7 @@ error_reporting(0);
                       'description'   => json_decode($row['meta'])->{'description'},
                       'slugs'         => json_decode($row['meta'])->{'slugs'},
                       'upvotes'       => json_decode($row['meta'])->{'upvotes'},
-                      'downvotes'     => json_decode($row['meta'])->{'downvotes'},
+                      'votesCast'     => json_decode($row['meta'])->{'votesCast'},
                       'private'       => $private,
                       'views'         => json_decode($row['meta'])->{'views'},
                       //'originalSlugs' => json_decode($row['meta'])->{'originalSlugs'},

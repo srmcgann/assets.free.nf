@@ -20,7 +20,7 @@ error_reporting(E_ALL);
     $enabled = $row['enabled'];
     $admin = $row['admin'];
     if($enabled || $admin){
-      $sql = "INSERT INTO imjurComments (userID, text, upvotes, downvotes, uploadID) VALUES($userID, \"$comment\", 0, 0, $uploadID)";
+      $sql = "INSERT INTO imjurComments (userID, text, upvotes, votesCast, uploadID) VALUES($userID, \"$comment\", 0, 0, $uploadID)";
       if(mysqli_query($link, $sql)){
         $comments = [];
         $sql = "SELECT * FROM imjurComments WHERE uploadID = $uploadID";

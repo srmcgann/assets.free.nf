@@ -60,7 +60,7 @@ error_reporting(0);
         'hash'            => $row['hash'],
         'href'            => $resFile,
         'upvotes'         => $row['upvotes'],
-        'downvotes'       => $row['downvotes'],
+        'votesCast'       => $row['votesCast'],
         'filetype'        => $filetype,
         'private'         => $row['private'],
         'meta'            => $row['meta'],

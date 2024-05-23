@@ -76,9 +76,9 @@
             </th>
             <th>
               <button
-                :class="{'sortCol': sortMode=='downvotes'}"
-                @click="setSortMode('downvotes')"
-                v-html="`downvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+                :class="{'sortCol': sortMode=='votesCast'}"
+                @click="setSortMode('votesCast')"
+                v-html="`votes cast<br>${sortDir ? '&#8679;' : '&#8681;'}`"
               ></button>
             </th>
             <th>
@@ -89,12 +89,8 @@
                 v-html="`avg votes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
               ></button>
             </th>
-
-
-            <th>size</th>
-            <th>date</th>
-            <th>type</th>
             -->
+
 
 
             <th>delete</th>
@@ -249,11 +245,11 @@ export default {
             this.sortMode = 'upvotes'
           }
         break
-        case 'downvotes':
-          if(this.sortMode == 'downvotes'){
+        case 'votesCast':
+          if(this.sortMode == 'votesCast'){
             this.sortDir = !this.sortDir
           } else {
-            this.sortMode = 'downvotes'
+            this.sortMode = 'votesCast'
           }
         break
         case 'avgvotes':
@@ -343,7 +339,7 @@ export default {
       switch(this.sortMode){
         case 'views'     : return this.sortedByViews; break
         case 'upvotes'   : return this.sortedByUpVotes; break
-        case 'downvotes' : return this.sortedByDownVotes; break
+        case 'votesCast' : return this.sortedByDownVotes; break
         case 'avgvotes'  : return this.sortedByAvgViews; break
         case 'trending'  : return this.sortedByTrending; break
         case 'sizes'     : return this.sortedBySizes; break

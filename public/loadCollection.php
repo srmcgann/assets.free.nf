@@ -57,7 +57,7 @@
                       'description'   => $meta->{'description'},
                       'slugs'         => $meta->{'slugs'},
                       'upvotes'       => $meta->{'upvotes'},
-                      'downvotes'     => $meta->{'downvotes'},
+                      'votesCast'     => $meta->{'votesCast'},
                       'private'       => $private,
                       'views'         => $views,
                       //'originalSlugs' => $meta->{'originalSlugs'},

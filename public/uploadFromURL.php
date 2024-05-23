@@ -171,7 +171,7 @@ error_reporting(0);
                             origin,
                             userID,
                             upvotes,
-                            downvotes,
+                            votesCast,
                             views,
                             description
                             )VALUES(

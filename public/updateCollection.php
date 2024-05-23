@@ -57,7 +57,7 @@ error_reporting(0);
       //$meta['originalSlugs'] = $originalSlugs;
       $meta['date']          = $oMeta->{'date'};
       $meta['upvotes']       = $oMeta->{'upvotes'};
-      $meta['downvotes']     = $oMeta->{'downvotes'};
+      $meta['votesCast']     = $oMeta->{'votesCast'};
       $meta['views']         = $oMeta->{'views'};
       $meta['serverTZO']     = $oMeta->{'serverTZO'};
 

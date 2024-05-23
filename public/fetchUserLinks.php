@@ -6,12 +6,13 @@ error_reporting(E_ALL);
   require_once('functions.php');
   $data = json_decode(file_get_contents('php://input'));
   $userID = mysqli_real_escape_string($link, $data->{'userID'});
+  $loggedinUserID = mysqli_real_escape_string($link, $data->{'loggedinUserID'});
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
 
   $enabled = 0;
 
   if($passhash){
-    $sql = "SELECT * FROM imjurUsers WHERE id = $userID AND passhash LIKE BINARY\"$passhash\"";
+    $sql = "SELECT * FROM imjurUsers WHERE id = $loggedinUserID AND passhash LIKE BINARY\"$passhash\"";
     $res = mysqli_query($link, $sql);
     if(mysqli_num_rows($res)){
       $row = mysqli_fetch_assoc($res);
@@ -42,7 +43,7 @@ error_reporting(E_ALL);
     $uploadID = $row['id'];
     $votes = 0;
     if($enabled){
-      $sql = "SELECT * FROM imjurVotes WHERE userID = $userID AND uploadID = $uploadID";
+      $sql = "SELECT * FROM imjurVotes WHERE userID = $loggedinUserID AND uploadID = $uploadID";
       $res2 = mysqli_query($link, $sql);
       if(mysqli_num_rows($res2)){
         $row2 = mysqli_fetch_assoc($res2);
@@ -62,7 +63,7 @@ error_reporting(E_ALL);
       'votes'          => $votes,
       'upvotes'        => $row['upvotes'],
       'private'        => $row['private'],
-      'downvotes'      => $row['downvotes'],
+      'votesCast'      => $row['votesCast'],
       'views'          => $row['views'],
       'description'    => $row['description'],
       'originalSlug'   => $row['originalSlug'],

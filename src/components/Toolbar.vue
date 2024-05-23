@@ -54,7 +54,7 @@
             download as zip
           </button>
         </div>
-        <div class="sub" style="z-index: 1700;width: 375px;height: 42px;">
+        <div class="sub" style="z-index: 1700;width: 375px;height: 30px; min-height: unset;">
           <button
             @click.prevent.stop="state.downloadFullZip()"
             class="expandInfoButton"

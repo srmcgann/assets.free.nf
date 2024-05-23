@@ -15,11 +15,11 @@ error_reporting(0);
   if($userName && $passhash){
     $sql = "SELECT * FROM imjurUsers WHERE name LIKE \"$userName\" AND passhash LIKE BINARY \"$passhash\";";
     $res = mysqli_query($link, $sql);
-  }
-  if(mysqli_num_rows($res)){
-    $loggedIn = true;
-    $row = mysqli_fetch_assoc($res);
-    $loggedinUserID = $row['id'];
+    if(mysqli_num_rows($res)){
+      $loggedIn = true;
+      $row = mysqli_fetch_assoc($res);
+      $loggedinUserID = $row['id'];
+    }
   }
 
   $sql = "SELECT * FROM imjurUploads WHERE slug LIKE BINARY";
@@ -63,7 +63,7 @@ error_reporting(0);
       'votes'        => $votes,
       'upvotes'      => $row['upvotes'],
       'private'      => $row['private'],
-      'downvotes'    => $row['downvotes'],
+      'votesCast'    => $row['votesCast'],
       'views'        => $row['views'],
       'description'  => $row['description'],
       'originalSlug' => $row['originalSlug'],

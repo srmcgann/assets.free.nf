@@ -103,9 +103,9 @@
           </th>
           <th>
             <button
-              :class="{'sortCol': sortMode=='downvotes'}"
-              @click="setSortMode('downvotes')"
-              v-html="`downvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              :class="{'sortCol': sortMode=='votesCast'}"
+              @click="setSortMode('votesCast')"
+              v-html="`votesCast<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
@@ -141,10 +141,10 @@
             <div class="actualAsset" v-html="asset.upvotes"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="asset.downvotes"></div>
+            <div class="actualAsset" v-html="asset.votesCast"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="(asset.upvotes + asset.downvotes)/2"></div>
+            <div class="actualAsset" v-html="(asset.upvotes + asset.votesCast)/2"></div>
           </td>
         </tr>
       </table>
@@ -204,11 +204,11 @@ export default {
             this.sortMode = 'upvotes'
           }
         break
-        case 'downvotes':
-          if(this.sortMode == 'downvotes'){
+        case 'votesCast':
+          if(this.sortMode == 'votesCast'){
             this.sortDir = !this.sortDir
           } else {
-            this.sortMode = 'downvotes'
+            this.sortMode = 'votesCast'
           }
         break
         case 'avgvotes':
@@ -239,11 +239,11 @@ export default {
     },
     sortedByDownVotes(){
       let src = this.array
-      return src.sort((a, b) => (this.sortDir?b:a).downvotes - (this.sortDir?a:b).downvotes)
+      return src.sort((a, b) => (this.sortDir?b:a).votesCast - (this.sortDir?a:b).votesCast)
     },
     sortedByAvgVotes(){
       let src = this.array
-      return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).downvotes) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).downvotes))
+      return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).votesCast) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).votesCast))
     },
     sortedBySizes(){
       let src = this.array
@@ -271,7 +271,7 @@ export default {
       switch(this.sortMode){
         case 'views'     : return this.sortedByViews; break
         case 'upvotes'   : return this.sortedByUpVotes; break
-        case 'downvotes' : return this.sortedByDownVotes; break
+        case 'votesCast' : return this.sortedByDownVotes; break
         case 'avgvotes'  : return this.sortedByAvgViews; break
         case 'sizes'     : return this.sortedBySizes; break
         case 'types'     : return this.sortedByTypes; break

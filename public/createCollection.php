@@ -33,7 +33,7 @@ error_reporting(0);
     $meta['description']   = $description;
     $meta['slugs']         = $slugs;
     $meta['upvotes']       = 0;
-    $meta['downvotes']     = 0;
+    $meta['votesCast']     = 0;
     $meta['private']       = $private;
     $meta['views']         = 0;
     //$meta['originalSlugs'] = $originalSlugs;
