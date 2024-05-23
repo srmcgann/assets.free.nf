@@ -63,7 +63,7 @@ export default {
   },
   computed:{
     vt(){
-      return `your vote: ${this.votes}`
+      return `your vote: ${this.votes}/${this.numv}`
     }
   },
   mounted(){
