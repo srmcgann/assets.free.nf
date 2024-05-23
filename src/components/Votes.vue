@@ -10,6 +10,22 @@
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
     ></span>
+    <table>
+      <tr>
+        <td class="tdLeft">popularity</td>
+        <td v-if="!!(+link.votesCast)" class="tdRight">
+          <div class="pop">
+            <div class="popInner" :style="popStyle(link)"></div>
+          </div>
+        </td>
+        <td v-else class="tdRight">
+          no votes yet!
+        </td>
+      </tr>
+      <tr v-if="link.expandedInfo && !!(+link.votesCast)">
+        <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -24,6 +40,10 @@ export default {
     }
   },
   methods: {
+    popStyle(link){
+      let perc = this.state.voteRatingPerc(link)
+      return `width:${perc*100}%; background: hsla(${200*perc}, 99%, 50%, 1);`
+    },
     clearVel(){
       for(let j=0;j<this.state.numv;j++){
         let el = document.querySelector(`#vel_${this.link.slug}_${j+1}`)
@@ -81,9 +101,9 @@ export default {
   }
   .votes{
     border-radius: 100px;
-    text-align: center;
+    text-align: left;
     width: calc(100% - 10px);
-    height: 55px;
+    height: 155px;
     background: #2088;
     display: inline-block;
     vertical-align: top;

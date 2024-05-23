@@ -96,20 +96,6 @@
       ></td>
     </tr>
 
-    <tr>
-      <td class="tdLeft">popularity</td>
-      <td v-if="!!(+link.votesCast)" class="tdRight">
-        <div class="pop">
-          <div class="popInner" :style="popStyle(link)"></div>
-        </div>
-      </td>
-      <td v-else class="tdRight">
-        no votes yet!
-      </td>
-    </tr>
-    <tr v-if="link.expandedInfo && !!(+link.votesCast)">
-      <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
-    </tr>
     <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">hash</td>
       <td
@@ -191,10 +177,6 @@ export default {
   computed:{
   },
   methods: {
-    popStyle(link){
-      let perc = this.state.voteRatingPerc(link)
-      return `width:${perc*100}%; background: hsla(${200*perc}, 99%, 50%, 1);`
-    },
     onfocus(){
       console.log('blocking fade')
       this.state.blockFade = true
