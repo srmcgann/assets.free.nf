@@ -110,41 +110,41 @@
           </th>
           <th>
             <button
-              :class="{'sortCol': sortMode=='avgvotes'}"
+              :class="{'sortCol': sortMode=='popularity'}"
               style="min-width: 120px;"
-              @click="setSortMode('avgvotes')"
-              v-html="`avg votes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              @click="setSortMode('popularity')"
+              v-html="`pop<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
         </tr>
-        <tr v-for="asset in sortedArray">
+        <tr v-for="link in sortedArray">
           <td class="tdRight">
-            <div class="actualAsset" v-html="asset.slug"></div>
+            <div class="actualAsset" v-html="link.slug"></div>
           </td>
-          <td v-if="!asset.showPreview">
-            <button @click="asset.showPreview=true">show</button>
+          <td v-if="!link.showPreview">
+            <button @click="link.showPreview=true">show</button>
           </td>
-          <td v-else-if="asset.filetype.indexOf('audio')!=-1" class="tdRight"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
-          <td v-else-if="asset.filetype.indexOf('image')!=-1" class="tdRight"><a :href="state.URLbase + '/' + asset.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + asset.href});`" class="avatar"></div></a></td>
-          <td v-else-if="asset.filetype.indexOf('video')!=-1" class="tdRight"><a :href="state.URLbase + '/' + asset.href" target="_blank"><video autoplay loop muted :src="state.URLbase + '/' + asset.href" class="avatar"></video></a></td>
-          <td class="tdRight" v-html="asset.views"></td>
+          <td v-else-if="link.filetype.indexOf('audio')!=-1" class="tdRight"><a :href="state.URLbase + '/' + link.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/musicNotes.svg'});`" class="avatar"></div></a></td>
+          <td v-else-if="link.filetype.indexOf('image')!=-1" class="tdRight"><a :href="state.URLbase + '/' + link.href" target="_blank"><div :style="`background-image: url(${state.URLbase + '/' + link.href});`" class="avatar"></div></a></td>
+          <td v-else-if="link.filetype.indexOf('video')!=-1" class="tdRight"><a :href="state.URLbase + '/' + link.href" target="_blank"><video autoplay loop muted :src="state.URLbase + '/' + link.href" class="avatar"></video></a></td>
+          <td class="tdRight" v-html="link.views"></td>
           <td class="tdRight" style="min-width: 100px;">
-            <div class="actualAsset" v-html="state.size(asset.size)"></div>
+            <div class="actualAsset" v-html="state.size(link.size)"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="state.prettyDate({date: asset.date})"></div>
+            <div class="actualAsset" v-html="state.prettyDate({date: link.date})"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="asset.filetype"></div>
+            <div class="actualAsset" v-html="link.filetype"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="asset.upvotes"></div>
+            <div class="actualAsset" v-html="link.upvotes"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="asset.votesCast"></div>
+            <div class="actualAsset" v-html="link.votesCast"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="(asset.upvotes + asset.votesCast)/2"></div>
+            <div class="actualAsset" v-html="`state.voteRatingPerc(link)%`"></div>
           </td>
         </tr>
       </table>
@@ -211,11 +211,11 @@ export default {
             this.sortMode = 'votesCast'
           }
         break
-        case 'avgvotes':
-          if(this.sortMode == 'avgvotes'){
+        case 'popularity':
+          if(this.sortMode == 'popularity'){
             this.sortDir = !this.sortDir
           } else {
-            this.sortMode = 'avgvotes'
+            this.sortMode = 'popularity'
           }
         break
       }
@@ -272,7 +272,7 @@ export default {
         case 'views'     : return this.sortedByViews; break
         case 'upvotes'   : return this.sortedByUpVotes; break
         case 'votesCast' : return this.sortedByDownVotes; break
-        case 'avgvotes'  : return this.sortedByAvgViews; break
+        case 'popularity'  : return this.sortedByAvgViews; break
         case 'sizes'     : return this.sortedBySizes; break
         case 'types'     : return this.sortedByTypes; break
         case 'dates'     : return this.sortedByDates; break

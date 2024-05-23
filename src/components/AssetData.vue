@@ -1,5 +1,5 @@
 <template>
-  <Votes :state="state" :link="link" />
+  <Votes :state="state" :link="link" @mousemove="state.bumpADOpacity++" />
   <table class="assetData" @mousemove="state.bumpADOpacity++">
     <tr v-if="state.showPreview"><td class="tdLeft">views</td><td class="tdRight" v-html="state.views(link)"></td></tr>
     <tr>

@@ -107,7 +107,7 @@ export default {
     text-align: left;
     width: calc(100% - 10px);
     height: 100px;
-    background: #2088;
+    background: #204d;
     display: inline-block;
     vertical-align: top;
     font-size: 200%;

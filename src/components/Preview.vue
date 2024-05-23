@@ -294,6 +294,7 @@ export default {
   }
   .inputs{
     opacity: 0;
+    background: #000a;
     position: fixed;
     top: 0;
     left: 0;
