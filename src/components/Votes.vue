@@ -1,5 +1,5 @@
 <template>
-  <div class="votes" :height="!!(+link.votesCast) ? '' : 'height:55px;'">
+  <div class="votes" :style="!!(+link.votesCast) ? '' : 'height:55px;'">
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in state.numv"
@@ -82,7 +82,7 @@ export default {
   },
   computed:{
     vt(){
-      return `your vote: ${this.votes}/${this.state.numv}`
+      return this.link.votesCast ? `your vote: ${this.votes}/${this.state.numv}` : 'rate this asset'
     }
   },
   mounted(){
