@@ -5,7 +5,7 @@
       v-for="idx in state.numv"
       :id="'vel_'+link.slug+'_'+idx"
       class="vel"
-      v-html="'❤︎'"
+      v-html="'☻'"
       @click="click(idx)"
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
@@ -87,16 +87,16 @@ export default {
     background: #2088;
     display: inline-block;
     vertical-align: top;
-    font-size: 150%;
+    font-size: 250%;
     margin-top:10px;
-    line-height: 90%;
+    line-height: 50%;
     margin-bottom: 10px;
     left: 50%;
     position: relative;
     transform: translate(-50%);
     color: #40f;
     box-shadow: 0 0 20px 0px #80f;
-    max-width: 350px;
+    width: 350px;
   }
   .vel{
     text-align: center;
