@@ -1,5 +1,5 @@
 <template>
-  <div class="votes" :style="!!(+link.votesCast) ? '' : 'height:55px;'">
+  <div class="votes" :style="!!(+link.votesCast) ? '' : 'height:60px;'">
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in state.numv"
@@ -42,7 +42,7 @@ export default {
   methods: {
     popStyle(link){
       let perc = this.state.voteRatingPerc(link)
-      return `width:${perc*100}%; background: hsla(${150*perc}, 99%, 50%, 1);`
+      return `width:${perc*100}%; background: hsla(${125*perc}, 99%, 50%, 1);`
     },
     clearVel(){
       for(let j=0;j<this.state.numv;j++){
@@ -100,7 +100,7 @@ export default {
     box-sizing: border-box;
   }
   .votes{
-    border-radius: 40px;
+    border-radius: 30px;
     text-align: left;
     width: calc(100% - 10px);
     height: 100px;
@@ -143,7 +143,7 @@ export default {
   }
   table{
     width: 100%;
-    margin-top: 8px;
+    margin-top: 5px;
     font-size: 16px;
   }
   .tdRight, .tdLeft{
