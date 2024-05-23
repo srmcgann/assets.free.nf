@@ -137,4 +137,21 @@ export default {
     text-align: center;
     padding-left: 4%;
   }
+  .tdLeft{
+    max-width: unset;
+    min-width: 105px;
+  }
+  .tdRight a{
+    color: #0ff;
+    font-weight: 900;
+    text-decoration: underline;
+  }
+  .pop{
+    width: 100%;
+    border: 1px solid #456;
+    height: 16px;
+  }
+  .popInner{
+    height: 100%;
+  }
 </style>

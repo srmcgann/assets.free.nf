@@ -231,12 +231,4 @@ export default {
     font-weight: 900;
     text-decoration: underline;
   }
-  .pop{
-    width: 100%;
-    border: 1px solid #456;
-    height: 16px;
-  }
-  .popInner{
-    height: 100%;
-  }
 </style>
