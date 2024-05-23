@@ -144,6 +144,7 @@ export default {
   table{
     width: 100%;
     margin-top: 8px;
+    font-size: 16px;
   }
   .tdRight, .tdLeft{
     border: none;
