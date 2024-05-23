@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `imjurComments` (
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `text` mediumtext NOT NULL,
   `upvotes` int(11) NOT NULL,
-  `downvotes` int(11) NOT NULL,
+  `votesCast` int(11) NOT NULL,
   `uploadID` bigint(20) NOT NULL,
   `edited` BOOLEAN NOT NULL DEFAULT FALSE,
   UNIQUE KEY `id` (`id`)
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `imjurUploads` (
   `origin` mediumtext NOT NULL,
   `userID` int(11) NOT NULL DEFAULT -1,
   `upvotes` int(11) NOT NULL,
-  `downvotes` int(11) NOT NULL,
+  `votesCast` int(11) NOT NULL,
   `views` int(11) NOT NULL,
   `description` mediumtext NOT NULL,
   `originalSlug` varchar(64) NOT NULL,
