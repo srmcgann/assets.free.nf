@@ -144,7 +144,7 @@
             <div class="actualAsset" v-html="link.votesCast"></div>
           </td>
           <td class="tdRight">
-            <div class="actualAsset" v-html="`state.voteRatingPerc(link)%`"></div>
+            <div class="actualAsset" v-html="`${state.voteRatingPerc(link)}%`"></div>
           </td>
         </tr>
       </table>
