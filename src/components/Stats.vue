@@ -242,7 +242,7 @@ export default {
     },
     sortedByPopularity(){
       let src = this.array
-      return src.sort((a, b) => ((this.sortDir?b:a).upvotes + (this.sortDir?b:a).votesCast) - ((this.sortDir?a:b).upvotes + (this.sortDir?a:b).votesCast))
+      return src.sort((a, b) => state.voteRatingPerc(this.sortDir?b:a) - state.voteRatingPerc(this.sortDir?a:b))
     },
     sortedBySizes(){
       let src = this.array
