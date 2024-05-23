@@ -96,7 +96,7 @@
       ></td>
     </tr>
 
-    <tr v-if="link.votesCast">
+    <tr v-if="!!(+link.votesCast)">
       <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
     </tr>
     <tr v-if="!omitAssetData && link.expandedInfo">
