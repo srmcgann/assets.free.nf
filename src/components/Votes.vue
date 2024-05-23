@@ -5,7 +5,7 @@
       v-for="idx in state.numv"
       :id="'vel_'+link.slug+'_'+idx"
       class="vel"
-      v-html="'❤'"
+      v-html="'❤︎'"
       @click="click(idx)"
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
