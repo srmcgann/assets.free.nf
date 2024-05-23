@@ -107,7 +107,7 @@
         no votes yet!
       </td>
     </tr>
-    <tr v-if="!!(+link.votesCast)">
+    <tr v-if="link.expandedInfo && !!(+link.votesCast)">
       <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
     </tr>
     <tr v-if="!omitAssetData && link.expandedInfo">
@@ -192,7 +192,7 @@ export default {
   },
   methods: {
     popStyle(link){
-      let perc = state.voteRatingPerc(link)
+      let perc = this.state.voteRatingPerc(link)
       return `width:${perc}%; background: hsla(${200*perc}, 99%, 50%, 1);`
     },
     onfocus(){
