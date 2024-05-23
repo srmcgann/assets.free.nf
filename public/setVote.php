@@ -30,7 +30,7 @@
     }
     mysqli_query($link, $sql);
     
-    $sql = "SELECT * FROM imjurVotes WHERE slug LIKE BINARY \"$slug\"";
+    $sql = "SELECT * FROM imjurVotes WHERE uploadID = \"$uploadID\"";
     $res = mysqli_query($link, $sql);
     $total = 0;
     $ct = 0;
@@ -40,7 +40,7 @@
       $total += intval($value);
       $ct++;
     }
-    $sql = "UPDATE imjurUploads SET upvotes = $total, votesCast = $ct";
+    $sql = "UPDATE imjurUploads SET upvotes = $total, votesCast = $ct WHERE id = $uploadID";
     mysqli_query($link, $sql);
     $success = true;
   }
