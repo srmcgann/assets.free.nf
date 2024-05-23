@@ -148,7 +148,9 @@ export default {
   },
   computed:{
     showFeatured(){
-      if(this.state.mode != 'trending' && !(this.state.userLinks.length ||
+      if(this.state.mode != 'item' &&
+         this.state.mode != 'trending' &&
+         !(this.state.userLinks.length ||
              this.state.links.length ||
              this.state.loadingAssets)) this.state.loadFeaturedItems()
       return this.state.mode == 'trending'

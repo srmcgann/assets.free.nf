@@ -8,7 +8,7 @@
   $userName  = mysqli_real_escape_string($link, $data->{'userName'});
   $passhash  = mysqli_real_escape_string($link, $data->{'passhash'});
   $slug      = mysqli_real_escape_string($link, $data->{'slug'});
-  $value     = mysqli_real_escape_string($link, $data->{'val'});
+  $value     = intval(mysqli_real_escape_string($link, $data->{'val'}));
   $total     = 0;
   $ct        = 0;
   $success   = false;
@@ -20,14 +20,18 @@
     $row = mysqli_fetch_assoc($res);
     $userID = $row['id'];
     $uploadID = alphaToDec($slug);
-    $sql = "SELECT * FROM imjurVotes WHERE userID = $userID AND uploadID = $uploadID";
-    $res2 = mysqli_query($link, $sql);
-    if(mysqli_num_rows($res2)){
-      $row2 = mysqli_fetch_assoc($res2);
-      $voteID = $row2['id'];
-      $sql = "UPDATE imjurVotes SET value = $value WHERE id = $voteID";
+    if($value){
+      $sql = "SELECT * FROM imjurVotes WHERE userID = $userID AND uploadID = $uploadID";
+      $res2 = mysqli_query($link, $sql);
+      if(mysqli_num_rows($res2)){
+        $row2 = mysqli_fetch_assoc($res2);
+        $voteID = $row2['id'];
+        $sql = "UPDATE imjurVotes SET value = $value WHERE id = $voteID";
+      }else{
+        $sql = "INSERT INTO imjurVotes (userID, uploadID, value) VALUES($userID, $uploadID, $value)";
+      }
     }else{
-      $sql = "INSERT INTO imjurVotes (userID, uploadID, value) VALUES($userID, $uploadID, $value)";
+      $sql = "DELETE FROM imjurVotes WHERE userID = $userID AND uploadID = $uploadID";
     }
     mysqli_query($link, $sql);
     
@@ -36,7 +40,7 @@
     for($i=0; $i<mysqli_num_rows($res); ++$i){
       $row = mysqli_fetch_assoc($res);
       $value = $row['value'];
-      $total += intval($value);
+      $total += $value;
       $ct++;
     }
     $sql = "UPDATE imjurUploads SET upvotes = $total, votesCast = $ct WHERE id = $uploadID";
