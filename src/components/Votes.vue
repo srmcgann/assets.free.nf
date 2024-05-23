@@ -82,7 +82,7 @@ export default {
   },
   computed:{
     vc(){
-      return !!(+links.votes) && !!(+link.votesCast)
+      return !!(+this.link.votes) && !!(+this.link.votesCast)
     },
     vt(){
       return !!(+this.link.votesCast) ? `your vote: ${this.votes}/${this.state.numv}` : 'rate this asset'
