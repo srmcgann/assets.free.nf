@@ -1409,6 +1409,11 @@ export default {
           this.state.invalidLoginAttemp = false
           this.state.loggedInUser.avatar = data[3]
           this.setLinksOwner()
+          
+          //refresh links, because now logged in and need personal data, votes etc
+          let slugs = []
+          this.state.miscLinks.map(link=>{ slugs = [...slugs, link.slug] })
+          this.state.loadLinks(slugs)
           this.fetchUserLinks(this.state.loggedinUserID)
           this.state.links = []
           if(this.state.commentPending){
