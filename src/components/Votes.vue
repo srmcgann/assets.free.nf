@@ -2,7 +2,7 @@
   <div class="votes">
     <div class="votingTitle" v-html="vt"></div>
     <span
-      v-for="idx in numv"
+      v-for="idx in state.numv"
       :id="'vel_'+link.slug+'_'+idx"
       class="vel"
       v-html="'❤'"
@@ -20,13 +20,12 @@ export default {
   props: [ 'state', 'link' ],
   data(){
     return {
-      numv: 10,
       votes: 0,
     }
   },
   methods: {
     clearVel(){
-      for(let j=0;j<this.numv;j++){
+      for(let j=0;j<this.state.numv;j++){
         let el = document.querySelector(`#vel_${this.link.slug}_${j+1}`)
         el.style.color='#40f'
         el.style.textShadow = '3px 3px 5px #000'
@@ -63,12 +62,12 @@ export default {
   },
   computed:{
     vt(){
-      return `your vote: ${this.votes}/${this.numv}`
+      return `your vote: ${this.votes}/${this.state.numv}`
     }
   },
   mounted(){
     this.votes = this.link.votes
-    Array(this.numv).fill().map((v, i) => {
+    Array(this.state.numv).fill().map((v, i) => {
       let vel = document.querySelector(`#vel_${this.link.slug}_${i+1}`)
       if(i<this.votes) vel.style.color='red'
     })

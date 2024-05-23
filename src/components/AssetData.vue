@@ -96,11 +96,8 @@
       ></td>
     </tr>
 
-    <tr v-if="link.upvotes">
-      <td class="tdLeft">upvotes</td><td class="tdRight" v-html="link.upvotes"></td>
-    </tr>
     <tr v-if="link.votesCast">
-      <td class="tdLeft">votesCast</td><td class="tdRight" v-html="link.votesCast"></td>
+      <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
     </tr>
     <tr v-if="!omitAssetData && link.expandedInfo">
       <td class="tdLeft">hash</td>
