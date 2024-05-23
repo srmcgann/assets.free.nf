@@ -175,7 +175,7 @@ export default{
           if(data[0]){
             this.state.modalContent = ''
             this.state.showModal = false
-            this.state.userName = this.state.regusername
+            this.state.username = this.state.regusername
             console.log('login succeeded!')
             this.state.loggedIn= true
             this.state.loggedinUserName = this.state.regusername
@@ -199,10 +199,10 @@ export default{
           } else {
             this.showInvalid = true
           }
-          //this.state.votePending = false
-          //this.state.pendingVoteSlug = null
-          //this.state.pendingVoteValue = null
-          //this.state.commentPending = false
+          this.state.votePending = false
+          this.state.pendingVoteSlug = null
+          this.state.pendingVoteValue = null
+          this.state.commentPending = false
         })
       } else {
         console.log('failed validation. no reg submitted')
