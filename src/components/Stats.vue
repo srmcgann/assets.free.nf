@@ -242,7 +242,7 @@ export default {
     },
     sortedByPopularity(){
       let src = this.array
-      return src.sort((a, b) => state.voteRatingPerc(this.sortDir?b:a) - state.voteRatingPerc(this.sortDir?a:b))
+      return src.sort((a, b) => this.state.voteRatingPerc(this.sortDir?b:a) - this.state.voteRatingPerc(this.sortDir?a:b))
     },
     sortedBySizes(){
       let src = this.array
@@ -325,10 +325,15 @@ export default {
     padding-left: 10px;
     padding-right: 10px;
   }
+  .tdLeft{
+    text-align: right;
+  }
+  .tdRight{
+    text-align: left;
+  }
   .tdLeft, .tdRight{
     max-width: unset;
     padding: 5px;
-    text-align: center;
     font-size: 1.2em;
   }
   hr{
