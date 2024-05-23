@@ -33,14 +33,13 @@
     $sql = "SELECT * FROM imjurVotes WHERE slug LIKE BINARY \"$slug\"";
     $res = mysqli_query($link, $sql);
     $total = 0;
-    $ct = 0
+    $ct = 0;
     for($i=0; $i<mysqli_num_rows($res); ++$i){
       $row = mysqli_fetch_assoc($res);
       $value = $row['value'];
       $total += intval($value);
       $ct++;
     }
-    $
     $sql = "UPDATE imjurUploads SET upvotes = $total, votesCast = $ct";
     mysqli_query($link, $sql);
     $success = true;
