@@ -199,10 +199,10 @@ export default{
           } else {
             this.showInvalid = true
           }
-          this.state.votePending = false
-          this.state.pendingVoteSlug = null
-          this.state.pendingVoteValue = null
-          this.state.commentPending = false
+          //this.state.votePending = false
+          //this.state.pendingVoteSlug = null
+          //this.state.pendingVoteValue = null
+          //this.state.commentPending = false
         })
       } else {
         console.log('failed validation. no reg submitted')
