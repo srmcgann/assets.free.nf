@@ -180,7 +180,7 @@ export default{
             this.state.loggedIn= true
             this.state.loggedinUserName = this.state.regusername
             this.state.loggedinUserID = +data[2]
-            //this.state.fetchUserData(this.state.loggedinUserID)
+            this.state.fetchUserInfo(this.state.loggedinUserID)
             this.state.isAdmin = +data[4]
             this.state.loggedInUser.avatar = this.state.defaultAvatar
             this.state.passhash = data[1]
