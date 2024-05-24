@@ -120,7 +120,6 @@ export default {
     color: #40f;
     box-shadow: 0 0 20px 0px #80f;
     width: 350px;
-    letter-spacing: 8px;
   }
   .vel{
     display: inline-block;
@@ -140,7 +139,6 @@ export default {
     font-size: 18px;
     text-align: center;
     padding-left: 4%;
-    letter-spacing: unset;
   }
   .tdLeft{
     max-width: unset;
