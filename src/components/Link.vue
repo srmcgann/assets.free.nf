@@ -226,6 +226,7 @@ export default {
       this.img = document.createElement('video')
       this.img.loop = true
       this.img.muted = true
+      console.log('fresh mount')
       this.img.oncanplay = () => {
         console.log('starting video! beep beep')
         this.w = this.img.videoWidth
