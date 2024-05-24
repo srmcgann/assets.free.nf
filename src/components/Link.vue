@@ -228,6 +228,7 @@ export default {
       this.img.muted = true
       this.img.oncanplay = () => {
         if(this.img.paused){
+          console.log('starting video! beep beep')
           this.w = this.img.videoWidth
           this.h = this.img.videoHeight
           this.img.play()
