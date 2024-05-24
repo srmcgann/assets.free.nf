@@ -148,7 +148,7 @@ export default {
   },
   computed:{
     showFeatured(){
-      if(this.state.mode != 'item' &&
+      if(this.state.mode != 'col' && this.state.mode != 'item' &&
          this.state.mode != 'trending' &&
          !(this.state.userLinks.length ||
              this.state.links.length ||
