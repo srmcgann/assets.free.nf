@@ -85,7 +85,7 @@ export default {
       return !!(+this.link.votes) && !!(+this.link.votesCast)
     },
     vt(){
-      return !!(+this.link.votesCast) ? `your vote: ${this.votes}/${this.state.numv}` : 'rate this asset'
+      return this.vc ? `your vote: ${this.votes}/${this.state.numv}` : 'rate this asset'
     }
   },
   mounted(){
