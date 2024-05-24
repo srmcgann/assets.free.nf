@@ -10,7 +10,7 @@
       @mouseover="mouseover(idx)"
       @mouseout="clearVel()"
     ></span>
-    <table v-if="vc">
+    <table>
       <tr>
         <td class="tdLeft">popularity</td>
         <td v-if="vc" class="tdRight">
@@ -22,7 +22,7 @@
           no votes yet!
         </td>
       </tr>
-      <tr>
+      <tr v-if="!!(+link.votesCast)">
         <td class="tdLeft">upvotes</td><td class="tdRight" v-html="state.voteRating(link)"></td>
       </tr>
     </table>
