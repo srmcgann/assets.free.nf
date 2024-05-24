@@ -227,8 +227,10 @@ export default {
       this.img.loop = true
       this.img.muted = true
       this.img.oncanplay = () => {
+        console.log('starting video! beep beep')
         this.w = this.img.videoWidth
         this.h = this.img.videoHeight
+        
         this.img.play()
         this.Draw()
       }
