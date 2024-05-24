@@ -60,7 +60,7 @@ todo
     └-> ✔ profile page
     └-> ✔ collections / share-ability
     └-> ✔ comments
-    └-> * votes
+    └-> ✔ votes
         
   * search (title/description/user/comments[optional])
   * social media metadata
