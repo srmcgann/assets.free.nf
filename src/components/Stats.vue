@@ -77,14 +77,14 @@
             <button
               :class="{'sortCol': sortMode=='upvotes'}"
               @click="setSortMode('upvotes')"
-              v-html="`upvotes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              v-html="`up<br>votes<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
             <button
               :class="{'sortCol': sortMode=='votesCast'}"
               @click="setSortMode('votesCast')"
-              v-html="`votesCast<br>${sortDir ? '&#8679;' : '&#8681;'}`"
+              v-html="`votes<br>cast<br>${sortDir ? '&#8679;' : '&#8681;'}`"
             ></button>
           </th>
           <th>
@@ -136,7 +136,7 @@
           <td class="tdRight">
             <div class="actualAsset" v-html="`${state.voteRatingPerc(link)*100}%`"></div>
           </td>
-          <td class="tdRight" style="min-width: 100px;">
+          <td class="tdRight" style="min-width: 120px;">
             <div class="actualAsset" v-html="state.size(link.size)"></div>
           </td>
           <td class="tdRight">
