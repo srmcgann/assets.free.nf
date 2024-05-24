@@ -11,15 +11,12 @@
       @mouseout="clearVel()"
     ></span>
     <table>
-      <tr>
+      <tr v-if="!!(+link.votesCast)">
         <td class="tdLeft">popularity</td>
-        <td v-if="vc" class="tdRight">
+        <td class="tdRight">
           <div class="pop">
             <div class="popInner" :style="popStyle(link)"></div>
           </div>
-        </td>
-        <td v-else class="tdRight">
-          no votes yet!
         </td>
       </tr>
       <tr v-if="!!(+link.votesCast)">
