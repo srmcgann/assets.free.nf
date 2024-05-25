@@ -1,5 +1,5 @@
 <template>
-  <div class="votes" :style="vc ? '' : 'height:60px;'">
+  <div class="votes" :style="!!(+link.votesCast) ? '' : 'height:60px;'">
     <div class="votingTitle" v-html="vt"></div>
     <span
       v-for="idx in state.numv"
