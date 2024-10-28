@@ -5,8 +5,8 @@
   $servers = [
     [
       'ftp_server' => 'ftpupload.net',
-      'ftp_user' => 'if0_36394634',
-      'ftp_pass' => '49DhSvcug8B',
+      'ftp_user' => 'if0_37603182',
+      'ftp_pass' => 'lQIbtdb1mArYj',
       'remote_dir' => '/htdocs',
       'local_dir' => '/home/whitehotrobot/assets.free.nf/dist_public',
     ],
