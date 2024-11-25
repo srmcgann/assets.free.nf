@@ -10,7 +10,7 @@ error_reporting(0);
   $collectionID = mysqli_real_escape_string($link, $data->{'collectionID'});
   $userName = mysqli_real_escape_string($link, $data->{'userName'});
   $passhash = mysqli_real_escape_string($link, $data->{'passhash'});
-  
+
   $loggedIn = false;
   if($userName && $passhash){
     $sql = "SELECT * FROM imjurUsers WHERE name LIKE \"$userName\" AND passhash LIKE BINARY \"$passhash\";";
@@ -30,11 +30,12 @@ error_reporting(0);
     $sql .= " \"$slug\"" . ($ct_ == $ct-1 ? '' : ' OR slug LIKE BINARY');
     $ct_++;
   }
-  
+
   $res = mysqli_query($link, $sql);
   $uploadDir = 'uploads';
   $links = [];
   $meta = [];
+  $votes = 0;
   for($i=0; $i<mysqli_num_rows($res); ++$i){
     $row      = mysqli_fetch_assoc($res);
     $slug     = $row['slug'];
@@ -45,11 +46,9 @@ error_reporting(0);
       if(mysqli_num_rows($res2)){
         $row2 = mysqli_fetch_assoc($res2);
         $votes = $row2['value'];
-      }else{
-        $votes = 0;
       }
     }
-    
+
     $m = [
       'id'           => $uploadID,
       'slug'         => $slug,
