@@ -914,8 +914,8 @@ export default {
           this.state.collections = data[1]
           this.state.showCollectionTemplate = false
           this.showLoading = false
-          if(forMgmt) this.state.showCollections = true
-        }
+	}
+	if(forMgmt) this.state.showCollections = true
       })
     },
     fetchUserLinks(userID){
